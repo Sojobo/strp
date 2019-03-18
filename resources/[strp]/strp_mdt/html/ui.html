@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/app.css" type="text/css" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	</head>
+	<body class="mdtwindow-wrapper open">
+		<div class="mdtwindow">
+			<div class="row">
+				<div class="head col-md-3">
+					<div class="myPlayer">
+						<img src="img/male.png" alt="Avatar" class="avatar">
+						Topsy Krett
+					</div>
+				</div>
+				<div class="head col-md-6">
+					<i class="fas fa-search fa-2x" id="openSearch"></i>
+					<i class="fas fa-list-ol fa-2x" id="openWanted"></i>
+					<i class="fas fa-gavel fa-2x" id="openLaws"></i>
+					<i class="fas fa-history fa-2x" id="openHistory"></i>
+				</div>
+				<div class="head col-md-3">
+					<div class="mdt-time">
+						10:45 AM
+						<div class="mdt-date">
+							Sunday 17th February 2019
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="menu col-md-3">
+					<div class="availableUnits">Available Units</div>
+					<div class="policeOnline">
+						<div class="officer available">
+							<i class="fas fa-shield-alt"></i>Adam Holder
+						</div>
+						<div class="officer available">
+							<i class="fas fa-shield-alt"></i>Steve McGarrett
+						</div>
+						<div class="officer available">
+							<i class="fas fa-shield-alt"></i>Josh Layfield
+						</div>
+						<div class="officer available">
+							<i class="fas fa-shield-alt"></i>Terry Lee
+						</div>
+						<div class="officer busy">
+							<i class="fas fa-shield-alt"></i>Aegon Targaryen
+						</div>
+						<div class="officer busy">
+							<i class="fas fa-shield-alt"></i>James Bean
+						</div>
+					</div>
+				</div>
+				<div class="content col-md-9" id="welcomePage">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="boxHead">Law Change</div>
+							<div class="boxContent">It is now illegal to fish in the sewers, crack down on those hobos!</div>
+						</div>
+						<div class="col-md-12">
+							<div class="boxHead">Welcome to the MDT</div>
+							<div class="boxContent">Your fellow online officers are shown to the left. Search options, most wanted, laws and recent actions can all be found in the menu up top!</div>
+						</div>
+					</div>
+				</div>
+				<div class="content col-md-9" id="searchPage">
+					<input type="text" placeholder="Find Person">
+					<input type="text" placeholder="Find Vehicle">
+				</div>
+				<div class="content col-md-9" id="mostWanted">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="boxHead">#1 - Reggie Kray</div>
+							<div class="boxContent">Catch this Paleto-based turd nugget!</div>
+						</div>
+						<div class="col-md-12">
+							<div class="boxHead">#2 - Micheal Schmeichel</div>
+							<div class="boxContent">Wanted for intefering with sheep</div>
+						</div>
+						<div class="col-md-12">
+							<div class="boxHead">#3 - Oompa Loompa</div>
+							<div class="boxContent">Serial suspension breaker</div>
+						</div>
+						<div class="col-md-12">
+							<div class="boxHead">#4 - Tess Tikkel</div>
+							<div class="boxContent">Expired VISA</div>
+						</div>
+						<div class="col-md-12">
+							<div class="boxHead">#5 - Clifford Harris</div>
+							<div class="boxContent">Crosshair bandit</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+		<script src="scripts/app.js"></script>
+	</body>
+</html>
