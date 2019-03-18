@@ -136,7 +136,7 @@ Citizen.CreateThread(function()
         DisablePlayerVehicleRewards(thisPlayerId)
 
         SetPlayerWeaponDamageModifier(thisPlayerId, 0.8)
-        SetPlayerVehicleDamageModifier(thisPlayerId, 0.2)
+        -- SetPlayerVehicleDamageModifier(thisPlayerId, 0.2)
         SetPlayerMeleeWeaponDamageModifier(thisPlayerId, 0.05)
         --SetAiWeaponDamageModifier(thisPlayerId, 0.5)
         --SetAiMeleeWeaponDamageModifier(thisPlayerId, 0.4)
