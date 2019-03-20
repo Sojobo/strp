@@ -4,7 +4,6 @@ local spawnPoints = {}
 -- auto-spawn enabled flag
 local autoSpawnEnabled = false
 local autoSpawnCallback
-local firstSpawn = true
 
 -- support for mapmanager maps
 AddEventHandler('getMapDirectives', function(add)
@@ -293,15 +292,12 @@ function spawnPlayer(spawnIdx, cb)
             Citizen.Wait(0)
         end
 
-        if firstSpawn then
-            firstSpawn = false
-        else
-            ShutdownLoadingScreen()
-            DoScreenFadeIn(500)
+        ShutdownLoadingScreen()
 
-            while IsScreenFadingIn() do
-                Citizen.Wait(0)
-            end
+        DoScreenFadeIn(500)
+
+        while IsScreenFadingIn() do
+            Citizen.Wait(0)
         end
 
         -- and unfreeze the player
