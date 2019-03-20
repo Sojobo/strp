@@ -1,5 +1,6 @@
 ﻿<html>
 <head>
+    <link rel="stylesheet" type="text/css" href="css/loading.css"/>
     <link rel="stylesheet" type="text/css" href="css/demo.css"/>
     <link rel="stylesheet" type="text/css" href="css/style3.css"/>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
@@ -22,7 +23,7 @@
 }
 
 
-      body {
+body {
   background-color: #000000;
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -172,6 +173,7 @@
 <div class="codrops-top">
     <center><img class="logo" src="https://i.imgur.com/qAbcT4O.png"></center>
     <div id="main">
+        <div id="loader"></div>
         <div id="left">
             <div id="informations">SERVER: STRP</div>
             <div class="module">
@@ -219,6 +221,63 @@
     <div class="thingy"></div>
 </div>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script type="text/javascript">
+var LOADER_CONTAINER = $("#loader");
+var LOADER_INTERVAL = 1600;
+var LOADERS = [
+  ["🔪","Stashing knives"],
+  ["🍷","Tasting wine"],
+  ["🔥","Burning evidence"],
+  ["📝","Writing ticket"],
+  ["🍿","Enjoying drama"],
+  ["🍻","Supplying Yellow Jacks"],
+  ["☕️","Brewing coffee"],
+  ["🌿","Planting Herbs"],
+  ["📸","Reviewing evidence"],
+  ["🐟","Casting line"],
+  ["☝🏽","Almost there!"],
+  ["🍹","Serving the Vanilla Unicorn"],
+  ["👨‍🚒","Rescuing cats"],
+  ["👮","Subduing suspect"],
+  ["👮‍♀️","Redirecting traffic"],
+  ["🚓","Giving chase"],
+  ["👨‍⚖️","Passing judgement"],
+  ["🚑","Applying bandages"],
+  ["👩‍⚕️","Administering lolipops"],
+  ["🐢","Saving turtles"],
+  ["🔫","Preparing the armory"],
+  ["💰","Securing the vault"],
+]
+
+$(document).ready(function() {
+  
+  var cycleLoader = function() {
+    var index = Math.floor(Math.random() * LOADERS.length);
+    var selected = LOADERS[index];
+    var selectedEmoji = selected[0];
+    var selectedText = selected[1];
+    
+    // First transition out the old loader
+    setTimeout(function(){
+      LOADER_CONTAINER.children().addClass("animateOut");
+    }, LOADER_INTERVAL - 300); // This negative value should be the same as $animation-duration in the CSS
+    
+    // Then remove the animated out divs
+    LOADER_CONTAINER.children(".emoji").last().remove();
+    LOADER_CONTAINER.children(".text").last().remove();
+    
+    // Then animate in the new one
+    LOADER_CONTAINER.append('<div class="emoji">' + selectedEmoji + '</div>');
+    LOADER_CONTAINER.append('<div class="text">' + selectedText + '</div>');
+  }
+  
+  setInterval(cycleLoader, LOADER_INTERVAL);  
+  cycleLoader(); // Run first time without delay
+  
+});
+</script>
+
 <script type="text/javascript">
 // this will actually restart the loading bar a lot, making multiple loading bars is an exercise to the reader... for now.
 // for a set of possible events, see https://github.com/citizenfx/cfx-client/blob/up-master/components/loading-screens-five/src/LoadingScreens.cpp
@@ -273,51 +332,15 @@ window.addEventListener('message', function(e)
 
 </script>
 <ul class="cb-slideshow">
-    <li><span></span>
-      <div><h3>Welcome back to STRP!</h3></div>
-    </li>
-    <li><span></span>
-      <div><h3>Join us on Discord!</h3></div>
-    </li>
-    <li><span></span>
-      <div><h3>Check out the forums!</h3></div>
-    </li>
-    <li><span></span>
-      <div><h3>Updated regularly!</h3></div>
-    </li>
-    <li><span></span>
-      <div><h3>The server is loading..</h3></div>
-    </li>
+    <li><span></span></li>
+    <li><span></span></li>
+    <li><span></span></li>
+    <li><span></span></li>
+    <li><span></span></li>
 </ul>
 </div>
 
 
-<div id="player"></div>
 
-<script>
-  var tag = document.createElement('script');
-
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  var player;
-  function onYouTubeIframeAPIReady() 
-  {
-    player = new YT.Player('player', {
-    height: '0',
-    width: '0',
-    videoId: 'xh40QxwZz7Q',
-    events: {
-      'onReady': onPlayerReady
-    }
-    });
-  }
-
-  function onPlayerReady(event) {
-    event.target.setVolume(10);
-    event.target.playVideo();
-  }
-</script>
 </body>
 </html>

@@ -1,0 +1,175 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+@-webkit-keyframes blurIn {
+  0% {
+    -webkit-transform: translate3d(0, -60px, 0) scale(0.9, 2);
+            transform: translate3d(0, -60px, 0) scale(0.9, 2);
+    -webkit-filter: blur(3px);
+            filter: blur(3px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes blurIn {
+  0% {
+    -webkit-transform: translate3d(0, -60px, 0) scale(0.9, 2);
+            transform: translate3d(0, -60px, 0) scale(0.9, 2);
+    -webkit-filter: blur(3px);
+            filter: blur(3px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes blurOut {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 60px, 0) scale(0.9, 2);
+            transform: translate3d(0, 60px, 0) scale(0.9, 2);
+    -webkit-filter: blur(3px);
+            filter: blur(3px);
+    opacity: 0;
+  }
+}
+@keyframes blurOut {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 60px, 0) scale(0.9, 2);
+            transform: translate3d(0, 60px, 0) scale(0.9, 2);
+    -webkit-filter: blur(3px);
+            filter: blur(3px);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes pulseEllipsis {
+  0% {
+    box-shadow: -3px 0 0 rgba(127, 101, 68, 0.6), -9px 0 0 rgba(127, 101, 68, 0.6), -15px 0 0 rgba(127, 101, 68, 0.6);
+  }
+  20% {
+    box-shadow: -3px 0 rgba(127, 101, 68, 0.6), -9px 0 0 rgba(127, 101, 68, 0.6), -15px 0 0 #7f6544;
+  }
+  40% {
+    box-shadow: -3px 0 0 rgba(127, 101, 68, 0.6), -9px 0 0 #7f6544, -15px 0 0 rgba(127, 101, 68, 0.6);
+  }
+  60% {
+    box-shadow: -3px 0 0 #7f6544, -9px 0 0 rgba(127, 101, 68, 0.6), -15px 0 0 rgba(127, 101, 68, 0.6);
+  }
+}
+@keyframes pulseEllipsis {
+  0% {
+    box-shadow: -3px 0 0 rgba(127, 101, 68, 0.6), -9px 0 0 rgba(127, 101, 68, 0.6), -15px 0 0 rgba(127, 101, 68, 0.6);
+  }
+  20% {
+    box-shadow: -3px 0 rgba(127, 101, 68, 0.6), -9px 0 0 rgba(127, 101, 68, 0.6), -15px 0 0 #7f6544;
+  }
+  40% {
+    box-shadow: -3px 0 0 rgba(127, 101, 68, 0.6), -9px 0 0 #7f6544, -15px 0 0 rgba(127, 101, 68, 0.6);
+  }
+  60% {
+    box-shadow: -3px 0 0 #7f6544, -9px 0 0 rgba(127, 101, 68, 0.6), -15px 0 0 rgba(127, 101, 68, 0.6);
+  }
+}
+@-webkit-keyframes fadeInOutLong {
+  0%, 35% {
+    opacity: 0;
+  }
+  40%, 85% {
+    opacity: 1;
+  }
+  90%, 100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeInOutLong {
+  0%, 35% {
+    opacity: 0;
+  }
+  40%, 85% {
+    opacity: 1;
+  }
+  90%, 100% {
+    opacity: 0;
+  }
+}
+#loader {
+  z-index: -1;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  text-align: center;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+}
+#loader .emoji, #loader .text {
+  -webkit-animation-name: blurIn;
+          animation-name: blurIn;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-timing-function: cubic-bezier(0.58, -0.23, 0.3, 1.3);
+          animation-timing-function: cubic-bezier(0.58, -0.23, 0.3, 1.3);
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+#loader .emoji {
+  display: block;
+  font-size: 3.5em;
+  margin-bottom: 0.2em;
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+#loader .text {
+  line-height: 1;
+  color: #FFF;
+  font-size: 20px;
+  margin-right: -14px;
+  font-family: 'bankgothic';
+}
+#loader .text:after {
+  content: "";
+  display: inline-block;
+  background: transparent;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  margin-left: 18px;
+  box-shadow: -3px 0 0 rgba(127, 101, 68, 0.6), -9px 0 0 rgba(127, 101, 68, 0.6), -15px 0 0 rgba(127, 101, 68, 0.6);
+  -webkit-animation: pulseEllipsis 0.8s infinite both ease-in-out;
+          animation: pulseEllipsis 0.8s infinite both ease-in-out;
+}
+#loader .animateOut {
+  -webkit-animation-name: blurOut;
+          animation-name: blurOut;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-timing-function: cubic-bezier(0.58, -0.23, 0.3, 1.3);
+          animation-timing-function: cubic-bezier(0.58, -0.23, 0.3, 1.3);
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}

@@ -1,11 +1,11 @@
 files {
     'index.html',
     'css/style.css',
-    'css/loadingscreen.css',
+    'css/demo.css',
     'css/style3.css',
+    'css/loading.css',
     'css/bankgothic.ttf',
     'css/pricedownbl.ttf',
-    'images/logo.png',
 }
 
 loadscreen 'index.html'
