@@ -1,15 +1,5 @@
 
 if(globalConf["SERVER"].enableGiveKey)then
-    Citizen.CreateThread(function()
-        TriggerEvent('chat:addSuggestion', '/givekey', 'Give the keys of a vehicle to someone else', { {name='ID', help='the other players ID'}, {name='plate', help='The vehicle numberplate'} } )
-    end)
-
-    AddEventHandler('onResourceStop', function(resource)
-        if resource == GetCurrentResourceName() then
-            TriggerEvent('chat:removeSuggestion', '/givekey')
-        end
-    end)
-
     RegisterCommand('givekey', function(source, args, rawCommand)
         local src = source
         local identifier = GetPlayerIdentifiers(src)[1]

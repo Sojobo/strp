@@ -290,3 +290,12 @@ function GetTargetedVehicle(pCoords, ply)
     return
 end
 
+Citizen.CreateThread(function()
+    TriggerEvent('chat:addSuggestion', '/givekey', 'Give the keys of a vehicle to someone else', { {name='ID', help='the other players ID'}, {name='plate', help='The vehicle numberplate'} } )
+end)
+
+AddEventHandler('onResourceStop', function(resource)
+    if resource == GetCurrentResourceName() then
+        TriggerEvent('chat:removeSuggestion', '/givekey')
+    end
+end)
