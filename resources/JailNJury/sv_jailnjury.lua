@@ -17,6 +17,9 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 
+ESX = nil
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+
 local jailed_file = LoadResourceFile(GetCurrentResourceName(), JailConfig.jailFile)
 jailedPlayers = json.decode(jailed_file)
 
