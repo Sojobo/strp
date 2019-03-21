@@ -316,7 +316,7 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 	end
 
 	self.getInventoryWeightMax = function(name)
-		return 50
+		return 20
 	end
 
 	self.getInventoryItem = function(name)
