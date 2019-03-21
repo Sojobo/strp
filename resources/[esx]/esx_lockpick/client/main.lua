@@ -49,7 +49,6 @@ end
 
 RegisterNetEvent('esx_lockpick:onUse')
 AddEventHandler('esx_lockpick:onUse', function()
-    ESX.UI.Menu.CloseAll()
 	local playerPed		= GetPlayerPed(-1)
 	local coords		= GetEntityCoords(playerPed)
     local doorInfo = GetNearDoorInfo()
