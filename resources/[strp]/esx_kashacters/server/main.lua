@@ -79,7 +79,7 @@ end
 
 function GetSpawnPos(source)
     local SpawnPos = MySQLAsyncExecute("SELECT `position` FROM `users` WHERE `identifier` = '"..GetPlayerIdentifiers(source)[1].."'")
-    if (SpawnPos ~= nil) then
+    if (SpawnPos[1].position ~= nil) then
         return json.decode(SpawnPos[1].position)
     else
         return { x = 195.55, y = -933.36, z = 29.90 }
