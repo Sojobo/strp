@@ -260,7 +260,10 @@ function SendDistressSignal()
 		subject  = 'Emergency Situation',
 		msg      = _U('distress_message'),
 		icon = 'fas fa-ambulance',
-		iconStyle = 'red'
+		iconStyle = 'red',
+        locationX = coords.x,
+        locationY = coords.y,
+        caller = PlayerId(),
 	}
 	TriggerServerEvent('esx_service:callAllInService', notification, 'ambulance')
 
