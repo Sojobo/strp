@@ -82,7 +82,7 @@ function GetSpawnPos(source)
     if (SpawnPos ~= nil) then
         return json.decode(SpawnPos[1].position)
     else
-        return json.decode('{"x":231.9,"y":-890.5,"z":30.5}')
+        return { x = 195.55, y = -933.36, z = 29.90 }
     end
 end
 

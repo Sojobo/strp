@@ -4,8 +4,8 @@ Config.DrawDistance               = 100.0
 
 Config.Marker                     = { type = 1, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
 
-Config.ReviveReward               = 700  -- revive reward, set to 0 if you don't want it enabled
-Config.AntiCombatLog              = true -- enable anti-combat logging?
+Config.ReviveReward               = 350  -- revive reward, set to 0 if you don't want it enabled
+Config.AntiCombatLog              = false -- enable anti-combat logging?
 Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
 Config.MaxInService               = -1
@@ -28,7 +28,7 @@ Config.EnableJobBlip              = true -- enable blips for colleagues, require
 
 -- Let the player pay for respawning early, only if he can afford it.
 Config.EarlyRespawnFine           = true
-Config.EarlyRespawnFineAmount     = 5000
+Config.EarlyRespawnFineAmount     = 1000
 
 Config.RespawnPoint = { coords = vector3(341.0, -1397.3, 32.5), heading = 48.5 }
 
