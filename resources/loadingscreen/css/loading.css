@@ -121,7 +121,7 @@
 #loader {
   z-index: -1;
   position: fixed;
-  bottom: 0;
+  bottom: 40px;
   left: 50%;
   text-align: center;
   -webkit-transform: translate3d(-50%, -50%, 0);

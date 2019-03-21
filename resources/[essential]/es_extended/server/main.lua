@@ -130,7 +130,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 				MySQL.Async.fetchAll('SELECT job, job_grade, loadout, position FROM `users` WHERE `identifier` = @identifier', {
 					['@identifier'] = player.getIdentifier()
 				}, function(result)
-					local job, grade = result[1].job, tostring(result[1].job_grade)
+					local job, grade = result[1].job, tonumber(result[1].job_grade)
 
 					if ESX.DoesJobExist(job, grade) then
 						local jobObject, gradeObject = ESX.Jobs[job], ESX.Jobs[job].grades[grade]

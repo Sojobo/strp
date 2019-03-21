@@ -41,7 +41,7 @@ MySQL.ready(function()
 
 	for i=1, #result2 do
 		if ESX.Jobs[result2[i].job_name] then
-			ESX.Jobs[result2[i].job_name].grades[tostring(result2[i].grade)] = result2[i]
+			ESX.Jobs[result2[i].job_name].grades[tonumber(result2[i].grade)] = result2[i]
 		else
 			print(('es_extended: invalid job "%s" from table job_grades ignored!'):format(result2[i].job_name))
 		end
