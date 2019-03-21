@@ -49,17 +49,18 @@ end
 
 RegisterNetEvent('esx_lockpick:onUse')
 AddEventHandler('esx_lockpick:onUse', function()
+    ESX.UI.Menu.CloseAll()
 	local playerPed		= GetPlayerPed(-1)
 	local coords		= GetEntityCoords(playerPed)
-  local doorInfo = GetNearDoorInfo()
-  local vehicleNear = IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0)
-  local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+    local doorInfo = GetNearDoorInfo()
+    local vehicleNear = IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0)
+    local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
-  if closestPlayer ~= -1 and closestDistance <= 1.0 and IsEntityPlayingAnim(GetPlayerPed(closestPlayer), 'mp_arresting', 'idle', 3) then
-    closestPlayer = closestPlayer
-  else
-    closestPlayer = -1
-  end
+    if closestPlayer ~= -1 and closestDistance <= 1.0 and IsEntityPlayingAnim(GetPlayerPed(closestPlayer), 'mp_arresting', 'idle', 3) then
+        closestPlayer = closestPlayer
+    else
+        closestPlayer = -1
+    end
 
 	if vehicleNear or doorInfo ~= false or closestPlayer ~= -1 then
 		local vehicle = nil
