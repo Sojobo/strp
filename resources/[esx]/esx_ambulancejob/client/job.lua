@@ -287,13 +287,13 @@ function OpenAmbulanceActionsMenu()
           -- Logic for exiting & entering markers
           if isInMarker and not HasAlreadyEnteredMarker or (isInMarker and (LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)) then
 
-            if
-            (LastHospital ~= nil and LastPart ~= nil and LastPartNum ~= nil) and
-            (LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)
-            then
-              TriggerEvent('esx_ambulancejob:hasExitedMarker', LastHospital, LastPart, LastPartNum)
-              hasExited = true
-            end
+			if
+				(LastHospital ~= nil and LastPart ~= nil and LastPartNum ~= nil) and
+				(LastHospital ~= currentHospital or LastPart ~= currentPart or LastPartNum ~= currentPartNum)
+			then
+				TriggerEvent('esx_ambulancejob:hasExitedMarker', LastHospital, LastPart, LastPartNum)
+				hasExited = true
+			end
 
             HasAlreadyEnteredMarker, LastHospital, LastPart, LastPartNum = true, currentHospital, currentPart, currentPartNum
 

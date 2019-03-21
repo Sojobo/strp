@@ -122,21 +122,24 @@ function OpenMenu(submitCb, cancelCb, restrict)
 					TriggerEvent('skinchanger:change', data.current.name, data.current.value)
 
 					-- Update max values
-					TriggerEvent('skinchanger:getData', function(components, maxVals)
-						for i=1, #elements, 1 do
-							local newData = {}
+					TriggerEvent('skinchanger:getData', function(comp, max)
+                        components, maxVals = comp, max
+                    end)
 
-							newData.max = maxVals[elements[i].name]
+                    local newData = {}
 
-							if elements[i].textureof ~= nil and data.current.name == elements[i].textureof then
-								newData.value = 0
-							end
+                    for i=1, #elements, 1 do
+                        newData = {}
+                        newData.max = maxVals[elements[i].name]
 
-							menu.update({name = elements[i].name}, newData)
-						end
+                        if elements[i].textureof ~= nil and data.current.name == elements[i].textureof then
+                            newData.value = 0
+                        end
 
-						menu.refresh()
-					end)
+                        menu.update({name = elements[i].name}, newData)
+                    end
+
+                    menu.refresh()
 				end
 			end)
 		end, function(data, menu)
