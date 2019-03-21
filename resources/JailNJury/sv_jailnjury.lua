@@ -100,7 +100,7 @@ RegisterServerEvent("jnj:sendToJail")
 AddEventHandler("jnj:sendToJail", function(targetPedId, jailTime, jailCharges)
   local _source = source
   local sourcePlayer = ESX.GetPlayerFromId(_source)
-  local targetPlayer = ESX.GetPlayerFromId(args[1])
+  local targetPlayer = ESX.GetPlayerFromId(targetPedId)
   if not GetPlayerName(targetPedId) then
     TriggerClientEvent("chatMessage", _source, "^2" .. targetPedId .. " ^1is an invalid player ID.")
   elseif isJailed(getPlayerID(targetPedId)) then
