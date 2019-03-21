@@ -658,9 +658,9 @@ function OpenPutStocksMenu()
 
 end
 
-
 RegisterNetEvent('esx_mechanicjob:onHijack')
 AddEventHandler('esx_mechanicjob:onHijack', function()
+    ESX.UI.Menu.CloseAll()
 	local playerPed = PlayerPedId()
 	local coords    = GetEntityCoords(playerPed)
 
@@ -703,6 +703,7 @@ end)
 
 RegisterNetEvent('esx_mechanicjob:onCarokit')
 AddEventHandler('esx_mechanicjob:onCarokit', function()
+    ESX.UI.Menu.CloseAll()
 	local playerPed = PlayerPedId()
 	local coords    = GetEntityCoords(playerPed)
 
@@ -730,6 +731,7 @@ end)
 
 RegisterNetEvent('esx_mechanicjob:onFixkit')
 AddEventHandler('esx_mechanicjob:onFixkit', function()
+    ESX.UI.Menu.CloseAll()
 	local playerPed = PlayerPedId()
 	local coords    = GetEntityCoords(playerPed)
 

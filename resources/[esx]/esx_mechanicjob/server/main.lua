@@ -240,7 +240,6 @@ ESX.RegisterUsableItem('blowpipe', function(source)
 
 	TriggerClientEvent('esx_mechanicjob:onHijack', _source)
 	TriggerClientEvent('esx:showNotification', _source, _U('you_used_blowtorch'))
-    ESX.UI.Menu.CloseAll()
 end)
 
 ESX.RegisterUsableItem('fixkit', function(source)
@@ -251,7 +250,6 @@ ESX.RegisterUsableItem('fixkit', function(source)
 
 	TriggerClientEvent('esx_mechanicjob:onFixkit', _source)
 	TriggerClientEvent('esx:showNotification', _source, _U('you_used_repair_kit'))
-    ESX.UI.Menu.CloseAll()
 end)
 
 ESX.RegisterUsableItem('carokit', function(source)
@@ -262,7 +260,6 @@ ESX.RegisterUsableItem('carokit', function(source)
 
 	TriggerClientEvent('esx_mechanicjob:onCarokit', _source)
 	TriggerClientEvent('esx:showNotification', _source, _U('you_used_body_kit'))
-    ESX.UI.Menu.CloseAll()
 end)
 
 RegisterServerEvent('esx_mechanicjob:getStockItem')
