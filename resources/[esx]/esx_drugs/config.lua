@@ -7,10 +7,10 @@ Config.Delays = {
 }
 
 Config.DrugDealerItems = {
-	marijuana = 32
+	marijuana = 52
 }
 Config.WineDealerItems = {
-	wine = 19
+	wine = 36
 }
 
 Config.LicenseEnable = false -- enable processing licenses? The player will be required to buy a license in order to process drugs. Requires esx_license
