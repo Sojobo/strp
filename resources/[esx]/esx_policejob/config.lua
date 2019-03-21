@@ -83,19 +83,19 @@ Config.AuthorizedWeapons = {
 	-- Recruit
     { minrank = 0, weapon = 'WEAPON_NIGHTSTICK', price = 0 },
     { minrank = 0, weapon = 'WEAPON_FLASHLIGHT', price = 0 },
-    { minrank = 0, weapon = 'WEAPON_STUNGUN', price = 100 },
-    { minrank = 0, weapon = 'WEAPON_APPISTOL', components = { 0, 0, 1000, 4000, nil }, price = 1000 },
+    { minrank = 0, weapon = 'WEAPON_STUNGUN', price = 40 },
+    { minrank = 0, weapon = 'WEAPON_PISTOL', components = { 50, 50, 400, 1600, nil }, price = 250 },
 
 	-- Cadet
 	
     -- Officer
-	{ minrank = 2, weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 7000 },
+	{ minrank = 2, weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 3300 },
 	
     -- Detective
 	-- Corporal
 
 	-- Sergeant
-	{ minrank = 5, weapon = 'WEAPON_ADVANCEDRIFLE', components = { 0, 6000, 1000, 4000, 8000, nil }, price = 5000 },
+	{ minrank = 5, weapon = 'WEAPON_ADVANCEDRIFLE', components = { 100, 6000, 1000, 4000, 8000, nil }, price = 5000 },
 
 	-- Staff Sergeant
     -- Lieutenant
@@ -105,20 +105,20 @@ Config.AuthorizedWeapons = {
 
 Config.AuthorizedVehicles = {
 	-- Recruit
-    { minrank = 0, model = 'police', label = 'Police Cruiser', price = 5000 },
-    { minrank = 0, model = 'pbus', label = 'Police Prison Bus', price = 5000 },
+    { minrank = 0, model = 'police', label = 'Police Cruiser', price = 1000 },
+    { minrank = 0, model = 'pbus', label = 'Police Prison Bus', price = 3000 },
 
 	-- Cadet
 
 	-- Officer
-	{ minrank = 2, model = 'police3', label = 'Police Interceptor', price = 8000 },
+	{ minrank = 2, model = 'police3', label = 'Police Interceptor', price = 3000 },
 
 	-- Detective
 	-- Corporal
 
 	-- Sergeant
-	{ minrank = 5, model = 'policet', label = 'Police Transporter', price = 4500 },
-	{ minrank = 5, model = 'policeb', label = 'Police Bike', price = 3500 },
+	{ minrank = 5, model = 'policet', label = 'Police Transporter', price = 3500 },
+	{ minrank = 5, model = 'policeb', label = 'Police Bike', price = 2500 },
 
 	-- Staff Sergeant
 

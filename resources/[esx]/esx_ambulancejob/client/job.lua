@@ -432,6 +432,7 @@ end)
 
 function OpenVehicleSpawnerMenu(hospital, partNum)
 local playerCoords = GetEntityCoords(PlayerPedId())
+ESX.PlayerData = ESX.GetPlayerData()
 local elements = {
   {label = _U('garage_storeditem'), action = 'garage'},
   {label = _U('garage_storeitem'), action = 'store_garage'},
@@ -450,7 +451,7 @@ ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle', {
 
     local authorizedVehicles = Config.AuthorizedVehicles
     for k,vehicle in ipairs(authorizedVehicles) do
-        if vehicle.minrank <= PlayerData.job.grade then
+        if vehicle.minrank <= ESX.PlayerData.job.grade then
             table.insert(shopElements, {
             label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
             name = vehicle.label,
@@ -633,7 +634,7 @@ if data.current.action == 'buy_helicopter' then
 
     local authorizedHelicopters = Config.AuthorizedHelicopters
     for k, helicopter in ipairs(authorizedHelicopters) do
-        if helicopter.minrank <= PlayerData.job.grade then
+        if helicopter.minrank <= ESX.PlayerData.job.grade then
             table.insert(shopElements, {
                 label = ('%s - <span style="color:green;">%s</span>'):format(helicopter.label, _U('shop_item', ESX.Math.GroupDigits(helicopter.price))),
                 name = helicopter.label,
