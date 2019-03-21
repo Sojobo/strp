@@ -8,7 +8,7 @@ AddEventHandler('chatMessage', function(source, name, message)
 		CancelEvent()
 
 		if Config.EnableESXIdentity then name = GetCharacterName(source) end
-		TriggerClientEvent('chat:addMessage', -1, { args = { _U('ooc_prefix', name), message }, color = { 128, 128, 128 } })
+		TriggerClientEvent('chat:addMessage', -1, { args = { _U('ooc_prefix', name), message }, color = { 0, 133, 178 } })
 	end
 end)
 
