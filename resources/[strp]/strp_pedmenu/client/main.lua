@@ -115,21 +115,23 @@ function OpenDeathMenu(player, ped)
 	local myPed = PlayerPedId()
 	local elements   = {}
 	if ESX.PlayerData.job ~= nil then
-		table.insert(elements, { label = "Drag", value = 'drag' })
-		table.insert(elements, { label = "Put in vehicle", value = 'put_in_vehicle' })
-		table.insert(elements, { label = "Pull out vehicle", value = 'out_the_vehicle' })
+        ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
+            table.insert(elements, { label = "Drag", value = 'drag' })
+            table.insert(elements, { label = "Put in vehicle", value = 'put_in_vehicle' })
+            table.insert(elements, { label = "Pull out vehicle", value = 'out_the_vehicle' })
 
-		if ESX.PlayerData.job.name == 'police' then
-			table.insert(elements, { label = "Search", value = 'body_search' })
-			table.insert(elements, { label = "Handcuff", value = 'handcuff' })
-			table.insert(elements, { label = "Arrest", value = 'arrest' })
-		elseif ESX.PlayerData.job.name == 'ambulance' then
-			table.insert(elements, { label = 'Identify where wound is', value = 'damage' })
-			table.insert(elements, { label = 'Find cause of death', value = 'deathcause' })
-			table.insert(elements, { label = 'Perform CPR', value = 'ems_menu_revive' })
-			table.insert(elements, { label = 'Heal small wounds', value = 'ems_menu_small' })
-			table.insert(elements, { label = 'Treat serious injuries', value = 'ems_menu_big' })
-		end
+            if ESX.PlayerData.job.name == 'police' and isInService then
+                table.insert(elements, { label = "Search", value = 'body_search' })
+                table.insert(elements, { label = "Handcuff", value = 'handcuff' })
+                table.insert(elements, { label = "Arrest", value = 'arrest' })
+            elseif ESX.PlayerData.job.name == 'ambulance' and isInService then
+                table.insert(elements, { label = 'Identify where wound is', value = 'damage' })
+                table.insert(elements, { label = 'Find cause of death', value = 'deathcause' })
+                table.insert(elements, { label = 'Perform CPR', value = 'ems_menu_revive' })
+                table.insert(elements, { label = 'Heal small wounds', value = 'ems_menu_small' })
+                table.insert(elements, { label = 'Treat serious injuries', value = 'ems_menu_big' })
+            end
+        end)
 	end
 
 	ESX.UI.Menu.Open(
