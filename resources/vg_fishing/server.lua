@@ -43,7 +43,7 @@ ESX.RegisterUsableItem('turtle', function(source)
 		xPlayer.removeInventoryItem('turtle', 1)
 		TriggerClientEvent('vg_fishing:message', _source, "You attach the turtle meat onto the fishing rod")
 	else
-		TriggerClientEvent('vg_fishing:message', _source, "Du benötigst eine Angel und ein Anglermesser!")
+		TriggerClientEvent('vg_fishing:message', _source, "You need a rod and a fishing knife!")
 	end
 
 end)

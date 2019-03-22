@@ -17,15 +17,15 @@ Config.FishTime = {a = 20000, b = 44000}
 --=====Prices of the items players can sell==========--
 --------------------------------------------------------
 --First amount minimum price second maximum amount (the amount player will get is random between those two numbers)
-Config.FishPrice = {a = 50, b = 150} --THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
-Config.TurtlePrice = {a = 300, b = 600} 
-Config.SharkPrice = {a = 1000, b = 2500} 
+Config.FishPrice = {a = 40, b = 80} --THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
+Config.TurtlePrice = {a = 100, b = 150} 
+Config.SharkPrice = {a = 160, b = 250} 
 
 --Buy:
-Config.FishingrodPrice = 1500
-Config.FishingknifePrice = 900
-Config.FishbaitPrice = 20
-Config.TurtlebaitPrice = 65
+Config.FishingrodPrice = 150
+Config.FishingknifePrice = 90
+Config.FishbaitPrice = 8
+Config.TurtlebaitPrice = 24
 
 --------------------------------------------------------
 --=====Locations where players can buy or sell stuff========--

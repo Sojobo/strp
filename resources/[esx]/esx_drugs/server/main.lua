@@ -20,7 +20,7 @@ AddEventHandler('esx_drugs:sellDrug', function(dealer, itemName, amount)
 
 	price = ESX.Math.Round(price * amount)
 
-	if Config.GiveBlack then
+	if Config[dealer].GiveBlack then
 		xPlayer.addAccountMoney('black_money', price)
 	else
 		xPlayer.addMoney(price)

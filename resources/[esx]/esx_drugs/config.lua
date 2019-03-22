@@ -7,9 +7,11 @@ Config.Delays = {
 }
 
 Config.DrugDealerItems = {
-	marijuana = 52
+    GiveBlack = true, -- give black money? if disabled it'll give regular cash.
+	marijuana = 72
 }
 Config.WineDealerItems = {
+    GiveBlack = false, -- give black money? if disabled it'll give regular cash.
 	wine = 36
 }
 
@@ -18,8 +20,6 @@ Config.LicensePrices = {
 	weed_processing = {label = _U('license_weed'), price = 15000},
 	Wine_processing = {label = _U('license_weed'), price = 15000}
 }
-
-Config.GiveBlack = false -- give black money? if disabled it'll give regular cash.
 
 Config.CircleZones = {
 	WeedField = {coords = vector3(310.91, 4290.87, 45.15), name = _U('blip_weedfield'), color = 25, sprite = 496, radius = 100.0},
