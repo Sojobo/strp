@@ -117,39 +117,49 @@ end)
 RegisterCommand("911", function(source, args, rawCommand)
     local message = table.concat(args, ' ')
     message = string.sub(message, string.len(args[1]) + 2)
+    local department = args[1]
 
-	local playerPed = PlayerPedId()
-	local coords = GetEntityCoords(playerPed)
-	local notification = {
-		subject  = 'Emergency Call',
-		msg      = message,
-		icon = 'fas fa-headset',
-		iconStyle = 'red',
-        locationX = coords.x,
-        locationY = coords.y,
-        caller = PlayerId(),
-	}
+    if (department ~= "police" and department ~= "ambulance") then
+        ESX.ShowAdvancedNotification("Dispatch", "We only accept calls for police & ambulance services", 'fas fa-headset', 'red')
+    else
+        local playerPed = PlayerPedId()
+        local coords = GetEntityCoords(playerPed)
+        local notification = {
+            subject  = 'Emergency Call',
+            msg      = message,
+            icon = 'fas fa-headset',
+            iconStyle = 'red',
+            locationX = coords.x,
+            locationY = coords.y,
+            caller = PlayerId(),
+        }
 
-	TriggerServerEvent('esx_service:callAllInService', notification, args[1])
-    ESX.ShowAdvancedNotification("Dispatch", "Your call has been received successfully", 'fas fa-headset', 'blue')
+        TriggerServerEvent('esx_service:callAllInService', notification, department)
+        ESX.ShowAdvancedNotification("Dispatch", "Your call has been received successfully", 'fas fa-headset', 'blue')
+    end
 end)
 
 RegisterCommand("311", function(source, args, rawCommand)
     local message = table.concat(args, ' ')
     message = string.sub(message, string.len(args[1]) + 2)
+    local department = args[1]
 
-	local playerPed = PlayerPedId()
-	local coords = GetEntityCoords(playerPed)
-    local notification = {
-		subject  = 'Non-Emergency Call',
-		msg      = message,
-		icon = 'fas fa-headset',
-		iconStyle = 'blue',
-        locationX = coords.x,
-        locationY = coords.y,
-        caller = PlayerId(),
-	}
+    if (department ~= "police" and department ~= "ambulance") then
+        ESX.ShowAdvancedNotification("Dispatch", "We only accept calls for police & ambulance services", 'fas fa-headset', 'red')
+    else
+        local playerPed = PlayerPedId()
+        local coords = GetEntityCoords(playerPed)
+        local notification = {
+            subject  = 'Non-Emergency Call',
+            msg      = message,
+            icon = 'fas fa-headset',
+            iconStyle = 'blue',
+            locationX = coords.x,
+            locationY = coords.y,
+            caller = PlayerId(),
+        }
 
-	TriggerServerEvent('esx_service:callAllInService', notification, args[1])
-    ESX.ShowAdvancedNotification("Dispatch", "Your call has been received successfully", 'fas fa-headset', 'blue')
+        TriggerServerEvent('esx_service:callAllInService', notification, department)
+        ESX.ShowAdvancedNotification("Dispatch", "Your call has been received successfully", 'fas fa-headset', 'blue')
+    end
 end)
