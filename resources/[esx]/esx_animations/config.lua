@@ -17,6 +17,10 @@ Config.Animations = {
 			-- {label = "Fumer un joint", type = "scenario", data = {anim = "WORLD_HUMAN_SMOKING_POT"}},
 			{label = "Drunk Standing", type = "anim", data = {lib = "amb@world_human_bum_standing@drunk@idle_a", anim = "idle_a"}},
 			{label = "Vomir en voiture", type = "anim", data = {lib = "oddjobs@taxi@tie", anim = "vomit_outside"}},
+			{label = "Twerk", type = "anim", data = {lib = "mini@strip_club@private_dance@part3", anim = "priv_dance_p3"}},
+			{label = "Strip Tease 1", type = "anim", data = {lib = "mini@strip_club@lap_dance@ld_girl_a_song_a_p1", anim = "ld_girl_a_song_a_p1_f"}},
+			{label = "Strip Tease 2", type = "anim", data = {lib = "mini@strip_club@private_dance@part2", anim = "priv_dance_p2"}},
+			{label = "Tit Grab", type = "anim", data = {lib = "mini@strip_club@backroom@", anim = "stripper_b_backroom_idle_b"}},
 		}
 	},
 
@@ -29,6 +33,7 @@ Config.Animations = {
 			{label = "Shake2", type = "anim", data = {lib = "mp_ped_interaction", anim = "handshake_guy_a"}},
 			{label = "Bro Hug", type = "anim", data = {lib = "mp_ped_interaction", anim = "hugs_guy_a"}},
 			{label = "Salute", type = "anim", data = {lib = "mp_player_int_uppersalute", anim = "mp_player_int_salute"}},
+			{label = "Stripper Wave", type = "anim", data = {lib = "mini@strip_club@idles@stripper", anim = "stripper_idle_02"}},
 		}
 	},
 
@@ -50,7 +55,8 @@ Config.Animations = {
 			{label = "Clipboard", type = "scenario", data = {anim = "WORLD_HUMAN_CLIPBOARD"}},
 			{label = "Hammer", type = "scenario", data = {anim = "WORLD_HUMAN_HAMMERING"}},
 			{label = "Bumsign", type = "scenario", data = {anim = "WORLD_HUMAN_BUM_FREEWAY"}},
-			{label = "Statue", type = "scenario", data = {anim = "WORLD_HUMAN_HUMAN_STATUE"}},
+			{label = "statue", type = "scenario", data = {anim = "WORLD_HUMAN_HUMAN_STATUE"}},
+			{label = "Prostitute", type = "scenario", data = {anim = "WORLD_HUMAN_PROSTITUTE_HIGH_CLASS"}},
 		}
 	},
 
@@ -98,7 +104,7 @@ Config.Animations = {
 			{label = "Sunbathe", type = "scenario", data = {anim = "WORLD_HUMAN_SUNBATHE"}},
 			{label = "Clean", type = "scenario", data = {anim = "world_human_maid_clean"}},
 			{label = "BBQ", type = "scenario", data = {anim = "PROP_HUMAN_BBQ"}},
-			{label = "Selfie", type = "scenario", data = {anim = "world_human_tourist_mobile"}},
+			{label = "Seelfie", type = "scenario", data = {anim = "world_human_tourist_mobile"}},
 			{label = "Safe Cracking", type = "anim", data = {lib = "mini@safe_cracking", anim = "idle_base"}}, 
 		}
 	},
