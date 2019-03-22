@@ -3,6 +3,14 @@ local states = {}
 states.frozen = false
 states.frozenPos = nil
 
+ESX                           = nil
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+end)
+
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
@@ -238,7 +246,8 @@ function getPlayers()
 	local players = {}
 	for i = 0,255 do
 		if NetworkIsPlayerActive(i) then
-			table.insert(players, {id = GetPlayerServerId(i), name = GetPlayerName(i)})
+            local xPlayer = ESX.GetPlayerFromId(i)
+			table.insert(players, {id = GetPlayerServerId(i), name = xPlayer.name})
 		end
 	end
 	return players
