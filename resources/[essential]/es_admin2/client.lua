@@ -6,9 +6,8 @@ states.frozenPos = nil
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-		
 		if (IsControlJustPressed(1, 212) and IsControlJustPressed(1, 213)) then
-			if true then
+			if (group == "mod" or group == "admin" or group == "superadmin") then
 				SetNuiFocus(true, true)
 				SendNUIMessage({type = 'open', players = getPlayers()})
 			end
