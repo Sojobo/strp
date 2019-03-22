@@ -581,7 +581,7 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'handcuff' then
-            TriggerEvent("esx_policejob:handcuffanimation")
+                        TriggerEvent("esx_policejob:handcuffanimation")
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
@@ -1464,16 +1464,16 @@ RegisterNetEvent('esx_policejob:handcuffanimation')
 AddEventHandler('esx_policejob:handcuffanimation', function(target)
 	IsHandcuffed    = not IsHandcuffed
 	local playerPed = PlayerPedId()
-  local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
-  local targetCoords = GetEntityCoords(targetPed, true)
+    local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
+    local targetCoords = GetEntityCoords(targetPed, true)
 
-  TaskGoStraightToCoord(playerPed, targetCoords.x, targetCoords.y, targetCoords.z, 0.1, 4000, GetEntityHeading(targetPed), 0.5)
+    TaskGoStraightToCoord(playerPed, targetCoords.x, targetCoords.y, targetCoords.z, 0.1, 4000, GetEntityHeading(targetPed), 0.5)
 
 	Citizen.CreateThread(function()
     local animationLib = "mp_arrest_paired"
     RequestAnimDict(animationLib)
     while not HasAnimDictLoaded(animationLib) do
-      Citizen.Wait(100)
+        Citizen.Wait(100)
     end
     TaskPlayAnim(PlayerPedId(), animationLib, "cop_p2_back_left", 8.0, -8, 3000, 16, 0, 0, 0, 0)
 	end)
@@ -1492,8 +1492,8 @@ AddEventHandler('esx_policejob:handcuff', function()
 				Citizen.Wait(100)
 			end
 
-      TaskPlayAnim(PlayerPedId(), "mp_arresting", "crook_p2_back_left", 8.0, -8, 3000, 16, 0, 0, 0, 0)
-      Citizen.Wait(3000)
+            TaskPlayAnim(PlayerPedId(), "mp_arresting", "crook_p2_back_left", 8.0, -8, 3000, 16, 0, 0, 0, 0)
+            Citizen.Wait(3000)
 
 			TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 16, 0, 0, 0, 0)
 			SetEnableHandcuffs(playerPed, true)
