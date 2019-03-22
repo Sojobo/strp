@@ -1605,7 +1605,7 @@ AddEventHandler('esx_policejob:putInVehicle', function()
             if IsAnyVehicleSeatEmpty(vehicle) then
                 for seat = 1, GetVehicleMaxNumberOfPassengers(vehicle) do
                     if (IsVehicleSeatFree(vehicle, seat)) then
-                        TaskWarpPedIntoVehicle(playerPed, vehicle, seat)
+                        SetPedIntoVehicle(playerPed, vehicle, seat)
                         break
                     end
                 end

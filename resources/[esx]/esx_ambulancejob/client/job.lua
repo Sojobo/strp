@@ -412,7 +412,7 @@ if IsAnyVehicleNearPoint(coords, 5.0) then
     end
 
     if freeSeat then
-      TaskWarpPedIntoVehicle(playerPed, vehicle, freeSeat)
+      SetPedIntoVehicle(playerPed, vehicle, freeSeat)
     end
   end
 end
