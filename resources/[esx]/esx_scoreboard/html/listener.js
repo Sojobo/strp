@@ -50,13 +50,7 @@ $(function () {
 			case 'updatePlayerList':
 				$('#playerlist tr:gt(0)').remove();
 				$('#playerlist').append(event.data.players);
-				applyPingColor();
 				sortPlayerList();
-				break;
-
-			case 'updatePing':
-				updatePing(event.data.players);
-				applyPingColor();
 				break;
 
 			case 'updateServerInfo':
@@ -80,38 +74,6 @@ $(function () {
 		}
 	}, false);
 });
-
-function applyPingColor() {
-	$('#playerlist tr').each(function () {
-		$(this).find('td:nth-child(3)').each(function () {
-			var ping = $(this).html();
-			var color = 'green';
-
-			if (ping > 50 && ping < 80) {
-				color = 'orange';
-			} else if (ping >= 80) {
-				color = 'red';
-			}
-
-			$(this).css('color', color);
-			$(this).html(ping + " <span style='color:white;'>ms</span>");
-		});
-
-	});
-}
-
-// Todo: not the best code
-function updatePing(players) {
-	jQuery.each(players, function (i, v) {
-		if (v != null) {
-			$('#playerlist tr:not(.heading)').each(function () {
-				$(this).find('td:nth-child(2):contains(' + v.id + ')').each(function () {
-					$(this).parent().find('td').eq(2).html(v.ping);
-				});
-			});
-		}
-	});
-}
 
 function sortPlayerList() {
 	var table = $('#playerlist'),

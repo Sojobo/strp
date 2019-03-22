@@ -268,9 +268,9 @@ AddEventHandler('esx_truck_inventory:getInventoryLoaded', function(inventory,wei
                 local typeVeh = GetEntityModel(vehFront)
 
                 if totalweight > Config.VehicleLimit[typeVeh].trunksize then
-                max = true
+                    max = true
                 else
-                max = false
+                    max = false
                 end
 
                 ownedV = 0

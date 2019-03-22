@@ -25,13 +25,6 @@ AddEventHandler('esx:playerDropped', function(playerId)
 	TriggerClientEvent('esx_scoreboard:updateConnectedPlayers', -1, connectedPlayers)
 end)
 
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(5000)
-		UpdatePing()
-	end
-end)
-
 AddEventHandler('onResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Citizen.CreateThread(function()
@@ -45,7 +38,6 @@ function AddPlayerToScoreboard(xPlayer, update)
 	local playerId = xPlayer.source
 
 	connectedPlayers[playerId] = {}
-	connectedPlayers[playerId].ping = GetPlayerPing(playerId)
 	connectedPlayers[playerId].id = playerId
 	connectedPlayers[playerId].name = xPlayer.getName()
 	connectedPlayers[playerId].job = xPlayer.job.name
@@ -71,14 +63,6 @@ function AddPlayersToScoreboard()
 	end
 
 	TriggerClientEvent('esx_scoreboard:updateConnectedPlayers', -1, connectedPlayers)
-end
-
-function UpdatePing()
-	for k,v in pairs(connectedPlayers) do
-		v.ping = GetPlayerPing(k)
-	end
-
-	TriggerClientEvent('esx_scoreboard:updatePing', -1, connectedPlayers)
 end
 
 TriggerEvent('es:addGroupCommand', 'screfresh', 'admin', function(source, args, user)
