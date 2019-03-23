@@ -105,12 +105,12 @@ Citizen.CreateThread(function()
 
         --Here you will have to put the image name for the "large" icon.
 		SetDiscordRichPresenceAsset('spaceturtles')
-        
+
         --(11-11-2018) New Natives:
 
         --Here you can add hover text for the "large" icon.
         SetDiscordRichPresenceAssetText('Space Turtles Role Play Server')
-       
+
         --Here you will have to put the image name for the "small" icon.
         --SetDiscordRichPresenceAssetSmall('logo_name')
 
@@ -124,7 +124,7 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(0)
+        Citizen.Wait(1000)
 
         local thisPlayerPed = GetPlayerPed(-1)
         local thisPlayerId = PlayerId()
@@ -153,14 +153,14 @@ Citizen.CreateThread(function()
         -- SetPlayerWantedLevel(thisPlayerId, 0, false)
         -- SetPlayerWantedLevelNow(thisPlayerId, false)
         -- SetPlayerWantedLevelNoDrop(thisPlayerId, 0, false)
-        
+
         ClearPlayerWantedLevel(thisPlayerId)
         SetMaxWantedLevel(0)
         SetPoliceIgnorePlayer(thisPlayerId, true)
         --else
         --  SetMaxWantedLevel(1)
         --end
-        
+
         -- Updated Version of removing pickups and drops
         RemoveWeaponDrops()
 
@@ -295,7 +295,7 @@ Citizen.CreateThread(function()
         --if IsPedJacking(thisPlayerPed) then
         --    ClearPedTasksImmediately(thisPlayerPed)
         --end
-            
+
         if IsPedInAnyVehicle(thisPlayerPed, false) and (not IsControlPressed(1, 32) or not IsControlPressed(1, 71) or IsPedJacking(thisPlayerPed)) then -- if W (32) or Controller RT (71) is pressed, jump to drivers, else, no switching of seats. Is 32 needed here? 71 - INPUT_VEH_ACCELERATE
             local myVehicle = GetVehiclePedIsIn(thisPlayerPed, false)
             if GetPedInVehicleSeat(myVehicle, 0) == thisPlayerPed then
