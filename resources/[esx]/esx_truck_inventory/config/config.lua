@@ -150,14 +150,14 @@ Config.VehicleLimit = {
     [48339065] = { trunksize = 0 }, -- Tip Truck
     [-947761570] = { trunksize = 0 }, -- Tip Truck2
     -- Military
-    [562680400] = { trunksize = 50 }, -- APC
-    [-823509173] = { trunksize = 115 }, -- Barracks
-    [1074326203] = { trunksize = 115 }, -- Barracks2
-    [630371791] = { trunksize = 115 }, -- Barracks3
-    [321739290] = { trunksize = 60 }, -- Crusader
-    [-32236122] = { trunksize = 45 }, -- Halftrack
-    [782665360] = { trunksize = 40 }, -- Rhino
-    [-1881846085] = { trunksize = 10 }, -- Trailersmall2
+    [562680400] = { trunksize = 0 }, -- APC
+    [-823509173] = { trunksize = 0 }, -- Barracks
+    [1074326203] = { trunksize = 0 }, -- Barracks2
+    [630371791] = { trunksize = 0 }, -- Barracks3
+    [321739290] = { trunksize = 0 }, -- Crusader
+    [-32236122] = { trunksize = 0 }, -- Halftrack
+    [782665360] = { trunksize = 0 }, -- Rhino
+    [-1881846085] = { trunksize = 0 }, -- Trailersmall2
     -- Motorcycles
     [1672195559] = { trunksize = 10 }, -- Akuma
     [-2115793025] = { trunksize = 10 }, -- Avarus
@@ -360,16 +360,16 @@ Config.VehicleLimit = {
     [1373123368] = { trunksize = 35 }, -- Warrener
     [1777363799] = { trunksize = 50 }, -- Washington
     -- Service
-    [1283517198] = { trunksize = 115 }, -- Airbus
-    [-305727417] = { trunksize = 90 }, -- Brickade
-    [-713569950] = { trunksize = 115 }, -- Bus
-    [-2072933068] = { trunksize = 200 }, -- Coach
-    [-2103821244] = { trunksize = 35 }, -- Rallytruck
-    [-1098802077] = { trunksize = 125 }, -- RentalBus
+    [1283517198] = { trunksize = 0 }, -- Airbus
+    [-305727417] = { trunksize = 0 }, -- Brickade
+    [-713569950] = { trunksize = 0 }, -- Bus
+    [-2072933068] = { trunksize = 0 }, -- Coach
+    [-2103821244] = { trunksize = 0 }, -- Rallytruck
+    [-1098802077] = { trunksize = 0 }, -- RentalBus
     [-956048545] = { trunksize = 40 }, -- Taxi
-    [1941029835] = { trunksize = 125 }, -- Tourbus
-    [1917016601] = { trunksize = 100 }, -- Trash
-    [-1255698084] = { trunksize = 100 }, -- Trash2
+    [1941029835] = { trunksize = 0 }, -- Tourbus
+    [1917016601] = { trunksize = 0 }, -- Trash
+    [-1255698084] = { trunksize = 0 }, -- Trash2
     -- Sports
     [767087018] = { trunksize = 40 }, -- Alpha
     [-1041692462] = { trunksize = 30 }, -- Banshee
@@ -478,36 +478,36 @@ Config.VehicleLimit = {
     [-482719877] = { trunksize = 25 }, -- Italigtb2
     [917809321] = { trunksize = 30 }, -- XA21
     -- Trailer
-    [-1207431159] = { trunksize = 200 }, -- ArmyTanker
-    [-1476447243] = { trunksize = 500 }, -- Army Trailer
-    [-1637149482] = { trunksize = 10 }, -- ArmyTrailer2
-    [-399841706] = { trunksize = 10 }, -- Bale Trailer
-    [524108981] = { trunksize = 5 }, -- Boat Trailer
-    [-960289747] = { trunksize = 1 }, -- CableCar ?
-    [-2140210194] = { trunksize = 1000 }, -- Dock Trailer
-    [1019737494] = { trunksize = 850 }, -- GrainTrailer
-    [356391690] = { trunksize = 1 }, -- PropTrailer
-    [390902130] = { trunksize = 1 }, -- Rake Trailer
-    [2078290630] = { trunksize = 500 }, -- TR2
-    [1784254509] = { trunksize = 15 }, -- TR3
-    [2091594960] = { trunksize = 15 }, -- TR4
-    [-1352468814] = { trunksize = 1250 }, -- TRFlat
-    [-1770643266] = { trunksize = 400 }, -- TVTrailer
-    [-730904777] = { trunksize = 200 }, -- Tanker
-    [1956216962] = { trunksize = 200 }, -- Tanker2
-    [2016027501] = { trunksize = 10 }, -- TrailerLogs
-    [712162987] = { trunksize = 50 }, -- TrailerSmall
-    [-877478386] = { trunksize = 1000 }, -- Trailers
-    [-1579533167] = { trunksize = 800 }, -- Trailers2
-    [-2058878099] = { trunksize = 800 }, -- Trailers3
+    [-1207431159] = { trunksize = 0 }, -- ArmyTanker
+    [-1476447243] = { trunksize = 0 }, -- Army Trailer
+    [-1637149482] = { trunksize = 0 }, -- ArmyTrailer2
+    [-399841706] = { trunksize = 0 }, -- Bale Trailer
+    [524108981] = { trunksize = 0 }, -- Boat Trailer
+    [-960289747] = { trunksize = 0 }, -- CableCar ?
+    [-2140210194] = { trunksize = 0 }, -- Dock Trailer
+    [1019737494] = { trunksize = 0 }, -- GrainTrailer
+    [356391690] = { trunksize = 0 }, -- PropTrailer
+    [390902130] = { trunksize = 0 }, -- Rake Trailer
+    [2078290630] = { trunksize = 0 }, -- TR2
+    [1784254509] = { trunksize = 0 }, -- TR3
+    [2091594960] = { trunksize = 0 }, -- TR4
+    [-1352468814] = { trunksize = 0 }, -- TRFlat
+    [-1770643266] = { trunksize = 0 }, -- TVTrailer
+    [-730904777] = { trunksize = 0 }, -- Tanker
+    [1956216962] = { trunksize = 0 }, -- Tanker2
+    [2016027501] = { trunksize = 0 }, -- TrailerLogs
+    [712162987] = { trunksize = 0 }, -- TrailerSmall
+    [-877478386] = { trunksize = 0 }, -- Trailers
+    [-1579533167] = { trunksize = 0 }, -- Trailers2
+    [-2058878099] = { trunksize = 0 }, -- Trailers3
     -- Choo Choo Trains
-    [1030400667] = { trunksize = 200 }, -- Freught
-    [184361638] = { trunksize = 100 }, -- FreightCar
-    [920453016] = { trunksize = 1000 }, -- CreightCont1
-    [240201337] = { trunksize = 1000 }, -- FreightCont2
-    [642617954] = { trunksize = 1000 }, -- CreightGrain
-    [-777275802] = { trunksize = 2500 }, -- FreightTrailer
-    [586013744] = { trunksize = 850 }, -- TankerCar
+    [1030400667] = { trunksize = 0 }, -- Freught
+    [184361638] = { trunksize = 0 }, -- FreightCar
+    [920453016] = { trunksize = 0 }, -- CreightCont1
+    [240201337] = { trunksize = 0 }, -- FreightCont2
+    [642617954] = { trunksize = 0 }, -- CreightGrain
+    [-777275802] = { trunksize = 0 }, -- FreightTrailer
+    [586013744] = { trunksize = 0 }, -- TankerCar
     -- Utility
     [1560980623] = { trunksize = 10 }, -- Airtug
     [1147287684] = { trunksize = 10 }, -- Caddy
@@ -518,13 +518,13 @@ Config.VehicleLimit = {
     [1783355638] = { trunksize = 2 }, -- Mower
     [-845979911] = { trunksize = 20 }, -- Ripley
     [-599568815] = { trunksize = 75 }, -- Sadler
-    [-1700801569] = { trunksize = 95 }, -- Scrap
+    [-1700801569] = { trunksize = 0 }, -- Scrap
     [-1323100960] = { trunksize = 30 }, -- TowTruck
     [-442313018] = { trunksize = 15 }, -- Towtruck2
     [1641462412] = { trunksize = 2 }, -- Tractor
     [-2076478498] = { trunksize = 15 }, -- Tractor2
     [1445631933] = { trunksize = 15 }, -- Tractor3
-    [1502869817] = { trunksize = 100 }, -- TrailerLarge
+    [1502869817] = { trunksize = 0 }, -- TrailerLarge
     [-1100548694] = { trunksize = 5 }, -- TrailerS4
     [516990260] = { trunksize = 30 }, -- UtiliTruck
     [2132890591] = { trunksize = 55 }, -- UtiliTruck3
@@ -571,7 +571,7 @@ Config.VehicleLimit = {
     [178350184] = { trunksize = 65 }, -- Merc SUV
     [162432206] = { trunksize = 25 }, -- mst mustang
     [-1724630220] = { trunksize = 60 }, -- phantom
-        -- Doomsday Cars
+    -- Doomsday Cars
     [3981782132] = { trunksize = 30 }, -- Autarch
     [661493923] = { trunksize = 35 }, -- Comet5
     [1483171323] = { trunksize = 30 }, -- Deluxo
