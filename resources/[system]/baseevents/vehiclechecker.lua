@@ -125,12 +125,8 @@ Citizen.CreateThread(function()
                 -- banned vehicle check
                 for _, v in pairs(bannedVehicles) do
                     if IsVehicleModel(vehicle, v.hash) then
-                        if v.canDrive then
-                            if v.canDrive ~= ESX.PlayerData.job.name then
-                                vehicleBanned = true
-                                ClearPedTasksImmediately(ped)
-                                break
-                            end
+                        if v.canDrive ~= nil and v.canDrive == ESX.PlayerData.job.name then
+                            break
                         else
                             vehicleBanned = true
                             ClearPedTasksImmediately(ped)
@@ -159,11 +155,9 @@ Citizen.CreateThread(function()
 
                 -- banned vehicle check
                 for _, v in pairs(bannedVehicles) do
-                    if IsVehicleModel(vehicle, v.hash) then
-                        if v.canDrive then
-                            if v.canDrive ~= ESX.PlayerData.job.name then
-                                vehicleBanned = true
-                            end
+                    if IsVehicleModel(currentVehicle, v.hash) then
+                        if v.canDrive ~= nil and v.canDrive == ESX.PlayerData.job.name then
+                            break
                         else
                             vehicleBanned = true
                             ClearPedTasksImmediately(ped)

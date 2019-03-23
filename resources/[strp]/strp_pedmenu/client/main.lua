@@ -63,6 +63,7 @@ Citizen.CreateThread(function()
 				if distance ~= -1 and distance <= 2.0 then
 					if IsPedDeadOrDying(playerped) or IsEntityPlayingAnim(playerped, "mp_arresting", "idle", 3) then
 						Start(player, playerped)
+                        sleep = 0
 					end
 				end
 			end
@@ -77,7 +78,7 @@ function Start(player, ped)
 	checking = true
 
 	while checking do
-		Citizen.Wait(5)
+		Citizen.Wait(0)
 
         local veh = GetVehiclePedIsIn(ped, false) -- true means last vehicle, false means current only
         if (veh > 0) then
