@@ -27,7 +27,7 @@ AddEventHandler('kashactersS:CharacterChosen', function(charid, ischar)
         spawn = GetSpawnPos(src)
     else
 		TriggerClientEvent('skinchanger:loadDefaultModel', src, true, cb)
-        spawn = { x = 195.55, y = -933.36, z = 29.90 } -- DEFAULT SPAWN POSITION
+        spawn = { x = -219.95, y = -1051.64, z = 30.13 } -- DEFAULT SPAWN POSITION
     end
     TriggerClientEvent("kashactersC:SpawnCharacter", src, spawn)
 end)
@@ -82,7 +82,7 @@ function GetSpawnPos(source)
     if (SpawnPos[1].position ~= nil) then
         return json.decode(SpawnPos[1].position)
     else
-        return { x = 195.55, y = -933.36, z = 29.90 }
+        return { x = -219.95, y = -1051.64, z = 30.13 }
     end
 end
 
