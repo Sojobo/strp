@@ -60,14 +60,14 @@ local bannedVehicles = {
     ['fbi6'] = { hash = GetHashKey('FBI6'), canDrive = 'police', hasTrunkAccess = 'police' },
     ['pol718'] = { hash = GetHashKey('pol718'), canDrive = 'police', hasTrunkAccess = 'police' },
     ['2015polstang'] = { hash = GetHashKey('2015polstang'), canDrive = 'police', hasTrunkAccess = 'police' },
-    ['ambulance'] = { hash = GetHashKey('ambulance'), canDrive = 'medic', hasTrunkAccess = 'medic' },
-    ['ambulance2'] = { hash = GetHashKey('ambulance2'), canDrive = 'medic', hasTrunkAccess = 'medic' },
-    ['emssuv'] = { hash = GetHashKey('emssuv'), canDrive = 'medic', hasTrunkAccess = 'medic' },
-    ['emssuv2'] = { hash = GetHashKey('emssuv2'), canDrive = 'medic', hasTrunkAccess = 'medic' },
-    ['emsvan'] = { hash = GetHashKey('emsvan'), canDrive = 'medic', hasTrunkAccess = 'medic' },
-    ['emscar'] = { hash = GetHashKey('emscar'), canDrive = 'medic', hasTrunkAccess = 'medic' },
-    ['emscar2'] = { hash = GetHashKey('emscar2'), canDrive = 'medic', hasTrunkAccess = 'medic' },
-    ['police9'] = { hash = GetHashKey('police9'), canDrive = 'medic', hasTrunkAccess = 'medic' },
+    ['ambulance'] = { hash = GetHashKey('ambulance'), canDrive = 'ambulance', hasTrunkAccess = 'ambulance' },
+    ['ambulance2'] = { hash = GetHashKey('ambulance2'), canDrive = 'ambulance', hasTrunkAccess = 'ambulance' },
+    ['emssuv'] = { hash = GetHashKey('emssuv'), canDrive = 'ambulance', hasTrunkAccess = 'ambulance' },
+    ['emssuv2'] = { hash = GetHashKey('emssuv2'), canDrive = 'ambulance', hasTrunkAccess = 'ambulance' },
+    ['emsvan'] = { hash = GetHashKey('emsvan'), canDrive = 'ambulance', hasTrunkAccess = 'ambulance' },
+    ['emscar'] = { hash = GetHashKey('emscar'), canDrive = 'ambulance', hasTrunkAccess = 'ambulance' },
+    ['emscar2'] = { hash = GetHashKey('emscar2'), canDrive = 'ambulance', hasTrunkAccess = 'ambulance' },
+    ['police9'] = { hash = GetHashKey('police9'), canDrive = 'ambulance', hasTrunkAccess = 'ambulance' },
     ['cutter'] = { hash = GetHashKey('Cutter'), canDrive = nil, hasTrunkAccess = nil },
     ['handler'] = { hash = GetHashKey('Handler'), canDrive = nil, hasTrunkAccess = nil },
     ['trailersmall2'] = { hash = GetHashKey('Trailersmall2'), canDrive = nil, hasTrunkAccess = nil },
@@ -128,6 +128,8 @@ Citizen.CreateThread(function()
                         if v.canDrive then
                             if v.canDrive ~= ESX.PlayerData.job.name then
                                 vehicleBanned = true
+                                ClearPedTasksImmediately(ped)
+                                break
                             end
                         else
                             vehicleBanned = true
