@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.1.37-MariaDB - mariadb.org binary distribution
+-- Server version:               10.1.34-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win32
--- HeidiSQL Version:             9.5.0.5196
+-- HeidiSQL Version:             10.1.0.5464
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -292,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table strp.characters: ~0 rows (approximately)
+-- Dumping data for table strp.characters: ~1 rows (approximately)
 /*!40000 ALTER TABLE `characters` DISABLE KEYS */;
 INSERT INTO `characters` (`id`, `identifier`, `firstname`, `lastname`, `dateofbirth`, `sex`, `height`) VALUES
 	(1, 'steam:1100001073dda0b', 'Yeet', 'Err', '2000-02-29', 'm', '180');
@@ -606,6 +606,20 @@ INSERT INTO `licenses` (`type`, `label`) VALUES
 	('weapon', 'Carry permit'),
 	('weed_processing', 'Weed Processing License');
 /*!40000 ALTER TABLE `licenses` ENABLE KEYS */;
+
+-- Dumping structure for table strp.logs_job_management
+CREATE TABLE IF NOT EXISTS `logs_job_management` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `sourcePlayer` varchar(50) NOT NULL,
+  `targetPlayer` varchar(50) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table strp.logs_job_management: ~0 rows (approximately)
+/*!40000 ALTER TABLE `logs_job_management` DISABLE KEYS */;
+/*!40000 ALTER TABLE `logs_job_management` ENABLE KEYS */;
 
 -- Dumping structure for table strp.owned_properties
 CREATE TABLE IF NOT EXISTS `owned_properties` (
@@ -944,7 +958,7 @@ CREATE TABLE IF NOT EXISTS `user_accounts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table strp.user_accounts: ~0 rows (approximately)
+-- Dumping data for table strp.user_accounts: ~1 rows (approximately)
 /*!40000 ALTER TABLE `user_accounts` DISABLE KEYS */;
 INSERT INTO `user_accounts` (`id`, `identifier`, `name`, `money`) VALUES
 	(1, 'steam:1100001073dda0b', 'black_money', 0);
@@ -959,7 +973,7 @@ CREATE TABLE IF NOT EXISTS `user_inventory` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1454 DEFAULT CHARSET=latin1;
 
--- Dumping data for table strp.user_inventory: ~1,452 rows (approximately)
+-- Dumping data for table strp.user_inventory: ~1,453 rows (approximately)
 /*!40000 ALTER TABLE `user_inventory` DISABLE KEYS */;
 INSERT INTO `user_inventory` (`id`, `identifier`, `item`, `count`) VALUES
 	(1, 'steam:11000010181f7dc', 'medikit', 3),
@@ -2423,7 +2437,7 @@ CREATE TABLE IF NOT EXISTS `user_lastcharacter` (
   `charid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table strp.user_lastcharacter: ~0 rows (approximately)
+-- Dumping data for table strp.user_lastcharacter: ~1 rows (approximately)
 /*!40000 ALTER TABLE `user_lastcharacter` DISABLE KEYS */;
 INSERT INTO `user_lastcharacter` (`steamid`, `charid`) VALUES
 	('steam:1100001073dda0b', 1);
