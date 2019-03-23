@@ -353,3 +353,62 @@ end
 --         end
 --     end
 -- end)
+
+ESX = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
+	PlayerData = ESX.GetPlayerData()
+end)
+
+local playerNamesDist = 15
+local displayIDHeight = 1.5
+
+function DrawText3D(x, y, z, text)
+  local onScreen, _x, _y = World3dToScreen2d(x, y, z)
+  local px, py, pz = table.unpack(GetGameplayCamCoords())
+  local dist = GetDistanceBetweenCoords(px, py, pz, x, y, z, 1)
+
+  local scale = (1 / dist) * 2
+  local fov = (1 / GetGameplayCamFov()) * 100
+  local scale = scale * fov
+
+  if onScreen then
+    SetTextScale(1 * scale, 2 * scale)
+    SetTextFont(0)
+    SetTextProportional(1)
+    SetTextColour(red, green, blue, 255)
+    SetTextDropshadow(0, 0, 0, 0, 255)
+    SetTextEdge(2, 0, 0, 0, 150)
+    SetTextDropShadow()
+    SetTextOutline()
+    SetTextEntry("STRING")
+    SetTextCentre(1)
+    AddTextComponentString(text)
+    World3dToScreen2d(x, y, z, 0)
+    DrawText(_x, _y)
+  end
+end
+
+Citizen.CreateThread(function ()
+  while true do
+		Citizen.Wait(0)
+		if ESX.GetPlayerData().group == "user" then return end
+		local playersInArea = ESX.Game.GetPlayersInArea(GetEntityCoords(PlayerPedId(), true), playerNamesDist)
+		for i=1, #playersInArea, 1 do
+			local player = playersInArea[i]
+			if player ~= PlayerId() then
+				local x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(player), true))
+				DrawText3D(x, y, z + displayIDHeight, GetPlayerServerId(player))
+			end
+		end
+  end
+end)
