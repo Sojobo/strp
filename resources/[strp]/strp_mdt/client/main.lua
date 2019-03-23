@@ -81,7 +81,7 @@ Citizen.CreateThread(function()
 			hasAlreadyEnteredMarker = true
 			canSleep = false
 		end
-	
+
 		if not isInATMMarker and hasAlreadyEnteredMarker then
 			hasAlreadyEnteredMarker = false
 			SetNuiFocus(false)
@@ -111,9 +111,16 @@ Citizen.CreateThread(function()
 				local playerPed = GetPlayerPed(-1)
 				local atmcoords = GetEntityCoords(currentMDT)
 
+				local PlayerData = ESX.GetPlayerData()
+
+				if PlayerData.job.name ~= "police" or PlayerData.job.name ~= "ambulance" then
+					ESX.ShowNotification("You cannot use this...")
+					return
+				end
+
 				menuIsShowed = true
 
-				RequestAnimDict("mini@atmbase")		
+				RequestAnimDict("mini@atmbase")
 				RequestAnimDict("mini@atmenter")
 				while not HasAnimDictLoaded("mini@atmenter") do
 					Wait(1)
@@ -122,7 +129,7 @@ Citizen.CreateThread(function()
 				SetCurrentPedWeapon(playerPed, GetHashKey("weapon_unarmed"), true)
 				TaskLookAtEntity(playerPed, currentMDT, 2000, 2048, 2)
 				Wait(500)
-				TaskGoStraightToCoord(playerPed, atmcoords.x, atmcoords.y, atmcoords.z, 0.1, 4000, GetEntityHeading(currentMDT), 0.5)				
+				TaskGoStraightToCoord(playerPed, atmcoords.x, atmcoords.y, atmcoords.z, 0.1, 4000, GetEntityHeading(currentMDT), 0.5)
 				Wait(2000)
 				TaskPlayAnim(playerPed, "mini@atmenter", "enter", 8.0, 1.0, -1, 0, 0.0, 0, 0, 0)
 				RemoveAnimDict("mini@atmenter")
@@ -141,7 +148,7 @@ Citizen.CreateThread(function()
 
 				Wait(4000)
 				TaskPlayAnim(playerPed, "mini@atmbase", "base", 8.0, 1.0, -1, 0, 0.0, 0, 0, 0)
-				RemoveAnimDict("mini@atmbase")				
+				RemoveAnimDict("mini@atmbase")
 			end
 
 		else
