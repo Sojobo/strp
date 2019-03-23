@@ -4,6 +4,7 @@ local launderRadius = nil
 local lastSpot = 1
 local laundering = -1
 ESX = nil
+PlayerData = nil
 
 Citizen.CreateThread(function()
 	while ESX == nil do

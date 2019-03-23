@@ -21,8 +21,8 @@ TriggerEvent('es:addGroupCommand', 'setjob', 'jobmaster', function(source, args,
 		local xPlayer = ESX.GetPlayerFromId(args[1])
 
 		if xPlayer then
-			if ESX.DoesJobExist(args[2], args[3]) then
-				xPlayer.setJob(args[2], args[3])
+			if ESX.DoesJobExist(args[2], tonumber(args[3])) then
+				xPlayer.setJob(args[2], tonumber(args[3]))
 			else
 				TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'That job does not exist.' } })
 			end

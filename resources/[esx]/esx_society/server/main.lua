@@ -23,7 +23,7 @@ MySQL.ready(function()
 	local result2 = MySQL.Sync.fetchAll('SELECT * FROM job_grades', {})
 
 	for i=1, #result2, 1 do
-		Jobs[result2[i].job_name].grades[tostring(result2[i].grade)] = result2[i]
+		Jobs[result2[i].job_name].grades[tonumber(result2[i].grade)] = result2[i]
 	end
 end)
 
@@ -193,8 +193,8 @@ ESX.RegisterServerCallback('esx_society:getEmployees', function(source, cb, soci
 						name        = results[i].job,
 						label       = Jobs[results[i].job].label,
 						grade       = results[i].job_grade,
-						grade_name  = Jobs[results[i].job].grades[tostring(results[i].job_grade)].name,
-						grade_label = Jobs[results[i].job].grades[tostring(results[i].job_grade)].label
+						grade_name  = Jobs[results[i].job].grades[tonumber(results[i].job_grade)].name,
+						grade_label = Jobs[results[i].job].grades[tonumber(results[i].job_grade)].label
 					}
 				})
 			end
@@ -215,8 +215,8 @@ ESX.RegisterServerCallback('esx_society:getEmployees', function(source, cb, soci
 						name        = result[i].job,
 						label       = Jobs[result[i].job].label,
 						grade       = result[i].job_grade,
-						grade_name  = Jobs[result[i].job].grades[tostring(result[i].job_grade)].name,
-						grade_label = Jobs[result[i].job].grades[tostring(result[i].job_grade)].label
+						grade_name  = Jobs[result[i].job].grades[tonumber(result[i].job_grade)].name,
+						grade_label = Jobs[result[i].job].grades[tonumber(result[i].job_grade)].label
 					}
 				})
 			end
