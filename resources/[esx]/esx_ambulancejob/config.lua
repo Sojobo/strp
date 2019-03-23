@@ -28,7 +28,7 @@ Config.EnableJobBlip              = true -- enable blips for colleagues, require
 
 -- Let the player pay for respawning early, only if he can afford it.
 Config.EarlyRespawnFine           = true
-Config.EarlyRespawnFineAmount     = 1000
+Config.EarlyRespawnFineAmount     = 500
 
 Config.RespawnPoint = { coords = vector3(341.0, -1397.3, 32.5), heading = 48.5 }
 
