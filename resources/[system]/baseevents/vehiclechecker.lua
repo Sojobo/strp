@@ -82,6 +82,7 @@ local bannedVehicles = {
     ['stromberg'] = { hash = GetHashKey('stromberg'), canDrive = nil, hasTrunkAccess = nil },
     ['riot2'] = { hash = GetHashKey('riot2'), canDrive = 'police', hasTrunkAccess = 'police' },
     ['khanjali'] = { hash = GetHashKey('khanjali'), canDrive = nil, hasTrunkAccess = nil },
+    ['besra'] = { hash = GetHashKey('besra'), canDrive = nil, hasTrunkAccess = nil },
 
 }
 -- Banned Vehicle Helpers
