@@ -258,9 +258,9 @@ end, {help = "Register a new character"})
 TriggerEvent('es:addGroupCommand', 'char', 'user', function(source, args, user)
 	getIdentity(source, function(data)
 		if data.firstname == '' then
-			TriggerClientEvent('chat:addMessage', source, { args = { '^1[IDENTITY]', 'You do not have an active character!' } })
+			TriggerClientEvent('chat:addMessage', source, { args = { '^1[IDENTITY]', 'You do not have an active character! (' .. source .. ')' } })
 		else
-			TriggerClientEvent('chat:addMessage', source, { args = { '^1[IDENTITY]', 'Active character: ^2' .. data.firstname .. ' ' .. data.lastname } })
+			TriggerClientEvent('chat:addMessage', source, { args = { '^1[IDENTITY]', 'Active character: ^2' .. data.firstname .. ' ' .. data.lastname .. ' (' .. source .. ')'} })
 		end
 	end)
 end, function(source, args, user)

@@ -43,20 +43,20 @@ Config.VehicleLimit = {
     [1448677353] = { trunksize = 55 }, -- Tropic2
     [-2100640717] = { trunksize = 500 }, -- Tug
     -- Commerical Trucks
-    [2053223216] = { trunksize = 165 }, -- Benson
-    [850991848] = { trunksize = 50 }, -- Biff
-    [1518533038] = { trunksize = 80 }, -- Hauler
-    [387748548] = { trunksize = 85 }, -- Hauler2
-    [904750859] = { trunksize = 130 }, -- Mule
-    [-1050465301] = { trunksize = 130 }, -- Mule2
-    [-2052737935] = { trunksize = 130 }, -- Mule3
-    [569305213] = { trunksize = 95 }, -- Packer
-    [-2137348917] = { trunksize = 105 }, -- Phantom
-    [-1649536104] = { trunksize = 80 }, -- Phantom2
-    [177270108] = { trunksize = 115 }, -- Phantom3
-    [2112052861] = { trunksize = 220 }, -- Pounder
-    [1747439474] = { trunksize = 110 }, -- Stockade
-    [-214455498] = { trunksize = 110 }, -- Stockade3
+    [2053223216] = { trunksize = 0 }, -- Benson
+    [850991848] = { trunksize = 0 }, -- Biff
+    [1518533038] = { trunksize = 0 }, -- Hauler
+    [387748548] = { trunksize = 0 }, -- Hauler2
+    [904750859] = { trunksize = 0 }, -- Mule
+    [-1050465301] = { trunksize = 0 }, -- Mule2
+    [-2052737935] = { trunksize = 0 }, -- Mule3
+    [569305213] = { trunksize = 0 }, -- Packer
+    [-2137348917] = { trunksize = 0 }, -- Phantom
+    [-1649536104] = { trunksize = 0 }, -- Phantom2
+    [177270108] = { trunksize = 0 }, -- Phantom3
+    [2112052861] = { trunksize = 0 }, -- Pounder
+    [1747439474] = { trunksize = 0 }, -- Stockade
+    [-214455498] = { trunksize = 0 }, -- Stockade3
     -- Compacts
     [-344943009] = { trunksize = 30 }, -- Blista
     [1039032026] = { trunksize = 30 }, -- Blista2
@@ -138,17 +138,17 @@ Config.VehicleLimit = {
     [1543134283] = { trunksize = 55 }, -- Valkyrie
     [-1845487887] = { trunksize = 75 }, -- Valtus
     --Industrial
-    [1886712733] = { trunksize = 20 }, -- Bulldozer
-    [-1006919392] = { trunksize = 15 }, -- Cutter
-    [-2130482718] = { trunksize = 1000 }, -- Dump
-    [1353720154] = { trunksize = 65 }, -- Flatbed
-    [-2107990196] = { trunksize = 100 }, -- Guardian
-    [444583674] = { trunksize = 10 }, -- Handler
-    [-784816453] = { trunksize = 45 }, -- Mixer
-    [475220373] = { trunksize = 45 }, -- Mixer2
-    [-1705304628] = { trunksize = 100 }, -- Rubble
-    [48339065] = { trunksize = 95 }, -- Tip Truck
-    [-947761570] = { trunksize = 95 }, -- Tip Truck2
+    [1886712733] = { trunksize = 0 }, -- Bulldozer
+    [-1006919392] = { trunksize = 0 }, -- Cutter
+    [-2130482718] = { trunksize = 0 }, -- Dump
+    [1353720154] = { trunksize = 0 }, -- Flatbed
+    [-2107990196] = { trunksize = 0 }, -- Guardian
+    [444583674] = { trunksize = 0 }, -- Handler
+    [-784816453] = { trunksize = 0 }, -- Mixer
+    [475220373] = { trunksize = 0 }, -- Mixer2
+    [-1705304628] = { trunksize = 0 }, -- Rubble
+    [48339065] = { trunksize = 0 }, -- Tip Truck
+    [-947761570] = { trunksize = 0 }, -- Tip Truck2
     -- Military
     [562680400] = { trunksize = 50 }, -- APC
     [-823509173] = { trunksize = 115 }, -- Barracks
