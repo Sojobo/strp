@@ -115,11 +115,11 @@ function OpenDeathMenu(player, ped)
 	local myPed = PlayerPedId()
 	local elements   = {}
 	if ESX.PlayerData.job ~= nil then
-        ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
-            table.insert(elements, { label = "Drag", value = 'drag' })
-            table.insert(elements, { label = "Put in vehicle", value = 'put_in_vehicle' })
-            table.insert(elements, { label = "Pull out vehicle", value = 'out_the_vehicle' })
+        table.insert(elements, { label = "Drag", value = 'drag' })
+        table.insert(elements, { label = "Put in vehicle", value = 'put_in_vehicle' })
+        table.insert(elements, { label = "Pull out vehicle", value = 'out_the_vehicle' })
 
+        ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
             if ESX.PlayerData.job.name == 'police' and isInService then
                 table.insert(elements, { label = "Search", value = 'body_search' })
                 table.insert(elements, { label = "Handcuff", value = 'handcuff' })
