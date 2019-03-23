@@ -2,6 +2,14 @@ local isInVehicle = false
 local isEnteringVehicle = false
 local currentVehicle = 0
 local currentSeat = 0
+ESX = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+end)
 
 local bannedVehicles = {
     ['rhino'] = { hash = GetHashKey('rhino'), canDrive = nil, hasTrunkAccess = nil },
@@ -105,6 +113,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 
 		local ped = PlayerPedId()
+        local PlayerData = ESX.GetPlayerData()
 
 		if not isInVehicle and not IsPlayerDead(PlayerId()) then
 			if DoesEntityExist(GetVehiclePedIsTryingToEnter(ped)) and not isEnteringVehicle then
@@ -116,9 +125,15 @@ Citizen.CreateThread(function()
                 -- banned vehicle check
                 for _, v in pairs(bannedVehicles) do
                     if IsVehicleModel(vehicle, v.hash) then
-                        vehicleBanned = true
-                        ClearPedTasksImmediately(ped)
-                        break
+                        if v.canDrive then
+                            if v.canDrive ~= ESX.PlayerData.job.name then
+                                vehicleBanned = true
+                            end
+                        else
+                            vehicleBanned = true
+                            ClearPedTasksImmediately(ped)
+                            break
+                        end
                     end
                 end
 
@@ -142,10 +157,16 @@ Citizen.CreateThread(function()
 
                 -- banned vehicle check
                 for _, v in pairs(bannedVehicles) do
-                    if IsVehicleModel(currentVehicle, v.hash) then
-                        vehicleBanned = true
-                        ClearPedTasksImmediately(ped)
-                        break
+                    if IsVehicleModel(vehicle, v.hash) then
+                        if v.canDrive then
+                            if v.canDrive ~= ESX.PlayerData.job.name then
+                                vehicleBanned = true
+                            end
+                        else
+                            vehicleBanned = true
+                            ClearPedTasksImmediately(ped)
+                            break
+                        end
                     end
                 end
 
