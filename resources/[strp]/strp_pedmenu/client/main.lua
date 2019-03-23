@@ -79,6 +79,10 @@ function Start(player, ped)
 	while checking do
 		Citizen.Wait(5)
 
+        local veh = GetVehiclePedIsIn(ped, false) -- true means last vehicle, false means current only
+        if (veh > 0) then
+            ped = veh -- Show options on the car instead of the person
+        end
 		local distance = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), GetEntityCoords(ped))
 		local x,y,z = table.unpack(GetEntityCoords(ped))
 
