@@ -126,23 +126,15 @@ AddEventHandler('esx_truck_inventory:addInventoryItem', function(type, model, pl
   local _source = source
   local xPlayer  = ESX.GetPlayerFromId(_source)
   
-  MySQL.Async.execute( 'INSERT INTO truck_inventory (item,count,plate,name,itemt,owned) VALUES (@item,@qty,@plate,@name,@itemt,@owned) ON DUPLICATE KEY UPDATE count=count+ @qty',
-    {
-      ['@plate'] = plate,
-      ['@qty'] = qtty,
-      ['@item'] = item,
-      ['@name'] = name,
-	  ['@itemt'] = itemType,
-      ['@owned'] = ownedV,
-    })
-	
 	if xPlayer ~= nil then
 		if itemType == 'item_standard' then
 			local playerItemCount = xPlayer.getInventoryItem(item).count
 			if playerItemCount >= qtty then
-			   xPlayer.removeInventoryItem(item, qtty)
+			    xPlayer.removeInventoryItem(item, qtty)
+                MySQL.Async.execute( 'INSERT INTO truck_inventory (item,count,plate,name,itemt,owned) VALUES (@item,@qty,@plate,@name,@itemt,@owned) ON DUPLICATE KEY UPDATE count=count+ @qty',
+                    { ['@plate'] = plate, ['@qty'] = qtty, ['@item'] = item, ['@name'] = name, ['@itemt'] = itemType, ['@owned'] = ownedV })
 			else
-			  TriggerClientEvent('esx:showNotification', _source, 'quantité invalide')
+			    TriggerClientEvent('esx:showNotification', _source, 'Invalid quantity')
 			end
 		end
 
