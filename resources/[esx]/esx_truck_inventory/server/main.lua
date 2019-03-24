@@ -93,13 +93,6 @@ AddEventHandler('esx_truck_inventory:removeInventoryItem', function(plate, item,
 		['@itemt'] = itemType
 	}, function(countincar)
 		if countincar >= count then
-			 MySQL.Async.execute( 'UPDATE `truck_inventory` SET `count`= `count` - @qty WHERE `plate` = @plate AND `item`= @item AND `itemt`= @itemt',
-			{
-			['@plate'] = plate,
-			['@qty'] = count,
-			['@item'] = item,
-			['@itemt'] = itemType
-			})
 			if xPlayer ~= nil then
 				if itemType == 'item_standard' then
 					xPlayer.addInventoryItem(item, count)
@@ -110,10 +103,13 @@ AddEventHandler('esx_truck_inventory:removeInventoryItem', function(plate, item,
 				end
 
 				if itemType == 'item_weapon' then
+                    count = countincar
 					xPlayer.addWeapon(item, count)
 				end
 			end
 
+            MySQL.Async.execute( 'UPDATE `truck_inventory` SET `count`= `count` - @qty WHERE `plate` = @plate AND `item`= @item AND `itemt`= @itemt',
+                { ['@plate'] = plate, ['@qty'] = count, ['@item'] = item, ['@itemt'] = itemType })
 		end
 
 	end)
@@ -123,29 +119,41 @@ end)
 
 RegisterServerEvent('esx_truck_inventory:addInventoryItem')
 AddEventHandler('esx_truck_inventory:addInventoryItem', function(type, model, plate, item, qtty, name,itemType, ownedV)
-  local _source = source
-  local xPlayer  = ESX.GetPlayerFromId(_source)
-  
+    local _source = source
+    local xPlayer  = ESX.GetPlayerFromId(_source)
+    local success = false
+
 	if xPlayer ~= nil then
 		if itemType == 'item_standard' then
 			local playerItemCount = xPlayer.getInventoryItem(item).count
 			if playerItemCount >= qtty then
 			    xPlayer.removeInventoryItem(item, qtty)
-                MySQL.Async.execute( 'INSERT INTO truck_inventory (item,count,plate,name,itemt,owned) VALUES (@item,@qty,@plate,@name,@itemt,@owned) ON DUPLICATE KEY UPDATE count=count+ @qty',
-                    { ['@plate'] = plate, ['@qty'] = qtty, ['@item'] = item, ['@name'] = name, ['@itemt'] = itemType, ['@owned'] = ownedV })
-			else
-			    TriggerClientEvent('esx:showNotification', _source, 'Invalid quantity')
+                success = true
 			end
 		end
 
 		if itemType == 'item_account' then
-			xPlayer.removeAccountMoney(item, qtty)
+            local playerAccountMoney = xPlayer.getAccount(item).money
+            if playerAccountMoney >= qtty and qtty > 0 then
+			    xPlayer.removeAccountMoney(item, qtty)
+                success = true
+            end
 		end
 
 		if itemType == 'item_weapon' then
-			xPlayer.removeWeapon(item, qtty)
+            if (xPlayer.hasWeapon(item) ~= nil) then
+                xPlayer.removeWeapon(item, qtty)
+                success = true
+            end
 		end
 	end
+
+    if (success) then
+        MySQL.Async.execute( 'INSERT INTO truck_inventory (item,count,plate,name,itemt,owned) VALUES (@item,@qty,@plate,@name,@itemt,@owned) ON DUPLICATE KEY UPDATE count=count+ @qty',
+            { ['@plate'] = plate, ['@qty'] = qtty, ['@item'] = item, ['@name'] = name, ['@itemt'] = itemType, ['@owned'] = ownedV })
+    else
+		TriggerClientEvent('esx:showNotification', _source, 'Invalid quantity')
+    end
 end)
 
 ESX.RegisterServerCallback('esx_truck:checkvehicle',function(source,cb, vehicleplate)
