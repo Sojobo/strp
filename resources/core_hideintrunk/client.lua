@@ -9,17 +9,18 @@ Citizen.CreateThread(function()
         local vehicle = VehicleInFront()
 
         if IsDisabledControlPressed(0, 19) and IsDisabledControlJustReleased(1, 44) and GetVehiclePedIsIn(player, false) == 0 and ((DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle)) or (inside ~= 0 and DoesEntityExist(inside) and IsEntityAVehicle(inside))) then
-            SetVehicleDoorOpen(vehicle, 5, false, false)    	
+          if (GetVehicleDoorLockStatus(vehicle) ~= 1) then return end
+            SetVehicleDoorOpen(vehicle, 5, false, false)
             if inside == 0 then
-                AttachEntityToEntity(player, vehicle, -1, 0.0, -2.2, 0.5, 0.0, 0.0, 0.0, false, false, false, false, 20, true)		       		
+                AttachEntityToEntity(player, vehicle, -1, 0.0, -2.2, 0.5, 0.0, 0.0, 0.0, false, false, false, false, 20, true)
                 RaiseConvertibleRoof(vehicle, false)
                 if IsEntityAttached(player) then
                     SetTextComponentFormat("STRING")
                     AddTextComponentString('~s~~INPUT_CHARACTER_WHEEL~+~INPUT_COVER~ Get out')
-                    DisplayHelpTextFromStringLabel(0, 1, 1, -1)	
+                    DisplayHelpTextFromStringLabel(0, 1, 1, -1)
                     ClearPedTasksImmediately(player)
                     Citizen.Wait(100)
-                    TaskPlayAnim(player, 'timetable@floyd@cryingonbed@base', 'base', 1.0, -1, -1, 1, 0, 0, 0, 0)	
+                    TaskPlayAnim(player, 'timetable@floyd@cryingonbed@base', 'base', 1.0, -1, -1, 1, 0, 0, 0, 0)
                     if not (IsEntityPlayingAnim(player, 'timetable@floyd@cryingonbed@base', 'base', 3) == 1) then
                         Streaming('timetable@floyd@cryingonbed@base', function()
                             TaskPlayAnim(playerPed, 'timetable@floyd@cryingonbed@base', 'base', 1.0, -1, -1, 49, 0, 0, 0, 0)
@@ -37,12 +38,12 @@ Citizen.CreateThread(function()
                 ClearAllHelpMessages()
             end
             Citizen.Wait(2000)
-            SetVehicleDoorShut(vehicle, 5, false)    	
+            SetVehicleDoorShut(vehicle, 5, false)
         end
         if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) and inside == 0 and GetVehiclePedIsIn(player, false) == 0 then
             SetTextComponentFormat("STRING")
             AddTextComponentString('~s~~INPUT_CHARACTER_WHEEL~+~INPUT_COVER~ Get in trunk')
-            DisplayHelpTextFromStringLabel(0, 0, 1, -1)	
+            DisplayHelpTextFromStringLabel(0, 0, 1, -1)
         elseif DoesEntityExist(vehicle) and inside ~= 0 then
             car = GetEntityAttachedTo(player)
             carxyz = GetEntityCoords(car, 0)
@@ -51,11 +52,11 @@ Citizen.CreateThread(function()
             DisableAllControlActions(1)
             DisableAllControlActions(2)
             EnableControlAction(0, 0, true) --- V - camera
-            EnableControlAction(0, 249, true) --- N - push to talk	
+            EnableControlAction(0, 249, true) --- N - push to talk
             EnableControlAction(2, 1, true) --- camera moving
-            EnableControlAction(2, 2, true) --- camera moving	
+            EnableControlAction(2, 2, true) --- camera moving
             EnableControlAction(0, 177, true) --- BACKSPACE
-            EnableControlAction(0, 200, true) --- ESC					
+            EnableControlAction(0, 200, true) --- ESC
             -- if IsDisabledControlJustPressed(1, 22) then
             --     if visible then
             --         SetEntityVisible(player, false, false)
@@ -68,7 +69,7 @@ Citizen.CreateThread(function()
             ClearPedTasks(player)
             inside = 0
             ClearAllHelpMessages()
-        end  	
+        end
     end
 end)
 
