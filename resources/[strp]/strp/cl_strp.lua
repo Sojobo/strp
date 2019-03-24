@@ -369,6 +369,13 @@ Citizen.CreateThread(function()
 	PlayerData = ESX.GetPlayerData()
 end)
 
+function isStaff(groupName)
+	if groupName == "mod" or groupName == "admin" or groupName == "superadmin" then
+		return true
+	end
+	return false
+end
+
 local group = "user"
 
 RegisterNetEvent('es_admin:setGroup')
@@ -408,7 +415,7 @@ end
 Citizen.CreateThread(function ()
   while true do
 		Citizen.Wait(0)
-		if group == "user" then return end
+		if isStaff(group) == false then return end
 		local playersInArea = ESX.Game.GetPlayersInArea(GetEntityCoords(PlayerPedId(), true), playerNamesDist)
 		for i=1, #playersInArea, 1 do
 			local player = playersInArea[i]
