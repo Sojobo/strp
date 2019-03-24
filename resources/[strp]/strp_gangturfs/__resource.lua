@@ -9,3 +9,5 @@ client_scripts {
 server_scripts {
     'sv_turfs.lua'
 }
+
+export 'getTurfData'

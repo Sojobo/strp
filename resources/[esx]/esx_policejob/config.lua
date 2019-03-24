@@ -91,7 +91,7 @@ Config.AuthorizedWeapons = {
     -- Officer
 	{ minrank = 2, weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 3300 },
 	
-    -- Detective
+	-- Senior Officer
 	-- Corporal
 
 	-- Sergeant
@@ -113,7 +113,7 @@ Config.AuthorizedVehicles = {
 	-- Officer
 	{ minrank = 2, model = 'police3', label = 'Police Interceptor', price = 3000 },
 
-	-- Detective
+	-- Senior Officer
 	-- Corporal
 
 	-- Sergeant
@@ -134,7 +134,7 @@ Config.AuthorizedHelicopters = {
 	-- Recruit
 	-- Cadet
 	-- Officer
-	-- Detective
+	-- Senior Officer
 	-- Corporal
 	-- Sergeant
 	-- Staff Sergeant
