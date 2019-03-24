@@ -61,11 +61,17 @@ function firePlayer(sourcePlayer, targetPlayer)
 	TriggerClientEvent("esx:showAdvancedNotification", targetPlayer.source, "Job Management", "You have been fired and set to Unemployed.", "fas fa-suitcase", "red")
 end
 
+function isStaff(groupName)
+	if groupName == "mod" or groupName == "admin" or groupName == "superadmin" then
+		return true
+	end
+	return false
+end
 
 function checkJobGradeRestriction(sourceGroup, sourceUser, targetUser)
 	if (JMConfig[sourceUser.job.name] == nil) then return false end
 	local gradeRestriction = JMConfig[sourceUser.job.name].gradeRestriction
-	if gradeRestriction ~= nil and (sourceGroup == "admin" or ((sourceUser.job.grade >= targetUser.job.grade and sourceUser.job == targetUser.job) and sourceUser.job.grade >= gradeRestriction)) then
+	if gradeRestriction ~= nil and (isStaff(sourceGroup) == true or ((sourceUser.job.grade > targetUser.job.grade and sourceUser.job == targetUser.job) and sourceUser.job.grade >= gradeRestriction)) then
 		return true
 	end
 	return false
@@ -74,7 +80,7 @@ end
 function checkJobRestriction(sourceGroup, sourceUser, targetUser)
 	if (JMConfig[sourceUser.job.name] == nil) then return false end
 	local gradeRestriction = JMConfig[sourceUser.job.name].gradeRestriction
-	if gradeRestriction ~= nil and (sourceGroup == "admin" or ((sourceUser.job == targetUser.job) and sourceUser.job.grade >= gradeRestriction)) then
+	if gradeRestriction ~= nil and (isStaff(sourceGroup) == true or (sourceUser.job.grade >= gradeRestriction)) then
 		return true
 	end
 	return false

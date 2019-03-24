@@ -1,4 +1,7 @@
 JMConfig = {
+  ["ambulance"] = { gradeRestriction = 2 },
   ["police"] = { gradeRestriction = 6 },
-  ["ambulance"] = { gradeRestriction = 1 }
+  ["lostmc"] = { gradeRestriction = 5 },
+  ["triads"] = { gradeRestriction = 5 },
+  ["vagos"] = { gradeRestriction = 5 }
 }
