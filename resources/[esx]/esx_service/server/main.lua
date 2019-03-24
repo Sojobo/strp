@@ -58,6 +58,9 @@ ESX.RegisterServerCallback('esx_service:enableService', function(source, cb, nam
 		cb(true, MaxInService[name], inServiceCount)
 	elseif inServiceCount >= MaxInService[name] then
 		cb(false, MaxInService[name], inServiceCount)
+	elseif MaxInService[name] == nil then
+		InService[name][source] = true
+		cb(true, -1, inServiceCount)
 	else
 		InService[name][source] = true
 		cb(true, MaxInService[name], inServiceCount)
