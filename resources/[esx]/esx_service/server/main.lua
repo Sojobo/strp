@@ -1,6 +1,13 @@
 ESX                = nil
 local InService    = {}
 local MaxInService = {}
+local blipColours = {
+    ["police"] = 38,
+    ["ambulance"] = 11,
+    ["vagos"] = 11,
+    ["triads"] = 11,
+    ["lostmc"] = 11,
+}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
