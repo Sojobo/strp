@@ -4,9 +4,9 @@ local MaxInService = {}
 local blipColours = {
     ["police"] = 38,
     ["ambulance"] = 11,
-    ["vagos"] = 11,
-    ["triads"] = 11,
-    ["lostmc"] = 11,
+    ["vagos"] = 46,
+    ["triads"] = 76,
+    ["lostmc"] = 40,
 }
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
