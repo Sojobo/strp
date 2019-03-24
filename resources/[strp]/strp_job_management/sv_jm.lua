@@ -71,7 +71,7 @@ end
 function checkJobGradeRestriction(sourceGroup, sourceUser, targetUser)
 	if (JMConfig[sourceUser.job.name] == nil) then return false end
 	local gradeRestriction = JMConfig[sourceUser.job.name].gradeRestriction
-	if gradeRestriction ~= nil and (isStaff(sourceGroup) == true or ((sourceUser.job.grade > targetUser.job.grade and sourceUser.job == targetUser.job) and sourceUser.job.grade >= gradeRestriction)) then
+	if gradeRestriction ~= nil and (isStaff(sourceGroup) == true or ((sourceUser.job.grade > targetUser.job.grade and sourceUser.job.name == targetUser.job.name) and sourceUser.job.grade >= gradeRestriction)) then
 		return true
 	end
 	return false
