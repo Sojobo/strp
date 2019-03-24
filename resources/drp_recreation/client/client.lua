@@ -212,7 +212,7 @@ function OpenMenu(zone)
     
     ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'multimenu', {
         title = Config.Zones[zone].MenuTitle,
-        align = 'top-left',
+        align = 'left',
         elements = elements
     }, function(data, menu)
         if data.current.action == 'bikerental_menu' then

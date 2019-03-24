@@ -17,7 +17,7 @@ function OpenAmbulanceActionsMenu()
     ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'ambulance_actions',
         {
             title = _U('ambulance'),
-            align = 'top-left',
+            align = 'left',
             elements = elements
         }, function(data, menu)
             ESX.UI.Menu.CloseAll()
@@ -33,7 +33,7 @@ function OpenAmbulanceActionsMenu()
 
       ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'mobile_ambulance_actions', {
           title = _U('ambulance'),
-          align = 'top-left',
+          align = 'left',
           elements = {
             {label = _U('ems_menu'), value = 'citizen_interaction'}
           }
@@ -42,7 +42,7 @@ function OpenAmbulanceActionsMenu()
             ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'citizen_interaction',
               {
                 title = _U('ems_menu_title'),
-                align = 'top-left',
+                align = 'left',
                 elements = {
                   {label = _U('ems_menu_revive'), value = 'revive'},
                   {label = _U('ems_menu_small'), value = 'small'},
@@ -429,7 +429,7 @@ local elements = {
 
 ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle', {
   title = _U('garage_title'),
-  align = 'top-left',
+  align = 'left',
   elements = elements
 }, function(data, menu)
 
@@ -482,7 +482,7 @@ ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle', {
 
       ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_garage', {
         title = _U('garage_title'),
-        align = 'top-left',
+        align = 'left',
         elements = garage
       }, function(data2, menu2)
         if data2.current.stored then
@@ -612,7 +612,7 @@ local elements = {
 
 ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'helicopter_spawner', {
 title = _U('helicopter_title'),
-align = 'top-left',
+align = 'left',
 elements = elements
 }, function(data, menu)
 
@@ -665,7 +665,7 @@ elseif data.current.action == 'garage' then
 
     ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'helicopter_garage', {
       title = _U('helicopter_garage_title'),
-      align = 'top-left',
+      align = 'left',
       elements = garage
     }, function(data2, menu2)
       if data2.current.stored then
@@ -709,14 +709,14 @@ isInShopMenu = true
 
 ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_shop', {
   title = _U('vehicleshop_title'),
-  align = 'top-left',
+  align = 'left',
   elements = elements
 }, function(data, menu)
 
   ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_shop_confirm',
     {
       title = _U('vehicleshop_confirm', data.current.name, data.current.price),
-      align = 'top-left',
+      align = 'left',
       elements = {
         { label = _U('confirm_no'), value = 'no' },
         { label = _U('confirm_yes'), value = 'yes' }
@@ -846,7 +846,7 @@ ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_shop', {
     ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'pharmacy',
       {
         title = _U('pharmacy_menu_title'),
-        align = 'top-left',
+        align = 'left',
         elements = {
           {label = _U('pharmacy_take', _U('medikit')), value = 'medikit'},
           {label = _U('pharmacy_take', _U('bandage')), value = 'bandage'}

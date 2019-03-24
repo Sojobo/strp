@@ -79,7 +79,7 @@ function OpenDealer(dealersItems)
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'drug_shop', {
 		title    = _U('dealer_title'),
-		align    = 'top-left',
+		align    = 'left',
 		elements = elements
 	}, function(data, menu)
 		TriggerServerEvent('esx_drugs:sellDrug', dealersItems, data.current.name, data.current.value)
@@ -107,7 +107,7 @@ function OpenBuyLicenseMenu(licenseName)
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'license_shop', {
 		title    = _U('license_title'),
-		align    = 'top-left',
+		align    = 'left',
 		elements = elements
 	}, function(data, menu)
 

@@ -139,7 +139,7 @@ function OpenDMVSchoolMenu()
 	{
 		title    = _U('driving_school'),
 		elements = elements,
-		align    = 'top-left'
+		align    = 'left'
 	}, function(data, menu)
 		if data.current.value == 'theory_test' then
 			menu.close()

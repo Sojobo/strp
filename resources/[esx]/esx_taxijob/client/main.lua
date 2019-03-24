@@ -134,7 +134,7 @@ function OpenCloakroom()
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'taxi_cloakroom',
 	{
 		title    = _U('cloakroom_menu'),
-		align    = 'top-left',
+		align    = 'left',
 		elements = {
 			{ label = _U('wear_citizen'), value = 'wear_citizen' },
 			{ label = _U('wear_work'),    value = 'wear_work'}
@@ -181,7 +181,7 @@ function OpenVehicleSpawnerMenu()
 			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_spawner',
 			{
 				title    = _U('spawn_veh'),
-				align    = 'top-left',
+				align    = 'left',
 				elements = elements
 			}, function(data, menu)
 				if not ESX.Game.IsSpawnPointClear(Config.Zones.VehicleSpawnPoint.Pos, 5.0) then
@@ -214,7 +214,7 @@ function OpenVehicleSpawnerMenu()
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_spawner',
 		{
 			title		= _U('spawn_veh'),
-			align		= 'top-left',
+			align		= 'left',
 			elements	= Config.AuthorizedVehicles
 		}, function(data, menu)
 			if not ESX.Game.IsSpawnPointClear(Config.Zones.VehicleSpawnPoint.Pos, 5.0) then
@@ -272,7 +272,7 @@ function OpenTaxiActionsMenu()
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'taxi_actions',
 	{
 		title    = 'Taxi',
-		align    = 'top-left',
+		align    = 'left',
 		elements = elements
 	}, function(data, menu)
 
@@ -301,7 +301,7 @@ function OpenMobileTaxiActionsMenu()
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'mobile_taxi_actions',
 	{
 		title    = 'Taxi',
-		align    = 'top-left',
+		align    = 'left',
 		elements = {
 			{ label = _U('billing'),   value = 'billing' },
 			{ label = _U('start_job'), value = 'start_job' }
@@ -392,7 +392,7 @@ function OpenGetStocksMenu()
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'stocks_menu',
 		{
 			title    = 'Taxi Stock',
-			align    = 'top-left',
+			align    = 'left',
 			elements = elements
 		}, function(data, menu)
 			local itemName = data.current.value
@@ -444,7 +444,7 @@ function OpenPutStocksMenu()
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'stocks_menu',
 		{
 			title    = _U('inventory'),
-			align    = 'top-left',
+			align    = 'left',
 			elements = elements
 		}, function(data, menu)
 			local itemName = data.current.value
