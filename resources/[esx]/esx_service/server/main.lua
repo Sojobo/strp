@@ -104,10 +104,7 @@ AddEventHandler('esx_service:updateBlips', function(societyNames)
 
 	for _, societyName in ipairs(societyNames) do
 		for k,v in pairs(InService[societyName]) do
-			local color = 38
-			if societyName == 'ambulance' then
-				color = 11
-			end
+			local color = blipColours[societyName]
 			table.insert(serviceBlips, {k, color})
 		end
 	end
