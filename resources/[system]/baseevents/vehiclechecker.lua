@@ -157,7 +157,7 @@ Citizen.CreateThread(function()
                 -- banned vehicle check
                 for _, v in pairs(bannedVehicles) do
                     if IsVehicleModel(currentVehicle, v.hash) then
-                        if v.canDrive ~= nil and v.canDrive == PlayerData.job.name then
+                        if v.canDrive ~= nil then
                             break
                         else
                             vehicleBanned = true
