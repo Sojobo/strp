@@ -194,3 +194,15 @@ function GetPedVehicleSeat(ped)
     end
     return -2
 end
+
+function driverIsNetworkPlayer(currentVehicle)
+    for i = 0, 255 do
+        if NetworkIsPlayerActive(i) then
+            if GetVehiclePedIsUsing(GetPlayerPed(i)) == currentVehicle and GetPlayerPed(i) ~= GetPlayerPed(-1) and GetPedVehicleSeat(GetPlayerPed(i)) == -1 then
+                return true
+            end
+        end
+    end
+
+    return false
+end
