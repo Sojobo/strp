@@ -44,15 +44,15 @@ Config.VagosStations = {
 Config.WeaponDealer = {
 	{ weapon = 'WEAPON_KNIFE', price = 50 },
 	{ weapon = 'WEAPON_BAT', price = 50 },
-	{ weapon = 'WEAPON_PISTOL', price = 1000 },
+	{ weapon = 'WEAPON_PISTOL', price = 500 },
 	{ weapon = 'WEAPON_SAWNOFFSHOTGUN', price = 9000 },
 }
 
 Config.VehicleList = {
-	{ model = 'bmx', label = 'BMX',	price = 400 },
-	{ model = 'peyote', label = 'Peyote',	price = 4000 },
-	{ model = 'chino2',	label = 'Chino',	price = 7000 },
-	{ model = 'baller',	label = 'Baller',	price = 7000 },
+	{ model = 'bmx', label = 'BMX',	price = 200 },
+	{ model = 'peyote', label = 'Peyote',	price = 2000 },
+	{ model = 'chino2',	label = 'Chino',	price = 3000 },
+	{ model = 'baller',	label = 'Baller',	price = 5000 },
 	{ model = 'buccaneer2',	label = 'Buccaneer',	price = 7000 },
 	{ model = 'manana',	label = 'Manana',	price = 7000 },
 }

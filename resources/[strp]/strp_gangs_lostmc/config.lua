@@ -41,13 +41,13 @@ Config.LostMCStations = {
 Config.WeaponDealer = {
 	{ weapon = 'WEAPON_KNIFE', price = 50 },
 	{ weapon = 'WEAPON_BAT', price = 50 },
-	{ weapon = 'WEAPON_PISTOL', price = 1000 },
+	{ weapon = 'WEAPON_PISTOL', price = 500 },
 	{ weapon = 'WEAPON_SAWNOFFSHOTGUN', price = 9000 },
 }
 
 Config.VehicleList = {
-	{ model = 'Zombiea',	label = 'Zombiea',	price = 7000 },
-	{ model = 'Zombieb',	label = 'Zombieb',	price = 7000 },
+	{ model = 'Zombiea',	label = 'Zombiea',	price = 3000 },
+	{ model = 'Zombieb',	label = 'Zombieb',	price = 3000 },
 	{ model = 'SlamVan2',	label = 'SlamVan2',	price = 7000 },
 	{ model = 'gburrito',	label = 'gburrito',	price = 7000 },
 }

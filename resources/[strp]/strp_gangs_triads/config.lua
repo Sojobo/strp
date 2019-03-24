@@ -42,14 +42,14 @@ Config.TriadStations = {
 Config.WeaponDealer = {
 	{ weapon = 'WEAPON_KNIFE', price = 50 },
 	{ weapon = 'WEAPON_BAT', price = 50 },
-	{ weapon = 'WEAPON_PISTOL', price = 1000 },
+	{ weapon = 'WEAPON_PISTOL', price = 500 },
 	{ weapon = 'WEAPON_SAWNOFFSHOTGUN', price = 9000 },
 }
 
 Config.VehicleList = {
-	{ model = 'Hakuchou', label = 'Hakuchou',	price = 4000 },
-	{ model = 'Bison', label = 'Bison',	price = 4000 },
-	{ model = 'Cavalcade',	label = 'Cavalcade',	price = 7000 },
-	{ model = 'Washington',	label = 'Washington',	price = 7000 },
+	{ model = 'Hakuchou', label = 'Hakuchou',	price = 2000 },
+	{ model = 'Bison', label = 'Bison',	price = 3000 },
+	{ model = 'Cavalcade',	label = 'Cavalcade',	price = 5000 },
+	{ model = 'Washington',	label = 'Washington',	price = 3000 },
 	{ model = 'Fugitive',	label = 'Fugitive',	price = 7000 }
 }
