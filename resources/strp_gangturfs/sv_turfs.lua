@@ -1,37 +1,18 @@
 ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-local gangTurfs = {
-    {
-        name = "El Burro Industrial",
-        controller = "vagos",
-        controlStrength = 100,
-        securetime = 0,
-        x = 1543.43,
-        y = -2117.60,
-        z = 77.05,
-        radius = 100.0,
-    },
-    {
-        name = "Pacific Bluffs Complex",
-        controller = "triads",
-        controlStrength = 100,
-        securetime = 0,
-        x = -2242.14,
-        y = 262.28,
-        z = 174.61,
-        radius = 100.0,    },
-    {
-        name = "McKenzie Field Airport",
-        controller = "lostmc",
-        controlStrength = 100,
-        securetime = 0,
-        x = 2131.59,
-        y = 4785.76,
-        z = 40.97,
-        radius = 60.0,
-    },
-}
+local gangTurfs = {}
+
+local turfs_file = LoadResourceFile(GetCurrentResourceName(), "gang_turfs.json")
+gangTurfs = json.decode(turfs_file)
+
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(0)
+    Citizen.Wait(1000 * 60)
+    SaveResourceFile(GetCurrentResourceName(), "gang_turfs.json", json.encode(gangTurfs), -1)
+  end
+end)
 
 RegisterServerEvent('gangturf:contestTurf')
 AddEventHandler('gangturf:contestTurf', function(contendingTurf)
