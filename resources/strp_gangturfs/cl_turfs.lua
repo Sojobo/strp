@@ -9,37 +9,7 @@ local gangColours = {
 }
 local turfCoordsBlips = {}
 local turfRadiusBlips = {}
-local gangTurfs = {
-    {
-        name = "El Burro Industrial",
-        controller = "vagos",
-        controlStrength = 100,
-        securetime = 0,
-        x = 1543.43,
-        y = -2117.60,
-        z = 77.05,
-        radius = 100.0,
-    },
-    {
-        name = "Pacific Bluffs Complex",
-        controller = "triads",
-        controlStrength = 100,
-        securetime = 0,
-        x = -2242.14,
-        y = 262.28,
-        z = 174.61,
-        radius = 100.0,    },
-    {
-        name = "McKenzie Field Airport",
-        controller = "lostmc",
-        controlStrength = 100,
-        securetime = 0,
-        x = 2131.59,
-        y = 4785.76,
-        z = 40.97,
-        radius = 60.0,
-    },
-}
+local gangTurfs = {}
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -52,7 +22,7 @@ Citizen.CreateThread(function()
 	end
 
 	PlayerData = ESX.GetPlayerData()
-    TriggerServerEvent("gangturf:requestTurfData")
+  TriggerServerEvent("gangturf:requestTurfData")
 end)
 
 Citizen.CreateThread(function()
@@ -78,7 +48,7 @@ Citizen.CreateThread(function()
                 elseif PlayerData.job.name == 'lostmc' or PlayerData.job.name == 'triads' or PlayerData.job.name == 'vagos' then
                     contendingTurf = nearbyTurf
                     drawTxt("Capturing " .. gangTurfs[nearbyTurf].name .. " (" .. gangTurfs[nearbyTurf].controlStrength .. "%) from " .. gangTurfs[nearbyTurf].controller, 0, 1, 0.5, 0.8, 0.6, 255, 255, 255, 255)
-    
+
                 end
             end
         else

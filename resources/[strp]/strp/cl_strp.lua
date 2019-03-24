@@ -369,6 +369,13 @@ Citizen.CreateThread(function()
 	PlayerData = ESX.GetPlayerData()
 end)
 
+local group = "user"
+
+RegisterNetEvent('es_admin:setGroup')
+AddEventHandler('es_admin:setGroup', function(g)
+	group = g
+end)
+
 local playerNamesDist = 15
 local displayIDHeight = 1.5
 
@@ -401,7 +408,7 @@ end
 Citizen.CreateThread(function ()
   while true do
 		Citizen.Wait(0)
-		if ESX.GetPlayerData().group == "user" then return end
+		if group == "user" then return end
 		local playersInArea = ESX.Game.GetPlayersInArea(GetEntityCoords(PlayerPedId(), true), playerNamesDist)
 		for i=1, #playersInArea, 1 do
 			local player = playersInArea[i]
