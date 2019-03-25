@@ -136,9 +136,9 @@ Citizen.CreateThread(function()
         --SetPedDropsWeaponsWhenDead(GetMeleeTargetForPed(thisPlayerPed), false)
         DisablePlayerVehicleRewards(thisPlayerId)
 
-        SetPlayerWeaponDamageModifier(thisPlayerId, 0.8)
+        -- SetPlayerWeaponDamageModifier(thisPlayerId, 0.8)
         -- SetPlayerVehicleDamageModifier(thisPlayerId, 0.2)
-        SetPlayerMeleeWeaponDamageModifier(thisPlayerId, 0.05)
+        -- SetPlayerMeleeWeaponDamageModifier(thisPlayerId, 0.05)
         --SetAiWeaponDamageModifier(thisPlayerId, 0.5)
         --SetAiMeleeWeaponDamageModifier(thisPlayerId, 0.4)
 
