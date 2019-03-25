@@ -73,7 +73,7 @@ end)
 
 Citizen.CreateThread(function()
   while true do
-    Citizen.Wait(555)
+    Citizen.Wait(250)
 		doorsToDraw = {}
     local ped = GetPlayerPed(PlayerId())
     local plyCoords = GetEntityCoords(ped, false)
