@@ -188,7 +188,11 @@ Config.Hospitals = {
 
 Config.AuthorizedVehicles = {
 	{ minrank = 0, model = 'ambulance', label = 'Ambulance', price = 1000},
-	{ minrank = 0, model = 'ambulance2', label = 'Ambulance Van', price = 2000},
+	{ minrank = 2, model = 'firetruk', label = 'Fire Truck', price = 3000},
+	{ minrank = 2, model = 'engine', label = 'Fire Engine', price = 6000},
+	{ minrank = 1, model = 'fire1', label = 'fire1', price = 2000},
+	{ minrank = 2, model = 'fire2', label = 'fire2', price = 2000},
+	{ minrank = 3, model = 'fire3', label = 'fire3', price = 2000},
 }
 
 Config.AuthorizedHelicopters = {
