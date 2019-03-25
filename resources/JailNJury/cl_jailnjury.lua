@@ -58,7 +58,7 @@ RegisterCommand("jail", function(source, args, rawCommand)
 	local jailTime = tonumber(args[2]) or 0
 	local jailCharges = args[3]
 	if IsPedDeadOrDying(targetPedId, 1) == true then
-		return TriggerEvent("chatMessage", "^1That player is dead.")
+		return TriggerEvent("chatMessage", "^1That player is dead or dying.")
 	end
 	if inJailCells(targetPedId) == false then
 		return TriggerEvent("chatMessage", "^1That player is not inside a jail cell.")

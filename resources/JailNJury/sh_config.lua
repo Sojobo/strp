@@ -81,15 +81,24 @@ function isJailed(permId)
   return false
 end
 
+local pdCellLocations = {
+    {x = 461.5078, y = -992.9688, z = 24.9147},
+    {x = 461.3973, y = -1003.0148, z = 24.9148},
+    {x = 457.4088, y = -1002.9898, z = 24.9147},
+    {x = 458.5728, y = -993.0632, z = 25.9561}
+}
+
 function inJailCells(targetPedId)
-  local missionRowCellArea = pArea()
-  missionRowCellArea.addBulk(
-  vector3(461.5078, -992.9688, 24.9147),
-  vector3(461.3973, -1003.0148, 24.9148),
-  vector3(457.4088, -1002.9898, 24.9147),
-  vector3(458.5728, -993.0632, 25.9561)
-  )
-  return missionRowCellArea.isInside(GetEntityCoords(targetPedId, true))
+    for a = 1, #pdCellLocations do
+        local targetPed = GetPlayerPed(targetPedId)
+        local targetPedPos = GetEntityCoords(targetPed, false)
+        local distance = Vdist(targetPedPos.x, targetPedPos.y, targetPedPos.z, pdCellLocations[a].x, pdCellLocations[a].y, pdCellLocations[a].z)
+        if distance <= 5.0 then
+          print("That is close enough")
+          return true
+        end
+    end
+    return false
 end
 
 function updateJailTime(permId, newTime)
