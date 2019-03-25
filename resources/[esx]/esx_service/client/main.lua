@@ -76,7 +76,7 @@ function createBlip(id, color)
 		SetBlipRotation(blip, math.ceil(GetEntityHeading(ped))) -- update rotation
 		SetBlipNameToPlayerName(blip, id) -- update blip name
 		SetBlipScale(blip, 0.85) -- set scale
-		SetBlipAsShortRange(blip, true)
+		SetBlipAsShortRange(blip, false)
 		SetBlipColour(blip, color)
 
 		table.insert(serviceBlips, blip) -- add blip to array so we can remove it later
