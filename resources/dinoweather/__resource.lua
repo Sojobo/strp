@@ -1,7 +1,14 @@
 --[[
-FiveM-JailNJury
-A Jail and Justice System that gives power back to the players.
-Copyright (C) 2018  Jarrett Boice
+  _____  _         __          __        _   _
+ |  __ \(_)        \ \        / /       | | | |
+ | |  | |_ _ __   __\ \  /\  / /__  __ _| |_| |__   ___ _ __
+ | |  | | | '_ \ / _ \ \/  \/ / _ \/ _` | __| '_ \ / _ \ '__|
+ | |__| | | | | | (_) \  /\  /  __/ (_| | |_| | | |  __/ |
+ |_____/|_|_| |_|\___/ \/  \/ \___|\__,_|\__|_| |_|\___|_|
+
+FiveM-DinoWeather
+A Weather System that enhances realism by using GTA Natives relating to Zones.
+Copyright (C) 2019  Jarrett Boice
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -15,26 +22,18 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ]]
 
-description "Jail n' Jury"
+description "DinoWeather"
 author "Slavko Avsenik"
-version "1.0.0"
-
-client_scripts {
-  "@paradise-area/area.lua",
-  "sh_config.lua",
-  "cl_jailnjury.lua"
-}
+version "1.0.1"
 
 server_scripts {
-  '@mysql-async/lib/MySQL.lua',
   "sh_config.lua",
-  "sv_jailnjury.lua"
+  "sv_dinoweather.lua"
 }
 
-dependencies {
-  'es_extended',
-  'esx_service',
-  'paradise-area'
+client_scripts {
+  "cl_dinoweather.lua"
 }

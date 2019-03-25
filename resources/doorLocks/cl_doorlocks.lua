@@ -56,7 +56,7 @@ Citizen.CreateThread(function()
 				FreezeEntityPosition(doorEntity, false)
 			end
 
-			if distance <= 1 then
+			if distance <= 1.0 then
 				if IsControlJustPressed(1, 86) then
 					if PlayerData.job.name == door.jobRestriction and door.gradeRestriction == nil then
 						TriggerServerEvent("doorLocks:updateDoor", doorInfo[1], not door.isLocked)
@@ -73,7 +73,7 @@ end)
 
 Citizen.CreateThread(function()
   while true do
-    Citizen.Wait(1000)
+    Citizen.Wait(555)
 		doorsToDraw = {}
     local ped = GetPlayerPed(PlayerId())
     local plyCoords = GetEntityCoords(ped, false)
