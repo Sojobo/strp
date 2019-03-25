@@ -79,13 +79,15 @@ function Start(player, ped)
 
 	while checking do
 		Citizen.Wait(0)
+        local thisentity = ped
 
         local veh = GetVehiclePedIsIn(ped, false) -- true means last vehicle, false means current only
-        if (veh > 0) then
-            ped = veh -- Show options on the car instead of the person
+        local myveh = GetVehiclePedIsIn(GetPlayerPed(-1), false) -- true means last vehicle, false means current only
+        if (veh > 0 and veh ~= myveh) then
+            thisentity = veh -- Show options on the car instead of the person
         end
-		local distance = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), GetEntityCoords(ped))
-		local x,y,z = table.unpack(GetEntityCoords(ped))
+		local distance = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), GetEntityCoords(thisentity))
+		local x,y,z = table.unpack(GetEntityCoords(thisentity))
 
 		if distance < 2.0 then
 			DrawText3D(x,y,z, 'Press [~b~E~s~] to manage individual', 0.4)
