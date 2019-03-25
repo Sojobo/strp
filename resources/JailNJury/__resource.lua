@@ -17,7 +17,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 
-resource_manifest_version "679-996150c95a1d251a5c0c7841ab2f0276878334f7"
 description "Jail n' Jury"
 author "Slavko Avsenik"
 version "1.0.0"
@@ -30,7 +29,6 @@ client_scripts {
 
 server_scripts {
   '@mysql-async/lib/MySQL.lua',
-  "version.lua",
   "sh_config.lua",
   "sv_jailnjury.lua"
 }
