@@ -45,9 +45,7 @@ Citizen.CreateThread(function()
   end
 end)
 
-Citizen.CreateThread(function()
-  Citizen.Wait(0)
-  RegisterCommand("requesttrial", function(source, args, rawCommand)
+RegisterCommand("requesttrial", function(source, args, rawCommand)
     local _source = source
     local targetPedPermId = getPlayerID(_source)
     local isJailedInfo = isJailed(targetPedPermId)
@@ -73,7 +71,6 @@ Citizen.CreateThread(function()
     else
       TriggerClientEvent("chatMessage", _source, "^1You are not in jail, so you may not request a trial.")
     end
-  end)
 end)
 
 RegisterCommand("jurorverdict", function(source, args, rawCommand)

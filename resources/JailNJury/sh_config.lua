@@ -62,16 +62,6 @@ function getIdentifiant(id)
     end
 end
 
-function isPolice()
-  inService = false
-  ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
-    if isInService then
-      inService = true
-    end
-  end, 'police')
-  return inService
-end
-
 function isJailed(permId)
   for i, jailedPlayer in ipairs(jailedPlayers) do
     if permId == jailedPlayer[1] then
@@ -90,13 +80,13 @@ local pdCellLocations = {
 
 function inJailCells(targetPedId)
     for a = 1, #pdCellLocations do
-        local targetPed = GetPlayerPed(targetPedId)
+        local targetPed = GetPlayerPed(GetPlayerFromServerId(targetPedId))
         local targetPedPos = GetEntityCoords(targetPed, false)
         local distance = Vdist(targetPedPos.x, targetPedPos.y, targetPedPos.z, pdCellLocations[a].x, pdCellLocations[a].y, pdCellLocations[a].z)
         if distance <= 5.0 then
-          print("That is close enough")
-          return true
+            return true
         end
+        Citizen.Trace(distance)
     end
     return false
 end

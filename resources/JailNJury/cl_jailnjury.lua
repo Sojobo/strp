@@ -52,46 +52,6 @@ AddEventHandler('esx:setJob', function(job)
 	ESX.PlayerData.job = job
 end)
 
-RegisterCommand("jail", function(source, args, rawCommand)
-	local _source = source
-	local targetPedId = args[1]
-	local jailTime = tonumber(args[2]) or 0
-	local jailCharges = args[3]
-	if IsPedDeadOrDying(targetPedId, 1) == true then
-		return TriggerEvent("chatMessage", "^1That player is dead or dying.")
-	end
-	if inJailCells(targetPedId) == false then
-		return TriggerEvent("chatMessage", "^1That player is not inside a jail cell.")
-	end
-	if isPolice() then
-		if targetPedId == nil then
-			return TriggerEvent("chatMessage", "^1You must enter the suspect's ID number.")
-	 	elseif jailTime <= 0 then
-			return TriggerEvent("chatMessage", "^1Invalid Jail Time, enter an amount greater than 0.")
-		elseif jailCharges == nil then
-			return TriggerEvent("chatMessage", "^1You must enter the suspect's charges.")
-		else
-			TriggerServerEvent("jnj:sendToJail", targetPedId, jailTime, jailCharges)
-		end
-	else
-		TriggerEvent("chatMessage", "^1You are not authorized to use this command. Consider joining a Police Department.")
-	end
-end)
-
-RegisterCommand("unjail", function(source, args, rawCommand)
-  local _source = source
-  local targetPedId = args[1]
-  if isPolice() then
-    if targetPedId == nil then
-      return TriggerEvent("chatMessage", "^1You must enter the prisoner's ID number.")
-    else
-      TriggerServerEvent("jnj:releaseFromJail", targetPedId)
-    end
-  else
-    TriggerEvent("chatMessage", "^1You are not authorized to use this command. Consider joining a Police Department.")
-  end
-end)
-
 RegisterNetEvent("jnj:sendToJail")
 AddEventHandler("jnj:sendToJail", function(jailArray)
   local targetPed = PlayerPedId()
@@ -249,7 +209,43 @@ AddEventHandler("playerSpawned", function(spawnInfo)
   TriggerServerEvent("jnj:checkJailed")
 end)
 
-RegisterCommand("getpos", function(source, args, rawCommand)
-	local playerPos = GetEntityCoords(PlayerPedId(), true)
-	print("x = " .. string.format("%.4f", playerPos.x) .. ", y = " .. string.format("%.4f", playerPos.y) .. ", z = " .. string.format("%.4f", playerPos.z) .. ", h = ".. string.format("%.4f", string.format("%.4f", playerPos.z)))
+RegisterCommand("jail", function(source, args, rawCommand)
+	local _source = source
+	local targetPedId = args[1]
+	local jailTime = tonumber(args[2]) or 0
+	local jailCharges = args[3]
+	if inJailCells(targetPedId) == false then
+		return TriggerEvent("chatMessage", "^1That player is not inside a jail cell.")
+	end
+	ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
+        if isInService then
+            if targetPedId == nil then
+                return TriggerEvent("chatMessage", "^1You must enter the suspect's ID number.")
+            elseif jailTime <= 0 then
+                return TriggerEvent("chatMessage", "^1Invalid Jail Time, enter an amount greater than 0.")
+            elseif jailCharges == nil then
+                return TriggerEvent("chatMessage", "^1You must enter the suspect's charges.")
+            else
+                TriggerServerEvent("jnj:sendToJail", targetPedId, jailTime, jailCharges)
+            end
+        else
+            TriggerEvent("chatMessage", "^1You are not authorized to use this command. Consider joining a Police Department.")
+        end
+	end, 'police')
+end)
+
+RegisterCommand("unjail", function(source, args, rawCommand)
+    local _source = source
+    local targetPedId = args[1]
+	ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
+        if isInService then
+            if targetPedId == nil then
+                return TriggerEvent("chatMessage", "^1You must enter the prisoner's ID number.")
+            else
+                TriggerServerEvent("jnj:releaseFromJail", targetPedId)
+            end
+        else
+            TriggerEvent("chatMessage", "^1You are not authorized to use this command. Consider joining a Police Department.")
+        end
+	end, 'police')
 end)
