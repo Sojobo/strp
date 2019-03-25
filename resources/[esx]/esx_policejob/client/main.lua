@@ -556,7 +556,7 @@ function OpenPoliceActionsMenu()
 				{label = _U('drag'),			value = 'drag'},
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'),	value = 'out_the_vehicle'},
-				{label = _U('fine'),			value = 'fine'},
+				-- {label = _U('fine'),			value = 'fine'},
 				{label = _U('unpaid_bills'),	value = 'unpaid_bills'}
 			}
 
@@ -750,7 +750,7 @@ function OpenIdentityCardMenu(player)
 
 		if Config.EnableESXIdentity then
 
-			nameLabel = _U('name', data.firstname .. ' ' .. data.lastname)
+			nameLabel = _U('name', data.firstname .. ' ' .. data.lastname .. ' (' .. GetPlayerServerId(player) .. ')')
 
 			if data.sex ~= nil then
 				if string.lower(data.sex) == 'm' then
