@@ -16,7 +16,7 @@ Config.WeightSqlBased = false
 -- I Prefer to edit weight on the config.lua and I have switched Config.WeightSqlBased to false:
 
 Config.localWeight = {
-	black_money = 1, -- poids pour un argent
+	black_money = 0, -- poids pour un argent
 }
 
 Config.VehicleLimit = {

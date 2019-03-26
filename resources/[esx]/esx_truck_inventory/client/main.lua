@@ -335,7 +335,7 @@ AddEventHandler('esx_truck_inventory:getInventoryLoaded', function(inventory,wei
                     invWeight = invWeight + PlayerData.inventory[i].count
                 end
 
-                if invWeight ~= -1 and (invWeight + quantity) <= 50 then
+                if invWeight ~= -1 and (invWeight + quantity) <= 20 then
                     max = false
                 else
                     max = true
