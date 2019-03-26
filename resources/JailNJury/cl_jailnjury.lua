@@ -61,6 +61,7 @@ AddEventHandler("jnj:sendToJail", function(jailArray)
   SetEntityCoords(targetPed, JailConfig.prisonLocation.x, JailConfig.prisonLocation.y, JailConfig.prisonLocation.z, 0.0, 0.0, 0.0, false)
   isJailedG = true
   jailTimeG = jailTime
+	TriggerEvent("esx_policejob:unrestrain")
 end)
 
 RegisterNetEvent("jnj:releaseFromJail")
@@ -70,7 +71,7 @@ AddEventHandler("jnj:releaseFromJail", function()
   isJailedG = false
   SetEntityInvincible(GetPlayerPed(targetPed), false)
   SetEntityCoords(targetPed, JailConfig.prisonEntraceLocation.x, JailConfig.prisonEntraceLocation.y, JailConfig.prisonEntraceLocation.z, 0.0, 0.0, 0.0, false)
-	TriggerServerEvent("esx_policejob:unrestrain", GetPlayerServerId(PlayerPedId()))
+	TriggerEvent("esx_policejob:unrestrain")
 end)
 
 RegisterNetEvent("jnj:teleportToCourt")

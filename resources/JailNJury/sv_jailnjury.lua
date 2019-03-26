@@ -110,7 +110,6 @@ AddEventHandler("jnj:sendToJail", function(targetPedId, jailTime, jailCharges)
     table.insert(jailedPlayers, {targetPedPermId, jailTime, jailCharges, false})
     TriggerClientEvent("jnj:sendToJail", targetPedId, {jailTime, jailCharges, false})
     TriggerClientEvent("chatMessage", -1, "^2" .. officerName .. " ^1jailed ^2" .. targetPedName .. " ^1for ^2" .. jailTime .. " ^1minutes.")
-    TriggerEvent("esx_policejob:unrestrain", targetPedId)
     log(sourcePlayer, targetPlayer, "ARRESTED FOR " .. jailTime .. " MINUTES FOR " .. jailCharges)
   end
 end)
@@ -126,7 +125,6 @@ AddEventHandler("jnj:releaseFromJail", function(targetPedId)
     TriggerClientEvent("chatMessage", -1, "^2" .. targetPedName .. " ^1has finished their sentence and has been released from jail.")
     removedJailedPlayer(targetPedPermId)
     TriggerClientEvent("jnj:releaseFromJail", targetPedId)
-    TriggerEvent("esx_policejob:unrestrain", targetPedId)
   else
     TriggerClientEvent("chatMessage", _source, "^2" .. GetPlayerName(targetPedId) .. " ^1is not in jail.")
   end
