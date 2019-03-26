@@ -116,17 +116,17 @@ function Notification(x,y,z)
 end
 
 function OpenDeathMenu(player, ped)
-	loadAnimDict('amb@medic@standing@kneel@base')
-	loadAnimDict('anim@gangops@facility@servers@bodysearch@')
+    ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
+        loadAnimDict('amb@medic@standing@kneel@base')
+        loadAnimDict('anim@gangops@facility@servers@bodysearch@')
 
-	local myPed = PlayerPedId()
-	local elements   = {}
-	if ESX.PlayerData.job ~= nil then
-        table.insert(elements, { label = "Drag", value = 'drag' })
-        table.insert(elements, { label = "Put in vehicle", value = 'put_in_vehicle' })
-        table.insert(elements, { label = "Pull out vehicle", value = 'out_the_vehicle' })
+        local myPed = PlayerPedId()
+        local elements   = {}
+        if ESX.PlayerData.job ~= nil then
+            table.insert(elements, { label = "Drag", value = 'drag' })
+            table.insert(elements, { label = "Put in vehicle", value = 'put_in_vehicle' })
+            table.insert(elements, { label = "Pull out vehicle", value = 'out_the_vehicle' })
 
-        ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
             if ESX.PlayerData.job.name == 'police' and isInService then
                 table.insert(elements, { label = "Search", value = 'body_search' })
                 table.insert(elements, { label = "Handcuff", value = 'handcuff' })
@@ -138,202 +138,202 @@ function OpenDeathMenu(player, ped)
                 table.insert(elements, { label = 'Heal small wounds', value = 'ems_menu_small' })
                 table.insert(elements, { label = 'Treat serious injuries', value = 'ems_menu_big' })
             end
-        end)
-	end
+        end
 
-	ESX.UI.Menu.Open(
-		'default', GetCurrentResourceName(), 'dead_citizen',
-		{
-			title    = 'Choose Option',
-			align    = 'top-right',
-			elements = elements,
-		},
-		function(data, menu)
-			local action = data.current.value
+        ESX.UI.Menu.Open(
+            'default', GetCurrentResourceName(), 'dead_citizen',
+            {
+                title    = 'Choose Option',
+                align    = 'top-right',
+                elements = elements,
+            },
+            function(data, menu)
+                local action = data.current.value
 
-			-- Police Functions
-			if action == 'body_search' then
-				TriggerServerEvent('esx_policejob:message', GetPlayerServerId(player), "Your body was searched")
-				OpenBodySearchMenu(player)
-			elseif action == 'handcuff' then
-				TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(player))
-			elseif action == 'drag' then
-				TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(player))
-			elseif action == 'put_in_vehicle' then
-				TriggerServerEvent('esx_policejob:putInVehicle', GetPlayerServerId(player))
-			elseif action == 'out_the_vehicle' then
-				TriggerServerEvent('esx_policejob:OutVehicle', GetPlayerServerId(player))
-			elseif action == 'arrest' then
-				local result = nil
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP10", "", "", "", "", "", 255)
-				ESX.ShowNotification("Enter the suspect's charges.")
-				while (UpdateOnscreenKeyboard() == 0) do
-					DisableAllControlActions(0)
-					Wait(0)
-				end
-				if (GetOnscreenKeyboardResult()) then
-					result = GetOnscreenKeyboardResult() or ""
-				end
-				local jailCharges = result
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 2)
-				ESX.ShowNotification("Enter the amount of jail time in minutes.")
-				while (UpdateOnscreenKeyboard() == 0) do
-					DisableAllControlActions(0)
-					Wait(0)
-				end
-				if (GetOnscreenKeyboardResult()) then
-					result = tonumber(GetOnscreenKeyboardResult()) or 0
-				end
-				local jailTime = result
-				if jailTime <= 0 then
-					return TriggerEvent("chatMessage", "^1Invalid Jail Time, enter an amount greater than 0.")
-				elseif jailCharges == nil or jailCharges == "" then
-					return TriggerEvent("chatMessage", "^1You must enter the suspect's charges.")
-				else
-					TriggerServerEvent("jnj:sendToJail", GetPlayerServerId(player), jailTime, jailCharges)
-				end
-			end
+                -- Police Functions
+                if action == 'body_search' then
+                    TriggerServerEvent('esx_policejob:message', GetPlayerServerId(player), "Your body was searched")
+                    OpenBodySearchMenu(player)
+                elseif action == 'handcuff' then
+                    TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(player))
+                elseif action == 'drag' then
+                    TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(player))
+                elseif action == 'put_in_vehicle' then
+                    TriggerServerEvent('esx_policejob:putInVehicle', GetPlayerServerId(player))
+                elseif action == 'out_the_vehicle' then
+                    TriggerServerEvent('esx_policejob:OutVehicle', GetPlayerServerId(player))
+                elseif action == 'arrest' then
+                    local result = nil
+                    DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP10", "", "", "", "", "", 255)
+                    ESX.ShowNotification("Enter the suspect's charges.")
+                    while (UpdateOnscreenKeyboard() == 0) do
+                        DisableAllControlActions(0)
+                        Wait(0)
+                    end
+                    if (GetOnscreenKeyboardResult()) then
+                        result = GetOnscreenKeyboardResult() or ""
+                    end
+                    local jailCharges = result
+                    DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 2)
+                    ESX.ShowNotification("Enter the amount of jail time in minutes.")
+                    while (UpdateOnscreenKeyboard() == 0) do
+                        DisableAllControlActions(0)
+                        Wait(0)
+                    end
+                    if (GetOnscreenKeyboardResult()) then
+                        result = tonumber(GetOnscreenKeyboardResult()) or 0
+                    end
+                    local jailTime = result
+                    if jailTime <= 0 then
+                        return TriggerEvent("chatMessage", "^1Invalid Jail Time, enter an amount greater than 0.")
+                    elseif jailCharges == nil or jailCharges == "" then
+                        return TriggerEvent("chatMessage", "^1You must enter the suspect's charges.")
+                    else
+                        TriggerServerEvent("jnj:sendToJail", GetPlayerServerId(player), jailTime, jailCharges)
+                    end
+                end
 
-			-- Medic Functions
-			if action == 'damage' then
-				local bone
-				local success = GetPedLastDamageBone(ped,bone)
+                -- Medic Functions
+                if action == 'damage' then
+                    local bone
+                    local success = GetPedLastDamageBone(ped,bone)
 
-				local success,bone = GetPedLastDamageBone(ped)
-				if success then
-					--print(bone)
-					local x,y,z = table.unpack(GetPedBoneCoords(ped, bone))
-					Notification(x,y,z)
+                    local success,bone = GetPedLastDamageBone(ped)
+                    if success then
+                        --print(bone)
+                        local x,y,z = table.unpack(GetPedBoneCoords(ped, bone))
+                        Notification(x,y,z)
 
-				else
-					Notify('Where the damage occured could not get identified')
-				end
-			end
+                    else
+                        Notify('Where the damage occured could not get identified')
+                    end
+                end
 
-			if action == 'deathcause' then
-				--gets deathcause
-				local d = GetPedCauseOfDeath(ped)
+                if action == 'deathcause' then
+                    --gets deathcause
+                    local d = GetPedCauseOfDeath(ped)
 
-				--starts animation
-				TaskPlayAnim(myPed, "amb@medic@standing@kneel@base" ,"base" ,8.0, -8.0, -1, 1, 0, false, false, false )
-				TaskPlayAnim(myPed, "anim@gangops@facility@servers@bodysearch@" ,"player_search" ,8.0, -8.0, -1, 48, 0, false, false, false )
-				Citizen.Wait(5000)
+                    --starts animation
+                    TaskPlayAnim(myPed, "amb@medic@standing@kneel@base" ,"base" ,8.0, -8.0, -1, 1, 0, false, false, false )
+                    TaskPlayAnim(myPed, "anim@gangops@facility@servers@bodysearch@" ,"player_search" ,8.0, -8.0, -1, 48, 0, false, false, false )
+                    Citizen.Wait(5000)
 
-				--exits animation
-				ClearPedTasksImmediately(myPed)
+                    --exits animation
+                    ClearPedTasksImmediately(myPed)
 
-				if checkArray(Melee, d) then
-					Notify(_U('hardmeele'))
-				elseif checkArray(Bullet, d) then
-					Notify(_U('bullet'))
-				elseif checkArray(Knife, d) then
-					Notify(_U('knifes'))
-				elseif checkArray(Animal, d) then
-					Notify(_U('bitten'))
-				elseif checkArray(FallDamage, d) then
-					Notify(_U('brokenlegs'))
-				elseif checkArray(Explosion, d) then
-					Notify(_U('explosive'))
-				elseif checkArray(Gas, d) then
-					Notify(_U('gas'))
-				elseif checkArray(Burn, d) then
-					Notify(_U('fire'))
-				elseif checkArray(Drown, d) then
-					Notify(_U('drown'))
-				elseif checkArray(Car, d) then
-					Notify(_U('caraccident'))
-				else
-					Notify(_U('unknown'))
-				end
-			end
+                    if checkArray(Melee, d) then
+                        Notify(_U('hardmeele'))
+                    elseif checkArray(Bullet, d) then
+                        Notify(_U('bullet'))
+                    elseif checkArray(Knife, d) then
+                        Notify(_U('knifes'))
+                    elseif checkArray(Animal, d) then
+                        Notify(_U('bitten'))
+                    elseif checkArray(FallDamage, d) then
+                        Notify(_U('brokenlegs'))
+                    elseif checkArray(Explosion, d) then
+                        Notify(_U('explosive'))
+                    elseif checkArray(Gas, d) then
+                        Notify(_U('gas'))
+                    elseif checkArray(Burn, d) then
+                        Notify(_U('fire'))
+                    elseif checkArray(Drown, d) then
+                        Notify(_U('drown'))
+                    elseif checkArray(Car, d) then
+                        Notify(_U('caraccident'))
+                    else
+                        Notify(_U('unknown'))
+                    end
+                end
 
-			if data.current.value == 'ems_menu_revive' then
-				ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
-					if quantity > 0 then
+                if data.current.value == 'ems_menu_revive' then
+                    ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+                        if quantity > 0 then
 
-						if IsPedDeadOrDying(ped, 1) then
-							ESX.ShowNotification("a revive is in progress!")
+                            if IsPedDeadOrDying(ped, 1) then
+                                ESX.ShowNotification("a revive is in progress!")
 
-							local lib, anim = 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest'
+                                local lib, anim = 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest'
 
-							for i=1, 15, 1 do
-								Citizen.Wait(900)
+                                for i=1, 15, 1 do
+                                    Citizen.Wait(900)
 
-								ESX.Streaming.RequestAnimDict(lib, function()
-									TaskPlayAnim(myPed, lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
-								end)
-							end
+                                    ESX.Streaming.RequestAnimDict(lib, function()
+                                        TaskPlayAnim(myPed, lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
+                                    end)
+                                end
 
-							TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
-							TriggerServerEvent('esx_ambulancejob:revive', GetPlayerServerId(player))
+                                TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+                                TriggerServerEvent('esx_ambulancejob:revive', GetPlayerServerId(player))
 
-							-- Show revive award?
-							if Config.ReviveReward > 0 then
-								ESX.ShowNotification("you have revived <b>%s</b> and earned <b>$%s</b>!", GetPlayerName(player), Config.ReviveReward)
-							else
-								ESX.ShowNotification("you have revived <b>%s</b>", GetPlayerName(player))
-							end
-						else
-							ESX.ShowNotification("that player is not unconscious!")
-						end
-					else
-						ESX.ShowNotification("You do not have a <b>medikit</b>.")
-					end
+                                -- Show revive award?
+                                if Config.ReviveReward > 0 then
+                                    ESX.ShowNotification("you have revived <b>%s</b> and earned <b>$%s</b>!", GetPlayerName(player), Config.ReviveReward)
+                                else
+                                    ESX.ShowNotification("you have revived <b>%s</b>", GetPlayerName(player))
+                                end
+                            else
+                                ESX.ShowNotification("that player is not unconscious!")
+                            end
+                        else
+                            ESX.ShowNotification("You do not have a <b>medikit</b>.")
+                        end
 
-					IsBusy = false
+                        IsBusy = false
 
-				end, 'medikit')
+                    end, 'medikit')
 
-			elseif data.current.value == 'ems_menu_small' then
-				ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
-					if quantity > 0 then
-						local health = GetEntityHealth(ped)
+                elseif data.current.value == 'ems_menu_small' then
+                    ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+                        if quantity > 0 then
+                            local health = GetEntityHealth(ped)
 
-						if health > 0 then
-							ESX.ShowNotification("you are healing!")
-							TaskStartScenarioInPlace(myPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
-							Citizen.Wait(10000)
-							ClearPedTasks(myPed)
+                            if health > 0 then
+                                ESX.ShowNotification("you are healing!")
+                                TaskStartScenarioInPlace(myPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+                                Citizen.Wait(10000)
+                                ClearPedTasks(myPed)
 
-							TriggerServerEvent('esx_ambulancejob:removeItem', 'bandage')
-							TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(player), 'small')
-							ESX.ShowNotification("you have healed <b>%s</b>", GetPlayerName(player))
-						else
-							ESX.ShowNotification("that player is not conscious!")
-						end
-					else
-						ESX.ShowNotification("You do not have a <b>bandage</b>.")
-					end
-				end, 'bandage')
+                                TriggerServerEvent('esx_ambulancejob:removeItem', 'bandage')
+                                TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(player), 'small')
+                                ESX.ShowNotification("you have healed <b>%s</b>", GetPlayerName(player))
+                            else
+                                ESX.ShowNotification("that player is not conscious!")
+                            end
+                        else
+                            ESX.ShowNotification("You do not have a <b>bandage</b>.")
+                        end
+                    end, 'bandage')
 
-			elseif data.current.value == 'ems_menu_big' then
-				ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
-					if quantity > 0 then
-						local health = GetEntityHealth(ped)
+                elseif data.current.value == 'ems_menu_big' then
+                    ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+                        if quantity > 0 then
+                            local health = GetEntityHealth(ped)
 
-						if health > 0 then
-							ESX.ShowNotification("you are healing!")
-							TaskStartScenarioInPlace(myPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
-							Citizen.Wait(10000)
-							ClearPedTasks(myPed)
+                            if health > 0 then
+                                ESX.ShowNotification("you are healing!")
+                                TaskStartScenarioInPlace(myPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+                                Citizen.Wait(10000)
+                                ClearPedTasks(myPed)
 
-							TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
-							TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(player), 'big')
-							ESX.ShowNotification("you have healed <b>%s</b>", GetPlayerName(player))
-						else
-							ESX.ShowNotification("that player is not conscious!")
-						end
-					else
-						ESX.ShowNotification("You do not have a <b>medikit</b>.")
-					end
-				end, 'medikit')
-			end
+                                TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+                                TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(player), 'big')
+                                ESX.ShowNotification("you have healed <b>%s</b>", GetPlayerName(player))
+                            else
+                                ESX.ShowNotification("that player is not conscious!")
+                            end
+                        else
+                            ESX.ShowNotification("You do not have a <b>medikit</b>.")
+                        end
+                    end, 'medikit')
+                end
 
-		end,
-		function(data, menu)
-			menu.close()
-		end
-	)
+            end,
+            function(data, menu)
+                menu.close()
+            end
+        )
+    end)
 end
 
 function loadAnimDict(dict)
