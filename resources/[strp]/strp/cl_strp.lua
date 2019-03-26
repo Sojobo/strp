@@ -296,14 +296,14 @@ Citizen.CreateThread(function()
         --    ClearPedTasksImmediately(thisPlayerPed)
         --end
 
-        if IsPedInAnyVehicle(thisPlayerPed, false) and (not IsControlPressed(1, 32) or not IsControlPressed(1, 71) or IsPedJacking(thisPlayerPed)) then -- if W (32) or Controller RT (71) is pressed, jump to drivers, else, no switching of seats. Is 32 needed here? 71 - INPUT_VEH_ACCELERATE
-            local myVehicle = GetVehiclePedIsIn(thisPlayerPed, false)
-            if GetPedInVehicleSeat(myVehicle, 0) == thisPlayerPed then
-                if GetIsTaskActive(thisPlayerPed, 165) then
-                    SetPedIntoVehicle(thisPlayerPed, myVehicle, 0)
-                end
-            end
-        end
+        -- if IsPedInAnyVehicle(thisPlayerPed, false) and (not IsControlPressed(1, 32) or not IsControlPressed(1, 71) or IsPedJacking(thisPlayerPed)) then -- if W (32) or Controller RT (71) is pressed, jump to drivers, else, no switching of seats. Is 32 needed here? 71 - INPUT_VEH_ACCELERATE
+        --     local myVehicle = GetVehiclePedIsIn(thisPlayerPed, false)
+        --     if GetPedInVehicleSeat(myVehicle, 0) == thisPlayerPed then
+        --         if GetIsTaskActive(thisPlayerPed, 165) then
+        --             SetPedIntoVehicle(thisPlayerPed, myVehicle, 0)
+        --         end
+        --     end
+        -- end
 
         if IsEntityPlayingAnim(thisPlayerPed, "mp_arresting", "idle", 3) or plyPos.z < -100.0 then
             SetCurrentPedWeapon(thisPlayerPed, GetHashKey("WEAPON_UNARMED"))
@@ -318,14 +318,14 @@ Citizen.CreateThread(function()
             SetVehicleDensityMultiplierThisFrame(0.0)
         else
             SetPedCanSwitchWeapon(thisPlayerPed, true) -- enable weapon switching
-            SetPedDensityMultiplierThisFrame(0.3)
-            SetVehicleDensityMultiplierThisFrame(0.4)
+            SetPedDensityMultiplierThisFrame(0.2)
+            SetVehicleDensityMultiplierThisFrame(0.3)
         end
 
         -- -- Ragdolling and tazering
-        -- if (IsPedBeingStunned(thisPlayerPed)) then
-        --     SetPedToRagdoll(thisPlayerPed, 6000, 6000, 0, 0, 0, 0)
-        -- end
+        if (IsPedBeingStunned(thisPlayerPed)) then
+            SetPedToRagdoll(thisPlayerPed, 6000, 6000, 0, 0, 0, 0)
+        end
     end
 end)
 
