@@ -32,7 +32,6 @@ Citizen.CreateThread(function()
                 end
             elseif inside ~= 0 and IsDisabledControlPressed(0, 19) and IsDisabledControlJustReleased(1, 44) then
                 DetachEntity(player, true, true)
-                SetEntityVisible(player, true, true)
                 ClearPedTasks(player)
                 inside = 0
                 ClearAllHelpMessages()
@@ -47,7 +46,6 @@ Citizen.CreateThread(function()
         elseif DoesEntityExist(vehicle) and inside ~= 0 then
             car = GetEntityAttachedTo(player)
             carxyz = GetEntityCoords(car, 0)
-            local visible = true
             DisableAllControlActions(0)
             DisableAllControlActions(1)
             DisableAllControlActions(2)
@@ -65,7 +63,6 @@ Citizen.CreateThread(function()
             -- end
         elseif not DoesEntityExist(inside) and inside ~= 0 then
             DetachEntity(player, true, true)
-            SetEntityVisible(player, true, true)
             ClearPedTasks(player)
             inside = 0
             ClearAllHelpMessages()

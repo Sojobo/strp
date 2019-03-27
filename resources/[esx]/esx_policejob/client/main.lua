@@ -556,7 +556,7 @@ function OpenPoliceActionsMenu()
 				{label = _U('drag'),			value = 'drag'},
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'),	value = 'out_the_vehicle'},
-				-- {label = _U('fine'),			value = 'fine'},
+				{label = _U('fine'),			value = 'fine'},
 				{label = _U('unpaid_bills'),	value = 'unpaid_bills'}
 			}
 
@@ -935,17 +935,11 @@ function OpenFineCategoryMenu(player, category)
 			align    = 'left',
 			elements = elements,
 		}, function(data, menu)
-
 			local label  = data.current.fineLabel
 			local amount = data.current.amount
 
 			menu.close()
-
-			if Config.EnablePlayerManagement then
-				TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_police', _U('fine_total', label), amount)
-			else
-				TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), '', _U('fine_total', label), amount)
-			end
+    		TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_police', _U('fine_total', label), amount)
 
 			ESX.SetTimeout(300, function()
 				OpenFineCategoryMenu(player, category)

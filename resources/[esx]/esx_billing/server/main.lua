@@ -10,11 +10,9 @@ AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, la
 	amount        = ESX.Math.Round(amount)
 
 	TriggerEvent('esx_addonaccount:getSharedAccount', sharedAccountName, function(account)
-
 		if amount < 0 then
 			print(('esx_billing: %s attempted to send a negative bill!'):format(xPlayer.identifier))
 		elseif account == nil then
-
 			if xTarget ~= nil then
 				MySQL.Async.execute('INSERT INTO billing (identifier, sender, target_type, target, label, amount) VALUES (@identifier, @sender, @target_type, @target, @label, @amount)',
 				{
@@ -28,9 +26,7 @@ AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, la
 					TriggerClientEvent('esx:showNotification', xTarget.source, _U('received_invoice'))
 				end)
 			end
-
 		else
-
 			if xTarget ~= nil then
 				MySQL.Async.execute('INSERT INTO billing (identifier, sender, target_type, target, label, amount) VALUES (@identifier, @sender, @target_type, @target, @label, @amount)',
 				{
@@ -44,7 +40,6 @@ AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, la
 					TriggerClientEvent('esx:showNotification', xTarget.source, _U('received_invoice'))
 				end)
 			end
-
 		end
 	end)
 
