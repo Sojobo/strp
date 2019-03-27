@@ -1,99 +1,5 @@
 local Keys = { ["W"] = 32, ["A"] = 34, ["S"] = 8, ["D"] = 9 }
 
-local pistolHolstered = true
-local rifleHolstered = true
-
-ESX  = nil
-
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
-
-	while ESX.GetPlayerData().job == nil do
-		Citizen.Wait(10)
-	end
-
-	PlayerData = ESX.GetPlayerData()
-end)
-
-function loadAnimDict( dict )
-  while ( not HasAnimDictLoaded( dict ) ) do
-    RequestAnimDict( dict )
-    Citizen.Wait( 0 )
-  end
-end
-
-function checkPistolWeapon(ped)
-  local pistolWeapons = {
-    "WEAPON_PISTOL",
-    "WEAPON_COMBATPISTOL",
-    "WEAPON_APPISTOL",
-    "WEAPON_PISTOL50",
-    "WEAPON_MACHINEPISTOL",
-    "WEAPON_MICROSMG"
-  }
-
-  for i = 1, #pistolWeapons do
-    if GetHashKey(pistolWeapons[i]) == GetSelectedPedWeapon(ped) then
-      return true
-    end
-  end
-  return false
-end
-
-function checkRifleWeapon(ped)
-  local rifleWeapons = exports.weaponsonback.getRealWeapons()
-
-  for i = 1, #rifleWeapons do
-    if GetHashKey(rifleWeapons[i]) == GetSelectedPedWeapon(ped) then
-      return true
-    end
-  end
-  return false
-end
-
-Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(0)
-    local ped = PlayerPedId()
-    if DoesEntityExist(ped) and not IsEntityDead(ped) and not IsPedInAnyVehicle(PlayerPedId(), true) and exports.eup_ui.getCurrentDept ~= 1 then
-      loadAnimDict("mp_arrest_paired")
-      if checkPistolWeapon(ped) then
-        if pistolHolstered then
-          TaskPlayAnim(PlayerPedId(), "mp_arrest_paired", "cop_p2_fwd_right", 8.0, -12, -1, 48, 0, 0, 0, 0)
-          Citizen.Wait(600)
-          ClearPedTasks(ped)
-          pistolHolstered = false
-        end
-      elseif not checkPistolWeapon(ped) then
-        if not pistolHolstered then
-          TaskPlayAnim(PlayerPedId(), "mp_arrest_paired", "cop_p1_rf_right_0", 8.0, -12, -1, 48, 0, 0, 0, 0)
-          Citizen.Wait(600)
-          ClearPedTasks(ped)
-          pistolHolstered = true
-        end
-      end
-      if checkRifleWeapon(ped) then
-        if rifleHolstered then
-          TaskPlayAnim(PlayerPedId(), "mp_arrest_paired", "cop_p2_fwd_right", 8.0, -12, -1, 48, 0, 0, 0, 0)
-          Citizen.Wait(600)
-          ClearPedTasks(ped)
-          rifleHolstered = false
-        end
-      elseif not checkRifleWeapon(ped) then
-        if not rifleHolstered then
-          TaskPlayAnim(PlayerPedId(), "mp_arrest_paired", "cop_p1_rf_right_0", 8.0, -12, -1, 48, 0, 0, 0, 0)
-          Citizen.Wait(600)
-          ClearPedTasks(ped)
-          rifleHolstered = true
-        end
-      end
-    end
-  end
-end)
-
 Citizen.CreateThread(function()
     local handsup = false
     local previousWeapon = -1569615261
@@ -109,11 +15,11 @@ Citizen.CreateThread(function()
 
         if IsControlPressed(1, 323)
             and not IsPedInAnyVehicle(lPed, true)
-            and not IsEntityPlayingAnim( lPed, "random@arrests", "idle_2_hands_up", 3 )
-            and not IsEntityPlayingAnim( lPed, "random@arrests", "kneeling_arrest_idle", 3 )
-            and not IsEntityPlayingAnim( lPed, "random@arrests@busted", "enter", 3 )
+            and not IsEntityPlayingAnim( lPed, "random@arrests", "idle_2_hands_up", 3 ) 
+            and not IsEntityPlayingAnim( lPed, "random@arrests", "kneeling_arrest_idle", 3 ) 
+            and not IsEntityPlayingAnim( lPed, "random@arrests@busted", "enter", 3 ) 
             and not IsEntityPlayingAnim( lPed, "random@arrests@busted", "idle_a", 3 ) then
-
+            
             if DoesEntityExist(lPed) then
                 Citizen.CreateThread(function()
                     RequestAnimDict("random@mugging3")
@@ -160,7 +66,7 @@ Citizen.CreateThread(function()
                         SetCurrentPedWeapon(lPed, previousWeapon, true)
                     end
 
-                    if (IsEntityPlayingAnim( lPed, "random@arrests@busted", "idle_a", 3 )) then
+                    if (IsEntityPlayingAnim( lPed, "random@arrests@busted", "idle_a", 3 )) then 
                         TaskPlayAnim( lPed, "random@arrests@busted", "exit", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
                         Citizen.Wait (3000)
                         TaskPlayAnim( lPed, "random@arrests", "kneeling_arrest_get_up", 8.0, 1.0, -1, 128, 0, 0, 0, 0 )
@@ -242,7 +148,7 @@ Citizen.CreateThread(function()
             mp_pointing = false
             stopPointing()
         end
-
+        
         if Citizen.InvokeNative(0x921CE12C489C4C41, PlayerPedId()) and not mp_pointing then
             stopPointing()
         end
