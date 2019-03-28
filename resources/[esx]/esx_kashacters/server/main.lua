@@ -6,6 +6,9 @@ local IdentifierTables = {
     {table = "users", column = "identifier"},
     {table = "owned_vehicles", column = "owner"},
     {table = "user_accounts", column = "identifier"},
+    {table = "playerstattoos", column = "identifier"},
+    {table = "user_inventory", column = "identifier"},
+    {table = "user_licenses", column = "owner"},
 }
 
 RegisterServerEvent("kashactersS:SetupCharacters")
@@ -27,7 +30,7 @@ AddEventHandler('kashactersS:CharacterChosen', function(charid, ischar)
         spawn = GetSpawnPos(src)
     else
 		TriggerClientEvent('skinchanger:loadDefaultModel', src, true, cb)
-        spawn = { x = 195.55, y = -933.36, z = 29.90 } -- DEFAULT SPAWN POSITION
+        spawn = { x = -219.95, y = -1051.64, z = 30.13 } -- DEFAULT SPAWN POSITION
     end
     TriggerClientEvent("kashactersC:SpawnCharacter", src, spawn)
 end)
@@ -79,7 +82,11 @@ end
 
 function GetSpawnPos(source)
     local SpawnPos = MySQLAsyncExecute("SELECT `position` FROM `users` WHERE `identifier` = '"..GetPlayerIdentifiers(source)[1].."'")
-    return json.decode(SpawnPos[1].position)
+    if (SpawnPos[1].position ~= nil) then
+        return json.decode(SpawnPos[1].position)
+    else
+        return { x = -219.95, y = -1051.64, z = 30.13 }
+    end
 end
 
 function GetIdentifierWithoutSteam(Identifier)

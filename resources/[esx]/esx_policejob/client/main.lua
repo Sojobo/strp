@@ -209,7 +209,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 				shopCoords = Config.PoliceStations[station].Vehicles[partNum].InsideShop
 				local authorizedVehicles = Config.AuthorizedVehicles
                 for k,vehicle in ipairs(authorizedVehicles) do
-                    if vehicle.minrank == PlayerData.job.grade then
+                    if vehicle.minrank <= PlayerData.job.grade then
                         table.insert(shopElements, {
                             label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
                             name  = vehicle.label,

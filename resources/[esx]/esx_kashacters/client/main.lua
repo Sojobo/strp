@@ -24,8 +24,10 @@ Citizen.CreateThread(function ()
         end
     end
 end)
+
 local cam = nil
 local cam2 = nil
+
 RegisterNetEvent('kashactersC:SetupCharacters')
 AddEventHandler('kashactersC:SetupCharacters', function()
     DoScreenFadeOut(10)
@@ -80,12 +82,14 @@ AddEventHandler('kashactersC:SpawnCharacter', function(spawn)
     DisplayRadar(true)
 end)
 
+
 RegisterNetEvent('kashactersC:ReloadCharacters')
 AddEventHandler('kashactersC:ReloadCharacters', function()
     TriggerServerEvent("kashactersS:SetupCharacters")
     TriggerEvent("kashactersC:SetupCharacters")
 end)
 
+-- Callbacks
 RegisterNUICallback("CharacterChosen", function(data, cb)
     SetNuiFocus(false,false)
     DoScreenFadeOut(500)
@@ -95,6 +99,7 @@ RegisterNUICallback("CharacterChosen", function(data, cb)
     end
     cb("ok")
 end)
+
 RegisterNUICallback("DeleteCharacter", function(data, cb)
     SetNuiFocus(false,false)
     DoScreenFadeOut(500)

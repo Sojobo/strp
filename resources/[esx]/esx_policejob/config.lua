@@ -103,85 +103,39 @@ Config.AuthorizedWeapons = {
     -- Chief of Police
 }
 
--- Darkzy (me) edited this to work off if rank is equal too, its easier to read when it comes to reading this array!
 Config.AuthorizedVehicles = {
 	-- Recruit
 	{ minrank = 0, model = 'policeb', label = 'Police Bike', price = 200 },
 	
 	-- Cadet 
-	{ minrank = 1, model = 'policeb', label = 'Police Bike', price = 200 },
-	{ minrank = 1, model = 'police10', label = 'Police Crown Vic', price = 1500 },
+	{ minrank = 1, model = 'police', label = 'Police Cruiser', price = 700 },
 
 	-- Police Officer
-	{ minrank = 2, model = 'policeb', label = 'Police Bike', price = 200 },
-	{ minrank = 2, model = 'police8', label = 'Police Explorer', price = 3000 },
-	{ minrank = 2, model = 'police9', label = 'Police Taurus', price = 3000 },
 	{ minrank = 2, model = 'police10', label = 'Police Crown Vic', price = 1500 },
+	{ minrank = 2, model = 'police9', label = 'Police Taurus', price = 2400 },
 	{ minrank = 2, model = 'policet', label = 'Police Transport Van', price = 1750 },
 
 	-- Senior Officer
-	{ minrank = 3, model = 'policeb', label = 'Police Bike', price = 200 },
-	{ minrank = 3, model = 'police2', label = 'Police Charger', price = 3000 },
 	{ minrank = 3, model = 'police8', label = 'Police Explorer', price = 3000 },
-	{ minrank = 3, model = 'police9', label = 'Police Taurus', price = 2000 },
-	{ minrank = 3, model = 'police10', label = 'Police Crown Vic', price = 1500 },
-	{ minrank = 3, model = 'policet', label = 'Police Transport Van', price = 1750 },
 
 	-- Corporal
-	{ minrank = 4, model = 'policeb', label = 'Police Bike', price = 200 },
-	{ minrank = 4, model = 'police8', label = 'Police Explorer', price = 2500 },
-	{ minrank = 4, model = 'police9', label = 'Police Taurus', price = 2000 },
-	{ minrank = 4, model = 'police10', label = 'Police Crown Vic', price = 1500 },
-	{ minrank = 4, model = 'policet', label = 'Police Transport Van', price = 1750 },
+	{ minrank = 4, model = 'police3', label = 'Police Charger', price = 3000 },
 
 	-- Sergeant
-	{ minrank = 5, model = 'policeb', label = 'Police Bike', price = 200 },
 	{ minrank = 5, model = 'police2', label = 'Police Charger', price = 3000 },
-	{ minrank = 5, model = 'police8', label = 'Police Explorer', price = 3000 },
-	{ minrank = 5, model = 'police9', label = 'Police Taurus', price = 3000 },
-	{ minrank = 5, model = 'police10', label = 'Police Crown Vic', price = 1500 },
-	{ minrank = 5, model = 'policet', label = 'Police Transport Van', price = 1750 },
 
 	-- Staff Sergeant
-	{ minrank = 6, model = 'policeb', label = 'Police Bike', price = 200 },
-	{ minrank = 6, model = 'police2', label = 'Police Charger', price = 3000 },
-	{ minrank = 6, model = 'police8', label = 'Police Explorer', price = 3000 },
-	{ minrank = 6, model = 'police9', label = 'Police Taurus', price = 2000 },
-	{ minrank = 6, model = 'police10', label = 'Police Crown Vic', price = 1500 },
-	{ minrank = 6, model = 'policet', label = 'Police Transport Van', price = 1750 },
+	{ minrank = 6, model = 'police4', label = 'Police UC Explorer', price = 3000 },
 
 	-- Lieutenant
-	{ minrank = 7, model = 'police2', label = 'Police Charger', price = 3000 },
-	{ minrank = 7, model = '2015polstang', label = 'Police Mustang', price = 3500 },
-	{ minrank = 7, model = 'police5', label = 'Police UC Explorer', price = 3000 },
+	{ minrank = 7, model = '2015polstang', label = 'Police Mustang', price = 5500 },
 	{ minrank = 7, model = 'police6', label = 'Police UC Taurus', price = 2000 },
 	{ minrank = 7, model = 'police7', label = 'Police UC Crown Vic', price = 1500 },
-	{ minrank = 7, model = 'police8', label = 'Police Explorer', price = 3000 },
-	{ minrank = 7, model = 'police9', label = 'Police Taurus', price = 2000 },
-	{ minrank = 7, model = 'police10', label = 'Police Crown Vic', price = 1500 },
-	{ minrank = 7, model = 'policet', label = 'Police Transport Van', price = 1750 },
 
 	-- Captain
-	{ minrank = 8, model = 'police2', label = 'Police Charger', price = 3000 },
-	{ minrank = 8, model = '2015polstang', label = 'Police Mustang', price = 12000 },
-	{ minrank = 8, model = 'police5', label = 'Police UC Explorer', price = 3000 },
-	{ minrank = 8, model = 'police6', label = 'Police UC Taurus', price = 2000 },
-	{ minrank = 8, model = 'police7', label = 'Police UC Crown Vic', price = 1500 },
-	{ minrank = 8, model = 'police8', label = 'Police Explorer', price = 3000 },
-	{ minrank = 8, model = 'police9', label = 'Police Taurus', price = 2000 },
-	{ minrank = 8, model = 'police10', label = 'Police Crown Vic', price = 1500 },
-	{ minrank = 8, model = 'policet', label = 'Police Transport Van', price = 1750 },
+	{ minrank = 8, model = 'police5', label = 'Police UC Explorer', price = 4000 },
 
 	-- Chief of Police
-	{ minrank = 9, model = 'police2', label = 'Police Charger', price = 3000 },
-	{ minrank = 9, model = '2015polstang', label = 'Police Mustang', price = 12000 },
-	{ minrank = 9, model = 'police5', label = 'Police UC Explorer', price = 3000 },
-	{ minrank = 9, model = 'police6', label = 'Police UC Taurus', price = 2000 },
-	{ minrank = 9, model = 'police7', label = 'Police UC Crown Vic', price = 1500 },
-	{ minrank = 9, model = 'police8', label = 'Police Explorer', price = 3000 },
-	{ minrank = 9, model = 'police9', label = 'Police Taurus', price = 2000 },
-	{ minrank = 9, model = 'police10', label = 'Police Crown Vic', price = 1500 },
-	{ minrank = 9, model = 'policet', label = 'Police Transport Van', price = 1750 },
 }
 
 Config.AuthorizedHelicopters = {
@@ -190,12 +144,12 @@ Config.AuthorizedHelicopters = {
 	-- Officer
 	-- Senior Officer
 	-- Corporal
+
 	-- Sergeant
+	{ minrank = 5, model = 'polmav', label = 'Police Maverick', livery = 0, price = 16000 }
+
 	-- Staff Sergeant
-
     -- Lieutenant
-	{ minrank = 7, model = 'polmav', label = 'Police Maverick', livery = 0, price = 26000 }
-
     -- Captain
     -- Chief of Police
 }
