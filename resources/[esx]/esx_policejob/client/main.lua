@@ -209,7 +209,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 				shopCoords = Config.PoliceStations[station].Vehicles[partNum].InsideShop
 				local authorizedVehicles = Config.AuthorizedVehicles
                 for k,vehicle in ipairs(authorizedVehicles) do
-                    if vehicle.minrank <= PlayerData.job.grade then
+                    if vehicle.minrank == PlayerData.job.grade then
                         table.insert(shopElements, {
                             label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
                             name  = vehicle.label,
@@ -581,8 +581,8 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'handcuff' then
-                        TriggerEvent("esx_policejob:handcuffanimation")
-						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
+							TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
+							TriggerEvent("esx_policejob:handcuffanimation")
 					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
@@ -1459,18 +1459,20 @@ AddEventHandler('esx_policejob:handcuffanimation', function(target)
 	IsHandcuffed    = not IsHandcuffed
 	local playerPed = PlayerPedId()
     local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
-    local targetCoords = GetEntityCoords(targetPed, true)
+		local targetCoords = GetEntityCoords(targetPed, true)
+		
+		if targetPed ~= playerPed then
+			TaskGoStraightToCoord(playerPed, targetCoords.x, targetCoords.y, targetCoords.z, 0.1, 4000, GetEntityHeading(targetPed), 0.5)
 
-    TaskGoStraightToCoord(playerPed, targetCoords.x, targetCoords.y, targetCoords.z, 0.1, 4000, GetEntityHeading(targetPed), 0.5)
-
-	Citizen.CreateThread(function()
-    local animationLib = "mp_arrest_paired"
-    RequestAnimDict(animationLib)
-    while not HasAnimDictLoaded(animationLib) do
-        Citizen.Wait(100)
-    end
-    TaskPlayAnim(PlayerPedId(), animationLib, "cop_p2_back_left", 8.0, -8, 3000, 16, 0, 0, 0, 0)
-	end)
+			Citizen.CreateThread(function()
+				local animationLib = "mp_arrest_paired"
+				RequestAnimDict(animationLib)
+				while not HasAnimDictLoaded(animationLib) do
+						Citizen.Wait(100)
+				end
+				TaskPlayAnim(PlayerPedId(), animationLib, "cop_p2_back_left", 8.0, -8, 3000, 16, 0, 0, 0, 0)
+			end)
+		end
 end)
 
 RegisterNetEvent('esx_policejob:handcuff')
