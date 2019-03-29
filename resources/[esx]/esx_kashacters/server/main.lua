@@ -9,6 +9,7 @@ local IdentifierTables = {
     {table = "playerstattoos", column = "identifier"},
     {table = "user_inventory", column = "identifier"},
     {table = "user_licenses", column = "owner"},
+    {table = "owned_shops", column = "identifier"},
 }
 
 RegisterServerEvent("kashactersS:SetupCharacters")
