@@ -97,7 +97,7 @@ function Start(player, ped)
 			end
 		end
 
-		if distance > 7.5 or not IsPedDeadOrDying(ped) then
+        if not (IsEntityPlayingAnim(ped, "mp_arresting", "idle", 3) or IsPedDeadOrDying(ped) or distance < 7.5) then
 			checking = false
 		end
 
@@ -118,9 +118,10 @@ end
 function OpenDeathMenu(player, ped)
 	loadAnimDict('amb@medic@standing@kneel@base')
 	loadAnimDict('anim@gangops@facility@servers@bodysearch@')
-
 	local myPed = PlayerPedId()
 	local elements   = {}
+    local waiting = true
+
 	if ESX.PlayerData.job ~= nil then
         table.insert(elements, { label = "Drag", value = 'drag' })
         table.insert(elements, { label = "Put in vehicle", value = 'put_in_vehicle' })
@@ -133,17 +134,27 @@ function OpenDeathMenu(player, ped)
                     table.insert(elements, { label = "Handcuff", value = 'handcuff' })
                     table.insert(elements, { label = "Arrest", value = 'arrest' })
                 end
+                waiting = false
             end, 'police')
         elseif ESX.PlayerData.job.name == 'ambulance' then
             ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
-                table.insert(elements, { label = 'Identify where wound is', value = 'damage' })
-                table.insert(elements, { label = 'Find cause of death', value = 'deathcause' })
-                table.insert(elements, { label = 'Perform CPR', value = 'ems_menu_revive' })
-                table.insert(elements, { label = 'Heal small wounds', value = 'ems_menu_small' })
-                table.insert(elements, { label = 'Treat serious injuries', value = 'ems_menu_big' })
+                if isInService then
+                    table.insert(elements, { label = 'Identify where wound is', value = 'damage' })
+                    table.insert(elements, { label = 'Find cause of death', value = 'deathcause' })
+                    table.insert(elements, { label = 'Perform CPR', value = 'ems_menu_revive' })
+                    table.insert(elements, { label = 'Heal small wounds', value = 'ems_menu_small' })
+                    table.insert(elements, { label = 'Treat serious injuries', value = 'ems_menu_big' })
+                end
+                waiting = false
              end, 'ambulance')
+        else
+            waiting = false
         end
 	end
+
+    while waiting do
+
+    end
 
 	ESX.UI.Menu.Open(
 		'default', GetCurrentResourceName(), 'dead_citizen',
