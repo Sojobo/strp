@@ -61,6 +61,8 @@ AddEventHandler('playerSpawned', function()
 					Citizen.Wait(1000)
 				end
 
+                Citizen.Wait(1000)
+                SetPedToRagdoll(PlayerPedId(), 6000, 6000, 0, 0, 0, 0)
 				SetEntityHealth(PlayerPedId(), 0)
 				-- ESX.ShowNotification(_U('combatlog_message'))
                 -- RemoveItemsAfterRPDeath()
