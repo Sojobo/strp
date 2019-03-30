@@ -848,7 +848,17 @@ function Robbery(id)
                         y = coords1[id].y,
                         z = coords1[id].z - 1,
 					}
-						TriggerServerEvent('esx_phone:send', "police", "Shop robbery at the " .. result.name .. '\'s shop', true, coords)
+                        local notification = {
+                            subject  = 'Robbery in Progress',
+                            msg      = "Shop robbery at the " .. result.name .. " shop",
+                            icon = 'fas fa-headset',
+                            iconStyle = 'red',
+                            locationX = coords.x,
+                            locationY = coords.y,
+                            caller = PlayerId(),
+                        }
+
+                        TriggerServerEvent('esx_service:callAllInService', notification, "police")
 						TriggerServerEvent('esx_kr_shops-robbery:NotifyOwner', "~r~Your store ~b~(" .. result.name .. ')~r~ is under robbery', id)
 						
 						ESX.Game.SpawnObject(1089807209, coords, function(safe)
@@ -863,10 +873,10 @@ function Robbery(id)
 						Name = result.name
 						end)
                 else
-					ESX.ShowNotification("~r~There is not enough polices online " .. results .. '/' .. Config.RequiredPolices)
+					ESX.ShowNotification("There are not enough police officers online")
 				end
 			else
-				ESX.ShowNotification("~r~This shop has already bein robbed, please wait " ..  math.floor((Config.TimeBetweenRobberies - result.time)  / 60) .. ' minutes')
+				ESX.ShowNotification("This shop has already been robbed, please wait " ..  math.floor((Config.TimeBetweenRobberies - result.time)  / 60) .. ' minutes')
 			end
 		end)
 	end, id)
