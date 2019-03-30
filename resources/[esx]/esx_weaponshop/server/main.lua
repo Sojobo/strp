@@ -52,8 +52,12 @@ ESX.RegisterServerCallback('esx_weaponshop:buyWeapon', function(source, cb, weap
 		cb(false, false)
 	end
 
+    if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(3) then
+        price = math.ceil(price - ((price/100)*10))
+    end
+
 	if xPlayer.hasWeapon(weaponName) then
-        price = price / 2
+        price = math.ceil(price / 2)
         ammopurchase = true
 		-- TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "AmmuNation", _U('already_owned'), 'fas fa-exclamation-triangle', "red")
 		-- cb(false)

@@ -98,6 +98,7 @@ RegisterServerEvent('esx_drugs:processCannabis')
 AddEventHandler('esx_drugs:processCannabis', function()
 	if not playersProcessingCannabis[source] then
 		local _source = source
+        local conversionRate = 3
 
 		playersProcessingCannabis[_source] = ESX.SetTimeout(Config.Delays.WeedProcessing, function()
 			local xPlayer = ESX.GetPlayerFromId(_source)
@@ -105,12 +106,16 @@ AddEventHandler('esx_drugs:processCannabis', function()
 			local xInventoryWeight = xPlayer.getInventoryWeight()
 			local xInventorylimit = xPlayer.getInventoryWeightMax()
 
+            if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(2) then
+                conversionRate = 2
+            end
+
 			if xInventorylimit ~= -1 and (1 + xInventoryWeight) > xInventorylimit then
 				TriggerClientEvent('esx:showNotification', _source, _U('weed_processingfull'))
-			elseif xCannabis.count < 3 then
+			elseif xCannabis.count < conversionRate then
 				TriggerClientEvent('esx:showNotification', _source, _U('weed_processingenough'))
 			else
-				xPlayer.removeInventoryItem('cannabis', 3)
+				xPlayer.removeInventoryItem('cannabis', conversionRate)
 				xPlayer.addInventoryItem('marijuana', 1)
 
 				TriggerClientEvent('esx:showNotification', _source, _U('weed_processed'))

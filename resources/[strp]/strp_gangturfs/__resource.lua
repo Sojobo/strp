@@ -10,4 +10,10 @@ server_scripts {
     'sv_turfs.lua'
 }
 
-export 'getTurfData'
+exports {
+	-- 'getTurfData'
+}
+
+server_exports {
+	'getTurfOwner'
+}

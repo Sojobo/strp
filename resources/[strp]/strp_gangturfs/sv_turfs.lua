@@ -79,3 +79,11 @@ Citizen.CreateThread(function()
         Citizen.Wait(1000)
     end
 end)
+
+ESX.RegisterServerCallback('gangturf:getTurfOwner', function(source, cb, turf)
+	cb(gangTurfs[turf].controller)
+end)
+
+function getTurfOwner(turf)
+    return gangTurfs[turf].controller
+end
