@@ -153,7 +153,7 @@ function OpenDeathMenu(player, ped)
 	end
 
     while waiting do
-
+        Citizen.Wait(100)
     end
 
 	ESX.UI.Menu.Open(
