@@ -313,7 +313,7 @@ end)
 ESX.RegisterServerCallback('esx_ambulancejob:getDeathStatus', function(source, cb)
 	local identifier = GetPlayerIdentifiers(source)[1]
 
-	MySQL.Async.fetchScalar('SELECT is_dead FROM users WHERE identifier = @identifier', {
+	MySQL.Async.fetchScalar('SELECT is_dead FROM characters WHERE identifier = @identifier', {
 		['@identifier'] = identifier
 	}, function(isDead)
 		if isDead then
@@ -333,7 +333,7 @@ AddEventHandler('esx_ambulancejob:setDeathStatus', function(isDead)
 		return
 	end
 
-	MySQL.Sync.execute('UPDATE users SET is_dead = @isDead WHERE identifier = @identifier', {
+	MySQL.Sync.execute('UPDATE characters SET is_dead = @isDead WHERE identifier = @identifier', {
 		['@identifier'] = identifier,
 		['@isDead'] = isDead
 	})

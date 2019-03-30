@@ -61,8 +61,9 @@ AddEventHandler('playerSpawned', function()
 					Citizen.Wait(1000)
 				end
 
-				ESX.ShowNotification(_U('combatlog_message'))
-				RemoveItemsAfterRPDeath()
+				SetEntityHealth(PlayerPedId(), 0)
+				-- ESX.ShowNotification(_U('combatlog_message'))
+                -- RemoveItemsAfterRPDeath()
 			end
 		end)
 	end
