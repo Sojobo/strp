@@ -61,7 +61,7 @@ Citizen.CreateThread(function()
 			local playerped = GetPlayerPed(player)
 			if distance ~= -1 and distance < 10.0 then
 				if distance ~= -1 and distance <= 2.0 then
-					if IsPedDeadOrDying(playerped) or exports.esx_policejob:IsHandcuffed() == true then
+					if IsPedDeadOrDying(playerped) or exports.esx_policejob:IsHandcuffed() then
 						Start(player, playerped)
                         sleep = 0
 					end
@@ -97,7 +97,7 @@ function Start(player, ped)
 			end
 		end
 
-        if not (exports.esx_policejob:IsHandcuffed() == true or IsPedDeadOrDying(ped) or distance < 7.5) then
+        if not (exports.esx_policejob:IsHandcuffed() or IsPedDeadOrDying(ped) or distance < 7.5) then
 			checking = false
 		end
 
