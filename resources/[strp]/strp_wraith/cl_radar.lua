@@ -7,6 +7,15 @@
 
 local boloPlates = {}
 
+ESX = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+end)
+
 --[[------------------------------------------------------------------------
     Resource Rename Fix
 ------------------------------------------------------------------------]]--
@@ -399,6 +408,11 @@ end
 
 RegisterNetEvent( 'wk:radarRC' )
 AddEventHandler( 'wk:radarRC', function()
+    local PlayerData = ESX.GetPlayerData()
+    if PlayerData.job.name ~= "police" then
+      ESX.ShowNotification("You cannot use this...")
+      return
+    end
     Citizen.Wait( 10 )
 
     TriggerEvent( 'wk:toggleMenuControlLock', true )
