@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 [{"x":1543.4300000002,"controller":"vagos","name":"El Burro Industrial","radius":100.0,"y":-2117.5999999996,"z":77.049999999988,"securetime":0,"controlStrength":100},{"x":-2242.1399999996,"controller":"vagos","name":"Pacific Bluffs Complex","radius":100.0,"y":262.28000000002,"z":174.60999999998,"securetime":0,"controlStrength":11},{"x":2131.5899999998,"controller":"lostmc","name":"McKenzie Field Airport","radius":60.0,"y":4785.7599999998,"z":40.970000000002,"securetime":0,"controlStrength":100}]
-=======
-[{"controller":"vagos","name":"El Burro Industrial","z":77.049999999988,"radius":100.0,"x":1543.4300000002,"y":-2117.5999999996,"securetime":0,"controlStrength":100},{"controller":"vagos","name":"Pacific Bluffs Complex","z":174.60999999998,"radius":100.0,"x":-2242.1399999996,"y":262.28000000002,"securetime":0,"controlStrength":11},{"controller":"lostmc","name":"McKenzie Field Airport","z":40.970000000002,"radius":60.0,"x":2131.5899999998,"y":4785.7599999998,"securetime":0,"controlStrength":100}]
->>>>>>> cec42a1f849ff18f41b590c1d126db3c33ef7c22
