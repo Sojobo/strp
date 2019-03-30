@@ -84,9 +84,13 @@ function OpenShopMenu(zone)
 		align = 'left',
 		elements = elements
 	}, function(data, menu)
-		ESX.TriggerServerCallback('esx_weaponshop:buyWeapon', function(bought)
+		ESX.TriggerServerCallback('esx_weaponshop:buyWeapon', function(bought, ammopurchase)
 			if bought then
-				DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+                if ammopurchase then
+                    TriggerEvent('esx:showAdvancedNotification', "AmmuNation", "You purchased additional ammo for $" .. math.ceil(data.current.price / 2), 'far fa-thumbs-up', "green")
+                else
+				    DisplayBoughtScaleform(data.current.weaponName, data.current.price)
+                end
 			else
 				PlaySoundFrontend(-1, 'ERROR', 'HUD_AMMO_SHOP_SOUNDSET', false)
 			end

@@ -45,41 +45,40 @@ end)
 ESX.RegisterServerCallback('esx_weaponshop:buyWeapon', function(source, cb, weaponName, zone)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local price = GetPrice(weaponName, zone)
+    local ammopurchase = false
 
 	if price == 0 then
 		print(('esx_weaponshop: %s attempted to buy a unknown weapon!'):format(xPlayer.identifier))
-		cb(false)
+		cb(false, false)
 	end
 
 	if xPlayer.hasWeapon(weaponName) then
-		TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "AmmuNation", _U('already_owned'), 'fas fa-exclamation-triangle', "red")
-		cb(false)
-	else
-		if zone == 'BlackWeashop' then
-
-			if xPlayer.getAccount('black_money').money >= price then
-				xPlayer.removeAccountMoney('black_money', price)
-				xPlayer.addWeapon(weaponName, 42)
-
-				cb(true)
-			else
-				TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "AmmuNation", _U('not_enough_black'), 'fas fa-exclamation-triangle', "red")
-				cb(false)
-			end
-
-		else
-
-			if xPlayer.getMoney() >= price then
-				xPlayer.removeMoney(price)
-				xPlayer.addWeapon(weaponName, 42)
-				cb(true)
-			else
-				TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "AmmuNation", _U('not_enough'), 'fas fa-exclamation-triangle', "red")
-				cb(false)
-			end
-	
-		end
+        price = price / 2
+        ammopurchase = true
+		-- TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "AmmuNation", _U('already_owned'), 'fas fa-exclamation-triangle', "red")
+		-- cb(false)
 	end
+    
+    if zone == 'BlackWeashop' then
+        if xPlayer.getAccount('black_money').money >= price then
+            xPlayer.removeAccountMoney('black_money', price)
+            xPlayer.addWeapon(weaponName, 42)
+
+            cb(true, ammopurchase)
+        else
+            TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "AmmuNation", _U('not_enough_black'), 'fas fa-exclamation-triangle', "red")
+            cb(false, false)
+        end
+    else
+        if xPlayer.getMoney() >= price then
+            xPlayer.removeMoney(price)
+            xPlayer.addWeapon(weaponName, 42)
+            cb(true, ammopurchase)
+        else
+            TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "AmmuNation", _U('not_enough'), 'fas fa-exclamation-triangle', "red")
+            cb(false, false)
+        end
+    end
 end)
 
 function GetPrice(weaponName, zone)
