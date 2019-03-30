@@ -24,4 +24,7 @@ dependencies {
 	'esx_billing'
 }
 
-export 'SetDutyStatus'
+exports {
+	'SetDutyStatus',
+	'IsHandcuffed'
+}

@@ -80,6 +80,10 @@ function OpenCloakroomMenu()
 	exports.eup_ui:openUniformMenu(PlayerData.job.grade, 1)
 end
 
+function IsHandcuffed()
+	return IsHandcuffed
+end
+
 function SetDutyStatus(setStatus)
   if setStatus == false then
     ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
@@ -1460,7 +1464,7 @@ AddEventHandler('esx_policejob:handcuffanimation', function(target)
 	local playerPed = PlayerPedId()
     local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
 		local targetCoords = GetEntityCoords(targetPed, true)
-		
+
 		if targetPed ~= playerPed then
 			TaskGoStraightToCoord(playerPed, targetCoords.x, targetCoords.y, targetCoords.z, 0.1, 4000, GetEntityHeading(targetPed), 0.5)
 
