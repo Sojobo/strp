@@ -18,3 +18,11 @@ RegisterCommand("uptime", function()
   uptime = string.format("%i", uptimeMinute)
   Citizen.Trace(uptime)
 end, false)
+
+RegisterCommand("printsrv", function(source, args, rawCommand)
+  local _source = source
+  local message = args[1]
+  if _source == 0 then
+    TriggerClientEvent("chatMessage", -1, "~b~" .. message)
+  end
+end, false)
