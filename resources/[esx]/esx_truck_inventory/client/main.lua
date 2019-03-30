@@ -97,6 +97,8 @@ function openmenuvehicle()
                                 CloseToVehicle = true
                                 TriggerServerEvent('esx_truck_inventory:AddVehicleList', globalplate)
                                 TriggerServerEvent("esx_truck_inventory:getInventory", GetVehicleNumberPlateText(vehFront))
+                                lastOpen = true
+				                GUI.Time  = GetGameTimer()
                             end
                         else
                             ESX.ShowNotification('The trunk is locked.')
@@ -105,8 +107,6 @@ function openmenuvehicle()
 				else
 					ESX.ShowNotification('You are not near a trunk')
 				end
-				lastOpen = true
-				GUI.Time  = GetGameTimer()
 			else
 				TriggerEvent('esx:showNotification', "Someone else is using the trunk.")
 			end
@@ -119,15 +119,8 @@ local count = 0
 Citizen.CreateThread(function()
     while true do
         Wait(0)
-        if IsControlPressed(0, Keys["-"]) and (GetGameTimer() - GUI.Time) > 500 then
-            if count == 0 then
-                openmenuvehicle()
-                count = count +1
-            else
-                Wait(150)
-                count = 0
-            end
-        elseif lastOpen and IsControlPressed(0, Keys["BACKSPACE"]) and (GetGameTimer() - GUI.Time) > 150 then
+        if lastOpen and IsControlPressed(0, Keys["-"]) and (GetGameTimer() - GUI.Time) > 150 then
+            ESX.UI.Menu.CloseAll()
             CloseToVehicle = false
             lastOpen = false
             if lastVehicle > 0 then
@@ -137,6 +130,14 @@ Citizen.CreateThread(function()
                 lastVehicle = 0
             end
             GUI.Time  = GetGameTimer()
+        elseif IsControlPressed(0, Keys["-"]) and (GetGameTimer() - GUI.Time) > 500 then
+            if count == 0 then
+                openmenuvehicle()
+                count = count +1
+            else
+                Wait(150)
+                count = 0
+            end
         end
     end
 end)

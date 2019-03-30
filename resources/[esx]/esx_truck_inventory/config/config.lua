@@ -593,4 +593,29 @@ Config.VehicleLimit = {
     [-391595372] = { trunksize = 30 }, -- viseris
     [1871995513] = { trunksize = 50 }, -- yosemite
     [838982985] = { trunksize = 25 }, -- z190
+    -- DLC
+    [-49115651] = { trunksize = 30 }, -- Vamos
+    [1456744817] = { trunksize = 30 }, -- Tulip
+    [-1168952148] = { trunksize = 70 }, -- Toros
+    [-507495760] = { trunksize = 10 }, -- Schlagen
+    [-331467772] = { trunksize = 10 }, -- Italigto
+    [-2096690334] = { trunksize = 20 }, -- Impaler
+    [1009171724] = { trunksize = 10 }, -- Impaler2
+    [1279262537] = { trunksize = 20 }, -- Deviant
+    [1591739866] = { trunksize = 5 }, -- Deveste
+    [-1566607184] = { trunksize = 25 }, -- Clique
+    [-214906006] = { trunksize = 20 }, -- Jester3
+    [500482303] = { trunksize = 20 }, -- Swinger
+    [321186144] = { trunksize = 25 }, -- Stafford
+    [219613597] = { trunksize = 85 }, -- Speedo4
+    [-54332285] = { trunksize = 45 }, -- Freecrawler
+    [-1259134696] = { trunksize = 15 }, -- FlashGT
+    [-2120700196] = { trunksize = 5 }, -- Entity2
+    [-1267543371] = { trunksize = 25 }, -- Ellie
+    [-986944621] = { trunksize = 25 }, -- Dominator3
+    [1617472902] = { trunksize = 55 }, -- Fagaloa
+    [1115909093] = { trunksize = 10 }, -- Hotring
+    [1046206681] = { trunksize = 15 }, -- Michelli
+    [-1134706562] = { trunksize = 10 }, -- Taipan
+    [-376434238] = { trunksize = 10 }, -- Tyrant
 }
