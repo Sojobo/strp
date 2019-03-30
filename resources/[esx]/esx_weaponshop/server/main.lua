@@ -52,10 +52,6 @@ ESX.RegisterServerCallback('esx_weaponshop:buyWeapon', function(source, cb, weap
 		cb(false, false)
 	end
 
-    if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(3) then
-        price = math.ceil(price - ((price/100)*10))
-    end
-
 	if xPlayer.hasWeapon(weaponName) then
         price = math.ceil(price / 2)
         ammopurchase = true
@@ -64,6 +60,10 @@ ESX.RegisterServerCallback('esx_weaponshop:buyWeapon', function(source, cb, weap
 	end
     
     if zone == 'BlackWeashop' then
+        if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(3) then
+            price = math.ceil(price - ((price/100)*10))
+        end
+
         if xPlayer.getAccount('black_money').money >= price then
             xPlayer.removeAccountMoney('black_money', price)
             xPlayer.addWeapon(weaponName, 42)
