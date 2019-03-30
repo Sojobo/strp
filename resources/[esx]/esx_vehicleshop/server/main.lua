@@ -218,8 +218,8 @@ ESX.RegisterServerCallback('esx_vehicleshop:buyVehicle', function (source, cb, v
 		end
 	end
 
-	if xPlayer.getMoney() >= vehicleData.price then
-		xPlayer.removeMoney(vehicleData.price)
+	if xPlayer.getBank() >= vehicleData.price then
+		xPlayer.removeBank(vehicleData.price)
 		cb(true)
 	else
 		cb(false)
@@ -238,7 +238,7 @@ ESX.RegisterServerCallback('esx_vehicleshop:buyVehicleSociety', function (source
 
 	TriggerEvent('esx_addonaccount:getSharedAccount', 'society_' .. society, function (account)
 		if account.money >= vehicleData.price then
-			account.removeMoney(vehicleData.price)
+			account.removeBank(vehicleData.price)
 
 			MySQL.Async.execute('INSERT INTO cardealer_vehicles (vehicle, price) VALUES (@vehicle, @price)',
 			{

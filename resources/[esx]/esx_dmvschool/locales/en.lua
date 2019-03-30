@@ -1,5 +1,6 @@
 Locales['en'] = {
   ['you_paid'] = 'you paid ~g~$%s~s~ to the DMV school',
+  ['not_enough_money'] = 'You do not have enough money in your bank',
   ['go_next_point'] = 'go to the next point!',
   ['in_town_speed'] = 'entered town, pay attention to your speed! Speed Limit: ~y~%s~s~ mph',
   ['next_point_speed'] = 'go to the next point! Speed Limit: ~y~%s~s~ mph',

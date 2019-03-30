@@ -737,8 +737,8 @@ AddEventHandler('esx_mechanicjob:onFixkit', function()
 
 	if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
 		local vehicle = nil
-
-		if IsPedInAnyVehicle(playerPed, false) then
+		
+		if IsPedSittingInAnyVehicle(playerPed) then
 			vehicle = GetVehiclePedIsIn(playerPed, false)
 		else
 			vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)

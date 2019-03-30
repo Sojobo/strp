@@ -23,6 +23,10 @@ AddEventHandler('esx_dmvschool:pay', function(price)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
-	xPlayer.removeMoney(price)
-	TriggerClientEvent('esx:showNotification', _source, _U('you_paid', price))
+	if xPlayer.getBank() >= price then
+		xPlayer.removeBank(price)
+		TriggerClientEvent('esx:showNotification', _source, _U('you_paid', price))
+	else
+		ESX.ShowAdvancedNotification("Bank", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
+	end
 end)

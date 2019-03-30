@@ -317,9 +317,9 @@ local identifier = ESX.GetPlayerFromId(source).identifier
 
     if result[1].identifier == '0' then
 
-        if xPlayer.getMoney() >= price then
+        if xPlayer.getBank() >= price then
             MySQL.Async.fetchAll("UPDATE owned_shops SET identifier = @identifier, ShopName = @ShopName WHERE ShopNumber = @ShopNumber",{['@identifier']  = identifier,['@ShopNumber']     = number,['@ShopName']     = name},function(result)
-            xPlayer.removeMoney(price)
+            xPlayer.removeBank(price)
         end)
             TriggerClientEvent('esx_kr_shops:removeBlip', -1)
             TriggerClientEvent('esx_kr_shops:setBlip', -1)
