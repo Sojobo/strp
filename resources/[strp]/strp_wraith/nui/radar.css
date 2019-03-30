@@ -22,12 +22,8 @@
     margin: auto;
     bottom: 10px;
 
-    right: 10px;
-
-    /* Uncomment the below statement and comment the above 'right' statement
-       to position the radar in the bottom centre of the screen */
-    /*right: 0;
-    left: 0;*/
+    left: 0;
+    right: 0;
 
     color: white;
     background: rgba( 20, 20, 20, 0.97 );
