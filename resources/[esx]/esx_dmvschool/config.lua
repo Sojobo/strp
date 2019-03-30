@@ -5,10 +5,10 @@ Config.SpeedMultiplier = 2.236936
 Config.Locale          = 'en'
 
 Config.Prices = {
-	dmv         = 300,
-	drive       = 1500,
-	drive_bike  = 1000,
-	drive_truck = 3000
+	dmv         = 200,
+	drive       = 1000,
+	drive_bike  = 700,
+	drive_truck = 2000
 }
 
 Config.VehicleModels = {
