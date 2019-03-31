@@ -8,6 +8,8 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 		job          = {},
 		loadout      = {},
 		playerName   = GetPlayerName(_source),
+		firstname	 = {},
+		lastname 	 = {},
 		lastPosition = nil
 	}
 
@@ -127,7 +129,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 			-- Get job name, grade and last position
 			table.insert(tasks2, function(cb2)
 
-				MySQL.Async.fetchAll('SELECT job, job_grade, loadout, position FROM `users` WHERE `identifier` = @identifier', {
+				MySQL.Async.fetchAll('SELECT firstname, lastname, job, job_grade, loadout, position FROM `users` WHERE `identifier` = @identifier', {
 					['@identifier'] = player.getIdentifier()
 				}, function(result)
 					local job, grade = result[1].job, tonumber(result[1].job_grade)
@@ -192,6 +194,14 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 						userData.lastPosition = json.decode(result[1].position)
 					end
 
+					if result[1].firstname ~= nil then
+						userData.firstname = result[1].firstname
+					end
+
+					if result[1].lastname ~= nil then
+						userData.lastname = result[1].lastname
+					end
+
 					cb2()
 				end)
 
@@ -204,7 +214,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 		-- Run Tasks
 		Async.parallel(tasks, function(results)
 
-			local xPlayer = CreateExtendedPlayer(player, userData.accounts, userData.inventory, userData.job, userData.loadout, userData.playerName, userData.lastPosition)
+			local xPlayer = CreateExtendedPlayer(player, userData.accounts, userData.inventory, userData.job, userData.loadout, userData.firstname .. " " .. userData.lastname, userData.lastPosition)
 
 			xPlayer.getMissingAccounts(function(missingAccounts)
 

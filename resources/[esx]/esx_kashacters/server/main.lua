@@ -2,6 +2,11 @@
 -- Edit this table to all the database tables and columns
 -- where identifiers are used (such as users, owned_vehicles, owned_properties etc.)
 ---------------------------------------------------------------------------------------
+
+ESX = nil
+
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+
 local IdentifierTables = {
     {table = "users", column = "identifier"},
     {table = "owned_vehicles", column = "owner"},
@@ -106,3 +111,29 @@ function MySQLAsyncExecute(query)
     end
     return result
 end
+
+ESX.RegisterServerCallback('characters:getLastCharacterInfo', function(source, cb)
+    local _source = source
+    print("GETTING LAST CHARACTER INFO")
+	local lastCharacterId = GetLastCharacter(_source)
+	local identifier = lastCharacterId .. ":" .. GetIdentifierWithoutSteam(GetPlayerIdentifiers(_source)[1])
+	local character = MySQLAsyncExecute("SELECT * FROM `users` WHERE identifier LIKE '%"..identifier.."%'")
+	cb(character)
+end)
+
+ESX.RegisterServerCallback('characters:getOnlinePlayers', function(source, cb)
+	local xPlayers = ESX.GetPlayers()
+	local players  = {}
+
+	for i=1, #xPlayers, 1 do
+        local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		table.insert(players, {
+			source     = xPlayer.source,
+			identifier = xPlayer.identifier,
+            name       = xPlayer.name,
+			job        = xPlayer.job
+		})
+	end
+
+	cb(players)
+end)
