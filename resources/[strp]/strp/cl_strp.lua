@@ -154,9 +154,9 @@ Citizen.CreateThread(function()
         -- SetPlayerWantedLevelNow(thisPlayerId, false)
         -- SetPlayerWantedLevelNoDrop(thisPlayerId, 0, false)
 
-        ClearPlayerWantedLevel(thisPlayerId)
-        SetMaxWantedLevel(0)
-        SetPoliceIgnorePlayer(thisPlayerId, true)
+        -- ClearPlayerWantedLevel(thisPlayerId)
+        -- SetMaxWantedLevel(0)
+        -- SetPoliceIgnorePlayer(thisPlayerId, true)
         --else
         --  SetMaxWantedLevel(1)
         --end
