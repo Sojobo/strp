@@ -54,6 +54,7 @@ Locales['en'] = {
   ['actions_prompt'] = 'press ~INPUT_CONTEXT~ access the <b>Ambulance Actions</b>.',
   ['deposit_amount'] = 'deposit Amount',
   ['money_withdraw'] = 'amount withdrawn',
+  ['not_enough_money'] = 'You do not have enough money for this Hopsital service',
   ['fast_travel'] = 'press ~INPUT_CONTEXT~ to fast travel.',
   ['open_pharmacy'] = 'press ~INPUT_CONTEXT~ to open the pharmacy.',
   ['pharmacy_menu_title'] = 'pharmacy',

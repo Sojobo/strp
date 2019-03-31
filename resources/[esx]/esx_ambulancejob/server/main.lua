@@ -15,6 +15,18 @@ AddEventHandler('esx_ambulancejob:revive', function(target)
 	end
 end)
 
+RegisterServerEvent("Hospital:SelfRevive")
+AddEventHandler("Hospital:SelfRevive", function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+	
+	if xPlayer.GetBank() >= Config.ReviveCost then
+		xPlayer.removeBank(Config.ReviveCost)
+		TriggerClientEvent('esx_ambulancejob:revive', source)
+	else
+		ESX.ShowAdvancedNotification("Hospital", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
+	end
+end)
+
 RegisterServerEvent('esx_ambulancejob:heal')
 AddEventHandler('esx_ambulancejob:heal', function(target, type)
 	local xPlayer = ESX.GetPlayerFromId(source)

@@ -31,6 +31,8 @@ Config.EarlyRespawnFine           = true
 Config.EarlyRespawnFineAmount     = 500
 
 Config.RespawnPoint = { coords = vector3(341.0, -1397.3, 32.5), heading = 48.5 }
+Config.RevivePoint = {x = 1747.29, y = 2648.11, z = 48.11}
+Config.ReviveCost = 500
 
 Config.Hospitals = {
 	CentralLosSantos = {

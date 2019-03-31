@@ -100,6 +100,22 @@ Citizen.CreateThread(function()
 		else
 			Citizen.Wait(500)
 		end
+		for a = 1, #Config.RevivePoint do
+			local ped = GetPlayerPed(PlayerId())
+			local plyCoords = GetEntityCoords(ped, false)
+			local distance = Vdist(Config.RevivePoint[a].x, Config.RevivePoint[a].y, Config.RevivePoint[a].z, plyCoords.x, plyCoords.y, plyCoords.z)
+			if distance <= 20.0 then
+					DrawMarker(1, Config.RevivePoint[a].x, Config.RevivePoint[a].y, Config.RevivePoint[a].z - 1, 0, 0, 0, 0, 0, 0, 3.0001, 3.0001, 0.5001, 1555, 0, 0,165, 0, 0, 0,0)
+			end
+			if distance <= 5.0 then
+				-- Add Draw Text
+				if isDead then
+					if IsControlJustPressed(1, 56) then
+						TriggerServerEvent("Hospital:SelfRevive")
+					end
+				end
+			end
+		end
 	end
 end)
 
