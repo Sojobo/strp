@@ -89,7 +89,7 @@ function Start(player, ped)
 		local distance = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), GetEntityCoords(thisentity))
 		local x,y,z = table.unpack(GetEntityCoords(thisentity))
 
-		if distance < 2.0 and exports.esx_policejob:IsHandcuffed() == false then
+		if distance < 2.0 then
 			DrawText3D(x,y,z, 'Press [~b~E~s~] to manage individual', 0.4)
 
 			if IsControlPressed(0,  Keys['E']) then
