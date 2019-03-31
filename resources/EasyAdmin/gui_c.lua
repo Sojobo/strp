@@ -5,6 +5,21 @@
 ------------------------------------
 ------------------------------------
 
+ESX                   = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
+	ESX.PlayerData = ESX.GetPlayerData()
+end)
+
 isAdmin = false
 showLicenses = false
 
@@ -138,178 +153,169 @@ function GenerateMenu() -- this is a big ass function
 
 	-- util stuff
 	players = {}
-	local localplayers = {}
-	for i = 0, 255 do
-		if NetworkIsPlayerActive( i ) then
-			table.insert( localplayers, GetPlayerServerId(i) )
-		end
-	end
-	table.sort(localplayers)
-	for i,thePlayer in ipairs(localplayers) do
-		--Citizen.Trace(thePlayer)
-		table.insert(players,GetPlayerFromServerId(thePlayer))
-	end
-
-	for i,thePlayer in ipairs(players) do
-		thisPlayer = _menuPool:AddSubMenu(playermanagement,"["..GetPlayerServerId(thePlayer).."] "..GetPlayerName(thePlayer),"",true)
-		thisPlayer:SetMenuWidthOffset(menuWidth)
-		-- generate specific menu stuff, dirty but it works for now
-		if permissions.kick then
-			local thisKickMenu = _menuPool:AddSubMenu(thisPlayer,strings.kickplayer,"",true)
-			thisKickMenu:SetMenuWidthOffset(menuWidth)
-			
-			local thisItem = NativeUI.CreateItem(strings.reason,strings.kickreasonguide)
-			thisKickMenu:AddItem(thisItem)
-			KickReason = strings.noreason
-			thisItem:RightLabel(KickReason)
-			thisItem.Activated = function(ParentMenu,SelectedItem)
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 128 + 1)
+	ESX.TriggerServerCallback("characters:getOnlinePlayers", function(xPlayers)
+		for i,thePlayer in ipairs(xPlayers) do
+			thisPlayer = _menuPool:AddSubMenu(playermanagement,"["..thePlayer.source.."] "..GetPlayerName(GetPlayerFromServerId(thePlayer.source)) .. " | " .. thePlayer.name,"",true)
+			thePlayer = GetPlayerFromServerId(thePlayer.source)
+			thisPlayer:SetMenuWidthOffset(menuWidth)
+			-- generate specific menu stuff, dirty but it works for now
+			if permissions.kick then
+				local thisKickMenu = _menuPool:AddSubMenu(thisPlayer,strings.kickplayer,"",true)
+				thisKickMenu:SetMenuWidthOffset(menuWidth)
 				
-				while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-					Citizen.Wait( 0 )
-				end
-				
-				local result = GetOnscreenKeyboardResult()
-				
-				if result and result ~= "" then
-					KickReason = result
-					thisItem:RightLabel(result) -- this is broken for now
-				else
-					KickReason = strings.noreason
-				end
-			end
-			
-			local thisItem = NativeUI.CreateItem(strings.confirmkick,strings.confirmkickguide)
-			thisKickMenu:AddItem(thisItem)
-			thisItem.Activated = function(ParentMenu,SelectedItem)
-				if KickReason == "" then
-					KickReason = strings.noreason
-				end
-				TriggerServerEvent("EasyAdmin:kickPlayer", GetPlayerServerId( thePlayer ), KickReason)
-				BanTime = 1
-				BanReason = ""
-				_menuPool:CloseAllMenus()
-				Citizen.Wait(800)
-				GenerateMenu()
-				playermanagement:Visible(true)
-			end	
-		end
-		
-		if permissions.ban then
-			local thisBanMenu = _menuPool:AddSubMenu(thisPlayer,strings.banplayer,"",true)
-			thisBanMenu:SetMenuWidthOffset(menuWidth)
-			
-			local thisItem = NativeUI.CreateItem(strings.reason,strings.banreasonguide)
-			thisBanMenu:AddItem(thisItem)
-			BanReason = strings.noreason
-			thisItem:RightLabel(BanReason)
-			thisItem.Activated = function(ParentMenu,SelectedItem)
-				DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 128 + 1)
-				
-				while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-					Citizen.Wait( 0 )
-				end
-				
-				local result = GetOnscreenKeyboardResult()
-				
-				if result and result ~= "" then
-					BanReason = result
-					thisItem:RightLabel(result) -- this is broken for now
-				else
-					BanReason = strings.noreason
-				end
-			end
-			local bt = {}
-			for i,a in ipairs(banLength) do
-				table.insert(bt, a.label)
-			end
-			
-			local thisItem = NativeUI.CreateListItem(strings.banlength,bt, 1,strings.banlengthguide )
-			thisBanMenu:AddItem(thisItem)
-			local BanTime = 1
-			thisItem.OnListChanged = function(sender,item,index)
-				BanTime = index
-			end
-		
-			local thisItem = NativeUI.CreateItem(strings.confirmban,strings.confirmbanguide)
-			thisBanMenu:AddItem(thisItem)
-			thisItem.Activated = function(ParentMenu,SelectedItem)
-				if BanReason == "" then
-					BanReason = strings.noreason
-				end
-				TriggerServerEvent("EasyAdmin:banPlayer", GetPlayerServerId( thePlayer ), BanReason, banLength[BanTime].time, GetPlayerName( thePlayer ))
-				BanTime = 1
-				BanReason = ""
-				_menuPool:CloseAllMenus()
-				Citizen.Wait(800)
-				GenerateMenu()
-				playermanagement:Visible(true)
-			end	
-			
-		end
-		
-		if permissions.spectate then
-			local thisItem = NativeUI.CreateItem(strings.spectateplayer, "")
-			thisPlayer:AddItem(thisItem)
-			thisItem.Activated = function(ParentMenu,SelectedItem)
-				TriggerServerEvent("EasyAdmin:requestSpectate",thePlayer)
-			end
-		end
-		
-		if permissions.teleport then
-			local thisItem = NativeUI.CreateItem(strings.teleporttoplayer,"")
-			thisPlayer:AddItem(thisItem)
-			thisItem.Activated = function(ParentMenu,SelectedItem)
-				local x,y,z = table.unpack(GetEntityCoords(GetPlayerPed(thePlayer),true))
-				local heading = GetEntityHeading(GetPlayerPed(player))
-				SetEntityCoords(PlayerPedId(), x,y,z,0,0,heading, false)
-			end
-		end
-		
-		if permissions.teleport then
-			local thisItem = NativeUI.CreateItem(strings.teleportplayertome,"")
-			thisPlayer:AddItem(thisItem)
-			thisItem.Activated = function(ParentMenu,SelectedItem)
-				local px,py,pz = table.unpack(GetEntityCoords(PlayerPedId(),true))
-				TriggerServerEvent("EasyAdmin:TeleportPlayerToCoords", GetPlayerServerId(thePlayer), px,py,pz)
-			end
-		end
-		
-		if permissions.slap then
-			local thisItem = NativeUI.CreateSliderItem(strings.slapplayer, SlapAmount, 20, false, false)
-			thisPlayer:AddItem(thisItem)
-			thisItem.OnSliderSelected = function(index)
-				TriggerServerEvent("EasyAdmin:SlapPlayer", GetPlayerServerId(thePlayer), index*10)
-			end
-		end
-
-		if permissions.freeze then
-			local sl = {strings.on, strings.off}
-			local thisItem = NativeUI.CreateListItem(strings.setplayerfrozen, sl, 1)
-			thisPlayer:AddItem(thisItem)
-			thisPlayer.OnListSelect = function(sender, item, index)
-					if item == thisItem then
-							i = item:IndexToItem(index)
-							if i == strings.on then
-								TriggerServerEvent("EasyAdmin:FreezePlayer", GetPlayerServerId(thePlayer), true)
-							else
-								TriggerServerEvent("EasyAdmin:FreezePlayer", GetPlayerServerId(thePlayer), false)
-							end
+				local thisItem = NativeUI.CreateItem(strings.reason,strings.kickreasonguide)
+				thisKickMenu:AddItem(thisItem)
+				KickReason = strings.noreason
+				thisItem:RightLabel(KickReason)
+				thisItem.Activated = function(ParentMenu,SelectedItem)
+					DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 128 + 1)
+					
+					while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
+						Citizen.Wait( 0 )
 					end
+					
+					local result = GetOnscreenKeyboardResult()
+					
+					if result and result ~= "" then
+						KickReason = result
+						thisItem:RightLabel(result) -- this is broken for now
+					else
+						KickReason = strings.noreason
+					end
+				end
+				
+				local thisItem = NativeUI.CreateItem(strings.confirmkick,strings.confirmkickguide)
+				thisKickMenu:AddItem(thisItem)
+				thisItem.Activated = function(ParentMenu,SelectedItem)
+					if KickReason == "" then
+						KickReason = strings.noreason
+					end
+					TriggerServerEvent("EasyAdmin:kickPlayer", GetPlayerServerId( thePlayer ), KickReason)
+					BanTime = 1
+					BanReason = ""
+					_menuPool:CloseAllMenus()
+					Citizen.Wait(800)
+					GenerateMenu()
+					playermanagement:Visible(true)
+				end	
 			end
-		end
+			
+			if permissions.ban then
+				local thisBanMenu = _menuPool:AddSubMenu(thisPlayer,strings.banplayer,"",true)
+				thisBanMenu:SetMenuWidthOffset(menuWidth)
+				
+				local thisItem = NativeUI.CreateItem(strings.reason,strings.banreasonguide)
+				thisBanMenu:AddItem(thisItem)
+				BanReason = strings.noreason
+				thisItem:RightLabel(BanReason)
+				thisItem.Activated = function(ParentMenu,SelectedItem)
+					DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 128 + 1)
+					
+					while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
+						Citizen.Wait( 0 )
+					end
+					
+					local result = GetOnscreenKeyboardResult()
+					
+					if result and result ~= "" then
+						BanReason = result
+						thisItem:RightLabel(result) -- this is broken for now
+					else
+						BanReason = strings.noreason
+					end
+				end
+				local bt = {}
+				for i,a in ipairs(banLength) do
+					table.insert(bt, a.label)
+				end
+				
+				local thisItem = NativeUI.CreateListItem(strings.banlength,bt, 1,strings.banlengthguide )
+				thisBanMenu:AddItem(thisItem)
+				local BanTime = 1
+				thisItem.OnListChanged = function(sender,item,index)
+					BanTime = index
+				end
+			
+				local thisItem = NativeUI.CreateItem(strings.confirmban,strings.confirmbanguide)
+				thisBanMenu:AddItem(thisItem)
+				thisItem.Activated = function(ParentMenu,SelectedItem)
+					if BanReason == "" then
+						BanReason = strings.noreason
+					end
+					TriggerServerEvent("EasyAdmin:banPlayer", GetPlayerServerId( thePlayer ), BanReason, banLength[BanTime].time, GetPlayerName( thePlayer ))
+					BanTime = 1
+					BanReason = ""
+					_menuPool:CloseAllMenus()
+					Citizen.Wait(800)
+					GenerateMenu()
+					playermanagement:Visible(true)
+				end	
+				
+			end
+			
+			if permissions.spectate then
+				local thisItem = NativeUI.CreateItem(strings.spectateplayer, "")
+				thisPlayer:AddItem(thisItem)
+				thisItem.Activated = function(ParentMenu,SelectedItem)
+					TriggerServerEvent("EasyAdmin:requestSpectate",thePlayer)
+				end
+			end
+			
+			if permissions.teleport then
+				local thisItem = NativeUI.CreateItem(strings.teleporttoplayer,"")
+				thisPlayer:AddItem(thisItem)
+				thisItem.Activated = function(ParentMenu,SelectedItem)
+					local x,y,z = table.unpack(GetEntityCoords(GetPlayerPed(thePlayer),true))
+					local heading = GetEntityHeading(GetPlayerPed(player))
+					SetEntityCoords(PlayerPedId(), x,y,z,0,0,heading, false)
+				end
+			end
+			
+			if permissions.teleport then
+				local thisItem = NativeUI.CreateItem(strings.teleportplayertome,"")
+				thisPlayer:AddItem(thisItem)
+				thisItem.Activated = function(ParentMenu,SelectedItem)
+					local px,py,pz = table.unpack(GetEntityCoords(PlayerPedId(),true))
+					TriggerServerEvent("EasyAdmin:TeleportPlayerToCoords", GetPlayerServerId(thePlayer), px,py,pz)
+				end
+			end
+			
+			if permissions.slap then
+				local thisItem = NativeUI.CreateSliderItem(strings.slapplayer, SlapAmount, 20, false, false)
+				thisPlayer:AddItem(thisItem)
+				thisItem.OnSliderSelected = function(index)
+					TriggerServerEvent("EasyAdmin:SlapPlayer", GetPlayerServerId(thePlayer), index*10)
+				end
+			end
 	
-		if permissions.screenshot then
-			local thisItem = NativeUI.CreateItem(strings.takescreenshot,"")
-			thisPlayer:AddItem(thisItem)
-			thisItem.Activated = function(ParentMenu,SelectedItem)
-				TriggerServerEvent("EasyAdmin:TakeScreenshot", GetPlayerServerId(thePlayer))
+			if permissions.freeze then
+				local sl = {strings.on, strings.off}
+				local thisItem = NativeUI.CreateListItem(strings.setplayerfrozen, sl, 1)
+				thisPlayer:AddItem(thisItem)
+				thisPlayer.OnListSelect = function(sender, item, index)
+						if item == thisItem then
+								i = item:IndexToItem(index)
+								if i == strings.on then
+									TriggerServerEvent("EasyAdmin:FreezePlayer", GetPlayerServerId(thePlayer), true)
+								else
+									TriggerServerEvent("EasyAdmin:FreezePlayer", GetPlayerServerId(thePlayer), false)
+								end
+						end
+				end
 			end
-		end
 		
-		_menuPool:ControlDisablingEnabled(false)
-		_menuPool:MouseControlsEnabled(false)
-	end
+			if permissions.screenshot then
+				local thisItem = NativeUI.CreateItem(strings.takescreenshot,"")
+				thisPlayer:AddItem(thisItem)
+				thisItem.Activated = function(ParentMenu,SelectedItem)
+					TriggerServerEvent("EasyAdmin:TakeScreenshot", GetPlayerServerId(thePlayer))
+				end
+			end
+			
+			_menuPool:ControlDisablingEnabled(false)
+			_menuPool:MouseControlsEnabled(false)
+		end
+	end)
 	
 	
 	thisPlayer = _menuPool:AddSubMenu(playermanagement,strings.allplayers,"",true)
