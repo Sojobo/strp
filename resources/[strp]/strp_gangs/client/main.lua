@@ -669,7 +669,7 @@ AddEventHandler('playerSpawned', function(spawn)
         end
 
         PlayerData = ESX.GetPlayerData()
-        if Config.GangBases[PlayerData.job.name] ~= nil then
+        if PlayerData.job ~= nil and Config.GangBases[PlayerData.job.name] ~= nil then
             CurrentGang = PlayerData.job.name
             if Config.GangBases[CurrentGang].AIgroup ~= nil then
                 ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)

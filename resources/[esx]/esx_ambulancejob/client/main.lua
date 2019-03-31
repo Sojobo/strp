@@ -89,33 +89,42 @@ end)
 
 -- Disable most inputs when dead
 Citizen.CreateThread(function()
+    Citizen.Wait(1000)
 	while true do
-		Citizen.Wait(0)
+        local sleepTime = 0
 
 		if IsDead then
-			DisableAllControlActions(0)
+            DisableAllControlActions(0)
 			EnableControlAction(0, Keys['G'], true)
 			EnableControlAction(0, Keys['T'], true)
 			EnableControlAction(0, Keys['E'], true)
+			EnableControlAction(0, Keys['Y'], true)
+			EnableControlAction(1, Keys['Y'], true)
 		else
-			Citizen.Wait(500)
+			sleepTime = 500
 		end
-		for a = 1, #Config.RevivePoint do
+
+		for a = 1, #Config.RevivePoints do
 			local ped = GetPlayerPed(PlayerId())
 			local plyCoords = GetEntityCoords(ped, false)
-			local distance = Vdist(Config.RevivePoint[a].x, Config.RevivePoint[a].y, Config.RevivePoint[a].z, plyCoords.x, plyCoords.y, plyCoords.z)
+			local distance = Vdist(Config.RevivePoints[a].x, Config.RevivePoints[a].y, Config.RevivePoints[a].z, plyCoords.x, plyCoords.y, plyCoords.z)
 			if distance <= 20.0 then
-					DrawMarker(1, Config.RevivePoint[a].x, Config.RevivePoint[a].y, Config.RevivePoint[a].z - 1, 0, 0, 0, 0, 0, 0, 3.0001, 3.0001, 0.5001, 1555, 0, 0,165, 0, 0, 0,0)
-			end
-			if distance <= 5.0 then
-				-- Add Draw Text
-				if isDead then
-					if IsControlJustPressed(1, 56) then
-						TriggerServerEvent("Hospital:SelfRevive")
-					end
-				end
+                if distance <= 5.0 and IsDead then
+                    DrawGenericTextThisFrame()
+                    SetTextEntry("STRING")
+                    AddTextComponentString("Press [~b~Y~s~] to accept medical treatment for ~g~$500")
+                    DrawText(0.5, 0.7)
+
+                    if IsControlJustPressed(0, Keys['Y']) or IsControlJustPressed(1, Keys['Y']) then
+                        TriggerServerEvent("Hospital:SelfRevive")
+                    end
+                end
+                sleepTime = 0
+				DrawMarker(1, Config.RevivePoints[a].x, Config.RevivePoints[a].y, Config.RevivePoints[a].z - 1, 0, 0, 0, 0, 0, 0, 3.0001, 3.0001, 0.5001, 1555, 0, 0,165, 0, 0, 0,0)
 			end
 		end
+
+        Citizen.Wait(0)
 	end
 end)
 
