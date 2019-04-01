@@ -23,6 +23,8 @@ RegisterCommand("printsrv", function(source, args, rawCommand)
   local _source = source
   local message = args[1]
   if _source == 0 then
-    TriggerClientEvent("chatMessage", -1, "~b~" .. message)
+  	TriggerClientEvent('chatMessage', -1, "^*^1SERVER: ^r^7" .. message)
+  	-- TriggerClientEvent("chatMessage", "SERVER:", { 255, 0, 0}, message)
+    -- TriggerClientEvent("chatMessage", -1, "~b~" .. message)
   end
 end, false)
