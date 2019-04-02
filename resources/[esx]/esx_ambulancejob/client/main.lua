@@ -40,7 +40,6 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 		TriggerServerEvent('esx_ambulancejob:spawned')
 	end
 	PlayerLoaded = true
-
 end)
 
 RegisterNetEvent('esx:setJob')

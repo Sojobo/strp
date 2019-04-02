@@ -21,6 +21,7 @@ local hasAlreadyJoined = false
 local isDead = false
 local spawnedVehicles, isInShopMenu = {}, false
 local CurrentGang = nil
+local PlayerLoaded = false
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -660,12 +661,17 @@ Citizen.CreateThread(function()
 	end
 end)
 
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function(xPlayer)
+	ESX.PlayerData = xPlayer
+	PlayerLoaded = true
+end)
+
 AddEventHandler('playerSpawned', function(spawn)
 	isDead = false
-
     Citizen.CreateThread(function()
-        while ESX == nil or ESX.GetPlayerData() == nil do
-            Citizen.Wait(10)
+        while not PlayerLoaded do
+            Citizen.Wait(1000)
         end
 
         PlayerData = ESX.GetPlayerData()
