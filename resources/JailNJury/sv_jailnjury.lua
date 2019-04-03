@@ -109,7 +109,7 @@ AddEventHandler("jnj:sendToJail", function(targetPedId, jailTime, jailCharges)
     local targetPedPermId = getPlayerID(targetPedId)
     table.insert(jailedPlayers, {targetPedPermId, jailTime, jailCharges, false})
     TriggerClientEvent("jnj:sendToJail", targetPedId, {jailTime, jailCharges, false})
-    TriggerClientEvent("chatMessage", -1, "^2" .. officerName .. " ^1jailed ^2" .. targetPedName .. " ^1for ^2" .. jailTime .. " ^1minutes.")
+    TriggerClientEvent("chatMessage", -1, "^2" .. officerName .. " ^1jailed ^2" .. targetPedName .. " ^1for ^2" .. jailTime .. " ^1months.")
     log(sourcePlayer, targetPlayer, "ARRESTED FOR " .. jailTime .. " MINUTES FOR " .. jailCharges)
   end
 end)
