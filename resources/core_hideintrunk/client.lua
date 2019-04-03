@@ -67,7 +67,6 @@ Citizen.CreateThread(function()
             inside = 0
             ClearAllHelpMessages()
         end
-        Citizen.Trace(inside)
     end
 end)
 
