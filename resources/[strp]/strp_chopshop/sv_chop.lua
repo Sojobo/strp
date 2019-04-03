@@ -53,13 +53,14 @@ AddEventHandler('chopshop:chopVehicle', function(vehicleProps, model)
         if (result[1]) then
             TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Chop Shop", "That vehicle is too hot, get it out of here!", 'fas fa-car', "red")
         else
+            local payOut = shoppingList[vehicleProps.model].costs
             if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(1) then
-                TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Chop Shop", "You were paid $" .. (shoppingList[vehicleProps.model].costs + 50) .. " for chopping the vehicle, this includes a bonus for turf ownership", 'fas fa-car', "red")
-                xPlayer.addAccountMoney('black_money', (shoppingList[vehicleProps.model].costs + 50))
+                payOut = math.ceil(payOut - ((payOut/100)*20))
+                TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Chop Shop", "You were paid $" .. payOut .. " for chopping the vehicle, this includes a bonus for turf ownership", 'fas fa-car', "red")
             else
-                TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Chop Shop", "You were paid $" .. shoppingList[vehicleProps.model].costs .. " for chopping the vehicle.", 'fas fa-car', "red")
-                xPlayer.addAccountMoney('black_money', shoppingList[vehicleProps.model].costs)
+                TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Chop Shop", "You were paid $" .. payOut .. " for chopping the vehicle.", 'fas fa-car', "red")
             end
+            xPlayer.addAccountMoney('black_money', payOut)
         end
     end)
 end)
