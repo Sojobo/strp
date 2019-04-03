@@ -313,8 +313,8 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 			FreezeEntityPosition(vehicle, true)
 
 			local tprops = {}
-			tprops['color1'] = 89
-			tprops['color2'] = 1
+			tprops['color1'] = Config.GangBases[CurrentGang].color1
+			tprops['color2'] = Config.GangBases[CurrentGang].color2
 			ESX.Game.SetVehicleProperties(vehicle, tprops)
 			if data.current.livery then
 				SetVehicleModKit(vehicle, 0)
@@ -330,8 +330,8 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 		FreezeEntityPosition(vehicle, true)
 
 		local tprops = {}
-		tprops['color1'] = 89
-		tprops['color2'] = 1
+		tprops['color1'] = Config.GangBases[CurrentGang].color1
+		tprops['color2'] = Config.GangBases[CurrentGang].color2
 		ESX.Game.SetVehicleProperties(vehicle, tprops)
 		if elements[1].livery then
 			SetVehicleModKit(vehicle, 0)
@@ -578,7 +578,7 @@ Citizen.CreateThread(function()
 					local distance = GetDistanceBetweenCoords(coords, Config.GangBases[PlayerData.job.name].Armories[i], true)
 
 					if distance < Config.DrawDistance then
-						DrawMarker(21, Config.GangBases[PlayerData.job.name].Armories[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
+						DrawMarker(21, Config.GangBases[PlayerData.job.name].Armories[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, Config.GangBases[PlayerData.job.name].MarkerColor.r, Config.GangBases[PlayerData.job.name].MarkerColor.g, Config.GangBases[PlayerData.job.name].MarkerColor.b, 100, false, true, 2, true, false, false, false)
 						letSleep = false
 					end
 
@@ -591,7 +591,7 @@ Citizen.CreateThread(function()
 					local distance = GetDistanceBetweenCoords(coords, Config.GangBases[PlayerData.job.name].Vehicles[i].Spawner, true)
 
 					if distance < Config.DrawDistance then
-						DrawMarker(36, Config.GangBases[PlayerData.job.name].Vehicles[i].Spawner, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
+						DrawMarker(36, Config.GangBases[PlayerData.job.name].Vehicles[i].Spawner, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.GangBases[PlayerData.job.name].MarkerColor.r, Config.GangBases[PlayerData.job.name].MarkerColor.g, Config.GangBases[PlayerData.job.name].MarkerColor.b, 100, false, true, 2, true, false, false, false)
 						letSleep = false
 					end
 

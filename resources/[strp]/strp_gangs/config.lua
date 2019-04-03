@@ -3,22 +3,15 @@ Config                            = {}
 Config.DrawDistance               = 100.0
 Config.MarkerType                 = 1
 Config.MarkerSize                 = { x = 1.5, y = 1.5, z = 0.5 }
-Config.MarkerColor                = { r = 255, g = 255, b = 0 }
-
 Config.EnableJobBlip              = true -- enable blips for colleagues, requires esx_society
 Config.Locale                     = 'en'
 
 Config.GangBases = {
     lostmc = {
         AIgroup = "AMBIENT_GANG_LOST",
-
-		Blip = {
-			Coords  = vector3(425.1, -979.5, 30.7),
-			Sprite  = 60,
-			Display = 4,
-			Scale   = 1.2,
-			Colour  = 29
-		},
+        color1 = 1,
+        color2 = 1,
+        MarkerColor = { r = 0, g = 0, b = 0 },
 
 		Armories = {
 			vector3(972.18, -99.14, 74.84)
@@ -46,14 +39,9 @@ Config.GangBases = {
 
 	triads = {
         AIgroup = "AMBIENT_GANG_WEICHENG",
-
-		Blip = {
-			Coords  = vector3(425.1, -979.5, 30.7),
-			Sprite  = 60,
-			Display = 4,
-			Scale   = 1.2,
-			Colour  = 29
-		},
+        color1 = 1,
+        color2 = 29,
+        MarkerColor = { r = 255, g = 0, b = 0 },
 
 		Armories = {
 			vector3(-786.75, -911.74, 18.13)
@@ -83,14 +71,9 @@ Config.GangBases = {
 
 	vagos = {
         AIgroup = "AMBIENT_GANG_MEXICAN",
-
-		Blip = {
-			Coords  = vector3(425.1, -979.5, 30.7),
-			Sprite  = 60,
-			Display = 4,
-			Scale   = 1.2,
-			Colour  = 29
-		},
+        color1 = 89,
+        color2 = 1,
+        MarkerColor = { r = 255, g = 255, b = 0 },
 
 		Armories = {
 			vector3(360.70, -2043.02, 22.35)
