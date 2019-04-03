@@ -243,10 +243,17 @@ ESX.RegisterServerCallback('esx_society:getJob', function(source, cb, society)
 	cb(job)
 end)
 
+local BossRanks = {
+  ["ambulance"] = { gradeRestriction = 2 },
+  ["police"] = { gradeRestriction = 6 },
+  ["lostmc"] = { gradeRestriction = 5 },
+  ["triads"] = { gradeRestriction = 5 },
+  ["vagos"] = { gradeRestriction = 5 }
+}
 
 ESX.RegisterServerCallback('esx_society:setJob', function(source, cb, identifier, job, grade, type)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local isBoss = xPlayer.job.grade_name == 'boss'
+	local isBoss = xPlayer.job.grade >= BossRanks[xPlayer.job.name].gradeRestriction
 
 	if isBoss then
 		local xTarget = ESX.GetPlayerFromIdentifier(identifier)
