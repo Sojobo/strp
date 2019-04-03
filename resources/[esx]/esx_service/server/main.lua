@@ -52,23 +52,17 @@ AddEventHandler('esx_service:callAllInService', function(notification, name)
 end)
 
 ESX.RegisterServerCallback('esx_service:enableService', function(source, cb, name)
-    print("user: " .. source)
-    print("name: " .. name)
 	local inServiceCount = GetInServiceCount(name)
 	if MaxInService[name] == -1 then
 		InService[name][source] = true
-		print("cb1")
         cb(true, MaxInService[name], inServiceCount)
 	elseif inServiceCount >= MaxInService[name] then
-		print("cb2")
 		cb(false, MaxInService[name], inServiceCount)
 	elseif MaxInService[name] == nil then
 		InService[name][source] = true
-		print("cb3")
 		cb(true, -1, inServiceCount)
 	else
 		InService[name][source] = true
-		print("cb4")
 		cb(true, MaxInService[name], inServiceCount)
 	end
 end)

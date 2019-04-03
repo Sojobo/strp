@@ -9,7 +9,7 @@ Citizen.CreateThread(function()
         local vehicle = VehicleInFront()
 
         if IsDisabledControlPressed(0, 19) and IsDisabledControlJustReleased(1, 44) and GetVehiclePedIsIn(player, false) == 0 and ((DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle)) or (inside ~= 0 and DoesEntityExist(inside) and IsEntityAVehicle(inside))) then
-          if (GetVehicleDoorLockStatus(vehicle) ~= 1) then return end
+            if (inside > 0 and GetVehicleDoorLockStatus(inside) ~= 1) or (vehicle > 0 and GetVehicleDoorLockStatus(vehicle) ~= 1) then return end
             SetVehicleDoorOpen(vehicle, 5, false, false)
             if inside == 0 then
                 AttachEntityToEntity(player, vehicle, -1, 0.0, -2.2, 0.5, 0.0, 0.0, 0.0, false, false, false, false, 20, true)
@@ -23,7 +23,7 @@ Citizen.CreateThread(function()
                     TaskPlayAnim(player, 'timetable@floyd@cryingonbed@base', 'base', 1.0, -1, -1, 1, 0, 0, 0, 0)
                     if not (IsEntityPlayingAnim(player, 'timetable@floyd@cryingonbed@base', 'base', 3) == 1) then
                         Streaming('timetable@floyd@cryingonbed@base', function()
-                            TaskPlayAnim(playerPed, 'timetable@floyd@cryingonbed@base', 'base', 1.0, -1, -1, 49, 0, 0, 0, 0)
+                            TaskPlayAnim(player, 'timetable@floyd@cryingonbed@base', 'base', 1.0, -1, -1, 49, 0, 0, 0, 0)
                         end)
                     end
                     inside = vehicle
@@ -67,6 +67,7 @@ Citizen.CreateThread(function()
             inside = 0
             ClearAllHelpMessages()
         end
+        Citizen.Trace(inside)
     end
 end)
 

@@ -484,12 +484,3 @@ AddEventHandler('esx_ambulancejob:revive', function()
 		DoScreenFadeIn(800)
 	end)
 end)
-
--- Load unloaded IPLs
-if Config.LoadIpl then
-	Citizen.CreateThread(function()
-		LoadMpDlcMaps()
-		EnableMpDlcMaps(true)
-		RequestIpl('Coroner_Int_on') -- Morgue
-	end)
-end

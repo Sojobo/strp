@@ -56,7 +56,7 @@ Citizen.CreateThread(function()
 	while true do
 		local sleep = 1000
 
-		if not IsPedInAnyVehicle(GetPlayerPed(-1)) then
+		if not IsPedInAnyVehicle(GetPlayerPed(-1)) and not IsPedDeadOrDying(GetPlayerPed(-1)) then
 			local player, distance = ESX.Game.GetClosestPlayer()
 			local playerped = GetPlayerPed(player)
 			if distance ~= -1 and distance < 10.0 then

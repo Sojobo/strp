@@ -1593,8 +1593,8 @@ end)
 RegisterNetEvent('esx_policejob:putInVehicle')
 AddEventHandler('esx_policejob:putInVehicle', function()
 	local playerPed = PlayerPedId()
-	local coords = GetEntityCoords(playerPed)
-	if IsHandcuffed or IsPedFatallyInjured(PlayerPedId()) then
+    ClearPedTasksImmediately(playerPed)
+	if IsHandcuffed or IsPedFatallyInjured(playerPed) then
         local pos = GetEntityCoords(playerPed)
         local entityWorld = GetOffsetFromEntityInWorldCoords(playerPed, 0.0, 20.0, 0.0)
 
@@ -1602,6 +1602,18 @@ AddEventHandler('esx_policejob:putInVehicle', function()
         local a, b, c, d, vehicle = GetRaycastResult(rayHandle)
 
         if vehicle ~= nil then
+            -- DragStatus.IsDragged = false
+            -- Citizen.Trace("berfore.." .. tostring(IsEntityAttached(playerPed)))
+			-- DetachEntity(playerPed, true, false)
+            -- Citizen.Trace("between.." .. tostring(IsEntityAttached(playerPed)))
+            -- ESX.Streaming.RequestAnimDict('timetable@floyd@cryingonbed@base', function()
+            --     Citizen.Trace("almost.." .. tostring(IsEntityAttached(playerPed)))
+            --     AttachEntityToEntity(playerPed, vehicle, 11816, 0.0, -2.2, 0.5, 0.0, 0.0, 0.0, false, false, false, false, 20, true)
+            --     Citizen.Trace("after.." .. tostring(IsEntityAttached(playerPed)))
+            --     RaiseConvertibleRoof(vehicle, false)
+            --     TaskPlayAnim(playerPed, 'timetable@floyd@cryingonbed@base', 'base', 1.0, -1, -1, 49, 0, 0, 0, 0)
+            -- end)
+
             if IsAnyVehicleSeatEmpty(vehicle) then
                 for seat = 1, GetVehicleMaxNumberOfPassengers(vehicle) do
                     if (IsVehicleSeatFree(vehicle, seat)) then
