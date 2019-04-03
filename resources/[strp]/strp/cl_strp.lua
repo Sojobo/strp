@@ -296,12 +296,15 @@ Citizen.CreateThread(function()
         --    ClearPedTasksImmediately(thisPlayerPed)
         --end
 
+        local passenger = false
         if IsPedInAnyVehicle(thisPlayerPed, false) and (not IsControlPressed(1, 32) or not IsControlPressed(1, 71) or IsPedJacking(thisPlayerPed)) then -- if W (32) or Controller RT (71) is pressed, jump to drivers, else, no switching of seats. Is 32 needed here? 71 - INPUT_VEH_ACCELERATE
             local myVehicle = GetVehiclePedIsIn(thisPlayerPed, false)
             if GetPedInVehicleSeat(myVehicle, 0) == thisPlayerPed then
                 if GetIsTaskActive(thisPlayerPed, 165) then
                     SetPedIntoVehicle(thisPlayerPed, myVehicle, 0)
                 end
+            elseif GetPedInVehicleSeat(myVehicle, -1) ~= thisPlayerPed then
+                passenger = true
             end
         end
 
@@ -313,7 +316,7 @@ Citizen.CreateThread(function()
             SetPedCanSwitchWeapon(thisPlayerPed, false)
             SetPedDensityMultiplierThisFrame(0.0)
             SetVehicleDensityMultiplierThisFrame(0.0)
-        elseif IsPedFatallyInjured(thisPlayerPed) then
+        elseif IsPedFatallyInjured(thisPlayerPed) or passenger then
             SetPedDensityMultiplierThisFrame(0.0)
             SetVehicleDensityMultiplierThisFrame(0.0)
         else

@@ -1,6 +1,6 @@
 ESX                 = nil
-Jobs                = {}
-RegisteredSocieties = {}
+local Jobs                = {}
+local RegisteredSocieties = {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
@@ -243,53 +243,80 @@ ESX.RegisterServerCallback('esx_society:getJob', function(source, cb, society)
 	cb(job)
 end)
 
+local BossRanks = {
+  ["ambulance"] = { gradeRestriction = 2 },
+  ["police"] = { gradeRestriction = 6 },
+  ["lostmc"] = { gradeRestriction = 5 },
+  ["triads"] = { gradeRestriction = 5 },
+  ["vagos"] = { gradeRestriction = 5 }
+}
 
 ESX.RegisterServerCallback('esx_society:setJob', function(source, cb, identifier, job, grade, type)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local xTarget = ESX.GetPlayerFromIdentifier(identifier)
+	local isBoss = xPlayer.job.grade >= BossRanks[xPlayer.job.name].gradeRestriction
 
-	if xTarget then
-		xTarget.setJob(job, grade)
+	if isBoss then
+		local xTarget = ESX.GetPlayerFromIdentifier(identifier)
 
-		if type == 'hire' then
-			TriggerClientEvent('esx:showNotification', xTarget.source, _U('you_have_been_hired', job))
-		elseif type == 'promote' then
-			TriggerClientEvent('esx:showNotification', xTarget.source, _U('you_have_been_promoted'))
-		elseif type == 'fire' then
-			TriggerClientEvent('esx:showNotification', xTarget.source, _U('you_have_been_fired', xTarget.getJob().label))
-		end
+		if xTarget then
+			xTarget.setJob(job, grade)
 
-		cb()
-	else
-		MySQL.Async.execute('UPDATE users SET job = @job, job_grade = @job_grade WHERE identifier = @identifier', {
-			['@job']        = job,
-			['@job_grade']  = grade,
-			['@identifier'] = identifier
-		}, function(rowsChanged)
+			if type == 'hire' then
+				TriggerClientEvent('esx:showNotification', xTarget.source, _U('you_have_been_hired', job))
+			elseif type == 'promote' then
+				TriggerClientEvent('esx:showNotification', xTarget.source, _U('you_have_been_promoted'))
+			elseif type == 'fire' then
+				TriggerClientEvent('esx:showNotification', xTarget.source, _U('you_have_been_fired', xTarget.getJob().label))
+			end
+
 			cb()
-		end)
+		else
+			MySQL.Async.execute('UPDATE users SET job = @job, job_grade = @job_grade WHERE identifier = @identifier', {
+				['@job']        = job,
+				['@job_grade']  = grade,
+				['@identifier'] = identifier
+			}, function(rowsChanged)
+				cb()
+			end)
+		end
+	else
+		print(('esx_society: %s attempted to setJob'):format(xPlayer.identifier))
+		cb()
 	end
 end)
 
 ESX.RegisterServerCallback('esx_society:setJobSalary', function(source, cb, job, grade, salary)
-	MySQL.Async.execute('UPDATE job_grades SET salary = @salary WHERE job_name = @job_name AND grade = @grade', {
-		['@salary']   = salary,
-		['@job_name'] = job,
-		['@grade']    = grade
-	}, function(rowsChanged)
-		Jobs[job].grades[grade].salary = salary
-		local xPlayers = ESX.GetPlayers()
+	local isBoss = isPlayerBoss(source, job)
+	local identifier = GetPlayerIdentifier(source, 0)
 
-		for i=1, #xPlayers, 1 do
-			local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+	if isBoss then
+		if salary <= Config.MaxSalary then
+			MySQL.Async.execute('UPDATE job_grades SET salary = @salary WHERE job_name = @job_name AND grade = @grade', {
+				['@salary']   = salary,
+				['@job_name'] = job,
+				['@grade']    = grade
+			}, function(rowsChanged)
+				Jobs[job].grades[tostring(grade)].salary = salary
+				local xPlayers = ESX.GetPlayers()
 
-			if xPlayer.job.name == job and xPlayer.job.grade == grade then
-				xPlayer.setJob(job, grade)
-			end
+				for i=1, #xPlayers, 1 do
+					local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+
+					if xPlayer.job.name == job and xPlayer.job.grade == grade then
+						xPlayer.setJob(job, grade)
+					end
+				end
+
+				cb()
+			end)
+		else
+			print(('esx_society: %s attempted to setJobSalary over config limit!'):format(identifier))
+			cb()
 		end
-
+	else
+		print(('esx_society: %s attempted to setJobSalary'):format(identifier))
 		cb()
-	end)
+	end
 end)
 
 ESX.RegisterServerCallback('esx_society:getOnlinePlayersOfSocieties', function(source, cb, societyNames)

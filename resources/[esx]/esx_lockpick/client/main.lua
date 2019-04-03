@@ -75,28 +75,26 @@ AddEventHandler('esx_lockpick:onUse', function()
 
 			Citizen.CreateThread(function()
 				ThreadID = GetIdOfThisThread()
-        CurrentAction = true
-
+                CurrentAction = true
 				Citizen.Wait(Config.LockTime * 1000)
+                successOdds = math.random(Config.SuccessChance[1], Config.SuccessChance[2])
 
-        successOdds = math.random(Config.SuccessChance[1], Config.SuccessChance[2])
-
-        if successOdds ~= 1 then
-          TerminateThread(ThreadID)
-          ESX.ShowNotification(_U('lockpick_break'))
-          CurrentAction = nil
-          ClearPedTasksImmediately(playerPed)
-        end
+                if successOdds ~= 1 then
+                    TerminateThread(ThreadID)
+                    ESX.ShowNotification(_U('lockpick_break'))
+                    CurrentAction = nil
+                    ClearPedTasksImmediately(playerPed)
+                end
 
 				if CurrentAction ~= nil then
-          if doorInfo ~= false then
-            TriggerServerEvent("doorLocks:updateDoor", doorInfo, false)
-          elseif closestPlayer ~= -1 then
-            TriggerServerEvent("esx_policejob:unrestrain", GetPlayerServerId(closestPlayer))
-          elseif vehicle ~= -1 then
-            SetVehicleDoorsLocked(vehicle, 1)
-  					SetVehicleDoorsLockedForAllPlayers(vehicle, false)
-          end
+                    if doorInfo ~= false then
+                        TriggerServerEvent("doorLocks:updateDoor", doorInfo, false)
+                    elseif closestPlayer ~= -1 then
+                        TriggerServerEvent("esx_policejob:unrestrain", GetPlayerServerId(closestPlayer))
+                    elseif vehicle ~= -1 then
+                        SetVehicleDoorsLocked(vehicle, 1)
+                        SetVehicleDoorsLockedForAllPlayers(vehicle, false)
+                    end
 					ClearPedTasksImmediately(playerPed)
 					ESX.ShowNotification(_U('vehicle_unlocked'))
 				end
@@ -105,7 +103,7 @@ AddEventHandler('esx_lockpick:onUse', function()
 				TerminateThisThread()
 			end)
 		end
-  else
+    else
 		ESX.ShowNotification(_U('no_vehicle_nearby'))
 	end
 end)
