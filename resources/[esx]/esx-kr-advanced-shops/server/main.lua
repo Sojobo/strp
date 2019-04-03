@@ -541,7 +541,8 @@ AddEventHandler('esx_kr_shops-robbery:GetReward', function(id)
         })
         id = id
 
-        xPlayer.addMoney(result[1].money / Config.CutOnRobbery)
+        xPlayer.addAccountMoney('black_money', result[1].money / Config.CutOnRobbery)
+        -- xPlayer.addMoney(result[1].money / Config.CutOnRobbery)
     end)
 end)
 
