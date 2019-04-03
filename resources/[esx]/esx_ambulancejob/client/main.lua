@@ -60,7 +60,7 @@ AddEventHandler('playerSpawned', function()
 					Citizen.Wait(1000)
 				end
 
-                Citizen.Wait(1000)
+                Citizen.Wait(3000)
                 SetPedToRagdoll(PlayerPedId(), 6000, 6000, 0, 0, 0, 0)
 				SetEntityHealth(PlayerPedId(), 0)
 				-- ESX.ShowNotification(_U('combatlog_message'))
