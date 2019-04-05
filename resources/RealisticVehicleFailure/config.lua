@@ -57,23 +57,23 @@ cfg = {
 	classDamageMultiplier = {
 		[0] = 	1.0,		--	0: Compacts
 				1.0,		--	1: Sedans
-				0.95,		--	2: SUVs
+				0.80,		--	2: SUVs
 				1.0,		--	3: Coupes
 				1.0,		--	4: Muscle
 				1.0,		--	5: Sports Classics
 				1.0,		--	6: Sports
 				1.0,		--	7: Super
-				0.50,		--	8: Motorcycles
-				1.0,		--	9: Off-road
+				0.20,		--	8: Motorcycles
+				0.8,		--	9: Off-road
 				1.0,		--	10: Industrial
 				1.0,		--	11: Utility
 				1.0,		--	12: Vans
-				1.0,		--	13: Cycles
+				0.50,		--	13: Cycles
 				0.5,		--	14: Boats
 				1.0,		--	15: Helicopters
 				1.0,		--	16: Planes
 				1.0,		--	17: Service
-				0.90,		--	18: Emergency
+				0.80,		--	18: Emergency
 				0.60,		--	19: Military
 				1.0,		--	20: Commercial
 				1.0			--	21: Trains
