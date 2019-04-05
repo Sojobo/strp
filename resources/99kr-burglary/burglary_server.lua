@@ -2,20 +2,51 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-local win1 = 60  -- lottery ticket
-local win2 = 120 
-local win3 = 240
+local win1 = 100  -- lottery ticket
+local win2 = 500 
+local win3 = 800
 
 -- locales --
 local winText = "You won ~g~$"
 local ticketEmpty = "Your ticket was ~r~empty"
 -------------
 
-local prices =  {
-	["phone"] = 15,
-	["lotteryticket"] = 50,
-	["speaker"] = 50,
+local prices = {
+	["speaker"] = 25,
+	["laptop"] = 175,
+	["toothpaste"] = 2,
+	["ifruit"] = 150,
+	["oldcoin"] = 50,
+	["creditcard"] = 60,
+	["rolex"] = 200,
+	["omega"] = 200,
+	["diamondring"] = 90,
+	["ring"] = 60,
+	["sojobeans"] = 150,
+	["gpspill"] = 110,
+	["wallet"] = 120,
+	["console"] = 60,
+	["tablet"] = 40,
+	["treasuremap"] = 30,
+	["dildo"] = 5,
+	["pickledanimal"] = 150,
+	["santashat"] = 150,
+	["goldchain"] = 80,
+	["goldbracelet"] = 40,
+	["chocolate"] = 3,
+	["tabacco"] = 8,
+	["alcohol"] = 8,
+	["gamingperipherals"] = 15,
+	["passport"] = 60,
+	["rarecoin"] = 45,
+	["book"] = 5,
+	["diamond"] = 85,
+	["blurayplayer"] = 30,
+	["rareornament"] = 45,
+	["magazine"] = 4,
+	["junk"] = 1,
 }
+
 
 ESX.RegisterServerCallback('99kr-burglary:getPlayerInventory', function (source, cb)
 	local xPlayer = ESX.GetPlayerFromId(source)

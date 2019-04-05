@@ -112,7 +112,7 @@ AddEventHandler('loffe_race:countdown', function()
     Wait(1175)
     TriggerClientEvent('loffe_race:scaleform_showfreemodemessage', _source, '1', '', 0.55)
     Wait(1100)
-    TriggerClientEvent('loffe_race:scaleform_showfreemodemessage', _source, 'KÖR!', '', 0.4)
+    TriggerClientEvent('loffe_race:scaleform_showfreemodemessage', _source, 'GO!', '', 0.4)
 end)
 
 

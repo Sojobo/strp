@@ -26,10 +26,10 @@ local MenuOpened              = false
 ------------------------------------------------------
 ------------------------------------------------------
 local useQalleCameraSystem    = false       --( https://github.com/qalle-fivem/esx-qalle-camerasystem )
-local chancePoliceNoti        = 60          -- the procent police get notified (only numbers like 30, 10, 40. You get it.)
+local chancePoliceNoti        = 40          -- the percent police get notified (only numbers like 30, 10, 40. You get it.)
 local useBlip                 = true      -- if u want blip
 local useInteractSound        = false       -- if you wanna use InteractSound (when u lockpick the door)
-local cooldownTime            = 10        -- cooldown Time in minutes
+local cooldownTime            = 30        -- cooldown Time in minutes
 ------------------------------------------------------
 ------------------------------------------------------
 
@@ -57,6 +57,7 @@ local shoes = "Shoes" -- -- in menu and notification
 local youFound = "You found" -- when you steal something
 local burglaryDetected = "A burglary has been detected at" -- text 1 cops gets sent
 local sentPhoto = "We've sent you a photo of the criminal." -- if you use qalle's camerasystem this will be in the message too
+
 ---------------------------
 
 
@@ -83,7 +84,7 @@ end)
 local sellPoint = {x = 412.31, y = 314.11, z = 103.02}
 
 local burglaryPlaces = {
-    ["apartment1"] = {
+    ["Tinsel Towers Apt 42"] = {
         pos = { x = -619.28, y = 37.95, z = 43.6, h = 357.03},  -- door coords
         locked = true,
         cooldown = 0,
@@ -91,14 +92,55 @@ local burglaryPlaces = {
         animPos = { x = -619.28, y = 37.95, z = 43.6, h = 357.03 },   -- The animation position
     },
 
-    ["apartment-hillcrest-ave"] = {
+    ["apartment1-hillcrest-ave"] = {
         pos = { x = -686.12, y = 596.39, z = 143.64, h = 218.12},  -- door coords
         locked = true,
         cooldown = 0,
         inside = { x = -682.47, y = 592.81, z = 145.39, h = 81.56},  -- Inside coords
         animPos = { x = -685.64, y = 596.43, z = 143.50, h = 222.52},   -- The animation position
     },
+	
+	["apartment2-hillcrest-ave"] = {
+        pos = { x = -753.46, y = 620.40, z = 142.85, h = 104.48},  -- door coords
+        locked = true,
+        cooldown = 0,
+        inside = { x = -758.27, y = 619.08, z = 144.15, h = 106.67},  -- Inside coords
+        animPos = { x = -753.46, y = 620.40, z = 142.85, h = 104.48},   -- The animation position
+    },
+	
+	["apartment3-hillcrest-ave"] = {
+        pos = { x = -852.98, y = 695.38, z = 148.79, h = 181.07},  -- door coords
+        locked = true,
+        cooldown = 0,
+        inside = { x = -860.09, y = 691.44, z = 152.86, h = 182.15},  -- Inside coords
+        animPos = { x = -852.54, y = 695.09, z = 148.99, h = 176.50},   -- The animation position
+    },
 
+	["north-conker-ave"] = {
+        pos = { x = 374.12, y = 427.75, z = 145.80, h = 181.07},  -- door coords
+        locked = true,
+        cooldown = 0,
+        inside = { x = 373.68, y = 423.90, z = 145.91, h = 168.94},  -- Inside coords
+        animPos = { x = 373.84, y = 427.37, z = 145.48, h = 256.50},   -- The animation position
+    },
+	
+	["nspt-de-base"] = {
+        pos = { x = 291.31, y = -1078.61, z = 29.4, h = 91.78},  -- door coords
+        locked = true,
+        cooldown = 0,
+        inside = { x = 265.97, y = -1007.39, z = -101.01, h = 355.99},  -- Inside coords
+        animPos = { x = 291.78, y = -1078.61, z = 29.4, h = 91.55},   -- The animation position
+    },
+	
+	["integrity-way"] = {
+        pos = { x = -46.96, y = -584.67, z = 37.95, h = 249.16},  -- door coords
+        locked = true,
+        cooldown = 0,
+        inside = { x = -24.37, y = -597.68, z = 80.03, h = 237.79},  -- Inside coords
+        animPos = { x = -46.96, y = -584.67, z = 37.95, h = 249.16},   -- The animation position
+    },
+	
+	
     -- example to add another location --
    --[[                                     change the 000.00's
       ["name"] = {
@@ -111,18 +153,117 @@ local burglaryPlaces = {
 }
 
 local burglaryInside = {
-    --apartment1
-	["iphone X"] = { x = -601.97, y = 45.93, z = 97.40, item = 'phone', amount = math.random(0,1)},
-	["Bose Speaker"] = { x = -604.26, y = 40.90, z = 97.40, item = 'speaker', amount = math.random(0,3)},
+    --Tinsel Towers Apt 42 - $705---
+	["ifruit X1"] = { x = -601.45, y = 45.85, z = 97.40, item = 'ifruit', amount = math.random(0,1)},
+	["Broken ifruit X10"] = { x = -601.45, y = 43.62, z = 97.40, item = 'junk', amount = math.random(0,1)},
+	["Bose Speaker"] = { x = -604.26, y = 40.90, z = 97.40, item = 'speaker', amount = math.random(0,2)},
+	["Broken Wires"] = { x = -608.47, y = 40.79, z = 97.40, item = 'junk', amount = math.random(0,2)},
+	["Smashed Mirror"] = { x = -598.58, y = 49.69, z = 97.03, item = 'junk', amount = math.random(0,2)},
+	["Twix"] = { x = -598.58, y = 47.81, z = 97.11, item = 'chocolate', amount = math.random(0,3)},
 	--bedroom
-	["Samsung S10"] = { x = -593.20, y = 50.45, z = 96.50, item = 'phone', amount = math.random(0,1)},
-	["Cannabis"] = { x = -597.42, y = 52.15, z = 97.00, item = 'cannabis', amount = math.random(0,4)},
+	["9ct Diamond Ring"] = { x = -593.20, y = 50.45, z = 96.50, item = 'diamondring', amount = math.random(0,2)},
+	["Dictionary"] = { x = -597.42, y = 52.15, z = 97.00, item = 'book', amount = math.random(0,4)},
+	["HSBC Credit"] = { x = -593.20, y = 47.00, z = 96.50, item = 'creditcard', amount = math.random(0,2)},
+	["High Heels"] = { x = -595.95, y = 56.13, z = 97.0, item = 'junk', amount = math.random(0,2)},
+	--office
+	["Dell Laptop"] = { x = -625.50, y = 50.14, z = 97.50, item = 'laptop', amount = math.random(0,1)},
+	--bathroom
+	["Colgate"] = { x = -589.89, y = 52.70, z = 97.00, item = 'toothpaste', amount = math.random(0,5)},
+	 
+	 
+	--apt-hill-crest1 - $606(has lotto)---
+	["ifruit X"] = { x = -672.68, y = 581.6, z = 144.97, item = 'ifruit', amount = math.random(0,1)},
+	["Wooden Spoon"] = { x = -674.76, y = 584.88, z = 145.00, item = 'junk', amount = math.random(0,5)},
+	["Broken Skybox"] = { x = -664.40, y = 585.27, z = 144.30, item = 'junk', amount = math.random(0,2)},
+	 --kitchen
+	["Lotto1"] = { x = -675.73, y = 595.65, z = 145.38, item = 'lotteryticket', amount = math.random(0,5)},
+	["Silver Spoon"] = { x = -674.09, y = 593.43, z = 145.38, item = 'junk', amount = math.random(0,3)},
+	["Bottle of Vodka"] = { x = -673.00, y = 595.06, z = 145.38, item = 'alcohol', amount = math.random(0,2)},
+	--bedroom
+	["Asda Speaker"] = { x = -672.00, y = 581.21, z = 141.57, item = 'speaker', amount = math.random(0,3)},
+	["Natwest Credit"] = { x = -664.45, y = 584.89, z = 141.40, item = 'creditcard', amount = math.random(0,1)},
+	["Ripped Shirt"] = { x = -672.00, y = 587.6, z = 141.57, item = 'junk', amount = math.random(0,1)},
+	--bathroom
+	["18ct Diamond Ring"] = { x = -674.27, y = 595.29, z = 141.50, item = 'diamondring', amount = math.random(0,2)},
+	["Hairspray"] = { x = -673.40, y = 595.80, z = 141.50, item = 'junk', amount = math.random(0,1)},
+	--downstairs
+	["1930's Coin"] = { x = -682.05, y = 596.33, z = 137.88, item = 'oldcoin', amount = math.random(0,2)},
 	
-	 --apartment-hill-crest
-	["iphone Xs"] = { x = -672.68, y = 581.6, z = 144.97, item = 'phone', amount = math.random(0,1)},
-	["Lottery Ticket"] = { x = -675.5, y = 595.45, z = 145.38, item = 'lotteryticket', amount = math.random(0,3)},
-	["Aldi Speaker"] = { x = -672.00, y = 581.21, z = 141.57, item = 'speaker', amount = math.random(0,3)},
 	
+	--apt-hill-crest2 - $625---
+	["ifruit X2"] = { x = -768.24, y = 615.00, z = 143.33, item = 'ifruit', amount = math.random(0,1)},
+	["Broken Spoon"] = { x = -758.26, y = 611.59, z = 144.00, item = 'junk', amount = math.random(0,5)},
+	["Omega Seamaster"] = { x = -768.05, y = 608.07, z = 143.93, item = 'omega', amount = math.random(0,1)},
+	["Treasure Map"] = { x = -773.13, y = 613.82, z = 143.73, item = 'treasuremap', amount = math.random(0,3)},
+	["Sojo Beans"] = { x = -759.46, y = 609.63, z = 144.14, item = 'sojobeans', amount = math.random(0,1)},
+	["Ketchup"] = { x = -761.59, y = 613.22, z = 144.14, item = 'junk', amount = math.random(0,1)},
+	--downstairs
+	["Book of Ree"] = { x = -755.02, y = 617.38, z = 136.88, item = 'book', amount = math.random(0,1)},
+	["Cracked Ornament"] = { x = -760.85, y = 619.01, z = 136.52, item = 'junk', amount = math.random(0,1)},
+	["Broken Mouse"] = { x = -763.41, y = 613.43, z = 136.53, item = 'junk', amount = math.random(0,1)},
+	["Smashed Tablet"] = { x = -760.74, y = 614.33, z = 136.53, item = 'junk', amount = math.random(0,1)},
+	
+	
+	--apt-hill-crest3 - $631---
+	["Rusty Spoon"] = { x = -859.50, y = 675.05, z = 152.45, item = 'junk', amount = math.random(0,5)},
+	["Mars Bar"] = { x = -856.12, y = 686.08, z = 152.88, item = 'chocolate', amount = math.random(0,5)},
+	["Rare 1832's Coins"] = { x = -852.16, y = 687.18, z = 152.88, item = 'rarecoin', amount = math.random(0,1)},
+	["Bluray 100"] = { x = -851.18, y = 674.83, z = 152.45, item = 'blurayplayer', amount = math.random(0,1)},
+	--downstairs
+	["Panther Ornament"] = { x = -860.95, y = 693.26, z = 149.45, item = 'rareornament', amount = math.random(0,1)},
+	["Breath Fresh"] = { x = -853.52, y = 687.72, z = 149.07, item = 'toothpaste', amount = math.random(0,3)},
+	["9ct Ring"] = { x = -852.08, y = 687.72, z = 149.07, item = 'ring', amount = math.random(0,1)},
+	["Omega MemeMaster"] = { x = -854.72, y = 680.32, z = 149.05, item = 'omega', amount = math.random(0,1)},
+	["Pot Ornament"] = { x = -859.2, y = 695.81, z = 145.24, item = 'rareornament', amount = math.random(0,1)},
+	["Proto GPS"] = { x = -856.1, y = 699.15, z = 145.25, item = 'gpspill', amount = math.random(0,2)},
+	["Socks"] = { x = -859.53, y = 675.24, z = 148.85, item = 'junk', amount = math.random(0,2)},
+	["Broken Watch"] = { x = -851.13, y = 677.22, z = 148.85, item = 'junk', amount = math.random(0,2)},
+	
+	--corkers-ave - $ 369 (near pawnshop)---
+	["ifruit Tab"] = { x = 368.80, y = 408.21, z = 145.5, item = 'tablet', amount = math.random(0,2)},
+	["Bottle of Jack"] = { x = 368.80, y = 407.68, z = 145.5, item = 'alcohol', amount = math.random(0,2)},
+	["Book of Memes"] = { x = 373.31 , y = 426.03, z = 143.10, item = 'book', amount = math.random(0,2)},
+	["Bowl"] = { x = 377.75, y = 419.67, z = 145.9, item = 'junk', amount = math.random(0,3)},
+	--downstairs
+	["SteelSeries Headphones"] = { x = 373.35, y = 433.39, z = 138.30, item = 'gamingperipherals', amount = math.random(0,1)},
+	--bedroom
+	["Pink Thing"] = { x = 376.69, y = 404.06, z = 141.75, item = 'dildo', amount = math.random(0,1)},
+	["Amber Leaf"] = { x = 373.62, y = 412.50, z = 142.10, item = 'tobacco', amount = math.random(0,2)},
+	["Lotto2"] = { x = 368.61, y = 406.54, z = 142.10, item = 'lotteryticket', amount = math.random(0,3)},
+	["Zevas Jar of Pickled Animals"] = { x = 369.11, y = 403.36, z = 141.50, item = 'pickledanimal', amount = math.random(0,1)},
+	["Diamond"] = { x = 377.57, y = 419.12, z = 141.40, item = 'diamond', amount = math.random(0,1)},
+	
+	
+	--apt-de-base(nesr PD) - $574---
+	--bed
+	["Rolex"] = { x = 262.95, y = -1004.51, z = -98.90, item = 'rolex', amount = math.random(0,1)},
+	--main room
+	["Leather Wallet"] = { x = 266.10, y = -999.4, z = -99.01, item = 'wallet', amount = math.random(0,1)},
+	["Fake Passport"] = { x = 260.19, y = -997.11, z = -97.30, item = 'passport', amount = math.random(0,2)},
+	["Mouldy Spoon"] = { x = 266.11, y = -996.59, z = -99.01, item = 'junk', amount = math.random(0,2)},
+	["18ct Ring"] = { x = 256.90, y = -1001.49, z = -99.01, item = 'ring', amount = math.random(0,1)},
+	["FHM"] = { x = 260.42, y = -994.87, z = -99.50, item = 'magazine', amount = math.random(0,3)},
+	["Packet of RAWS"] = { x = 262.53, y = -1000.27, z = -99.30, item = 'junk', amount = math.random(0,2)},
+	["Picture Frame"] = { x = 256.00, y = -997.07, z = -98.41, item = 'junk', amount = math.random(0,3)},
+	["Ripped Clothes"] = { x = 260.68, y = -1004.6, z = -99.01, item = 'junk', amount = math.random(0,2)},
+	["Xbox One"] = { x = 263.03, y = -1002.47, z = -99.00, item = 'junk', amount = math.random(0,2)},
+	
+	--integirty-way - $530---
+	["Wires"] = { x = -19.80, y = -579.81, z = 79.24, item = 'junk', amount = math.random(0,1)},
+	["Rokkit 6"] = { x = -24.06, y = -578.50, z = 79.23, item = 'speaker', amount = math.random(0,1)},
+	--bedroom
+	["9c Ring"] = { x = -37.40, y = -583.82, z = 78.55, item = 'ring', amount = math.random(0,2)},
+	["Packet of Tissues"] = { x = -37.40, y = -583.82, z = 78.55, item = 'junk', amount = math.random(0,2)},
+	--ward
+	["Rolex Submariner"] = { x = -36.87, y = -588.90, z = 78.83, item = 'rolex', amount = math.random(0,1)},
+	--bathroom
+	["Showercap"] = { x = -40.57, y = -582.22, z = 78.0, item = 'junk', amount = math.random(0,3)},
+	["22ct Diamond Ring"] = { x = -41.40, y = -584.80, z = 78.65, item = 'junk', amount = math.random(0,2)},
+	["Remote"] = { x = -31.76, y = -583.29, z = 78.87, item = 'junk', amount = math.random(0,2)},
+	["PS4"] = { x = -22.69, y = -579.47, z = 78.80, item = 'console', amount = math.random(0,1)},
+	["Olive Oil"] = { x = -10.50, y = -584.59, z = 79.6, item = 'junk', amount = math.random(0,3)},
+	["Spices"] = { x = -13.01, y = -589.67, z = 79.43, item = 'junk', amount = math.random(0,2)},
+	["Folder of Memes"] = { x = -7.20, y = -594.15, z = 79.43, item = 'junk', amount = math.random(0,3)},
 }
 
 local closets = {
@@ -388,8 +529,8 @@ function confMenu(house)
 			title = lockpickQuestionText,
 			align = 'center',
 			elements = {
-        {label = yesText, value = 'yes'},
-        {label = noText, value = 'no'}
+                {label = yesText, value = 'yes'},
+                {label = noText, value = 'no'}
 			}
 		},
 		function(data, menu)
@@ -409,21 +550,20 @@ function confMenu(house)
           LastHouse = house
           robing = true
           Citizen.Wait(math.random(15000,30000))
-          print('snut')
           local random = math.random(0, 100)
-            if useQalleCameraSystem == true then
-              if random <= chancePoliceNoti then                           -- chance police get notified and they get a photo of you
-                TriggerEvent('skinchanger:getSkin', function(skin)
-                  TriggerServerEvent('esx-qalle-camerasystem:addWitness', skin, "Burglary")
-                  TriggerServerEvent('esx_phone:send', 'police', burglaryDetected .. ' ' .. house .. '. ' .. sentPhoto, { x = v.pos.x, y = v.pos.y, z = v.pos.z })
-                end)
-              end
-            end
-              if useQalleCameraSystem == false then
-                if random <= chancePoliceNoti then
-                  TriggerServerEvent('esx_phone:send', 'police', burglaryDetected .. ' ' .. house, { x = v.pos.x, y = v.pos.y, z = v.pos.z })
-               end
-            end
+          if random <= chancePoliceNoti then -- chance police get notified
+            local notification = {
+                subject  = 'Burglary in Progress',
+                msg      = "Reports of a burglary in progress",
+                icon = 'fas fa-headset',
+                iconStyle = 'red',
+                locationX = coords.x,
+                locationY = coords.y,
+                caller = PlayerId(),
+            }
+
+            TriggerServerEvent('esx_service:callAllInService', notification, "police")
+          end
         else 
           ESX.ShowNotification(noLockpickText)
       end
@@ -563,23 +703,28 @@ function GetHouseValues(house, pair)
     end
 end
 
-if useBlip then
-  Citizen.CreateThread(function()
-    for k,v in pairs(burglaryPlaces) do
-    local blip = AddBlipForCoord(v.pos.x, v.pos.y, v.pos.z)
-    SetBlipSprite (blip, 40)
+function AddBlip(x, y, z, sprite, color)
+	local blip = AddBlipForCoord(x, y, z)
+    SetBlipSprite (blip, sprite)
     SetBlipDisplay(blip, 4)
     SetBlipScale  (blip, 0.8)
-    SetBlipColour (blip, 39)
+    SetBlipColour (blip, color)
     SetBlipAsShortRange(blip, true)
 
     BeginTextCommandSetBlipName("STRING")
     AddTextComponentString('Burglary')
     EndTextCommandSetBlipName(blip)
+end
+
+if useBlip then
+  Citizen.CreateThread(function()
+  	AddBlip(sellPoint.x, sellPoint.y, sellPoint.z, 267, 56)
+    for k,v in pairs(burglaryPlaces) do
+    	AddBlip(v.pos.x, v.pos.y, v.pos.z, 40, 39)
     end
   end)
 end
-	 
+
 RegisterNetEvent('99kr-burglary:Sound')
 AddEventHandler('99kr-burglary:Sound', function(sound1, sound2)
   PlaySoundFrontend(-1, sound1, sound2)
