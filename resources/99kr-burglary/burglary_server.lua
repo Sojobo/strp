@@ -63,7 +63,7 @@ AddEventHandler('99kr-burglary:sellItems', function (itemName, count, price)
 	if count > 0 then
 		xPlayer.removeInventoryItem(itemName, count)
 		xPlayer.addMoney(price*count)
-		TriggerClientEvent('esx:showNotification', _source, 'You have sold' .. itemName ..  ' ' .. count)
+		TriggerClientEvent('esx:showNotification', _source, 'You have sold ' .. itemName ..  ' ' .. count)
 	else
 		TriggerClientEvent('esx:showNotification', _source, "Invalid Quantity")
 	end
