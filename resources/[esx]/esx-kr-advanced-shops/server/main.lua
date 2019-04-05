@@ -478,21 +478,6 @@ ESX.RegisterServerCallback('esx_kr_shop:getUnBoughtShops', function(source, cb)
     end)
 end)
 
-ESX.RegisterServerCallback('esx_kr_shop-robbery:getOnlinePolices', function(source, cb)
-  local _source  = source
-  local xPlayers = ESX.GetPlayers()
-  local cops = 0
-
-    for i=1, #xPlayers, 1 do
-        local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-        if xPlayer.job.name == 'police' then
-            cops = cops + 1
-        end
-    end
-    Wait(25)
-    cb(cops)
-end)
-
 ESX.RegisterServerCallback('esx_kr_shop-robbery:getUpdates', function(source, cb, id)
 
     MySQL.Async.fetchAll(

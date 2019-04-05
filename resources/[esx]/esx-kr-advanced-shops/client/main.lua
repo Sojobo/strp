@@ -834,13 +834,10 @@ function Robbery(id)
         [20] = {x = 1736.13, y = 6419.39, z = 34.95, heading = 247.6},
     }
 
-    -- TriggerServerEvent('esx_kr_shops:UpdateCurrentShop', id)
-
-        ESX.TriggerServerCallback('esx_kr_shop-robbery:getUpdates', function(result)
-		ESX.TriggerServerCallback('esx_kr_shop-robbery:getOnlinePolices', function(results)
-
+    ESX.TriggerServerCallback('esx_kr_shop-robbery:getUpdates', function(result)
+        ESX.TriggerServerCallback("esx_service:getInServiceList", function(cops)
 			if result.cb ~= nil then
-				if results >= Config.RequiredPolices then
+				if cops >= Config.RequiredPolices then
                 TriggerServerEvent('esx_kr_shops-robbery:UpdateCanRob', id)
                 
                     local coords = {
@@ -848,20 +845,20 @@ function Robbery(id)
                         y = coords1[id].y,
                         z = coords1[id].z - 1,
 					}
-                        local notification = {
-                            subject  = 'Robbery in Progress',
-                            msg      = "Shop robbery at the " .. result.name .. " shop",
-                            icon = 'fas fa-headset',
-                            iconStyle = 'red',
-                            locationX = coords.x,
-                            locationY = coords.y,
-                            caller = PlayerId(),
-                        }
+                    local notification = {
+                        subject  = 'Robbery in Progress',
+                        msg      = "Shop robbery at the " .. result.name .. " shop",
+                        icon = 'fas fa-headset',
+                        iconStyle = 'red',
+                        locationX = coords.x,
+                        locationY = coords.y,
+                        caller = PlayerId(),
+                    }
 
-                        TriggerServerEvent('esx_service:callAllInService', notification, "police")
-						TriggerServerEvent('esx_kr_shops-robbery:NotifyOwner', "~r~Your store ~b~(" .. result.name .. ')~r~ is under robbery', id)
-						
-						ESX.Game.SpawnObject(1089807209, coords, function(safe)
+                    TriggerServerEvent('esx_service:callAllInService', notification, "police")
+                    TriggerServerEvent('esx_kr_shops-robbery:NotifyOwner', "~r~Your store ~b~(" .. result.name .. ')~r~ is under robbery', id)
+
+					ESX.Game.SpawnObject(1089807209, coords, function(safe)
 						SetEntityHeading(safe, coords1[id].heading)
 						FreezeEntityPosition(safe, true)
 
@@ -871,14 +868,14 @@ function Robbery(id)
 						Id = id
 						Coordss = coords
 						Name = result.name
-						end)
+					end)
                 else
 					ESX.ShowNotification("There are not enough police officers online")
 				end
 			else
 				ESX.ShowNotification("This shop has already been robbed, please wait " ..  math.floor((Config.TimeBetweenRobberies - result.time)  / 60) .. ' minutes')
 			end
-		end)
+		end, 'police')
 	end, id)
 end
 
