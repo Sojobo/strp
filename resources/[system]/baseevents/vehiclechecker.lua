@@ -143,10 +143,12 @@ Citizen.CreateThread(function()
 
                 if not vehicleBanned then
                     isEnteringVehicle = true
+                    DisplayRadar(true)
                     TriggerServerEvent('baseevents:enteringVehicle', vehicle, seat, GetDisplayNameFromVehicleModel(GetEntityModel(vehicle)), netId)
                 end
 			elseif not DoesEntityExist(GetVehiclePedIsTryingToEnter(ped)) and not IsPedInAnyVehicle(ped, true) and isEnteringVehicle then
 				-- vehicle entering aborted
+                DisplayRadar(false)
 				TriggerServerEvent('baseevents:enteringAborted')
 				isEnteringVehicle = false
 			elseif IsPedInAnyVehicle(ped, false) then
@@ -173,6 +175,7 @@ Citizen.CreateThread(function()
                 end
 
                 if not vehicleBanned then
+                    DisplayRadar(true)
 				    TriggerServerEvent('baseevents:enteredVehicle', currentVehicle, currentSeat, GetDisplayNameFromVehicleModel(GetEntityModel(currentVehicle)), netId)
                 end
             end
@@ -182,6 +185,7 @@ Citizen.CreateThread(function()
 				local model = GetEntityModel(currentVehicle)
 				local name = GetDisplayNameFromVehicleModel()
 				local netId = VehToNet(currentVehicle)
+                DisplayRadar(false)
 				TriggerServerEvent('baseevents:leftVehicle', currentVehicle, currentSeat, GetDisplayNameFromVehicleModel(GetEntityModel(currentVehicle)), netId)
 				isInVehicle = false
 				currentVehicle = 0

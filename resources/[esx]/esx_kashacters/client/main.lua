@@ -20,7 +20,7 @@ Citizen.CreateThread(function ()
         Citizen.Wait(0)
         if IsChoosing then
             DisplayHud(false)
-            DisplayRadar(false)
+            -- DisplayRadar(false)
         end
     end
 end)
@@ -79,7 +79,7 @@ AddEventHandler('kashactersC:SpawnCharacter', function(spawn)
     DestroyCam(cam, true)
     IsChoosing = false
     DisplayHud(true)
-    DisplayRadar(true)
+    -- DisplayRadar(true)
 end)
 
 
