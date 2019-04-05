@@ -449,19 +449,19 @@ Config.Menus = {
 	upgrades = {
 		label			= _U('upgrades'),
 		parent			= 'main',
-		modEngine		= _U('engine'),
+		-- modEngine		= _U('engine'),
 		modBrakes		= _U('brakes'),
 		modTransmission	= _U('transmission'),
 		modSuspension	= _U('suspension'),
-		--modArmor		= _U('armor'),
+		-- modArmor		= _U('armor'),
 		modTurbo		= _U('turbo')
 	},
-	modEngine = {
-		label = _U('engine'),
-		parent = 'upgrades',
-		modType = 11,
-		price = {13.95, 32.56, 65.12, 139.53}
-	},
+	-- modEngine = {
+	-- 	label = _U('engine'),
+	-- 	parent = 'upgrades',
+	-- 	modType = 11,
+	-- 	price = {13.95, 32.56, 65.12, 139.53}
+	-- },
 	modBrakes = {
 		label = _U('brakes'),
 		parent = 'upgrades',
