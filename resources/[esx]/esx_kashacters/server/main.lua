@@ -9,6 +9,7 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local IdentifierTables = {
     {table = "users", column = "identifier"},
+    {table = "billing", column = "identifier"},
     {table = "owned_vehicles", column = "owner"},
     {table = "user_accounts", column = "identifier"},
     {table = "playerstattoos", column = "identifier"},
