@@ -552,6 +552,8 @@ function confMenu(house)
           Citizen.Wait(math.random(15000,30000))
           local random = math.random(0, 100)
           if random <= chancePoliceNoti then -- chance police get notified
+            local playerPed = PlayerPedId()
+	        local coords = GetEntityCoords(playerPed)
             local notification = {
                 subject  = 'Burglary in Progress',
                 msg      = "Reports of a burglary in progress",
