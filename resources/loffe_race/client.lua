@@ -247,10 +247,6 @@ Citizen.CreateThread(function()
     end
 end)
 
-RegisterCommand("test_loffe", function(source, args)
-    TriggerServerEvent('loffe_race:ready_online_race', 'hej')
-end, false)
-
 Citizen.CreateThread(function()
     while true do
         Wait(0)
