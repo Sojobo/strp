@@ -615,9 +615,9 @@ end
 
 
 function HouseBreak(house)
-  local v = GetHouseValues(house, burglaryPlaces)
-  local playerPed = PlayerPedId()
-  fade()
+    local v = GetHouseValues(house, burglaryPlaces)
+    local playerPed = PlayerPedId()
+    fade()
     DoingBreak = true
     FreezeEntityPosition(playerPed, true)
     SetEntityCoords(playerPed, v.animPos.x, v.animPos.y, v.animPos.z - 0.98)
@@ -625,7 +625,7 @@ function HouseBreak(house)
     loaddict("mini@safe_cracking")
     TaskPlayAnim(playerPed, "mini@safe_cracking", "idle_base", 3.5, -8, -1, 2, 0, 0, 0, 0, 0)
     if useInteractSound then
-    TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'lockpick', 0.7)
+        TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 3.0, 'lockpick', 0.7)
     end
     procent(70)
     TriggerServerEvent('99kr-burglary:Remove', 'lockpick', 1)

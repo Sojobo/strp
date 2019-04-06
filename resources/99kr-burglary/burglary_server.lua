@@ -93,9 +93,8 @@ AddEventHandler('99kr-burglary:Remove', function(item, qtty)
 	local xPlayer = ESX.GetPlayerFromId(src)
     local xItem = xPlayer.getInventoryItem(item)
 
-	if xItem.count < amount then
+	if xItem.count < qtty then
 		TriggerClientEvent('esx:showNotification', src, "You don't have enough of that item")
-		return
 	else
 	    xPlayer.removeInventoryItem(item, qtty)
     end
