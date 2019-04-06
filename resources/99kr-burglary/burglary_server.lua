@@ -104,30 +104,24 @@ end)
 ESX.RegisterUsableItem('lotteryticket', function(source)
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
-	local rndm = math.random(1,11)
+	local rndm = math.random(1,25)
 	xPlayer.removeInventoryItem('lotteryticket', 1)
 
 	if rndm == 1 then              -- WIN 1
 		xPlayer.addMoney(win1)
 		TriggerClientEvent('99kr-burglary:Sound', src, "LOCAL_PLYR_CASH_COUNTER_COMPLETE", "DLC_HEISTS_GENERAL_FRONTEND_SOUNDS")
-		TriggerClientEvent('esx:showNotification', src, winText .. win1)
-	end
-
-	if rndm == 2 then              -- WIN 2
+		TriggerClientEvent('esx:showAdvancedNotification', src, "Lottery Results", 'That\'s a winning ticket! You get $' .. win1, 'fas fa-splotch', "green")
+	elseif rndm == 2 or rndm == 3 then              -- WIN 2
 		xPlayer.addMoney(win2)
 		TriggerClientEvent('99kr-burglary:Sound', src, "LOCAL_PLYR_CASH_COUNTER_COMPLETE", "DLC_HEISTS_GENERAL_FRONTEND_SOUNDS")
-		TriggerClientEvent('esx:showNotification', src, winText .. win2)
-	end
-
-	if rndm == 3 then              -- WIN 3
+		TriggerClientEvent('esx:showAdvancedNotification', src, "Lottery Results", 'That\'s a winning ticket! You get $' .. win2, 'fas fa-splotch', "green")
+	elseif rndm < 6 then              -- WIN 3
 		xPlayer.addMoney(win3)
 		TriggerClientEvent('99kr-burglary:Sound', src, "LOCAL_PLYR_CASH_COUNTER_COMPLETE", "DLC_HEISTS_GENERAL_FRONTEND_SOUNDS")
-		TriggerClientEvent('esx:showNotification', src, winText .. win3)
-	end
-
-	if rndm >= 4 then
+		TriggerClientEvent('esx:showAdvancedNotification', src, "Lottery Results", 'That\'s a winning ticket! You get $' .. win3, 'fas fa-splotch', "green")
+	else
 		TriggerClientEvent('99kr-burglary:Sound', src, "NO", "HUD_FRONTEND_DEFAULT_SOUNDSET")
-		TriggerClientEvent('esx:showNotification', src, ticketEmpty)
+		TriggerClientEvent('esx:showAdvancedNotification', src, "Lottery Results", "This ticket's not a winner, it's worthless.", 'fas fa-splotch', "red")
 	end
 
 end)

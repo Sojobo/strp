@@ -495,7 +495,7 @@ function SellItems()
       local itemName = data.current.value
 
       ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'stocks_menu_put_item_count', {
-        title = "Amout"
+        title = "Amount"
       }, function (data2, menu2)
         local count = tonumber(data2.value)
 
