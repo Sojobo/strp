@@ -584,16 +584,15 @@ function steal(k)
     TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_BUM_BIN", 0, true)
     Citizen.Wait(2000)
     procent(50)
+
+    local amnt = 1
     if values.amount >= 2 then
-      local rndm = math.random(1,2)
-      TriggerServerEvent('99kr-burglary:Add', values.item, rndm)
-        ESX.ShowNotification( youFound .. ' ' .. rndm  .. ' ' .. k)
-        values.amount = values.amount - rndm
-    else
-      TriggerServerEvent('99kr-burglary:Add', values.item, 1)
-        ESX.ShowNotification(youFound .. ' 1 ' .. k)
-        values.amount = values.amount - 1
+        local amnt = math.random(1,2)
     end
+
+    TriggerServerEvent('99kr-burglary:Add', values.item, amnt, k)
+    values.amount = values.amount - amnt
+
     ClearPedTasks(playerPed)
     FreezeEntityPosition(playerPed, false)
     stealing = false
@@ -727,5 +726,5 @@ end
 
 RegisterNetEvent('99kr-burglary:Sound')
 AddEventHandler('99kr-burglary:Sound', function(sound1, sound2)
-  PlaySoundFrontend(-1, sound1, sound2)
+    PlaySoundFrontend(-1, sound1, sound2)
 end)

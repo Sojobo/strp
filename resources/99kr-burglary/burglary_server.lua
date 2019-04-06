@@ -59,8 +59,11 @@ RegisterServerEvent('99kr-burglary:sellItems')
 AddEventHandler('99kr-burglary:sellItems', function (itemName, count, price)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+    local xItem = xPlayer.getInventoryItem(itemName)
 
-	if count > 0 then
+    if count > xItem.count then
+        TriggerClientEvent('esx:showNotification', _source, "You don't have enough of that item")
+	elseif count > 0 then
 		xPlayer.removeInventoryItem(itemName, count)
 		xPlayer.addMoney(price*count)
 		TriggerClientEvent('esx:showNotification', _source, 'You have sold ' .. itemName ..  ' ' .. count)
@@ -70,17 +73,32 @@ AddEventHandler('99kr-burglary:sellItems', function (itemName, count, price)
 end)
 
 RegisterServerEvent('99kr-burglary:Add')
-AddEventHandler('99kr-burglary:Add', function(item, qtty)
+AddEventHandler('99kr-burglary:Add', function(item, qtty, iname)
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
-	xPlayer.addInventoryItem(item, qtty)
+    local xInventoryWeight = xPlayer.getInventoryWeight()
+	local xInventorylimit = xPlayer.getInventoryWeightMax()
+
+    if xInventoryWeight + qtty > xInventorylimit then
+        TriggerClientEvent('esx:showNotification', src, "You're carrying too much")
+    else
+        TriggerClientEvent('esx:showNotification', src, "You found " .. qtty .. " " .. iname)
+        xPlayer.addInventoryItem(item, qtty)
+    end
 end)
 
 RegisterServerEvent('99kr-burglary:Remove')
 AddEventHandler('99kr-burglary:Remove', function(item, qtty)
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
-	xPlayer.removeInventoryItem(item, qtty)
+    local xItem = xPlayer.getInventoryItem(item)
+
+	if xItem.count < amount then
+		TriggerClientEvent('esx:showNotification', src, "You don't have enough of that item")
+		return
+	else
+	    xPlayer.removeInventoryItem(item, qtty)
+    end
 end)
 
 ESX.RegisterUsableItem('lotteryticket', function(source)
