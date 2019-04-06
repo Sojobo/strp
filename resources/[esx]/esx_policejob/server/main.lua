@@ -92,7 +92,7 @@ end)
 
 RegisterServerEvent('esx_policejob:OutVehicle')
 AddEventHandler('esx_policejob:OutVehicle', function(target)
-	local xPlayer = ESX.GetPlayerFromId(source)
+	-- local xPlayer = ESX.GetPlayerFromId(source)
 
 	-- if xPlayer.job.name == 'police' then
 		TriggerClientEvent('esx_policejob:OutVehicle', target)

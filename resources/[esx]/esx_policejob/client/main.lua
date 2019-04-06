@@ -1628,14 +1628,54 @@ end)
 
 RegisterNetEvent('esx_policejob:OutVehicle')
 AddEventHandler('esx_policejob:OutVehicle', function()
-	local playerPed = PlayerPedId()
+    Citizen.CreateThread(function()
+        -- Experimental RemoveFromVehicle --
+        local directions = { [0] = 'N', [45] = 'NW', [90] = 'W', [135] = 'SW', [180] = 'S', [225] = 'SE', [270] = 'E', [315] = 'NE', [360] = 'N', } 
+        local changePosY = 0
+        local changePosX = 0
 
-	if not IsPedSittingInAnyVehicle(playerPed) then
-		return
-	end
+        for k,v in pairs(directions)do
+                    direction = GetEntityHeading(GetPlayerPed(-1))
+                    if(math.abs(direction - k) < 22.5)then
+                        direction = v
+                        break;
+                    end
+        end
 
-	local vehicle = GetVehiclePedIsIn(playerPed, false)
-	TaskLeaveVehicle(playerPed, vehicle, 16)
+        if (direction) then
+            if (direction == "N" or direction == "S") then
+                changePosX = -2
+            elseif (direction == "W" or direction == "E") then
+                changePosY = -2
+            elseif (direction == "NW" or direction == "SE") then
+                changePosX = -2
+                changePosY = -1
+            elseif (direction == "SW" or direction == "NE") then
+                changePosX = 2
+                changePosY = 1
+            else
+                changePosX = 2
+                changePosY = 2
+            end
+        end
+
+        -- End Experimental --
+
+        local ped = GetPlayerPed(-1)
+        local pos = GetEntityCoords(ped, true)
+        
+        local posX = pos.x + changePosX
+        local PosY = pos.y + changePosY
+
+        RequestCollisionAtCoord(posX, PosY, pos.z)
+        
+        while not HasCollisionLoadedAroundEntity(ped) do
+            RequestCollisionAtCoord(posX, PosY, pos.z)
+            Citizen.Wait(0)
+        end
+
+        SetEntityCoords(ped, posX, PosY, pos.z)
+    end)
 end)
 
 -- Handcuff
