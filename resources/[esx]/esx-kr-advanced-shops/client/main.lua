@@ -837,7 +837,7 @@ function Robbery(id)
     ESX.TriggerServerCallback('esx_kr_shop-robbery:getUpdates', function(result)
         ESX.TriggerServerCallback("esx_service:getInServiceList", function(cops)
 			if result.cb ~= nil then
-				if cops >= Config.RequiredPolices then
+				if #cops >= Config.RequiredPolices then
                 TriggerServerEvent('esx_kr_shops-robbery:UpdateCanRob', id)
                 
                     local coords = {
