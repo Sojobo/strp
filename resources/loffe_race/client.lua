@@ -77,13 +77,13 @@ end)
 
 RegisterNetEvent('loffe_race:end_race_cl')
 AddEventHandler('loffe_race:end_race_cl', function()
-    if in_online_race ~= false then
-        TriggerServerEvent('loffe_race:end_online_race', in_online_race)
-    end
+    -- if in_online_race ~= false then
+    --     TriggerServerEvent('loffe_race:end_online_race', in_online_race)
+    -- end
 end)
 
 RegisterNetEvent('loffe_race:start_online_race')
-AddEventHandler('loffe_race:start_online_race', function(_race, position)
+AddEventHandler('loffe_race:start_online_race', function(_race, position, players)
     local race = _race
     TriggerServerEvent('loffe_race:not_ready_online_race', race)
     in_online_race = race
@@ -140,7 +140,7 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position)
 
     Wait(150)
 
-    for i=1, Config.OnlineRace[race].Players do
+    for i=1, players do
         table.insert(online_race_leaderboard, {[race] = {[i] = {checkpoint = 0}}})
     end
 
@@ -175,7 +175,7 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position)
 
         drawTxt('You: checkpoint ' .. online_race_leaderboard[position][race][position].checkpoint, 0.07, 0.28, 0.4)
         local txt_position = 0.32
-        for i=1, Config.OnlineRace[race].Players do
+        for i=1, players do
             if i ~= position then
                 drawTxt('Opponents ' .. i .. ': checkpoint ' .. online_race_leaderboard[i][race][i].checkpoint, 0.07, txt_position, 0.3)
                 txt_position = txt_position + 0.04
@@ -196,11 +196,11 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position)
 
         local coords = GetEntityCoords(PlayerPedId())
 
-        if not IsPedInAnyVehicle(PlayerPedId(), false) then
-            DeleteCheckpoint(CheckPoint)
-            fail_reason = 'fall_off'
-            isRacing = false
-        end
+        -- if not IsPedInAnyVehicle(PlayerPedId(), false) then
+        --     DeleteCheckpoint(CheckPoint)
+        --     fail_reason = 'fall_off'
+        --     isRacing = false
+        -- end
 
         if GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true) < 8.0 then
             currentCheckpoint = currentCheckpoint + 1
@@ -211,16 +211,9 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position)
             PlaySoundFrontend(-1, "RACE_PLACED", "HUD_AWARDS")
         end        
     end
-    if online_race_leaderboard[position][race][position].checkpoint == Config.OnlineRace[race].NumberOfZones then
-        ESX.ShowNotification('Congratulation! You ~g~won~s~!')
-        TriggerServerEvent('loffe_race:end_online_race', race)
-    elseif fail_reason == 'fall_off' then
-        ESX.ShowNotification('Bad luck! You left the vehicle!')
-        TriggerServerEvent('loffe_race:end_online_race', race)
-    else
-        ESX.ShowNotification('Bad luck! You ~r~lose~s~!')
-        TriggerServerEvent('loffe_race:end_online_race', race)
-    end
+
+    TriggerServerEvent('loffe_race:end_online_race', race, online_race_leaderboard[position][race][position].checkpoint)
+
     for i=1, #blips do
         if DoesBlipExist(blips[i][i].Blip) then
             RemoveBlip(blips[i][i].Blip)
@@ -230,7 +223,6 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position)
     if Config.OnlineRace[race].Type == 'event' then
         SetEntityAsMissionEntity(playerVehicle, true, true)
         DeleteVehicle(playerVehicle)
-        print('hej')
         if Config.TPBack then
             SetEntityCoords(pP, Config.OnlineRace[race].Start.x, Config.OnlineRace[race].Start.y, Config.OnlineRace[race].Start.z)
         end
@@ -503,12 +495,12 @@ function startNPCRace(number)
             end
             PlaySoundFrontend(-1, "RACE_PLACED", "HUD_AWARDS")
         end        
-        if not IsPedInAnyVehicle(PlayerPedId(), false) then
-            DeleteVehicle(playerVehicle)
-            DeleteCheckpoint(CheckPoint)
-            position = 'falled_off'
-            currentCheckpoint = Config.OnlineRace[number].NumberOfZones
-        end
+        -- if not IsPedInAnyVehicle(PlayerPedId(), false) then
+        --     DeleteVehicle(playerVehicle)
+        --     DeleteCheckpoint(CheckPoint)
+        --     position = 'falled_off'
+        --     currentCheckpoint = Config.OnlineRace[number].NumberOfZones
+        -- end
     end
     for i=1, 4 do
         Wait(5)
