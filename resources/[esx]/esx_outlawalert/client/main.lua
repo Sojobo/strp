@@ -26,9 +26,20 @@ AddEventHandler('esx:setJob', function(job)
 end)
 
 RegisterNetEvent('esx_outlawalert:outlawNotify')
-AddEventHandler('esx_outlawalert:outlawNotify', function(alert, job)
-	if isPlayerWhitelisted(job) then
-		ESX.ShowNotification(alert)
+AddEventHandler('esx_outlawalert:outlawNotify', function(alert, targetCoords)
+	if isPlayerWhitelisted("police") then
+        local notification = {
+            subject  = "Crime Reported",
+            msg      = alert,
+            icon = 'fas fa-headset',
+            iconStyle = 'red',
+            locationX = targetCoords.x,
+            locationY = targetCoords.y,
+            caller = PlayerId(),
+        }
+
+        TriggerServerEvent('esx_service:callAllInService', notification, "police")
+		-- ESX.ShowNotification(alert)
 	end
 end)
 

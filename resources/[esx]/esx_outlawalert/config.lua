@@ -33,4 +33,4 @@ Config.BlipJackingTime = 18
 Config.BlipJackingRadius = 50.0
 
 -- Show notification when cops steal too?
-Config.ShowCopsMisbehave = true
+Config.ShowCopsMisbehave = false
