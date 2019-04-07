@@ -54,15 +54,18 @@ ESX.RegisterServerCallback('esx_outlawalert:isVehicleOwner', function(source, cb
 end)
 
 function sendEmergencyCall(source, alert, targetCoords)
-    local notification = {
-        subject  = "Crime Reported",
-        msg      = alert,
-        icon = 'fas fa-headset',
-        iconStyle = 'red',
-        locationX = targetCoords.x,
-        locationY = targetCoords.y,
-        caller = source,
-    }
+    local rn = math.random(1, 5)
+    if (rn == 1) then
+        local notification = {
+            subject  = "Crime Reported",
+            msg      = alert,
+            icon = 'fas fa-headset',
+            iconStyle = 'red',
+            locationX = targetCoords.x,
+            locationY = targetCoords.y,
+            caller = source,
+        }
 
-    TriggerEvent('esx_service:callAllInService', notification, "police")
+        TriggerEvent('esx_service:callAllInService', notification, "police")
+    end
 end
