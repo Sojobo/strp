@@ -22,7 +22,7 @@ AddEventHandler('esx_outlawalert:combatInProgress', function(targetCoords, stree
 		playerGender = _U('female')
 	end
 
-    sendEmergencyCall(source, _U('combat', playerGender, vehicleLabel, streetName), targetCoords)
+    sendEmergencyCall(source, _U('combat', playerGender, streetName), targetCoords)
 	TriggerClientEvent('esx_outlawalert:combatInProgress', -1, targetCoords)
 end)
 
@@ -34,7 +34,7 @@ AddEventHandler('esx_outlawalert:gunshotInProgress', function(targetCoords, stre
 		playerGender = _U('female')
 	end
 
-    sendEmergencyCall(source, _U('gunshot', playerGender, vehicleLabel, streetName), targetCoords)
+    sendEmergencyCall(source, _U('gunshot', playerGender, streetName), targetCoords)
 	TriggerClientEvent('esx_outlawalert:gunshotInProgress', -1, targetCoords)
 end)
 
