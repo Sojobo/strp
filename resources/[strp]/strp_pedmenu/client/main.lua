@@ -97,7 +97,7 @@ function Start(player, ped)
 			end
 		end
 
-        if not (IsEntityPlayingAnim(ped, "mp_arresting", "idle", 3) or IsPedDeadOrDying(ped) or distance < 7.5) then
+        if IsEntityPlayingAnim(ped, "mp_arresting", "idle", 3) or IsPedDeadOrDying(ped) or distance > 7.5 then
 			checking = false
 		end
 
