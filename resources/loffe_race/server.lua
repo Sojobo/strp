@@ -29,8 +29,9 @@ AddEventHandler('loffe_race:end_online_race', function(race, checkpoint)
     local xPlayer = ESX.GetPlayerFromId(_source)
 
     if checkpoint == Config.OnlineRace[race].NumberOfZones then
-        TriggerClientEvent('esx:showAdvancedNotification', _source, "Street Race", "You won first place, congratulations!", 'fas fa-trophy', "green")
-        xPlayer.addMoney(readyRaces[race].P * 175)
+        local prizeAmount = readyRaces[race].P * 175
+        TriggerClientEvent('esx:showAdvancedNotification', _source, "Street Race", "You won $" .. prizeAmount .. " for first place, congratulations!", 'fas fa-trophy', "green")
+        xPlayer.addMoney(prizeAmount)
     else
         TriggerClientEvent('esx:showAdvancedNotification', _source, "Street Race", "The race is over, you lost!", 'fas fa-car', "red")
     end
