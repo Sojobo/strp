@@ -10,7 +10,7 @@ AddEventHandler('esx_outlawalert:carJackInProgress', function(targetCoords, stre
 		playerGender = _U('female')
 	end
 
-	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('carjack', playerGender, vehicleLabel, streetName), targetCoords)
+    sendEmergencyCall(_U('carjack', playerGender, vehicleLabel, streetName), targetCoords)
 	TriggerClientEvent('esx_outlawalert:carJackInProgress', -1, targetCoords)
 end)
 
@@ -22,7 +22,7 @@ AddEventHandler('esx_outlawalert:combatInProgress', function(targetCoords, stree
 		playerGender = _U('female')
 	end
 
-	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('combat', playerGender, streetName), targetCoords)
+    sendEmergencyCall(_U('combat', playerGender, vehicleLabel, streetName), targetCoords)
 	TriggerClientEvent('esx_outlawalert:combatInProgress', -1, targetCoords)
 end)
 
@@ -34,7 +34,7 @@ AddEventHandler('esx_outlawalert:gunshotInProgress', function(targetCoords, stre
 		playerGender = _U('female')
 	end
 
-	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('gunshot', playerGender, streetName), targetCoords)
+    sendEmergencyCall(_U('gunshot', playerGender, vehicleLabel, streetName), targetCoords)
 	TriggerClientEvent('esx_outlawalert:gunshotInProgress', -1, targetCoords)
 end)
 
@@ -52,3 +52,17 @@ ESX.RegisterServerCallback('esx_outlawalert:isVehicleOwner', function(source, cb
 		end
 	end)
 end)
+
+function sendEmergencyCall(alert, targetCoords)
+    local notification = {
+        subject  = "Crime Reported",
+        msg      = alert,
+        icon = 'fas fa-headset',
+        iconStyle = 'red',
+        locationX = targetCoords.x,
+        locationY = targetCoords.y,
+        caller = PlayerId(),
+    }
+
+    TriggerEvent('esx_service:callAllInService', notification, "police")
+end
