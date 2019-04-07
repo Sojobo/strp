@@ -209,6 +209,19 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position, player
             if currentCheckpoint < Config.OnlineRace[race].NumberOfZones then
             end
             PlaySoundFrontend(-1, "RACE_PLACED", "HUD_AWARDS")
+
+            if (math.random(1,10) == 1) then -- 10% chance of CAD alert
+                local notification = {
+                    subject  = 'Robbery in Progress',
+                    msg      = "Reports of an illegal street race in-progress",
+                    icon = 'fas fa-car',
+                    iconStyle = 'red',
+                    locationX = v.x,
+                    locationY = v.y,
+                    caller = PlayerId(),
+                }
+                TriggerServerEvent('esx_service:callAllInService', notification, "police")
+            end
         end        
     end
 
