@@ -13,7 +13,7 @@ Config.OnlineRace = {
     [1] = {
         Players = 5,
         Type = 'street_race', -- 'street_race' your own vehicle, 'event' you spawn with a vehicle
-        Text = 'Press ~INPUT_CONTEXT~ to run a race against 4 other players! (Own vehicle)',
+        Text = 'Press ~INPUT_CONTEXT~ to run a race against up to 4 other players! ($200)',
         Start = {x = 2518.32, y = 1976.36, z = 19.09},
         Size = 5.5, 
         StartLine = {
@@ -41,7 +41,7 @@ Config.OnlineRace = {
     [2] = {
         Players = 2,
         Type = 'event',
-        Text = 'Press ~INPUT_CONTEXT~ to run a race against 1 other player (Get cross)',
+        Text = 'Press ~INPUT_CONTEXT~ to run a race against 1 other player ($200)',
         Vehicle = 'sanchez', -- fordon man får (om type = 'event')
         Start = {x = 833.92, y = 2406.88, z = 53.29},
         Size = 1.5, 
