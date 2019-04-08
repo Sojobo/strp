@@ -12,38 +12,34 @@ local ticketEmpty = "Your ticket was ~r~empty"
 -------------
 
 local prices = {
-	["speaker"] = 25,
-	["laptop"] = 175,
-	["toothpaste"] = 2,
+	--hjigh
+	["rolex"] = 400,
+	["omega"] = 400,
+	["laptop"] = 200,
+	["pickledanimal"] = 100,
+	["santashat"] = 100,
 	["ifruit"] = 150,
-	["oldcoin"] = 50,
-	["creditcard"] = 60,
-	["rolex"] = 200,
-	["omega"] = 200,
-	["diamondring"] = 90,
-	["ring"] = 60,
-	["sojobeans"] = 150,
-	["gpspill"] = 110,
 	["wallet"] = 120,
-	["console"] = 60,
-	["tablet"] = 40,
-	["treasuremap"] = 30,
-	["dildo"] = 5,
-	["pickledanimal"] = 150,
-	["santashat"] = 150,
+	["gpspill"] = 110,
+	["sojobeans"] = 100,
+	--mid
+	["diamondring"] = 90,
 	["goldchain"] = 80,
-	["goldbracelet"] = 40,
-	["chocolate"] = 3,
-	["tabacco"] = 8,
-	["alcohol"] = 8,
-	["gamingperipherals"] = 15,
-	["passport"] = 60,
-	["rarecoin"] = 45,
-	["book"] = 5,
+	["creditcard"] = 75,
+	["ring"] = 70,
+	["console"] = 60,
+	["oldcoin"] = 50,
+	["passport"] = 40,
+	["rarecoin"] = 55,
 	["diamond"] = 85,
-	["blurayplayer"] = 30,
+	--low
+	["tablet"] = 45,
+	["goldbracelet"] = 40,
+	["treasuremap"] = 35,
 	["rareornament"] = 45,
-	["magazine"] = 4,
+	["gamingperipherals"] = 15,
+	["speaker"] = 10,
+	["dildo"] = 5,
 	["junk"] = 1,
 }
 
@@ -76,28 +72,29 @@ RegisterServerEvent('99kr-burglary:Add')
 AddEventHandler('99kr-burglary:Add', function(item, qtty, iname)
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
-    local xInventoryWeight = xPlayer.getInventoryWeight()
-	local xInventorylimit = xPlayer.getInventoryWeightMax()
+    --local xInventoryWeight = xPlayer.getInventoryWeight()
+	--local xInventorylimit = xPlayer.getInventoryWeightMax()
 
-    if xInventoryWeight + qtty > xInventorylimit then
-        TriggerClientEvent('esx:showNotification', src, "You're carrying too much")
-    else
+    --if xInventoryWeight + qtty > xInventorylimit then
+        --TriggerClientEvent('esx:showNotification', src, "You're carrying too much")
+    --else
         TriggerClientEvent('esx:showNotification', src, "You found " .. qtty .. " " .. iname)
         xPlayer.addInventoryItem(item, qtty)
-    end
+   --end
 end)
 
 RegisterServerEvent('99kr-burglary:Remove')
 AddEventHandler('99kr-burglary:Remove', function(item, qtty)
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
-    local xItem = xPlayer.getInventoryItem(item)
+    --local xItem = xPlayer.getInventoryItem(item)
 
-	if xItem.count < qtty then
+	--if xItem.count < amount then
 		TriggerClientEvent('esx:showNotification', src, "You don't have enough of that item")
-	else
+		--return
+	--else
 	    xPlayer.removeInventoryItem(item, qtty)
-    end
+    --end
 end)
 
 ESX.RegisterUsableItem('lotteryticket', function(source)
@@ -123,4 +120,10 @@ ESX.RegisterUsableItem('lotteryticket', function(source)
 		TriggerClientEvent('esx:showAdvancedNotification', src, "Lottery Results", "This ticket's not a winner, it's worthless.", 'fas fa-splotch', "red")
 	end
 
+end)
+
+RegisterNetEvent('99kr-burglary:cooldown')
+AddEventHandler('99kr-burglary:cooldown', function (place)
+	Config.burglaryPlaces[place].cooldown = Config.cooldownTime
+	TriggerClientEvent('99kr-burglary:cooldown', -1, place)
 end)

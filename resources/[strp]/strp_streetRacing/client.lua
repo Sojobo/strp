@@ -32,25 +32,25 @@ end)
 
 local canRace = true
 
-RegisterNetEvent('loffe_race:offlineRace_cl')
-AddEventHandler('loffe_race:offlineRace_cl', function(can_or_not)
+RegisterNetEvent('strp_racing:offlineRace_cl')
+AddEventHandler('strp_racing:offlineRace_cl', function(can_or_not)
     canRace = can_or_not
 end)
 
-RegisterNetEvent('loffe_race:print')
-AddEventHandler('loffe_race:print', function(what)
+RegisterNetEvent('strp_racing:print')
+AddEventHandler('strp_racing:print', function(what)
     print(what)
 end)
 
 local online_race_leaderboard = {}
 
-RegisterNetEvent('loffe_race:get_online_race_position_client')
-AddEventHandler('loffe_race:get_online_race_position_client', function(race, data, player)
+RegisterNetEvent('strp_racing:get_online_race_position_client')
+AddEventHandler('strp_racing:get_online_race_position_client', function(race, data, player)
     online_race_leaderboard[player][race][player].checkpoint = data
 end)
 
-RegisterNetEvent('loffe_race:scaleform_showfreemodemessage')
-AddEventHandler('loffe_race:scaleform_showfreemodemessage', function(title, msg, time)
+RegisterNetEvent('strp_racing:scaleform_showfreemodemessage')
+AddEventHandler('strp_racing:scaleform_showfreemodemessage', function(title, msg, time)
     local s = time
     local scaleform = ESX.Scaleform.Utils.RequestScaleformMovie('MP_BIG_MESSAGE_FREEMODE')
 
@@ -69,23 +69,23 @@ AddEventHandler('loffe_race:scaleform_showfreemodemessage', function(title, msg,
     SetScaleformMovieAsNoLongerNeeded(scaleform)
 end)
 
-RegisterNetEvent('loffe_race:onlinerace_cantstart')
-AddEventHandler('loffe_race:onlinerace_cantstart', function()
+RegisterNetEvent('strp_racing:onlinerace_cantstart')
+AddEventHandler('strp_racing:onlinerace_cantstart', function()
     ready_state = false
     ESX.ShowNotification('Someone else is already running this race, wait until they are ready!')
 end)
 
-RegisterNetEvent('loffe_race:end_race_cl')
-AddEventHandler('loffe_race:end_race_cl', function()
+RegisterNetEvent('strp_racing:end_race_cl')
+AddEventHandler('strp_racing:end_race_cl', function()
     -- if in_online_race ~= false then
-    --     TriggerServerEvent('loffe_race:end_online_race', in_online_race)
+    --     TriggerServerEvent('strp_racing:end_online_race', in_online_race)
     -- end
 end)
 
-RegisterNetEvent('loffe_race:start_online_race')
-AddEventHandler('loffe_race:start_online_race', function(_race, position, players)
+RegisterNetEvent('strp_racing:start_online_race')
+AddEventHandler('strp_racing:start_online_race', function(_race, position, players)
     local race = _race
-    TriggerServerEvent('loffe_race:not_ready_online_race', race)
+    TriggerServerEvent('strp_racing:not_ready_online_race', race)
     in_online_race = race
     ready_state = false
     local pP = PlayerPedId()
@@ -113,7 +113,7 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position, player
     FreezeEntityPosition(playerVehicle, true)
     PlaySoundFrontend(-1, '5S', 'MP_MISSION_COUNTDOWN_SOUNDSET', true)
     Wait(550)
-    TriggerServerEvent('loffe_race:countdown')
+    TriggerServerEvent('strp_racing:countdown')
     Wait(3300)
     FreezeEntityPosition(playerVehicle, false)
 
@@ -167,7 +167,7 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position, player
         faketimer = faketimer + 1
 
         if faketimer == 5 then
-            TriggerServerEvent('loffe_race:get_online_race_position', race)
+            TriggerServerEvent('strp_racing:get_online_race_position', race)
             faketimer = 0
         end
 
@@ -204,7 +204,7 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position, player
 
         if GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true) < 8.0 then
             currentCheckpoint = currentCheckpoint + 1
-            TriggerServerEvent('loffe_race:online_race_update', race, position, currentCheckpoint)
+            TriggerServerEvent('strp_racing:online_race_update', race, position, currentCheckpoint)
             RemoveBlip(blips[currentCheckpoint][currentCheckpoint].Blip)
             if currentCheckpoint < Config.OnlineRace[race].NumberOfZones then
             end
@@ -225,7 +225,7 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position, player
         end        
     end
 
-    TriggerServerEvent('loffe_race:end_online_race', race, online_race_leaderboard[position][race][position].checkpoint)
+    TriggerServerEvent('strp_racing:end_online_race', race, online_race_leaderboard[position][race][position].checkpoint)
 
     for i=1, #blips do
         if DoesBlipExist(blips[i][i].Blip) then
@@ -240,14 +240,14 @@ AddEventHandler('loffe_race:start_online_race', function(_race, position, player
             SetEntityCoords(pP, Config.OnlineRace[race].Start.x, Config.OnlineRace[race].Start.y, Config.OnlineRace[race].Start.z)
         end
     end
-    TriggerServerEvent('loffe_race:online_race_update', race, position, 0)
+    TriggerServerEvent('strp_racing:online_race_update', race, position, 0)
     ready_state = false
     in_online_race = false
 end)
 
 Citizen.CreateThread(function()
     while true do
-        TriggerServerEvent('loffe_race:offlineRace_sv', 'can_i_start')
+        TriggerServerEvent('strp_racing:offlineRace_sv', 'can_i_start')
         Wait(1000)
     end
 end)
@@ -266,10 +266,10 @@ Citizen.CreateThread(function()
                     AddTextComponentSubstringPlayerName(Config.Strings['start_npc'])
                     EndTextCommandDisplayHelp(0, false, true, -1)
                     if IsControlJustReleased(0, 38) then
-                        TriggerServerEvent('loffe_race:offlineRace_sv', 'can_i_start')
+                        TriggerServerEvent('strp_racing:offlineRace_sv', 'can_i_start')
                         Wait(100)
                         if canRace then
-                            TriggerServerEvent('loffe_race:offlineRace_sv', 'start')
+                            TriggerServerEvent('strp_racing:offlineRace_sv', 'start')
                             startNPCRace(k)
                         else
                             ESX.ShowNotification('You can\'t start a race now - someone else is already running one!')
@@ -317,7 +317,7 @@ Citizen.CreateThread(function()
                                 },
                                 function(data, menu)
                                     if data.current.value == 'yes' then
-                                        TriggerServerEvent('loffe_race:ready_online_race', k)
+                                        TriggerServerEvent('strp_racing:ready_online_race', k)
                                         menu.close()
                                         ready_state = true
                                     elseif data.current.value == 'no' then
@@ -330,7 +330,7 @@ Citizen.CreateThread(function()
                                 end
                             )
                             else
-                                TriggerServerEvent('loffe_race:not_ready_online_race', k)
+                                TriggerServerEvent('strp_racing:not_ready_online_race', k)
                             end
                         else
                             ESX.ShowNotification('You have to drive a vehicle!')
@@ -342,14 +342,14 @@ Citizen.CreateThread(function()
                     if k == raceReady then
                         ready_state = false
                         ESX.ShowNotification('You moved too far from the race and you are therefore no longer ready!')
-                        TriggerServerEvent('loffe_race:not_ready_online_race', k)
+                        TriggerServerEvent('strp_racing:not_ready_online_race', k)
                     end
                 end
             end
             if not IsPedInAnyVehicle(PlayerPedId()) and ready_state and c.Type == 'street_race' then
                 if k == raceReady then
                     ready_state = false
-                    TriggerServerEvent('loffe_race:not_ready_online_race', k)
+                    TriggerServerEvent('strp_racing:not_ready_online_race', k)
                     ESX.ShowNotification('You have to be in a vehicle! You are therefore no longer ready.')
                 end
             end
@@ -525,7 +525,7 @@ function startNPCRace(number)
     else
         ESX.ShowNotification('Good work! You came: ~g~' .. position .. ' ~s~of 5!')
     end
-    TriggerServerEvent('loffe_race:offlineRace_sv', 'stop')
+    TriggerServerEvent('strp_racing:offlineRace_sv', 'stop')
     DeleteVehicle(playerVehicle)
     if Config.TPBack then
         SetEntityCoords(PlayerPedId(), Config.OfflineRace[number].Start.x, Config.OfflineRace[number].Start.y, Config.OfflineRace[number].Start.z)
