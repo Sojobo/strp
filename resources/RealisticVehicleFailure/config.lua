@@ -55,28 +55,28 @@ cfg = {
 	-- Use it to increase or decrease damage for each class
 
 	classDamageMultiplier = {
-		[0] = 	1.0,		--	0: Compacts
-				1.0,		--	1: Sedans
-				0.80,		--	2: SUVs
-				1.0,		--	3: Coupes
-				1.0,		--	4: Muscle
-				1.0,		--	5: Sports Classics
-				1.0,		--	6: Sports
-				1.0,		--	7: Super
-				0.20,		--	8: Motorcycles
-				0.8,		--	9: Off-road
-				1.0,		--	10: Industrial
-				1.0,		--	11: Utility
-				1.0,		--	12: Vans
-				0.50,		--	13: Cycles
-				0.5,		--	14: Boats
-				1.0,		--	15: Helicopters
-				1.0,		--	16: Planes
-				1.0,		--	17: Service
-				0.80,		--	18: Emergency
-				0.60,		--	19: Military
-				1.0,		--	20: Commercial
-				1.0			--	21: Trains
+		[0] = 	0.80,		--	0: Compacts
+				0.80,		--	1: Sedans
+				0.50,		--	2: SUVs
+				0.80,		--	3: Coupes
+				0.80,		--	4: Muscle
+				0.80,		--	5: Sports Classics
+				0.80,		--	6: Sports
+				0.80,		--	7: Super
+				0.10,		--	8: Motorcycles
+				0.80,		--	9: Off-road
+				0.80,		--	10: Industrial
+				0.80,		--	11: Utility
+				0.80,		--	12: Vans
+				0.30,		--	13: Cycles
+				0.30,		--	14: Boats
+				0.80,		--	15: Helicopters
+				0.80,		--	16: Planes
+				0.80,		--	17: Service
+				0.50,		--	18: Emergency
+				0.40,		--	19: Military
+				0.80,		--	20: Commercial
+				0.50			--	21: Trains
 	}
 }
 
