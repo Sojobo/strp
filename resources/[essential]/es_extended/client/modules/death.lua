@@ -28,6 +28,14 @@ Citizen.CreateThread(function()
 	end
 end)
 
+RegisterCommand("stuck", function()
+    local ped = GetPlayerPed(PlayerId())
+    if IsDead then
+        SetPedRagdollForceFall(ped)
+        -- ClearPedTasksImmediately(ped)
+    end
+end)
+
 function PlayerKilledByPlayer(killerServerId, killerClientId, killerWeapon)
 	local victimCoords = GetEntityCoords(PlayerPedId())
 	local killerCoords = GetEntityCoords(GetPlayerPed(killerClientId))
