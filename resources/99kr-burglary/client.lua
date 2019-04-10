@@ -65,11 +65,6 @@ Citizen.CreateThread(function ()
     PlayerData = ESX.GetPlayerData()
 end) 
 
-RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(xPlayer)
-    PlayerData = xPlayer
-end)
-
 Citizen.CreateThread(function()
   while true do
     Wait(60000)
@@ -102,7 +97,14 @@ Citizen.CreateThread(function()
         end
       end
 
-      if v.cooldown > 0 and dist <= 1.2 then
+      if PlayerData.job ~= nil and PlayerData.job.name == "police" and dist <= 1.2 then
+        DrawText3D(v.pos.x, v.pos.y, v.pos.z, "~g~[E]~w~ Open", 0.4)
+        if IsControlJustPressed(0, Keys["E"]) then
+          SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
+          LastHouse = house
+          robing = true
+        end
+      elseif v.cooldown > 0 and dist <= 1.2 then
         DrawText3D(v.pos.x, v.pos.y, v.pos.z, textCooldown..v.cooldown.. " minutes", 0.4)
       elseif dist <= 30.0 and DoingBreak == false and v.cooldown == 0 then
         DrawMarker(25, v.pos.x, v.pos.y, v.pos.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
@@ -187,11 +189,17 @@ Citizen.CreateThread(function()
       local playerPed = PlayerPedId()
       local coords = GetEntityCoords(playerPed)
       v = Config.burglaryPlaces[LastHouse]
+      local dist = GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false)
       if GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false) <= 70.0 then
         DrawMarker(25, v.inside.x, v.inside.y, v.inside.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
         if GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false) <= 3.0 then
           DrawText3D(v.inside.x, v.inside.y, v.inside.z, insideText, 0.4)
-          if GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false) <= 1.2 and IsControlJustPressed(0, Keys["E"]) then
+          if PlayerData.job ~= nil and PlayerData.job.name == "police" and dist <= 1.2 and IsControlJustPressed(0, Keys["E"]) then
+            SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
+            fade()
+            teleport(Config.burglaryPlaces[LastHouse])
+            robing = false
+          elseif dist <= 1.2 and IsControlJustPressed(0, Keys["E"]) then
             fade()
             teleport(Config.burglaryPlaces[LastHouse])
             TriggerServerEvent("99kr-burglary:cooldown", LastHouse)
