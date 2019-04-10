@@ -83,19 +83,19 @@ Config.AuthorizedWeapons = {
 	-- Recruit
     { minrank = 0, weapon = 'WEAPON_NIGHTSTICK', price = 0 },
     { minrank = 0, weapon = 'WEAPON_FLASHLIGHT', price = 0 },
-    { minrank = 0, weapon = 'WEAPON_STUNGUN', price = 40 },
-    { minrank = 0, weapon = 'WEAPON_PISTOL', components = { 50, 50, 400, 1600, nil }, price = 250 },
+    { minrank = 0, weapon = 'WEAPON_STUNGUN', price = 0 },
+    { minrank = 0, weapon = 'WEAPON_PISTOL', components = { 50, 50, 400, 1600, nil }, price = 120 },
 
 	-- Cadet
 	
     -- Officer
-	{ minrank = 2, weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 3300 },
+	{ minrank = 2, weapon = 'WEAPON_PUMPSHOTGUN', components = { 2000, 6000, nil }, price = 2300 },
 	
 	-- Senior Officer
 	-- Corporal
 
 	-- Sergeant
-	{ minrank = 5, weapon = 'WEAPON_ADVANCEDRIFLE', components = { 100, 6000, 1000, 4000, 8000, nil }, price = 5000 },
+	{ minrank = 5, weapon = 'WEAPON_ADVANCEDRIFLE', components = { 100, 6000, 1000, 4000, 8000, nil }, price = 3500 },
 
 	-- Staff Sergeant
     -- Lieutenant
@@ -108,12 +108,12 @@ Config.AuthorizedVehicles = {
 	{ minrank = 0, model = 'policeb', label = 'Police Bike', price = 200 },
 	
 	-- Cadet 
-	{ minrank = 1, model = 'police', label = 'Police Cruiser', price = 700 },
+	{ minrank = 1, model = 'police', label = 'Police Cruiser', price = 500 },
 
 	-- Police Officer
-	{ minrank = 2, model = 'police10', label = 'Police Crown Vic', price = 1500 },
-	{ minrank = 2, model = 'police9', label = 'Police Taurus', price = 2400 },
-	{ minrank = 2, model = 'policet', label = 'Police Transport Van', price = 1750 },
+	{ minrank = 2, model = 'police10', label = 'Police Crown Vic', price = 900 },
+	{ minrank = 2, model = 'police9', label = 'Police Taurus', price = 2000 },
+	{ minrank = 2, model = 'policet', label = 'Police Transport Van', price = 1450 },
 
 	-- Senior Officer
 	{ minrank = 3, model = 'police8', label = 'Police Explorer', price = 3000 },
