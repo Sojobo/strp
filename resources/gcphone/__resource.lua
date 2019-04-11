@@ -20,6 +20,12 @@ files {
 	'html/static/img/background/back001.jpg',
 	'html/static/img/background/back002.jpg',
 	'html/static/img/background/back003.jpg',
+	'html/static/img/background/lostmc.png',
+	'html/static/img/background/lsfd.png',
+	'html/static/img/background/lspd.png',
+	'html/static/img/background/space.png',
+	'html/static/img/background/triads.png',
+	'html/static/img/background/vagos.png',
 	
 	'html/static/img/icons_app/call.png',
 	'html/static/img/icons_app/contacts.png',
