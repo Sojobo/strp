@@ -434,7 +434,7 @@ Citizen.CreateThread(function()
 						--DisableControlAction(0, 175, true) -- INPUT_CELLPHONE_RIGHT
 						DisableControlAction(0, 81, true) -- INPUT_VEH_NEXT_RADIO
 						DisableControlAction(0, 82, true) -- INPUT_VEH_PREV_RADIO
-						DisableControlAction(0, 19, true) -- INPUT_CHARACTER_WHEEL
+						DisableControlAction(0, 47, true) -- INPUT_CHARACTER_WHEEL
 						DisableControlAction(0, 85, true) -- INPUT_VEH_RADIO_WHEEL
 						DisableControlAction(0, 80, true) -- INPUT_VEH_CIN_CAM
 
@@ -485,7 +485,7 @@ Citizen.CreateThread(function()
 								end
 
 							-- TOG LX SIREN
-							elseif IsDisabledControlJustReleased(0, 19) or IsDisabledControlJustReleased(0, 82) then
+							elseif IsDisabledControlJustReleased(0, 47) or IsDisabledControlJustReleased(0, 82) then
 								local cstate = state_lxsiren[veh]
 								if cstate == 0 then
 									if Heli.IsVehicleSirenOn(veh) then
