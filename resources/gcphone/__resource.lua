@@ -13,8 +13,7 @@ files {
 	-- Coque
 	'html/static/img/coque/s8.png',
 	'html/static/img/coque/iphonex.png',
-	'html/static/img/coque/base.png',
-	'html/static/img/coque/transparent.png',
+	'html/static/img/coque/oneplus6.png',
 	
 	-- Background
 	'html/static/img/background/back001.jpg',
