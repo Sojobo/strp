@@ -85,7 +85,6 @@ Citizen.CreateThread(function()
       local house = k
       local coords = GetEntityCoords(playerPed)
       local dist   = GetDistanceBetweenCoords(v.pos.x, v.pos.y, v.pos.z, coords.x, coords.y, coords.z, false)
-      local hour = GetClockHours()
 
       if GetDistanceBetweenCoords(Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z, coords.x, coords.y, coords.z, false) < 50.0 then
         DrawMarker(25, Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
@@ -111,7 +110,7 @@ Citizen.CreateThread(function()
         if dist <= 1.2 and DoingBreak == false then
           if v.locked then
           	if Config.CheckTime then
-          		if hour >= Config.StartHour and hour < Config.EndHour then
+          		if (GetClockHours() >= 22 or GetClockHours() <= 6) then
           			DrawText3D(v.pos.x, v.pos.y, v.pos.z, text, 0.4)
           			if IsControlJustPressed(0, Keys["E"]) then
                 		confMenu(house)
