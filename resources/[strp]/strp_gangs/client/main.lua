@@ -519,12 +519,12 @@ AddEventHandler('esx:setJob', function(job)
 	PlayerData.job = job
     if Config.GangBases[job.name] ~= nil then
         CurrentGang = job.name
-        if Config.GangBases[CurrentGang].AIgroup ~= nil then
-            ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
-                SetPedRelationshipGroupHash(GetPlayerPed(PlayerId()), GetHashKey(Config.GangBases[CurrentGang].AIgroup))
-                TriggerServerEvent('strp_gangs:forceBlip', CurrentGang)
-            end, CurrentGang)
-        end
+        ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
+            if Config.GangBases[CurrentGang].AIgroup ~= nil then
+                -- SetPedRelationshipGroupHash(GetPlayerPed(PlayerId()), GetHashKey(Config.GangBases[CurrentGang].AIgroup))
+            end
+            TriggerServerEvent('strp_gangs:forceBlip', CurrentGang)
+        end, CurrentGang)
     end
 end)
 
@@ -666,12 +666,12 @@ AddEventHandler('playerSpawned', function(spawn)
         PlayerData = ESX.GetPlayerData()
         if PlayerData.job ~= nil and Config.GangBases[PlayerData.job.name] ~= nil then
             CurrentGang = PlayerData.job.name
-            if Config.GangBases[CurrentGang].AIgroup ~= nil then
-                ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
-                    SetPedRelationshipGroupHash(GetPlayerPed(PlayerId()), GetHashKey(Config.GangBases[CurrentGang].AIgroup))
-                    TriggerServerEvent('strp_gangs:forceBlip', CurrentGang)
-                end, CurrentGang)
-            end
+            ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
+                if Config.GangBases[CurrentGang].AIgroup ~= nil then
+                    -- SetPedRelationshipGroupHash(GetPlayerPed(PlayerId()), GetHashKey(Config.GangBases[CurrentGang].AIgroup))
+                end
+                TriggerServerEvent('strp_gangs:forceBlip', CurrentGang)
+            end, CurrentGang)
         end
     end)
 
