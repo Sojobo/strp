@@ -1380,7 +1380,7 @@ webpackJsonp([0], [, , , , , , function(t, e, n) {
             zoom: window.localStorage.gc_zoom || "70%",
             volume: parseFloat(window.localStorage.gc_volume) || 1,
             config: {
-                reseau: "Gannon",
+                reseau: "NO SERVICE",
                 useFormatNumberFrance: !1,
                 apps: [],
                 themeColor: "#2A56C6",

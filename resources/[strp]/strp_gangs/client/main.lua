@@ -475,15 +475,8 @@ function OpenBuyWeaponsMenu()
 		else
 			ESX.TriggerServerCallback('strp_gangs:buyWeapon', function(bought)
 				if bought then
-					if data.current.price > 0 then
-						ESX.ShowNotification(_U('armory_bought', data.current.weaponLabel, ESX.Math.GroupDigits(data.current.price)))
-					end
-
 					menu.close()
-
 					OpenBuyWeaponsMenu()
-				else
-					ESX.ShowNotification(_U('armory_money'))
 				end
 			end, data.current.name, 1)
 		end
@@ -506,10 +499,6 @@ function OpenWeaponComponentShop(components, weaponName, parentShop)
 		else
 			ESX.TriggerServerCallback('strp_gangs:buyWeapon', function(bought)
 				if bought then
-					if data.current.price > 0 then
-						ESX.ShowNotification(_U('armory_bought', data.current.componentLabel, ESX.Math.GroupDigits(data.current.price)))
-					end
-
 					menu.close()
 					parentShop.close()
 
