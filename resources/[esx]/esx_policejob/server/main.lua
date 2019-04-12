@@ -379,6 +379,8 @@ end)
 ESX.RegisterServerCallback('esx_policejob:buyWeapon', function(source, cb, weaponName, type, componentNum)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local authorizedWeapons, selectedWeapon = Config.AuthorizedWeapons
+	local price
+    local ammopurchase = false
 
 	for k,v in ipairs(authorizedWeapons) do
 		if v.weapon == weaponName and v.minrank <= xPlayer.job.grade then
@@ -389,17 +391,25 @@ ESX.RegisterServerCallback('esx_policejob:buyWeapon', function(source, cb, weapo
 
 	if not selectedWeapon then
 		print(('esx_policejob: %s attempted to buy an invalid weapon.'):format(xPlayer.identifier))
+        TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Armory", "Something went wrong", 'fas fa-exclamation-triangle', "red")
 		cb(false)
 	end
 
 	-- Weapon
 	if type == 1 then
+        price = selectedWeapon.price
+        if xPlayer.hasWeapon(weaponName) then
+            price = math.ceil(price / 2)
+            ammopurchase = true
+        end
+
 		if xPlayer.getBank() >= selectedWeapon.price then
 			xPlayer.removeBank(selectedWeapon.price)
 			xPlayer.addWeapon(weaponName, 100)
-
+            TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Armory", "You successfully purchased a " .. weaponName, 'fas fa-suitcase', "green")
 			cb(true)
 		else
+            TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Armory", "You can't afford that transaction", 'fas fa-exclamation-triangle', "red")
 			cb(false)
 		end
 
@@ -407,20 +417,21 @@ ESX.RegisterServerCallback('esx_policejob:buyWeapon', function(source, cb, weapo
 	elseif type == 2 then
 		local price = selectedWeapon.components[componentNum]
 		local weaponNum, weapon = ESX.GetWeapon(weaponName)
-
 		local component = weapon.components[componentNum]
 
 		if component then
 			if xPlayer.getBank() >= price then
 				xPlayer.removeBank(price)
 				xPlayer.addWeaponComponent(weaponName, component.name)
-
+                TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Armory", "You successfully purchased a weapon upgrade for your " .. weaponName, 'fas fa-suitcase', "green")
 				cb(true)
 			else
+                TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Armory", "You can't afford that transaction", 'fas fa-exclamation-triangle', "red")
 				cb(false)
 			end
 		else
 			print(('esx_policejob: %s attempted to buy an invalid weapon component.'):format(xPlayer.identifier))
+            TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Armory", "Something went wrong", 'fas fa-exclamation-triangle', "red")
 			cb(false)
 		end
 	end

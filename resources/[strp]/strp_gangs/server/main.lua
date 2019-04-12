@@ -82,7 +82,6 @@ end)
 ESX.RegisterServerCallback('strp_gangs:buyWeapon', function(source, cb, weaponName, type, componentNum)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local authorizedWeapons, selectedWeapon = Config.WeaponDealer
-
 	local price
     local ammopurchase = false
 
@@ -102,7 +101,6 @@ ESX.RegisterServerCallback('strp_gangs:buyWeapon', function(source, cb, weaponNa
 	-- Weapon
 	if type == 1 then
         price = selectedWeapon.price
-
         if xPlayer.hasWeapon(weaponName) then
             price = math.ceil(price / 2)
             ammopurchase = true
@@ -122,7 +120,6 @@ ESX.RegisterServerCallback('strp_gangs:buyWeapon', function(source, cb, weaponNa
 	elseif type == 2 then
 		price = selectedWeapon.components[componentNum]
 		local weaponNum, weapon = ESX.GetWeapon(weaponName)
-
 		local component = weapon.components[componentNum]
 
 		if component then
