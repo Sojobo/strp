@@ -871,6 +871,7 @@ function Robbery(id)
 					end)
                 else
 					ESX.ShowNotification("There are not enough police officers online")
+                    Citizen.Trace("cops: " .. #cops)
 				end
 			else
 				ESX.ShowNotification("This shop has already been robbed, please wait " ..  math.floor((Config.TimeBetweenRobberies - result.time)  / 60) .. ' minutes')
