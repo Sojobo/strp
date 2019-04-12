@@ -106,6 +106,16 @@ ESX.RegisterServerCallback('strp_gangs:buyWeapon', function(source, cb, weaponNa
             ammopurchase = true
         end
 
+        if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(1) then
+            price = math.ceil(price - ((price/100)*20))
+        end
+        if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(2) then
+            price = math.ceil(price - ((price/100)*20))
+        end
+        if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(3) then
+            price = math.ceil(price - ((price/100)*20))
+        end
+
 		if xPlayer.getMoney() >= price then
 			xPlayer.removeMoney(price)
 			xPlayer.addWeapon(weaponName, 100)
