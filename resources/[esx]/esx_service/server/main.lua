@@ -7,6 +7,7 @@ local blipColours = {
     ["vagos"] = 46,
     ["triads"] = 76,
     ["lostmc"] = 40,
+    ["rednecks"] = 29,
 }
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)

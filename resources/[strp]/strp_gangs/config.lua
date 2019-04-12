@@ -37,6 +37,36 @@ Config.GangBases = {
         },
 	},
 
+    rednecks = {
+        AIgroup = "AMBIENT_GANG_CULT",
+        color1 = 12,
+        color2 = 12,
+        MarkerColor = { r = 78, g = 105, b = 176 },
+
+		Armories = {
+			vector3(2448.61, 4980.56, 46.81)
+		},
+
+		Vehicles = {
+			{
+				Spawner = vector3(2484.82, 4953.03, 44.84),
+				InsideShop = vector3(2481.05, 4953.57, 45.01),
+				SpawnPoints = {
+					{ coords = vector3(2509.14, 4963.59, 44.71), heading = 5.0, radius = 6.0 },
+					{ coords = vector3(2522.66, 4969.82, 44.53), heading = 95.0, radius = 6.0 },
+					{ coords = vector3(2498.60, 4983.63, 44.50), heading = 213.0, radius = 6.0 }
+				}
+			}
+		},
+
+        VehicleList = {
+            { model = 'Sanchez',	label = 'Sanchez',	price = 3000 },
+            { model = 'bfinjection',	label = 'BF Injection',	price = 7000 },
+            { model = 'bifta',	label = 'Bifta',	price = 8000 },
+            { model = 'Rebel',	label = 'Rebel',	price = 18000 },
+        },
+	},
+
 	triads = {
         AIgroup = "AMBIENT_GANG_WEICHENG",
         color1 = 1,
