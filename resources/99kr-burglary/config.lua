@@ -7,8 +7,8 @@ Config.useInteractSound        = false       -- if you wanna use InteractSound (
 Config.cooldownTime            = 30        -- cooldown Time in minutes
 
 Config.CheckTime               = true
-Config.StartHour               = 0 -- 0 to 24 h
-Config.EndHour                 = 23
+--Config.StartHour               = 0 -- 0 to 24 h
+--Config.EndHour                 = 23
 
 Config.sellPoint = {x = 412.31, y = 314.11, z = 103.02, sprite = 267, color = 56, name = 'Pawn Shop'}
 
