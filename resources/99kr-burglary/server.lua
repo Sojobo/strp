@@ -13,8 +13,8 @@ local ticketEmpty = "Your ticket was ~r~empty"
 
 local prices = {
 	--hjigh
-	["rolex"] = 500,
-	["omega"] = 500,
+	["rolex"] = 400,
+	["omega"] = 400,
 	["laptop"] = 300,
 	["pickledanimal"] = 150,
 	["santashat"] = 150,
