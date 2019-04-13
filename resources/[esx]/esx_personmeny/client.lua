@@ -259,7 +259,7 @@ function OpenVehicleMenu()
           'default', GetCurrentResourceName(), 'door_actions',
           {
             title    = _U('doors'),
-            align    = 'top-left',
+            align    = 'right',
             elements = {
               {label = _U('hood'),        value = 'hood'},
               {label = _U('trunk'),           value = 'trunk'},
@@ -368,7 +368,7 @@ function OpenVehicleMenu()
           'default', GetCurrentResourceName(), 'window_actions',
           {
             title    = _U('window_menu'),
-            align    = 'top-left',
+            align    = 'right',
             elements = {
               {label = _U('front_left_window'),   value = 'windowavga'},
               {label = _U('front_right_window'),   value = 'windowavdr'},
