@@ -25,7 +25,7 @@ local globalplate = nil
 
 function getItemyWeight(item)
   local weight = 0
-  local itemWeight = 0
+  local itemWeight = -1
 
   if item ~= nil then
 	   itemWeight = Config.DefaultWeight
@@ -336,7 +336,7 @@ AddEventHandler('esx_truck_inventory:getInventoryLoaded', function(inventory,wei
                     invWeight = invWeight + PlayerData.inventory[i].count
                 end
 
-                if invWeight ~= -1 and (invWeight + quantity) <= 20 then
+                if (invWeight ~= -1 and (invWeight + quantity) <= 20) or data.current.value == "black_money" then
                     max = false
                 else
                     max = true
