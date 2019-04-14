@@ -1959,7 +1959,7 @@ Citizen.CreateThread(function()
 			end
 		end -- CurrentAction end
 
-		if IsControlJustReleased(0, Keys['F6']) and not isDead and PlayerData.job ~= nil and PlayerData.job.name == 'police' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') and not IsPedInAnyVehicle(PlayerPedId(), false) then
+		if IsControlJustReleased(0, Keys['F6']) and not isDead and PlayerData.job ~= nil and PlayerData.job.name == 'police' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') then
       if playerInService then
 				OpenPoliceActionsMenu()
 			else
