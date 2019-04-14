@@ -49,6 +49,11 @@ end
 
 RegisterNetEvent('esx_lockpick:onUse')
 AddEventHandler('esx_lockpick:onUse', function()
+    if CurrentAction ~= nil then
+		ESX.ShowNotification("You're already performing this action")
+        return
+    end
+
 	local playerPed		= GetPlayerPed(-1)
 	local coords		= GetEntityCoords(playerPed)
     local doorInfo = GetNearDoorInfo()
@@ -80,10 +85,11 @@ AddEventHandler('esx_lockpick:onUse', function()
                 successOdds = math.random(Config.SuccessChance[1], Config.SuccessChance[2])
 
                 if successOdds ~= 1 then
-                    TerminateThread(ThreadID)
-                    ESX.ShowNotification(_U('lockpick_break'))
                     CurrentAction = nil
                     ClearPedTasksImmediately(playerPed)
+                    ESX.ShowNotification(_U('lockpick_break'))
+                    TriggerServerEvent('99kr-burglary:Remove', 'lockpick', 1)
+                    TerminateThread(ThreadID)
                 end
 
 				if CurrentAction ~= nil then
@@ -101,6 +107,7 @@ AddEventHandler('esx_lockpick:onUse', function()
 
 				CurrentAction = nil
 				TerminateThisThread()
+                ESX.ShowInventory()
 			end)
 		end
     else
