@@ -28,7 +28,7 @@ local currentMission = math.random(1,#MissionData)
 RegisterServerEvent('truckerJob:completeMission')
 AddEventHandler('truckerJob:completeMission', function(dmg, mission)
     local xPlayer = ESX.GetPlayerFromId(source)
-    local amount = math.ceil(tonumber(mission[4] - (dmg / 100)))
+    local amount = math.ceil(tonumber(mission[4] - (dmg / 70)))
 
     xPlayer.addMoney(amount)
     TriggerClientEvent('esx:showAdvancedNotification', source, "Trucking", "You've been paid $" .. amount .. " for completing delivery", 'fas fa-truck-moving', "green")
