@@ -29,45 +29,38 @@ function isAdmin(player)
     return allowed
 end
 
+RegisterCommand('report', function(source, args, rawCommand)
+	if source == 0 then
+		print('replayandreport: you can\'t use this command from rcon!')
+		return
+	end
 
-AddEventHandler('chatMessage', function(source, color, msg)
-	cm = stringsplit(msg, " ")
-	if cm[1] == "/reply" or cm[1] == "/r" then
-		CancelEvent()
-		if tablelength(cm) > 1 then
-			local tPID = tonumber(cm[2])
-			local names2 = GetPlayerName(tPID)
-			local names3 = GetPlayerName(source)
-			local textmsg = ""
-			for i=1, #cm do
-				if i ~= 1 and i ~= 2 then
-					textmsg = (textmsg .. " " .. tostring(cm[i]))
-				end
-			end
-		    if isAdmin(source) then
-			    TriggerClientEvent('textmsg', tPID, source, textmsg, names2, names3)
-			    TriggerClientEvent('textsent', source, tPID, names2)
-		    else
-			    TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insuficient Premissions!")
-			end
-		end
-	end	
-	
-	if cm[1] == "/report" then
-		CancelEvent()
-		if tablelength(cm) > 1 then
-			local names1 = GetPlayerName(source)
-			local textmsg = ""
-			for i=1, #cm do
-				if i ~= 1 then
-					textmsg = (textmsg .. " " .. tostring(cm[i]))
-				end
-			end
-		    TriggerClientEvent("sendReport", -1, source, names1, textmsg)
-		end
-	end	
-	
-end)
+	args = table.concat(args, ' ')
+	local name = GetPlayerName(source)
+
+    TriggerClientEvent("sendReport", -1, source, name, args)
+end, false)
+
+RegisterCommand('reply', function(source, args, rawCommand)
+	if source == 0 then
+		print('replayandreport: you can\'t use this command from rcon!')
+		return
+	end
+
+    local message = table.concat(args, ' ')
+    message = string.sub(message, string.len(args[1]) + 2)
+    local targetplayer = args[1]
+
+    local names2 = GetPlayerName(targetplayer)
+    local names3 = GetPlayerName(source)
+
+    if isAdmin(source) then
+        TriggerClientEvent('textmsg', targetplayer, message, names3)
+        TriggerClientEvent('textsent', source, targetplayer, names2)
+    else
+        TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insuficient Premissions!")
+    end
+end, false)
 
 RegisterServerEvent('replyandreport:checkadmin')
 AddEventHandler('replyandreport:checkadmin', function(n1, tmsg, ii)
