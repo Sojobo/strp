@@ -1,7 +1,7 @@
 Config                         = {}
 
 Config.useQalleCameraSystem    = false       --( https://github.com/qalle-fivem/esx-qalle-camerasystem )
-Config.chancePoliceNoti        = 40          -- the percent police get notified (only numbers like 30, 10, 40. You get it.)
+Config.chancePoliceNoti        = 50          -- the percent police get notified (only numbers like 30, 10, 40. You get it.)
 Config.useBlip                 = true      -- if u want blip
 Config.useInteractSound        = false       -- if you wanna use InteractSound (when u lockpick the door)
 Config.cooldownTime            = 10        -- cooldown Time in minutes

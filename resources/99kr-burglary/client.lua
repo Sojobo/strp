@@ -58,12 +58,17 @@ Citizen.CreateThread(function ()
         Citizen.Wait(1)
     end
 
-    while ESX.GetPlayerData() == nil do
+    while ESX.GetPlayerData().job == nil do
         Citizen.Wait(10)
     end
 
     PlayerData = ESX.GetPlayerData()
 end) 
+
+RegisterNetEvent('esx:setJob')
+AddEventHandler('esx:setJob', function(job)
+	PlayerData.job = job
+end)
 
 Citizen.CreateThread(function()
   while true do
