@@ -12,6 +12,12 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 AddEventHandler('baseevents:onPlayerKilled', function(killedBy, data)
 	local victim = source
     print(victim .. " was killed by " .. killedBy)
+
+    while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+
     local killerPlayer = ESX.GetPlayerFromId(killedBy)
     local victimPlayer = ESX.GetPlayerFromId(victim)
 
