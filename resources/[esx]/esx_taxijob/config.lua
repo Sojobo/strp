@@ -7,17 +7,15 @@ Config.MinimumDistance            = 3000 -- Minimum NPC job destination distance
 
 Config.MaxInService               = -1
 Config.EnablePlayerManagement     = true
-Config.EnableSocietyOwnedVehicles = true
+Config.EnableSocietyOwnedVehicles = false
 
 Config.Locale                     = 'en'
 
 Config.AuthorizedVehicles = {
-
 	{
 		model = 'taxi',
 		label = 'Taxi'
 	}
-
 }
 
 Config.Zones = {
