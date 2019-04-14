@@ -52,6 +52,7 @@ Citizen.CreateThread(function()
             if (IsControlJustPressed(1, 20)) then -- 20 is Z
                 SetNewWaypoint(callAvailable.locationX, callAvailable.locationY)
                 TriggerEvent("pNotify:SendNotification", { clearall = true })
+                TriggerServerEvent('esx:SendNotificationToUser', callAvailable.caller, "Units are responding to your call")
                 callAvailable = nil
                 callTimer = 0
             elseif (IsControlJustPressed(1, 73)) then -- 73 is X
@@ -131,7 +132,7 @@ RegisterCommand("911", function(source, args, rawCommand)
             iconStyle = 'red',
             locationX = coords.x,
             locationY = coords.y,
-            caller = PlayerId(),
+            caller = GetPlayerServerId(PlayerId()),
         }
 
         TriggerServerEvent('esx_service:callAllInService', notification, department)
@@ -156,7 +157,7 @@ RegisterCommand("311", function(source, args, rawCommand)
             iconStyle = 'blue',
             locationX = coords.x,
             locationY = coords.y,
-            caller = PlayerId(),
+            caller = GetPlayerServerId(PlayerId()),
         }
 
         TriggerServerEvent('esx_service:callAllInService', notification, department)

@@ -198,3 +198,8 @@ RegisterServerEvent('esx:SendAdvancedNotificationForJob')
 AddEventHandler('esx:SendAdvancedNotificationForJob', function(job, subject, msg, icon, iconStyle)
 	TriggerClientEvent('esx:ShowAdvancedNotificationForJob', -1, job, subject, msg, icon, iconStyle)
 end)
+
+RegisterServerEvent('esx:SendNotificationToUser')
+AddEventHandler('esx:SendNotificationToUser', function(sendTo, msg)
+	TriggerClientEvent('esx:showNotification', sendTo, msg)
+end)

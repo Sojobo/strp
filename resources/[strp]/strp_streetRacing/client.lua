@@ -218,7 +218,7 @@ AddEventHandler('strp_racing:start_online_race', function(_race, position, playe
                     iconStyle = 'red',
                     locationX = v.x,
                     locationY = v.y,
-                    caller = PlayerId(),
+                    caller = GetPlayerServerId(PlayerId()),
                 }
                 TriggerServerEvent('esx_service:callAllInService', notification, "police")
             end

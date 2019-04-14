@@ -290,7 +290,7 @@ function SendDistressSignal()
 		iconStyle = 'red',
         locationX = coords.x,
         locationY = coords.y,
-        caller = PlayerId(),
+        caller = GetPlayerServerId(PlayerId()),
 	}
 	TriggerServerEvent('esx_service:callAllInService', notification, 'ambulance')
 
