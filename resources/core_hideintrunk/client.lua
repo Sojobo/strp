@@ -2,13 +2,15 @@ local player = PlayerPedId()
 local inside = 0
 
 Citizen.CreateThread(function()
+    local sleepTimer = 500
     while true do
-        Citizen.Wait(5)
+        sleepTimer = 500
         player = PlayerPedId()
         local plyCoords = GetEntityCoords(player, false)
         local vehicle = VehicleInFront()
 
         if IsDisabledControlPressed(0, 19) and IsDisabledControlJustReleased(1, 44) and GetVehiclePedIsIn(player, false) == 0 and ((DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle)) or (inside ~= 0 and DoesEntityExist(inside) and IsEntityAVehicle(inside))) then
+            sleepTimer = 0
             if (inside > 0 and GetVehicleDoorLockStatus(inside) ~= 1) or (vehicle > 0 and GetVehicleDoorLockStatus(vehicle) ~= 1) then return end
             SetVehicleDoorOpen(vehicle, 5, false, false)
             if inside == 0 then
@@ -39,11 +41,14 @@ Citizen.CreateThread(function()
             Citizen.Wait(2000)
             SetVehicleDoorShut(vehicle, 5, false)
         end
+
         if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) and inside == 0 and GetVehiclePedIsIn(player, false) == 0 then
+            sleepTimer = 0
             SetTextComponentFormat("STRING")
             AddTextComponentString('~s~~INPUT_CHARACTER_WHEEL~+~INPUT_COVER~ Get in trunk')
             DisplayHelpTextFromStringLabel(0, 0, 1, -1)
         elseif DoesEntityExist(vehicle) and inside ~= 0 then
+            sleepTimer = 0
             car = GetEntityAttachedTo(player)
             carxyz = GetEntityCoords(car, 0)
             DisableAllControlActions(0)
@@ -62,11 +67,13 @@ Citizen.CreateThread(function()
             --     end
             -- end
         elseif not DoesEntityExist(inside) and inside ~= 0 then
+            sleepTimer = 0
             DetachEntity(player, true, true)
             ClearPedTasks(player)
             inside = 0
             ClearAllHelpMessages()
         end
+        Citizen.Wait(sleepTimer)
     end
 end)
 
@@ -75,7 +82,7 @@ function Streaming(animDict, cb)
 		RequestAnimDict(animDict)
 
 		while not HasAnimDictLoaded(animDict) do
-			Citizen.Wait(1)
+			Citizen.Wait(10)
 		end
 	end
 
