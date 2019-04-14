@@ -9,23 +9,23 @@
 			<form id="register">
 				<h1>Register</h1>
 				<label for="firstname">Firstname</label>
-				<input id="firstname" type="text" placeholder="First name" v-validate="'required|alpha'"><br>
+				<input id="firstname" name="firstname" type="text" placeholder="First name" v-validate="'required|alpha'"><br>
 
 				<label for="lastname">Surname</label><span>{{ errors.first('email') }}</span>
-				<input id="lastname" type="text" placeholder="Last name" v-validate="'required|alpha'"><br>
+				<input id="lastname" name="lastname" type="text" placeholder="Last name" v-validate="'required|alpha'"><br>
 
 				<label for="dateofbirth">Date of Birth</label>
-				<input id="dateofbirth" type="date" v-validate="'required|date_format:YYYY-MM-DD|date_between:1919-01-01,2005-12-31'"><br>
+				<input id="dateofbirth" name="dateofbirth" type="date" v-validate="'required|date_format:YYYY-MM-DD|date_between:1919-01-01,2005-12-31'"><br>
 
 				<!-- <input id="height" type="number" placeholder="Height (140-200 cm)"><br> -->
 
 				<div class="radio">
-					<input id="male" type="radio" name="sex" value="m" checked>
+					<input id="male" name="male" type="radio" name="sex" value="m" checked>
 					<label for="male" class="radio-label">Male</label>
 				</div>
 
 				<div class="radio">
-					<input id="female" type="radio" name="sex" value="f">
+					<input id="female" name="female" type="radio" name="sex" value="f">
 					<label for="female" class="radio-label">Female</label>
 				</div>
 
