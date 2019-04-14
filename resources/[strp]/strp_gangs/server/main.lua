@@ -2,12 +2,14 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-TriggerEvent('esx_society:registerSociety', 'vagos', 'Vagos', 'society_vagos', 'society_vagos', 'society_vagos', {type = 'public'})
-TriggerEvent('esx_service:activateService', 'vagos', -1)
 TriggerEvent('esx_society:registerSociety', 'lostmc', 'Lost MC', 'society_lostmc', 'society_lostmc', 'society_lostmc', {type = 'public'})
 TriggerEvent('esx_service:activateService', 'lostmc', -1)
+TriggerEvent('esx_society:registerSociety', 'rednecks', 'Rednecks', 'society_rednecks', 'society_rednecks', 'society_rednecks', {type = 'public'})
+TriggerEvent('esx_service:activateService', 'rednecks', -1)
 TriggerEvent('esx_society:registerSociety', 'triads', 'Triads', 'society_triads', 'society_triads', 'society_triads', {type = 'public'})
 TriggerEvent('esx_service:activateService', 'triads', -1)
+TriggerEvent('esx_society:registerSociety', 'vagos', 'Vagos', 'society_vagos', 'society_vagos', 'society_vagos', {type = 'public'})
+TriggerEvent('esx_service:activateService', 'vagos', -1)
 
 ESX.RegisterServerCallback('strp_gangs:getOtherPlayerData', function(source, cb, target)
 	if Config.EnableESXIdentity then

@@ -31,7 +31,7 @@ AddEventHandler('gangturf:contestTurf', function(contendingTurf)
             end
 
         -- Assault
-        elseif xPlayer.job.name == 'lostmc' or xPlayer.job.name == 'triads' or xPlayer.job.name == 'vagos' then
+        elseif xPlayer.job.name == 'lostmc' or xPlayer.job.name == 'rednecks' or xPlayer.job.name == 'triads' or xPlayer.job.name == 'vagos' then
             gangTurfs[contendingTurf].controlStrength = gangTurfs[contendingTurf].controlStrength - 1
 
             if (gangTurfs[contendingTurf].controlStrength <= 0) then

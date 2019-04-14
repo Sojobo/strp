@@ -4,6 +4,7 @@ local PlayerData = {}
 local contendingTurf = 0
 local gangColours = {
     vagos = 46,
+    rednecks = 29,
     triads = 76,
     lostmc = 40,
 }
@@ -45,7 +46,7 @@ Citizen.CreateThread(function()
                     drawTxt("Defending " .. gangTurfs[nearbyTurf].name .. " (" .. gangTurfs[nearbyTurf].controlStrength .. "%) for " .. gangTurfs[nearbyTurf].controller, 0, 1, 0.5, 0.8, 0.6, 255, 255, 255, 255)
 
                 -- Assault
-                elseif PlayerData.job.name == 'lostmc' or PlayerData.job.name == 'triads' or PlayerData.job.name == 'vagos' then
+                elseif PlayerData.job.name == 'lostmc' or PlayerData.job.name == 'rednecks' or PlayerData.job.name == 'triads' or PlayerData.job.name == 'vagos' then
                     contendingTurf = nearbyTurf
                     drawTxt("Capturing " .. gangTurfs[nearbyTurf].name .. " (" .. gangTurfs[nearbyTurf].controlStrength .. "%) from " .. gangTurfs[nearbyTurf].controller, 0, 1, 0.5, 0.8, 0.6, 255, 255, 255, 255)
 
@@ -112,7 +113,7 @@ RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
 	PlayerData.job = job
 
-	if job.name == 'lostmc' or job.name == 'triads' or job.name == 'vagos' then
+	if job.name == 'lostmc' or job.name == 'rednecks' or job.name == 'triads' or job.name == 'vagos' then
         TriggerServerEvent("gangturf:requestTurfData")
 	end
 end)
