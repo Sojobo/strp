@@ -622,10 +622,10 @@ local spotBeingRobbed = nil
 
 RegisterNetEvent("robberies:policeCheck")
 AddEventHandler("robberies:policeCheck", function()
-	ESX.TriggerServerCallback("esx_service:getInServiceList", function(cops)
+	-- ESX.TriggerServerCallback("esx_service:getInServiceCount", function(cops)
 		--TriggerEvent("robberies:StartRobbery", #cops)
 		TriggerEvent("robberies:StartRobbery", 15)
-	end, "police")
+	-- end, "police")
 end)
 
 

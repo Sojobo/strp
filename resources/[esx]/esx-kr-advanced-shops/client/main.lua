@@ -835,10 +835,10 @@ function Robbery(id)
     }
 
     ESX.TriggerServerCallback('esx_kr_shop-robbery:getUpdates', function(result)
-        ESX.TriggerServerCallback("esx_service:getInServiceList", function(cops)
+        ESX.TriggerServerCallback("esx_service:getInServiceCount", function(cops)
 			if result.cb ~= nil then
-				if #cops >= Config.RequiredPolices then
-                TriggerServerEvent('esx_kr_shops-robbery:UpdateCanRob', id)
+				if cops >= Config.RequiredPolices then
+                    TriggerServerEvent('esx_kr_shops-robbery:UpdateCanRob', id)
                 
                     local coords = {
                         x = coords1[id].x,
@@ -871,7 +871,7 @@ function Robbery(id)
 					end)
                 else
 					ESX.ShowNotification("There are not enough police officers online")
-                    Citizen.Trace("cops: " .. #cops)
+                    Citizen.Trace("cops: " .. cops)
 				end
 			else
 				ESX.ShowNotification("This shop has already been robbed, please wait " ..  math.floor((Config.TimeBetweenRobberies - result.time)  / 60) .. ' minutes')

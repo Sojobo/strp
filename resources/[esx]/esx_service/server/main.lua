@@ -92,6 +92,10 @@ ESX.RegisterServerCallback('esx_service:getInServiceList', function(source, cb, 
 	cb(InService[name])
 end)
 
+ESX.RegisterServerCallback('esx_service:getInServiceCount', function(source, cb, name)
+	cb(GetInServiceCount(name))
+end)
+
 AddEventHandler('playerDropped', function()
 	local _source = source
 
