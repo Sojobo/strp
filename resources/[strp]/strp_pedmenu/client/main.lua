@@ -61,7 +61,7 @@ Citizen.CreateThread(function()
 			local playerped = GetPlayerPed(player)
 			if distance ~= -1 and distance < 10.0 then
 				if distance ~= -1 and distance <= 2.0 then
-					if IsPedDeadOrDying(playerped) or IsEntityPlayingAnim(playerped, "mp_arresting", "idle", 3) then
+					if IsPedDeadOrDying(playerped) or IsEntityPlayingAnim(playerped, "mp_arresting", "idle", 3) or IsPedBeingStunned(playerped) then
 						Start(player, playerped)
                         sleep = 0
 					end
@@ -97,8 +97,10 @@ function Start(player, ped)
 			end
 		end
 
-        if IsEntityPlayingAnim(ped, "mp_arresting", "idle", 3) or IsPedDeadOrDying(ped) or distance > 7.5 then
-			checking = false
+        if IsEntityPlayingAnim(ped, "mp_arresting", "idle", 3) or IsPedDeadOrDying(ped) or distance < 7.5 or IsPedBeingStunned(playerped) then
+			checking = true
+		else
+        	checking = false
 		end
 
 	end

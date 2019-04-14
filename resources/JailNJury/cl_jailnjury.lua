@@ -76,18 +76,18 @@ end)
 
 RegisterNetEvent("jnj:teleportToCourt")
 AddEventHandler("jnj:teleportToCourt", function(pmuted, vector)
-  local targetPed = PlayerPedId()
-  RemoveAllPedWeapons(targetPed, true)
-  SetEntityCoords(targetPed, vector.x, vector.y, vector.z, 0.0, 0.0, 0.0, false)
-  SetEntityHeading(targetPed, vector.h)
-  FreezeEntityPosition(targetPed, true)
-  if pmuted then
-    muted = true
-  else
-    muted = false
-    DisableControlAction(0, 245, false)
-    DisableControlAction(0, 249, false)
-  end
+    local targetPed = PlayerPedId()
+    --   RemoveAllPedWeapons(targetPed, true)
+    SetEntityCoords(targetPed, vector.x, vector.y, vector.z, 0.0, 0.0, 0.0, false)
+    SetEntityHeading(targetPed, vector.h)
+    FreezeEntityPosition(targetPed, true)
+    if pmuted then
+        muted = true
+    else
+        muted = false
+        DisableControlAction(0, 245, false)
+        DisableControlAction(0, 249, false)
+    end
 end)
 
 RegisterNetEvent("jnj:teleportAwayCourt")
@@ -121,17 +121,17 @@ end)
   end)
 
 Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(0)
-    if isJailedG then
-      local playerPed = PlayerPedId()
-      if GetDistanceBetweenCoords(GetEntityCoords(playerPed), JailConfig.prisonLocation.x, JailConfig.prisonLocation.y, JailConfig.prisonLocation.z) > 50 then
-        SetEntityCoords(playerPed, JailConfig.prisonLocation.x, JailConfig.prisonLocation.y, JailConfig.prisonLocation.z, 0.0, 0.0, 0.0, false)
-        TriggerEvent("chatMessage", "^1Do not attempt to escape.")
-      end
-      Citizen.Wait(1000)
+    while true do
+        Citizen.Wait(0)
+        if isJailedG then
+            local playerPed = PlayerPedId()
+            if GetDistanceBetweenCoords(GetEntityCoords(playerPed), JailConfig.prisonLocation.x, JailConfig.prisonLocation.y, JailConfig.prisonLocation.z) > 50 then
+                SetEntityCoords(playerPed, JailConfig.prisonLocation.x, JailConfig.prisonLocation.y, JailConfig.prisonLocation.z, 0.0, 0.0, 0.0, false)
+                TriggerEvent("chatMessage", "^1Do not attempt to escape.")
+            end
+            Citizen.Wait(1000)
+        end
     end
-  end
 end)
 
 Citizen.CreateThread(function()
