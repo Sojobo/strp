@@ -72,29 +72,22 @@ RegisterServerEvent('99kr-burglary:Add')
 AddEventHandler('99kr-burglary:Add', function(item, qtty, iname)
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
-    --local xInventoryWeight = xPlayer.getInventoryWeight()
-	--local xInventorylimit = xPlayer.getInventoryWeightMax()
+    local xInventoryWeight = xPlayer.getInventoryWeight()
+	local xInventorylimit = xPlayer.getInventoryWeightMax()
 
-    --if xInventoryWeight + qtty > xInventorylimit then
-        --TriggerClientEvent('esx:showNotification', src, "You're carrying too much")
-    --else
+    if xInventoryWeight + qtty > xInventorylimit then
+        TriggerClientEvent('esx:showNotification', src, "You're carrying too much")
+    else
         TriggerClientEvent('esx:showNotification', src, "You found " .. qtty .. " " .. iname)
         xPlayer.addInventoryItem(item, qtty)
-   --end
+   end
 end)
 
 RegisterServerEvent('99kr-burglary:Remove')
 AddEventHandler('99kr-burglary:Remove', function(item, qtty)
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
-    --local xItem = xPlayer.getInventoryItem(item)
-
-	--if xItem.count < amount then
-		TriggerClientEvent('esx:showNotification', src, "You don't have enough of that item")
-		--return
-	--else
-	    xPlayer.removeInventoryItem(item, qtty)
-    --end
+    xPlayer.removeInventoryItem(item, qtty)
 end)
 
 ESX.RegisterUsableItem('lotteryticket', function(source)

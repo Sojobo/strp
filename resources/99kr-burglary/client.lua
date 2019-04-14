@@ -120,14 +120,14 @@ Citizen.CreateThread(function()
                 if dist <= 1.2 and DoingBreak == false then
                     if v.locked then
                         if Config.CheckTime then
-                            if (GetClockHours() >= 22 or GetClockHours() <= 6) then
+                            -- if (GetClockHours() >= 22 or GetClockHours() <= 6) then
                                 DrawText3D(v.pos.x, v.pos.y, v.pos.z, text, 0.4)
                                 if IsControlJustPressed(0, Keys["E"]) then
                                     confMenu(house)
                                 end
-                            else
-                                DrawText3D(v.pos.x, v.pos.y, v.pos.z, "~r~ Return later at night", 0.4)
-                            end
+                            -- else
+                            --     DrawText3D(v.pos.x, v.pos.y, v.pos.z, "~r~ Return later at night", 0.4)
+                            -- end
                         else
                             DrawText3D(v.pos.x, v.pos.y, v.pos.z, text, 0.4)
                             if IsControlJustPressed(0, Keys["E"]) then
