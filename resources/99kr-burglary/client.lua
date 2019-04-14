@@ -134,14 +134,14 @@ Citizen.CreateThread(function()
                                 confMenu(house)
                             end
                         end               
-                    else
-                    DrawText3D(v.pos.x, v.pos.y, v.pos.z, textUnlock, 0.4)                  
+                    elseif not (IsPedBeingStunned(playerPed) or IsEntityPlayingAnim(playerPed, "mp_arresting", "idle", 3)) then
+                        DrawText3D(v.pos.x, v.pos.y, v.pos.z, textUnlock, 0.4)                  
                         if IsControlJustPressed(0, Keys["E"]) then
-                        fade()
-                        LastHouse = v
-                        robing = true
-                        SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
-                        SetEntityHeading(playerPed, v.inside.h)
+                            fade()
+                            LastHouse = v
+                            robing = true
+                            SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
+                            SetEntityHeading(playerPed, v.inside.h)
                         end
                     end
                 end
@@ -218,7 +218,7 @@ Citizen.CreateThread(function()
                         fade()
                         teleport(Config.burglaryPlaces[LastHouse])
                         robing = false
-                    elseif dist <= 1.2 and IsControlJustPressed(0, Keys["E"]) then
+                    elseif dist <= 1.2 and IsControlJustPressed(0, Keys["E"]) and not (IsPedBeingStunned(playerPed) or IsEntityPlayingAnim(playerPed, "mp_arresting", "idle", 3)) then
                         fade()
                         teleport(Config.burglaryPlaces[LastHouse])
                         TriggerServerEvent("99kr-burglary:cooldown", LastHouse)
