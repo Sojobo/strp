@@ -1,11 +1,11 @@
 RegisterNetEvent("textsent")
 AddEventHandler('textsent', function(tPID, names2)
-	TriggerEvent('chatMessage', "", {205, 205, 0}, " Reply sent to:^0 " .. names2 .."  ".."^0  - " .. tPID)
+	TriggerEvent('chatMessage', "", {255, 0, 0}, " Reply sent to:^0 " .. names2 .."  ".."^0  - " .. tPID)
 end)
 
 RegisterNetEvent("textmsg")
 AddEventHandler('textmsg', function(source, textmsg, names2, names3 )
-	TriggerEvent('chatMessage', "", {205, 205, 0}, "  ADMIN " .. names3 .."  ".."^0: " .. textmsg)
+	TriggerEvent('chatMessage', "", {255, 0, 0}, "  ADMIN " .. names3 .."  ".."^0: " .. textmsg)
 end)
 
 
