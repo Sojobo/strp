@@ -83,138 +83,154 @@ Citizen.CreateThread(function()
 end) 
 
 Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(5)
-    for k,v in pairs(Config.burglaryPlaces) do
-      local playerPed = PlayerPedId()
-      local house = k
-      local coords = GetEntityCoords(playerPed)
-      local dist   = GetDistanceBetweenCoords(v.pos.x, v.pos.y, v.pos.z, coords.x, coords.y, coords.z, false)
+    local sleepTimer = 500
+    while true do
+        sleepTimer = 500
+        for k,v in pairs(Config.burglaryPlaces) do
+            local playerPed = PlayerPedId()
+            local house = k
+            local coords = GetEntityCoords(playerPed)
+            local dist   = GetDistanceBetweenCoords(v.pos.x, v.pos.y, v.pos.z, coords.x, coords.y, coords.z, false)
 
-      if GetDistanceBetweenCoords(Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z, coords.x, coords.y, coords.z, false) < 50.0 then
-        DrawMarker(25, Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
-        if GetDistanceBetweenCoords(Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z, coords.x, coords.y, coords.z, false) < 1.0 then
-          DrawText3D(Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z, "~g~[E]~w~ Sell Stuff", 0.4)
-          if IsControlJustPressed(0, Keys["E"]) and not MenuOpened then
-            SellItems()
-          end
-        end
-      end
-
-      if PlayerData.job ~= nil and PlayerData.job.name == "police" and dist <= 1.2 then
-        DrawText3D(v.pos.x, v.pos.y, v.pos.z, "~g~[E]~w~ Open", 0.4)
-        if IsControlJustPressed(0, Keys["E"]) then
-          SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
-          LastHouse = house
-          robing = true
-        end
-      elseif v.cooldown > 0 and dist <= 1.2 then
-        DrawText3D(v.pos.x, v.pos.y, v.pos.z, textCooldown..v.cooldown.. " minutes", 0.4)
-      elseif dist <= 30.0 and DoingBreak == false and v.cooldown == 0 then
-        DrawMarker(25, v.pos.x, v.pos.y, v.pos.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
-        if dist <= 1.2 and DoingBreak == false then
-          if v.locked then
-          	if Config.CheckTime then
-          		if (GetClockHours() >= 22 or GetClockHours() <= 6) then
-          			DrawText3D(v.pos.x, v.pos.y, v.pos.z, text, 0.4)
-          			if IsControlJustPressed(0, Keys["E"]) then
-                		confMenu(house)
-          			end
-          		else
-          			DrawText3D(v.pos.x, v.pos.y, v.pos.z, "~r~ Return later at night", 0.4)
-          		end
-          	else
-            	DrawText3D(v.pos.x, v.pos.y, v.pos.z, text, 0.4)
-            	if IsControlJustPressed(0, Keys["E"]) then
-                	confMenu(house)
-          		end
-            end               
-        else
-          DrawText3D(v.pos.x, v.pos.y, v.pos.z, textUnlock, 0.4)                  
-            if IsControlJustPressed(0, Keys["E"]) then
-              fade()
-              LastHouse = v
-              robing = true
-              SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
-              SetEntityHeading(playerPed, v.inside.h)
+            if GetDistanceBetweenCoords(Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z, coords.x, coords.y, coords.z, false) < 50.0 then
+                sleepTimer = 0
+                DrawMarker(25, Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
+                if GetDistanceBetweenCoords(Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z, coords.x, coords.y, coords.z, false) < 1.0 then
+                    DrawText3D(Config.sellPoint.x, Config.sellPoint.y, Config.sellPoint.z, "~g~[E]~w~ Sell Stuff", 0.4)
+                    if IsControlJustPressed(0, Keys["E"]) and not MenuOpened then
+                        SellItems()
+                    end
+                end
             end
-          end
+
+            if PlayerData.job ~= nil and PlayerData.job.name == "police" and dist <= 1.2 then
+                sleepTimer = 0
+                DrawText3D(v.pos.x, v.pos.y, v.pos.z, "~g~[E]~w~ Open", 0.4)
+                if IsControlJustPressed(0, Keys["E"]) then
+                    SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
+                    LastHouse = house
+                    robing = true
+                end
+            elseif v.cooldown > 0 and dist <= 1.2 then
+                sleepTimer = 0
+                DrawText3D(v.pos.x, v.pos.y, v.pos.z, textCooldown..v.cooldown.. " minutes", 0.4)
+            elseif dist <= 30.0 and DoingBreak == false and v.cooldown == 0 then
+                sleepTimer = 0
+                DrawMarker(25, v.pos.x, v.pos.y, v.pos.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
+                if dist <= 1.2 and DoingBreak == false then
+                    if v.locked then
+                        if Config.CheckTime then
+                            if (GetClockHours() >= 22 or GetClockHours() <= 6) then
+                                DrawText3D(v.pos.x, v.pos.y, v.pos.z, text, 0.4)
+                                if IsControlJustPressed(0, Keys["E"]) then
+                                    confMenu(house)
+                                end
+                            else
+                                DrawText3D(v.pos.x, v.pos.y, v.pos.z, "~r~ Return later at night", 0.4)
+                            end
+                        else
+                            DrawText3D(v.pos.x, v.pos.y, v.pos.z, text, 0.4)
+                            if IsControlJustPressed(0, Keys["E"]) then
+                                confMenu(house)
+                            end
+                        end               
+                    else
+                    DrawText3D(v.pos.x, v.pos.y, v.pos.z, textUnlock, 0.4)                  
+                        if IsControlJustPressed(0, Keys["E"]) then
+                        fade()
+                        LastHouse = v
+                        robing = true
+                        SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
+                        SetEntityHeading(playerPed, v.inside.h)
+                        end
+                    end
+                end
+            end
         end
-      end
+        Citizen.Wait(sleepTimer)
     end
-  end
 end)
 
 Citizen.CreateThread(function()
+    local sleepTimer = 500
     while stealing == false do
-      Citizen.Wait(5)
-      for k,v in pairs(Config.burglaryInside) do
-        local playerPed = PlayerPedId()
-        local coords = GetEntityCoords(playerPed)
-        local dist   = GetDistanceBetweenCoords(v.x, v.y, v.z, coords.x, coords.y, coords.z, false)
-          if dist <= 1.2 and v.amount > 0 then
-            DrawText3D(v.x, v.y, v.z, searchText, 0.4)
-            if dist <= 0.5 and IsControlJustPressed(0, Keys["E"]) then
-              steal(k)
+        sleepTimer = 500
+        for k,v in pairs(Config.burglaryInside) do
+            local playerPed = PlayerPedId()
+            local coords = GetEntityCoords(playerPed)
+            local dist   = GetDistanceBetweenCoords(v.x, v.y, v.z, coords.x, coords.y, coords.z, false)
+            if dist <= 1.2 and v.amount > 0 then
+                sleepTimer = 0
+                DrawText3D(v.x, v.y, v.z, searchText, 0.4)
+                if dist <= 0.5 and IsControlJustPressed(0, Keys["E"]) then
+                    steal(k)
+                end
+            elseif v.amount < 1 and dist <= 1.2 then
+                sleepTimer = 0
+                DrawText3D(v.x, v.y, v.z, emptyMessage3D, 0.4)
+                if IsControlJustPressed(0, Keys["E"]) and dist <= 0.5 then 
+                    ESX.ShowNotification(emptyMessage)
+                end
             end
-        elseif v.amount < 1 and dist <= 1.2 then
-          DrawText3D(v.x, v.y, v.z, emptyMessage3D, 0.4)
-          if IsControlJustPressed(0, Keys["E"]) and dist <= 0.5 then 
-            ESX.ShowNotification(emptyMessage)
-          end
         end
-      end
+        Citizen.Wait(sleepTimer)
     end
-  end)
-
-  Citizen.CreateThread(function()
-    while true do
-      Citizen.Wait(5)
-      for k,v in pairs(Config.closets) do
-        local playerPed = PlayerPedId()
-        local coords = GetEntityCoords(playerPed)
-        local dist   = GetDistanceBetweenCoords(v.x, v.y, v.z, coords.x, coords.y, coords.z, false)
-          if dist <= 1.2 then
-            if peeking == false then
-            DrawText3D(v.x, v.y, v.z, closetText, 0.4)
-            if dist <= 0.5 and IsControlJustPressed(0, Keys["E"]) then
-              ClosetMenu(k)
-            end
-          end
-        end
-      end
-    end
-  end)
+end)
 
 Citizen.CreateThread(function()
-  while true do
-    Wait(5)
-    if robing then
-      local playerPed = PlayerPedId()
-      local coords = GetEntityCoords(playerPed)
-      v = Config.burglaryPlaces[LastHouse]
-      local dist = GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false)
-      if GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false) <= 70.0 then
-        DrawMarker(25, v.inside.x, v.inside.y, v.inside.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
-        if GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false) <= 3.0 then
-          DrawText3D(v.inside.x, v.inside.y, v.inside.z, insideText, 0.4)
-          if PlayerData.job ~= nil and PlayerData.job.name == "police" and dist <= 1.2 and IsControlJustPressed(0, Keys["E"]) then
-            SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
-            fade()
-            teleport(Config.burglaryPlaces[LastHouse])
-            robing = false
-          elseif dist <= 1.2 and IsControlJustPressed(0, Keys["E"]) then
-            fade()
-            teleport(Config.burglaryPlaces[LastHouse])
-            TriggerServerEvent("99kr-burglary:cooldown", LastHouse)
-            robing = false
-            Wait(50)
-            LastHouse = {}
-          end
+    local sleepTimer = 500
+    while true do
+        sleepTimer = 500
+        for k,v in pairs(Config.closets) do
+            local playerPed = PlayerPedId()
+            local coords = GetEntityCoords(playerPed)
+            local dist   = GetDistanceBetweenCoords(v.x, v.y, v.z, coords.x, coords.y, coords.z, false)
+            if dist <= 1.2 then
+                if peeking == false then
+                    sleepTimer = 0
+                    DrawText3D(v.x, v.y, v.z, closetText, 0.4)
+                    if dist <= 0.5 and IsControlJustPressed(0, Keys["E"]) then
+                        ClosetMenu(k)
+                    end
+                end
+            end
         end
-      end 
+        Citizen.Wait(sleepTimer)
     end
-  end
+end)
+
+Citizen.CreateThread(function()
+    local sleepTimer = 500
+    while true do
+        sleepTimer = 500
+        if robing then
+            local playerPed = PlayerPedId()
+            local coords = GetEntityCoords(playerPed)
+            v = Config.burglaryPlaces[LastHouse]
+            local dist = GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false)
+            if GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false) <= 70.0 then
+                sleepTimer = 0
+                DrawMarker(25, v.inside.x, v.inside.y, v.inside.z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.2, 1.2, 1.0, 255, 255, 255, 155, false, false, 2, false)
+                if GetDistanceBetweenCoords(v.inside.x, v.inside.y, v.inside.z, coords.x, coords.y, coords.z, false) <= 3.0 then
+                    DrawText3D(v.inside.x, v.inside.y, v.inside.z, insideText, 0.4)
+                    if PlayerData.job ~= nil and PlayerData.job.name == "police" and dist <= 1.2 and IsControlJustPressed(0, Keys["E"]) then
+                        SetCoords(playerPed, v.inside.x, v.inside.y, v.inside.z - 0.98)
+                        fade()
+                        teleport(Config.burglaryPlaces[LastHouse])
+                        robing = false
+                    elseif dist <= 1.2 and IsControlJustPressed(0, Keys["E"]) then
+                        fade()
+                        teleport(Config.burglaryPlaces[LastHouse])
+                        TriggerServerEvent("99kr-burglary:cooldown", LastHouse)
+                        robing = false
+                        Wait(50)
+                        LastHouse = {}
+                    end
+                end
+            end
+        end
+        Citizen.Wait(sleepTimer)
+    end
 end)
 
 function ClosetMenu(house)
@@ -282,13 +298,16 @@ end)
 end
 
 Citizen.CreateThread(function()
+    local sleepTimer = 500
 	while true do
-    Citizen.Wait(6)
-    if showPro == true then
-      local playerPed = PlayerPedId()
-		  local coords = GetEntityCoords(playerPed)
-      DrawText3D(coords.x, coords.y, coords.z, TimeLeft .. '~g~%', 0.4)
-    end
+        sleepTimer = 500
+        if showPro == true then
+            sleepTimer = 0
+            local playerPed = PlayerPedId()
+            local coords = GetEntityCoords(playerPed)
+            DrawText3D(coords.x, coords.y, coords.z, TimeLeft .. '~g~%', 0.4)
+        end
+        Citizen.Wait(sleepTimer)
 	end
 end)
 
