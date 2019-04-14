@@ -15,10 +15,10 @@ local prices = {
 	--hjigh
 	["rolex"] = 400,
 	["omega"] = 400,
-	["laptop"] = 300,
-	["pickledanimal"] = 1200,
+	["laptop"] = 270,
+	["pickledanimal"] = 120,
 	["santashat"] = 120,
-	["ifruit"] = 200,
+	["ifruit"] = 180,
 	["wallet"] = 150,
 	["gpspill"] = 110,
 	["sojobeans"] = 120,
