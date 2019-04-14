@@ -48,7 +48,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait( 5000 )
 
 		if NetworkIsSessionStarted() then
-			TriggerServerEvent( "checkadmin")
+			TriggerServerEvent( "idonlyforadmin:checkadmin")
 		end
 	end
 end )

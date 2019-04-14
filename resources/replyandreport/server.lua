@@ -69,8 +69,8 @@ AddEventHandler('chatMessage', function(source, color, msg)
 	
 end)
 
-RegisterServerEvent('checkadmin')
-AddEventHandler('checkadmin', function(n1, tmsg, ii)
+RegisterServerEvent('replyandreport:checkadmin')
+AddEventHandler('replyandreport:checkadmin', function(n1, tmsg, ii)
 	local id = source
 	if isAdmin(id) then
 		TriggerClientEvent("sendReportToAllAdmins", -1, source, n1, tostring(tmsg), ii)

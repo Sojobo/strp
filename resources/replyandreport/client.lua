@@ -15,9 +15,9 @@ AddEventHandler('sendReport', function(id, name, message)
   local pid = GetPlayerFromServerId(id)
   if pid == myId then
     TriggerEvent('chatMessage', "", {255, 0, 0}, "Report sent to the admins online!")
-	TriggerServerEvent("checkadmin", name, message, id)
+	TriggerServerEvent("replyandreport:checkadmin", name, message, id)
   elseif pid ~= myId then
-    TriggerServerEvent("checkadmin", name, message, id)
+    TriggerServerEvent("replyandreport:checkadmin", name, message, id)
   end
 end)
 

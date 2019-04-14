@@ -28,8 +28,8 @@ function isAdmin(player)
     return allowed
 end
 
-RegisterServerEvent('checkadmin')
-AddEventHandler('checkadmin', function()
+RegisterServerEvent('idonlyforadmin:checkadmin')
+AddEventHandler('idonlyforadmin:checkadmin', function()
 	local id = source
 	if isAdmin(id) then
 		TriggerClientEvent("setgroup", source)
