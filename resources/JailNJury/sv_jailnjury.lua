@@ -212,7 +212,7 @@ Citizen.CreateThread(function()
       Citizen.Wait(1000 * 30)
       timeToVerdict = true
       for i, juror in ipairs(confirmedJurors) do
-        TriggerClientEvent("jnj:teleportToCourt", juror, true, JailConfig.jurorLocations[i])
+        TriggerClientEvent("jnj:teleportToCourt", juror, false, JailConfig.jurorLocations[i])
         TriggerClientEvent("chatMessage", juror, "^1You must now cast your verdict.")
         TriggerClientEvent("chatMessage", juror, "^2/jurorverdict yes ^1 for ^2guilty^1.")
         TriggerClientEvent("chatMessage", juror, "^2/jurorverdict no ^1 for ^2not guilty^1.")
