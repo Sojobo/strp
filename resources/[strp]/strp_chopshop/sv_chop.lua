@@ -55,7 +55,7 @@ AddEventHandler('chopshop:chopVehicle', function(vehicleProps, model)
         else
             local payOut = shoppingList[vehicleProps.model].costs
             if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(1) then
-                payOut = math.ceil(payOut - ((payOut/100)*20))
+                payOut = math.ceil(payOut + ((payOut/100)*20))
                 TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Chop Shop", "You were paid $" .. payOut .. " for chopping the vehicle, this includes a bonus for turf ownership", 'fas fa-car', "red")
             else
                 TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, "Chop Shop", "You were paid $" .. payOut .. " for chopping the vehicle.", 'fas fa-car', "red")
