@@ -138,13 +138,6 @@ ESX.RegisterServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function(
 end)
 
 if Config.EarlyRespawnFine then
-	ESX.RegisterServerCallback('esx_ambulancejob:checkBalance', function(source, cb)
-		local xPlayer = ESX.GetPlayerFromId(source)
-		local bankBalance = xPlayer.getAccount('bank').money
-
-		cb(bankBalance >= Config.EarlyRespawnFineAmount)
-	end)
-
 	RegisterServerEvent('esx_ambulancejob:payFine')
 	AddEventHandler('esx_ambulancejob:payFine', function()
 		local xPlayer = ESX.GetPlayerFromId(source)

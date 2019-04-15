@@ -325,10 +325,12 @@ end
 
 function StartDeathTimer()
 	local canPayFine = false
+    local priceForTreatment = Config.EarlyRespawnFineAmount
 
 	if Config.EarlyRespawnFine then
-		ESX.TriggerServerCallback('esx_ambulancejob:checkBalance', function(canPay)
+		ESX.TriggerServerCallback('esx_service:checkBalanceForRespawn', function(canPay, price)
 			canPayFine = canPay
+            priceForTreatment = price
 		end)
 	end
 
@@ -383,7 +385,7 @@ function StartDeathTimer()
 					break
 				end
 			elseif Config.EarlyRespawnFine and canPayFine then
-				text = text .. _U('respawn_bleedout_fine', ESX.Math.GroupDigits(Config.EarlyRespawnFineAmount))
+				text = text .. _U('respawn_bleedout_fine', ESX.Math.GroupDigits(priceForTreatment))
 
 				if IsControlPressed(0, Keys['E']) and timeHeld > 60 then
 					TriggerServerEvent('esx_ambulancejob:payFine')

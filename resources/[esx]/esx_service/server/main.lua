@@ -123,3 +123,15 @@ AddEventHandler('esx_service:updateBlips', function(societyNames)
 		end
 	end
 end)
+
+ESX.RegisterServerCallback('esx_service:checkBalanceForRespawn', function(source, cb)
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local bankBalance = xPlayer.getAccount('bank').money
+    local cost = 500 -- Config.EarlyRespawnFineAmount
+
+	if InService["police"][source] or InService["ambulance"][source] then
+		cost = 100
+	end
+
+    cb(bankBalance >= cost, cost)
+end)
