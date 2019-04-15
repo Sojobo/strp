@@ -26,6 +26,21 @@ RegisterCommand('twt', function(source, args, rawCommand)
 	print(('%s: %s'):format(name, args))
 end, false)
 
+RegisterCommand('ad', function(source, args, rawCommand)
+	if source == 0 then
+		print('esx_rpchat: you can\'t use this command from rcon!')
+		return
+	end
+
+	args = table.concat(args, ' ')
+	local name = GetPlayerName(source)
+	if Config.EnableESXIdentity then name = GetCharacterName(source) end
+
+	TriggerClientEvent('chat:addMessage', -1, { args = { _U('advert_prefix'), args }, color = { 0, 153, 204 } })
+    print(('%s'):format(args))
+end, false)
+
+
 RegisterCommand('me', function(source, args, rawCommand)
 	if source == 0 then
 		print('esx_rpchat: you can\'t use this command from rcon!')

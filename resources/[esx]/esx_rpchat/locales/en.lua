@@ -9,4 +9,5 @@ Locales['en'] = {
   ['generic_argument_name'] = 'message',
   ['generic_argument_help'] = 'the message',
   ['unknown_command'] = '^3%s^0 is not a valid command!',
+  ['advert_prefix'] = '^3Advert^3'
 }
