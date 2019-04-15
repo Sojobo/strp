@@ -58,15 +58,13 @@ Fwv = function (entity)
         
       if IsControlJustReleased(0, 29) and GetLastInputMethod(0) then
         beltOn = not beltOn 
-        if beltOn then 
-		  TriggerEvent("pNotify:SendNotification", {text = "Seatbelt On", type = "success", timeout = 1400, layout = "centerLeft"})
+        if beltOn then
 			
 		  SendNUIMessage({
 		    displayWindow = 'false'
 		    })
 		  isUiOpen = true 
 		else 
-		  TriggerEvent("pNotify:SendNotification", {text = "Seatbelt Off", type = "error", timeout = 1400, layout = "centerLeft"}) 
 
 		  SendNUIMessage({
 		     displayWindow = 'true'
@@ -101,37 +99,4 @@ Citizen.CreateThread(function()
         end    
 
     end
-end)
-
-Citizen.CreateThread(function()
-  while true do
-  Citizen.Wait(0)
-    if not beltOn and wasInCar == true then
-                TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 0.1, 'seatbelt', 0.1)
-                Citizen.Wait(7000)
-    end
-
-end
-end)
-
-Citizen.CreateThread(function()
-  while true do
-  Citizen.Wait(0)
-    if not beltOn and not wasInCar == true then
-                TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 0.1, 'seatbelt', 0.1)
-                Citizen.Wait(0)
-    end
-
-end
-end)
-
-Citizen.CreateThread(function()
-  while true do
-  Citizen.Wait(0)
-    if beltOn and wasInCar == true then
-                TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 0.1, 'seatbelt', 0.1)
-                Citizen.Wait(0)
-    end
-
-end
 end)
