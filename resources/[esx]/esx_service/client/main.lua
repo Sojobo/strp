@@ -52,7 +52,9 @@ Citizen.CreateThread(function()
             if (IsControlJustPressed(1, 20)) then -- 20 is Z
                 SetNewWaypoint(callAvailable.locationX, callAvailable.locationY)
                 TriggerEvent("pNotify:SendNotification", { clearall = true })
-                TriggerServerEvent('esx:SendNotificationToUser', callAvailable.caller, "Units are responding to your call")
+                if (callAvailable.caller > 0) then
+                    TriggerServerEvent('esx:SendNotificationToUser', callAvailable.caller, "Units are responding to your call")
+                end
                 callAvailable = nil
                 callTimer = 0
             elseif (IsControlJustPressed(1, 73)) then -- 73 is X

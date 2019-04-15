@@ -852,7 +852,7 @@ function Robbery(id)
                         iconStyle = 'red',
                         locationX = coords.x,
                         locationY = coords.y,
-                        caller = GetPlayerServerId(PlayerId()),
+                        caller = 0,
                     }
 
                     TriggerServerEvent('esx_service:callAllInService', notification, "police")

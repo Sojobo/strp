@@ -63,7 +63,7 @@ function sendEmergencyCall(source, alert, targetCoords)
             iconStyle = 'red',
             locationX = targetCoords.x,
             locationY = targetCoords.y,
-            caller = source,
+            caller = 0,
         }
 
         TriggerEvent('esx_service:callAllInService', notification, "police")
