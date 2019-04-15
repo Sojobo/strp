@@ -5,7 +5,9 @@ models = {
 	[4] = 1933174915,
 	[5] = -462817101,
 	[6] = -469694731,
-	[7] = -164877493
+	[7] = -164877493,
+	[8] = -2848994066,
+	[9] = -1529242755
 }
 
 blacklistedVehicles = {
@@ -15,7 +17,9 @@ blacklistedVehicles = {
 	[4] = 'SCORCHER',
 	[5] = 'TRIBIKE',
 	[6] = 'TRIBIKE2',
-	[7] = 'TRIBIKE3'
+	[7] = 'TRIBIKE3',
+	[8] = 'RAIDEN',
+	[9] = 'NEON'
 }
 
 local Vehicles 				  = {}
