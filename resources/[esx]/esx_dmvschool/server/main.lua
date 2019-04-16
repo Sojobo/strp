@@ -27,6 +27,6 @@ AddEventHandler('esx_dmvschool:pay', function(price)
 		xPlayer.removeBank(price)
 		TriggerClientEvent('esx:showNotification', _source, _U('you_paid', price))
 	else
-		ESX.ShowAdvancedNotification("Bank", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
+        TriggerClientEvent('esx:showAdvancedNotification', _source, "Driving School", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
 	end
 end)
