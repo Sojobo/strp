@@ -561,7 +561,8 @@ function OpenPoliceActionsMenu()
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'),	value = 'out_the_vehicle'},
 				{label = _U('fine'),			value = 'fine'},
-				{label = _U('unpaid_bills'),	value = 'unpaid_bills'}
+				{label = _U('unpaid_bills'),	value = 'unpaid_bills'},
+				{label = "GSR Test",			value = 'gsr_test'}
 			}
 
 			if Config.EnableLicenses then
@@ -599,6 +600,8 @@ function OpenPoliceActionsMenu()
 						ShowPlayerLicense(closestPlayer)
 					elseif action == 'unpaid_bills' then
 						OpenUnpaidBillsMenu(closestPlayer)
+					elseif action == 'gsr_test' then
+						TriggerServerEvent('esx_gsr:Check', GetPlayerServerId(closestPlayer))
 					end
 
 				else
