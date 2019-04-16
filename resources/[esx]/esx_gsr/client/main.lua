@@ -35,30 +35,18 @@ Citizen.CreateThread(function()
         if Config.waterClean and hasShot then
             ped = GetPlayerPed(-1)
             if IsEntityInWater(ped) then
-                TriggerEvent('esx_gsr:Notify', _U('gsr_clean_wait'), "error")
+                ESX.ShowAdvancedNotification("Gun shot residue", _U('gsr_clean_wait'), "fas fa-microscope", "blue")
                 Citizen.Wait(Config.waterCleanTime)
                 if IsEntityInWater(ped) then
                     hasShot = false
                     TriggerServerEvent('esx_gsr:Remove')
-                    TriggerEvent('esx_gsr:Notify', _U('gsr_cleaned'), "success")
+                    ESX.ShowAdvancedNotification("Gun shot residue", _U('gsr_cleaned'), "fas fa-microscope", "green")
                 else
-                    TriggerEvent('esx_gsr:Notify', _U('gsr_clean_failed'), "error")
+                    ESX.ShowAdvancedNotification("Gun shot residue", _U('gsr_clean_failed'), "fas fa-microscope", "red")
                 end
             end
         end
     end
-end)
-
-RegisterNetEvent('esx_gsr:Notify')
-AddEventHandler('esx_gsr:Notify', function(text, type)
-    exports.pNotify:SetQueueMax("left", 1)
-    exports.pNotify:SendNotification({
-        text = text,
-        type = type,
-        timeout = 5000,
-        layout = "centerLeft",
-        queue = "left",
-    })
 end)
 
 function status()

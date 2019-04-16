@@ -54,9 +54,9 @@ function gsrcheck(source, identifier)
     local Source = source
     local identifier = identifier
     if gsrData[identifier] ~= nil then
-        TriggerClientEvent('esx_gsr:Notify', Source, _U('gsr_positive'), "error")
+        TriggerClientEvent('esx:showAdvancedNotification', Source, "GSR Results", _U('gsr_positive'), 'fas fa-microscope', "green")
     else
-        TriggerClientEvent('esx_gsr:Notify', Source, _U('gsr_negative'), "success")
+        TriggerClientEvent('esx:showAdvancedNotification', Source, "GSR Results", _U('gsr_negative'), 'fas fa-microscope', "red")
     end
 end
 
