@@ -30,7 +30,7 @@ Citizen.CreateThread(function()
     while true do
         local sleeping = 1000
         local nearbyTurf = isNearCapturePoint(15)
-        if (nearbyTurf > 0) then
+        if (nearbyTurf > 0 and not IsPedDeadOrDying(GetPlayerPed(-1))) then
             if PlayerData.job ~= nil then
                 sleeping = 0
 
