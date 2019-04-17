@@ -71,15 +71,22 @@ AddEventHandler('esx:setJob', function(job)
 end)
 
 Citizen.CreateThread(function()
-  while true do
-    Wait(60000)
-    for k,v in pairs(Config.burglaryPlaces) do
-      if v.cooldown ~= 0 then
-        v.cooldown = v.cooldown - 1
-        MenuOpened = false
-      end
-    end
-  end
+    while true do
+        Wait(60000)
+        for bpk,bpv in pairs(Config.burglaryPlaces) do
+            if bpv.cooldown ~= 0 then
+                bpv.cooldown = bpv.cooldown - 1
+                MenuOpened = false
+            end
+            if bpv.cooldown == 0 then
+                for bik,biv in pairs(Config.burglaryInside) do
+                    if biv.house == bpk then
+                        biv.amount = math.random(1,biv.maxamount)
+                    end
+                end
+            end
+        end
+     end
 end) 
 
 Citizen.CreateThread(function()
@@ -235,66 +242,65 @@ end)
 
 function ClosetMenu(house)
     Citizen.CreateThread(function()
-    elements = {}
-    for k,v in pairs(Config.closets) do
-      local playerPed = PlayerPedId()
-        local house = k
-        if v.hatAmount > 0 then 
-            table.insert(elements, {label = hat .. ' <span style="color:#5db6e5;">(' .. v.hatAmount .. ')</span>', value = 'hat'})
-        end
-        if v.shirtAmount > 0 then
-            table.insert(elements, {label = shirt .. ' <span style="color:#5db6e5;">(' .. v.shirtAmount .. ')</span>', value = 'shirt'})
-        end
-        if v.pantsAmount > 0 then
-            table.insert(elements, {label = pants .. ' <span style="color:#5db6e5;">(' .. v.pantsAmount .. ')</span>', value = 'pants'})
-        end
-        if v.shoesAmount > 0 then
-            table.insert(elements, {label = shoes .. ' <span style="color:#5db6e5;">(' .. v.shoesAmount .. ')</span>', value = 'shoes'})
-        end
+        elements = {}
+        for k,v in pairs(Config.closets) do
+            local playerPed = PlayerPedId()
+            local house = k
+            if v.hatAmount > 0 then 
+                table.insert(elements, {label = hat .. ' <span style="color:#5db6e5;">(' .. v.hatAmount .. ')</span>', value = 'hat'})
+            end
+            if v.shirtAmount > 0 then
+                table.insert(elements, {label = shirt .. ' <span style="color:#5db6e5;">(' .. v.shirtAmount .. ')</span>', value = 'shirt'})
+            end
+            if v.pantsAmount > 0 then
+                table.insert(elements, {label = pants .. ' <span style="color:#5db6e5;">(' .. v.pantsAmount .. ')</span>', value = 'pants'})
+            end
+            if v.shoesAmount > 0 then
+                table.insert(elements, {label = shoes .. ' <span style="color:#5db6e5;">(' .. v.shoesAmount .. ')</span>', value = 'shoes'})
+            end
 
-    ESX.UI.Menu.Open(
-        'default', GetCurrentResourceName(), 'closet_menu',
-        {
-            title    = house,
-            align    = 'center',
-            elements = elements
-        },
-        function(data, menu)
+            ESX.UI.Menu.Open(
+                'default', GetCurrentResourceName(), 'closet_menu',
+                {
+                    title    = house,
+                    align    = 'center',
+                    elements = elements
+                },
+                function(data, menu)
 
-            if data.current.value == 'shirt' then
-                    peeking = true
+                    if data.current.value == 'shirt' then
+                        peeking = true
+                        menu.close()
+                        stealClothes(house, data.current.value, v.shirtAmount, shirt)
+                        v.shirtAmount = v.shirtAmount - v.shirtAmount
+                        peeking = false
+                    end
+                    if data.current.value == 'pants' then
+                        peeking = true
+                        menu.close()
+                        stealClothes(house, data.current.value, v.pantsAmount, pants)
+                        v.pantsAmount = v.pantsAmount - v.pantsAmount
+                        peeking = false
+                    end
+                    if data.current.value == 'hat' then
+                        peeking = true
+                        menu.close()
+                        stealClothes(house, data.current.value, v.hatAmount, hat)
+                        v.hatAmount = v.hatAmount - v.hatAmount
+                        peeking = false
+                    end
+                    if data.current.value == 'shoes' then
+                        peeking = true
+                        menu.close()
+                        stealClothes(house, data.current.value, v.shoesAmount, shoes)
+                        v.shoesAmount = v.shoesAmount - v.shoesAmount
+                        peeking = false
+                    end
+                end, function(data, menu)
                     menu.close()
-                    stealClothes(house, data.current.value, v.shirtAmount, shirt)
-                    v.shirtAmount = v.shirtAmount - v.shirtAmount
-                    peeking = false
-                  end
-            if data.current.value == 'pants' then
-                    peeking = true
-                    menu.close()
-                    stealClothes(house, data.current.value, v.pantsAmount, pants)
-                    v.pantsAmount = v.pantsAmount - v.pantsAmount
-                    peeking = false
-                  end
-            if data.current.value == 'hat' then
-                    peeking = true
-                    menu.close()
-                    stealClothes(house, data.current.value, v.hatAmount, hat)
-                    v.hatAmount = v.hatAmount - v.hatAmount
-                    peeking = false
-                  end
-            if data.current.value == 'shoes' then
-                    peeking = true
-                    menu.close()
-                    stealClothes(house, data.current.value, v.shoesAmount, shoes)
-                    v.shoesAmount = v.shoesAmount - v.shoesAmount
-                    peeking = false
-                  end      
-                end,
-    function(data, menu)
-        menu.close()
+            end)
+        end
     end)
-  end
-end)
 end
 
 Citizen.CreateThread(function()
@@ -364,9 +370,9 @@ function SellItems()
 end
 
 function confMenu(house)
-  local v = GetHouseValues(house, Config.burglaryPlaces)
-  Citizen.CreateThread(function()
-  ESX.UI.Menu.CloseAll()
+    local v = GetHouseValues(house, Config.burglaryPlaces)
+    Citizen.CreateThread(function()
+        ESX.UI.Menu.CloseAll()
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'conf_menu',
 		{
 			title = lockpickQuestionText,
@@ -375,50 +381,45 @@ function confMenu(house)
                 {label = yesText, value = 'yes'},
                 {label = noText, value = 'no'}
 			}
-		},
-		function(data, menu)
+		}, function(data, menu)
 			menu.close()
+            if data.current.value == 'yes' then 
+                local inventory = ESX.GetPlayerData().inventory
+                local LockpickAmount = nil
+                for i=1, #inventory, 1 do                          
+                    if inventory[i].name == 'lockpick' then
+                        LockpickAmount = inventory[i].count
+                    end
+                end
+                if LockpickAmount > 0 then
+                    HouseBreak(house)
+                    v.locked = false
+                    LastHouse = house
+                    robing = true
+                    Citizen.Wait(math.random(15000,30000))
+                    local random = math.random(0, 100)
+                    if random <= Config.chancePoliceNoti then -- chance police get notified
+                        local playerPed = PlayerPedId()
+                        local coords = GetEntityCoords(playerPed)
+                        local notification = {
+                            subject  = 'Burglary in Progress',
+                            msg      = "Reports of a burglary in progress",
+                            icon = 'fas fa-headset',
+                            iconStyle = 'red',
+                            locationX = coords.x,
+                            locationY = coords.y,
+                            caller = 0,
+                        }
 
-      if data.current.value == 'yes' then 
-        local inventory = ESX.GetPlayerData().inventory
-        local LockpickAmount = nil
-        for i=1, #inventory, 1 do                          
-            if inventory[i].name == 'lockpick' then
-                LockpickAmount = inventory[i].count
+                        TriggerServerEvent('esx_service:callAllInService', notification, "police")
+                    end
+                else 
+                    ESX.ShowNotification(noLockpickText)
+                end
+            elseif data.current.value == 'no' then 
             end
-        end
-        if LockpickAmount > 0 then
-          HouseBreak(house)
-          v.locked = false
-          LastHouse = house
-          robing = true
-          Citizen.Wait(math.random(15000,30000))
-          local random = math.random(0, 100)
-          if random <= Config.chancePoliceNoti then -- chance police get notified
-            local playerPed = PlayerPedId()
-	        local coords = GetEntityCoords(playerPed)
-            local notification = {
-                subject  = 'Burglary in Progress',
-                msg      = "Reports of a burglary in progress",
-                icon = 'fas fa-headset',
-                iconStyle = 'red',
-                locationX = coords.x,
-                locationY = coords.y,
-                caller = 0,
-            }
-
-            TriggerServerEvent('esx_service:callAllInService', notification, "police")
-          end
-        else 
-          ESX.ShowNotification(noLockpickText)
-      end
-
-		elseif data.current.value == 'no' then 
-			
-	end
-end
-  )
-end)
+        end)
+    end)
 end
 
 function steal(k)
@@ -445,8 +446,8 @@ function steal(k)
 end
 
 function stealClothes(house, garment, amount, garmentLabel)
-  local playerPed = PlayerPedId()
-  local values = GetHouseValues(house, Config.closets)
+    local playerPed = PlayerPedId()
+    local values = GetHouseValues(house, Config.closets)
     FreezeEntityPosition(playerPed, true)
     TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_BUM_BIN", 0, true)
     Citizen.Wait(2000)
@@ -459,9 +460,9 @@ end
 
 
 function HouseBreak(house)
-  local v = GetHouseValues(house, Config.burglaryPlaces)
-  local playerPed = PlayerPedId()
-  fade()
+    local v = GetHouseValues(house, Config.burglaryPlaces)
+    local playerPed = PlayerPedId()
+    fade()
     DoingBreak = true
     FreezeEntityPosition(playerPed, true)
     SetEntityCoords(playerPed, v.animPos.x, v.animPos.y, v.animPos.z - 0.98)
@@ -484,22 +485,22 @@ end
 
 
 function SetCoords(playerPed, x, y, z)
-  SetEntityCoords(playerPed, x, y, z)
-  Citizen.Wait(100)
-  SetEntityCoords(playerPed, x, y, z)
+    SetEntityCoords(playerPed, x, y, z)
+    Citizen.Wait(100)
+    SetEntityCoords(playerPed, x, y, z)
 end
 
 function fade()
-  DoScreenFadeOut(1000)
-  Citizen.Wait(1000)
-  DoScreenFadeIn(1000)
+    DoScreenFadeOut(1000)
+    Citizen.Wait(1000)
+    DoScreenFadeIn(1000)
 end
 
 function loaddict(dict)
-  while not HasAnimDictLoaded(dict) do
-    RequestAnimDict(dict)
-    Wait(10)
-  end
+    while not HasAnimDictLoaded(dict) do
+        RequestAnimDict(dict)
+        Wait(10)
+    end
 end
   
 function DrawText3D(x, y, z, text, scale)
