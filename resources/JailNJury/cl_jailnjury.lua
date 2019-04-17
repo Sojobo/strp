@@ -57,7 +57,12 @@ AddEventHandler("jnj:sendToJail", function(jailArray)
   local targetPed = PlayerPedId()
   local jailTime = jailArray[1]
   RemoveAllPedWeapons(targetPed, true)
-  SetEntityInvincible(GetPlayerPed(targetPed), true)
+  SetEntityInvincible(GetPlayerPed(-1), true)
+	SetPlayerInvincible(PlayerId(), true)
+	SetPedCanRagdoll(GetPlayerPed(-1), false)
+	SetEntityProofs(GetPlayerPed(-1), true, true, true, true, true, true, true, true)
+	SetEntityOnlyDamagedByPlayer(GetPlayerPed(-1), false)
+	SetEntityCanBeDamaged(GetPlayerPed(-1), false)
   SetEntityCoords(targetPed, JailConfig.prisonLocation.x, JailConfig.prisonLocation.y, JailConfig.prisonLocation.z, 0.0, 0.0, 0.0, false)
   isJailedG = true
   jailTimeG = jailTime
@@ -69,7 +74,12 @@ AddEventHandler("jnj:releaseFromJail", function()
   local targetPed = PlayerPedId()
   jailTimeG = 0
   isJailedG = false
-  SetEntityInvincible(GetPlayerPed(targetPed), false)
+  SetEntityInvincible(GetPlayerPed(-1), false)
+	SetPlayerInvincible(PlayerId(), false)
+	SetPedCanRagdoll(GetPlayerPed(-1), true)
+	SetEntityProofs(GetPlayerPed(-1), false, false, false, false, false, false, false, false)
+	SetEntityOnlyDamagedByPlayer(GetPlayerPed(-1), true)
+	SetEntityCanBeDamaged(GetPlayerPed(-1), true)
   SetEntityCoords(targetPed, JailConfig.prisonEntraceLocation.x, JailConfig.prisonEntraceLocation.y, JailConfig.prisonEntraceLocation.z, 0.0, 0.0, 0.0, false)
 	TriggerEvent("esx_policejob:unrestrain")
 end)
