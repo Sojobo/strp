@@ -338,7 +338,7 @@ function SellItems()
     ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'stocks_menu',
     {
       title    = "Inventory",
-      align    = 'top-left',
+      align    = 'bottom-right',
       elements = elements
     }, function (data, menu)
       local itemName = data.current.value
