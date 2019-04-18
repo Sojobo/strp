@@ -397,6 +397,26 @@ AddEventHandler('esx:deleteVehicle', function()
 	end
 end)
 
+RegisterNetEvent('esx:repairVehicle')
+AddEventHandler('esx:repairVehicle', function()
+	local playerPed = GetPlayerPed(-1)
+	local vehicle   = ESX.Game.GetVehicleInDirection()
+	
+	if IsPedInAnyVehicle(playerPed, true) then
+		vehicle = GetVehiclePedIsIn(playerPed, false)
+	end
+		
+	if DoesEntityExist(vehicle) then	
+		SetVehicleEngineHealth(vehicle, 1000)
+		SetVehicleEngineOn( vehicle, true, true )
+		SetVehicleFixed(vehicle)
+		SetVehicleDirtLevel(vehicle, 0)
+        TriggerEvent("chatMessage", "SYSTEM", { 255, 255, 0 }, "You have successfully repaired the vehicle!")
+    else
+        TriggerEvent("chatMessage", "SYSTEM", { 255, 255, 0 }, "You are not in or facing a vehicle!")
+    end
+end)
+
 RegisterNetEvent('esx:givePosition')
 AddEventHandler('esx:givePosition', function(comment)
 	local pos = GetEntityCoords(GetPlayerPed(-1))

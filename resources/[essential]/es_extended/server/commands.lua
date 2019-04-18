@@ -78,6 +78,12 @@ end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
 end, {help = _U('delete_vehicle')})
 
+TriggerEvent('es:addGroupCommand', 'rep', 'admin', function(source, args, user)
+	TriggerClientEvent('esx:repairVehicle', source)
+end, function(source, args, user)
+	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
+end, {help = _U('repair_vehicle')})
+
 TriggerEvent('es:addGroupCommand', 'spawnped', 'admin', function(source, args, user)
 	TriggerClientEvent('esx:spawnPed', source, args[1])
 end, function(source, args, user)
