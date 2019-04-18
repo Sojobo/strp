@@ -417,6 +417,35 @@ AddEventHandler('esx:repairVehicle', function()
     end
 end)
 
+local godmode = false
+
+RegisterNetEvent('esx:godMode')
+AddEventHandler('esx:godMode', function()
+    if godmode then
+        SetEntityInvincible(GetPlayerPed(-1), false)
+		SetPlayerInvincible(PlayerId(), false)
+		SetPedCanRagdoll(GetPlayerPed(-1), true)
+		ClearPedLastWeaponDamage(GetPlayerPed(-1))
+		SetEntityProofs(GetPlayerPed(-1), false, false, false, false, false, false, false, false)
+		SetEntityOnlyDamagedByPlayer(GetPlayerPed(-1), true)
+		SetEntityCanBeDamaged(GetPlayerPed(-1), true)
+        godmode = false
+        TriggerEvent('chatMessage', 'SYSTEM', { 255, 0, 0 }, 'God mode disabled.')
+    else
+        SetEntityInvincible(GetPlayerPed(-1), true)
+		SetPlayerInvincible(PlayerId(), true)
+		SetPedCanRagdoll(GetPlayerPed(-1), false)
+		ClearPedBloodDamage(GetPlayerPed(-1))
+		ResetPedVisibleDamage(GetPlayerPed(-1))
+		ClearPedLastWeaponDamage(GetPlayerPed(-1))
+		SetEntityProofs(GetPlayerPed(-1), true, true, true, true, true, true, true, true)
+		SetEntityOnlyDamagedByPlayer(GetPlayerPed(-1), false)
+		SetEntityCanBeDamaged(GetPlayerPed(-1), false)
+        godmode = true
+        TriggerEvent('chatMessage', 'SYSTEM', { 255, 0, 0 }, 'God mode enabled.')
+    end
+end)
+
 RegisterNetEvent('esx:givePosition')
 AddEventHandler('esx:givePosition', function(comment)
 	local pos = GetEntityCoords(GetPlayerPed(-1))

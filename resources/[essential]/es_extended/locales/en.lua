@@ -60,6 +60,7 @@ Locales['en'] = {
   ['spawn_car_param'] = 'name of car',
   ['delete_vehicle'] = 'deletes Vehicle',
   ['repair_vehicle'] = 'repairs Vehicle',
+  ['god_mode'] = 'god mode',
   ['spawn_object'] = 'spawn object',
   ['spawn_ped'] = 'spawn ped',
   ['spawn_ped_param'] = 'example a_m_m_hillbilly_01',
