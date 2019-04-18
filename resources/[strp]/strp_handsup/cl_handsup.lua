@@ -15,6 +15,7 @@ Citizen.CreateThread(function()
 
         if IsControlPressed(1, 323)
             and not IsPedInAnyVehicle(lPed, true)
+            and not IsEntityInWater(lPed)
             and not IsEntityPlayingAnim( lPed, "random@arrests", "idle_2_hands_up", 3 ) 
             and not IsEntityPlayingAnim( lPed, "random@arrests", "kneeling_arrest_idle", 3 ) 
             and not IsEntityPlayingAnim( lPed, "random@arrests@busted", "enter", 3 ) 
