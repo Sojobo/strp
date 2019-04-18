@@ -446,6 +446,18 @@ AddEventHandler('esx:godMode', function()
     end
 end)
 
+RegisterNetEvent('esx:goInvisible')
+AddEventHandler('esx:goInvisible', function(obj)
+    local ped = GetPlayerPed(-1)
+    visible = not visible
+    SetEntityVisible(ped, visible)
+    if visible then
+        TriggerEvent('chatMessage', 'SYSTEM', { 255, 0, 0 }, 'You are now visible.')
+    else
+        TriggerEvent('chatMessage', 'SYSTEM', { 255, 0, 0 }, 'You are now invisible.')
+    end
+end)
+
 RegisterNetEvent('esx:givePosition')
 AddEventHandler('esx:givePosition', function(comment)
 	local pos = GetEntityCoords(GetPlayerPed(-1))
