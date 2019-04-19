@@ -2,12 +2,12 @@
 
     Wraith Radar System - v1.01
     Created by WolfKnight
-
+    
 -------------------------------------------------------------------------*/
 
-var resourceName = "";
-var radarEnabled = false;
-var targets = [];
+var resourceName = ""; 
+var radarEnabled = false; 
+var targets = []; 
 
 $( function() {
     radarInit();
@@ -22,14 +22,12 @@ $( function() {
     var fwdSame = radarContainer.find( ".fwdsame" );
     var fwdOpp = radarContainer.find( ".fwdopp" );
     var fwdXmit = radarContainer.find( ".fwdxmit" );
-    var fwdPlate = radarContainer.find("#fwdPlate");
 
     var bwdSame = radarContainer.find( ".bwdsame" );
     var bwdOpp = radarContainer.find( ".bwdopp" );
     var bwdXmit = radarContainer.find( ".bwdxmit" );
-    var bwdPlate = radarContainer.find("#bwdPlate");
 
-    var radarRCContainer = $( "#policeradarrc" );
+    var radarRCContainer = $( "#policeradarrc" ); 
 
     window.addEventListener( 'message', function( event ) {
         var item = event.data;
@@ -39,7 +37,7 @@ $( function() {
         }
 
         if ( item.toggleradar ) {
-            radarEnabled = !radarEnabled;
+            radarEnabled = !radarEnabled; 
             radarContainer.fadeToggle();
         }
 
@@ -49,36 +47,36 @@ $( function() {
             radarContainer.fadeIn();
         }
 
-        if (item.fwdPlate) {
-          updatePlate("fwdPlate", item.fwdPlate, item.fwdPlateBolo);
-        }
-
-        if (item.bwdPlate) {
-          updatePlate("bwdPlate", item.bwdPlate, item.bwdPlateBolo);
-        }
-
         if ( item.patrolspeed ) {
-            updateSpeed( "patrolspeed", item.patrolspeed );
+            updateSpeed( "patrolspeed", item.patrolspeed ); 
         }
 
         if ( item.fwdspeed ) {
-            updateSpeed( "fwdspeed", item.fwdspeed );
+            updateSpeed( "fwdspeed", item.fwdspeed ); 
+        }
+		
+		if ( item.fwdplate ) {
+            updatePlate(item.fwdplate ); 
         }
 
         if ( item.fwdfast ) {
-            updateSpeed( "fwdfast", item.fwdfast );
+            updateSpeed( "fwdfast", item.fwdfast ); 
         }
 
         if ( item.lockfwdfast == true || item.lockfwdfast == false ) {
             lockSpeed( "fwdfast", item.lockfwdfast )
         }
+		
+		if ( item.lockBOLOPlate == true || item.lockBOLOPlate == false ) {
+            lockPlate(item.lockBOLOPlate, item.boloflag)
+        }
 
         if ( item.bwdspeed ) {
-            updateSpeed( "bwdspeed", item.bwdspeed );
+            updateSpeed( "bwdspeed", item.bwdspeed );  
         }
 
         if ( item.bwdfast ) {
-            updateSpeed( "bwdfast", item.bwdfast );
+            updateSpeed( "bwdfast", item.bwdfast );    
         }
 
         if ( item.lockbwdfast == true || item.lockbwdfast == false ) {
@@ -100,9 +98,9 @@ $( function() {
         }
 
         if ( item.bwdxmit ) {
-            bwdXmit.addClass( "active" );
+            bwdXmit.addClass( "active" );   
         } else if ( item.bwdxmit == false ) {
-            bwdXmit.removeClass( "active" );
+            bwdXmit.removeClass( "active" );   
         }
 
         if ( item.fwdmode ) {
@@ -128,10 +126,10 @@ function radarInit() {
 
     $( "#policeradarrc" ).find( "button" ).each( function( i, obj ) {
         if ( $( this ).attr( "data-action" ) ) {
-            $( this ).click( function() {
-                var data = $( this ).data( "action" );
+            $( this ).click( function() { 
+                var data = $( this ).data( "action" ); 
 
-                sendData( "RadarRC", data );
+                sendData( "RadarRC", data ); 
             } )
         }
     } );
@@ -139,51 +137,55 @@ function radarInit() {
 
 function updateSpeed( attr, data ) {
     targets[ attr ].find( ".speednumber" ).each( function( i, obj ) {
-        $( obj ).html( data[i] );
-    } );
+        $( obj ).html( data[i] ); 
+    } ); 
 }
 
-function updatePlate(attr, data, bolo) {
-  if (bolo === true) {
-    $("#" + attr).html(data).css('color', 'red');
-  } else {
-    $("#" + attr).html(data).css('color', 'white')
-  }
+function updatePlate(data) {
+	document.getElementById('fwdplate').innerHTML = data;
+}
+
+function lockPlate(state,data) {
+	if ( state == true ) {
+		document.getElementById('fwdplate').style.background = 'linear-gradient( to bottom, rgb( 220, 0, 40 ), rgb( 90, 0, 0 ) )';
+	} else {
+		document.getElementById('fwdplate').style.background = 'linear-gradient( to bottom, rgb( 0, 150, 0 ), rgb( 0, 75, 0 ) )';
+	}
 }
 
 function lockSpeed( attr, state ) {
     targets[ attr ].find( ".speednumber" ).each( function( i, obj ) {
         if ( state == true ) {
-            $( obj ).addClass( "locked" );
+            $( obj ).addClass( "locked" ); 
         } else {
             $( obj ).removeClass( "locked" );
         }
-    } );
+    } ); 
 }
 
 function modeSwitch( sameEle, oppEle, state ) {
     if ( state == "same" ) {
         sameEle.addClass( "active" );
-        oppEle.removeClass( "active" );
+        oppEle.removeClass( "active" ); 
     } else if ( state == "opp" ) {
         oppEle.addClass( "active" );
-        sameEle.removeClass( "active" );
+        sameEle.removeClass( "active" ); 
     } else if ( state == "none" ) {
-        oppEle.removeClass( "active" );
-        sameEle.removeClass( "active" );
+        oppEle.removeClass( "active" ); 
+        sameEle.removeClass( "active" ); 
     }
 }
 
 function updateArrowDir( fwdEle, bwdEle, state ) {
     if ( state == true ) {
-        fwdEle.addClass( "active" );
-        bwdEle.removeClass( "active" );
+        fwdEle.addClass( "active" ); 
+        bwdEle.removeClass( "active" ); 
     } else if ( state == false ) {
-        bwdEle.addClass( "active" );
-        fwdEle.removeClass( "active" );
+        bwdEle.addClass( "active" ); 
+        fwdEle.removeClass( "active" ); 
     } else if ( state == null ) {
-        fwdEle.removeClass( "active" );
-        bwdEle.removeClass( "active" );
+        fwdEle.removeClass( "active" ); 
+        bwdEle.removeClass( "active" ); 
     }
 }
 
@@ -191,6 +193,6 @@ function sendData( name, data ) {
     $.post( "http://" + resourceName + "/" + name, JSON.stringify( data ), function( datab ) {
         if ( datab != "ok" ) {
             console.log( datab );
-        }
+        }            
     } );
 }

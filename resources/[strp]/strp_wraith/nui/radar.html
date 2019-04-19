@@ -1,8 +1,8 @@
-<!--
+<!-- 
 
     Wraith Radar System - v1.02
     Created by WolfKnight
-
+    
 -->
 
 <html>
@@ -15,7 +15,7 @@
 
     <body onselectstart="return false;" ondragstart="return false;">
 		<!-- Police Radar -->
-		<div id="policeradar" style="display: none;">
+		<div id="policeradar" style="display: none;"> 
 			<div class="antennalabel antennalabeltop">Front Antenna</div>
 
 			<div class="logo">WraithRS</div>
@@ -92,7 +92,16 @@
 				</div>
 
 				<div class="container">
-					<div class="patrolcontainer">
+				
+					<div class="patrolcontainer" style="margin-top: 20px;">
+						<div class="platecontainer">
+							<div class="fwdplate text" id="fwdplate"></div>
+						</div>
+
+						<div class="label">FWD PLATE</div>
+					</div>
+				
+					<div class="patrolcontainer" style="margin-bottom: 20px;">
 						<div class="speedfastcontainer patrol" data-target="patrolspeed">
 							<div class="speednumber text"></div>
 							<div class="speednumber text"></div>
@@ -101,27 +110,14 @@
 
 						<div class="label">PATROL SPEED</div>
 					</div>
-				</div>
+				</div>		
 			</div>
 
 			<div class="antennalabel antennalabelbottom">Rear Antenna</div>
-
-      <!-- License Plate Reader -->
-<div id="platereader">
-  <div class="container">
-    <div id="fwdPlate" class="pReader fwdPlate"></div>
-    <div class="label">FWD PLATE</div>
-  </div>
-  <div class="container">
-    <div id="bwdPlate" class="pReader bwdPlate"></div>
-    <div class="label">BWD PLATE</div>
-  </div>
-</div>
-
 		</div>
 
 
-		<!-- Police Radar - Remote control -->
+		<!-- Police Radar - Remote control --> 
 		<div id="policeradarrc" style="display: none;">
 			<div class="container">
 				<button class="toggle" data-action="radar_toggle">TOGGLE RADAR</button>
@@ -148,13 +144,31 @@
 			<div class="container">
 				<button class="limit" data-action="radar_setlimit">SET FAST LIMIT</button>
 			</div>
-
 			<div class="container">
-				<button class="limit" data-action="radar_speedtype" style="margin-top: 0px;">TOGGLE SPEED TYPE</button>
+				<button class="limit" data-action="radar_setplate">SET BOLO PLATE</button>
+			</div>			
+			
+			<div class="container">
+				&nbsp;
+			</div>
+			
+			
+			<div class="container">
+				<button class="limit" data-action="radar_tsplate">TOGGLE TRAFFIC STOP</button>
+			</div>
+			<div class="container">
+				<button class="limit" data-action="radar_speedtype">TOGGLE SPEED TYPE</button>
+			</div>
+			<div class="container">
+				<button class="limit" data-action="radar_lockbeep">TOGGLE LOCK BEEP</button>
 			</div>
 
 			<div class="container">
-				<button class="limit" data-action="radar_lockbeep" style="margin-top: 0px;">TOGGLE LOCK BEEP</button>
+				&nbsp;
+			</div>
+
+			<div class="container">
+				
 			</div>
 
 			<div class="container">
