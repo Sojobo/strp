@@ -72,7 +72,7 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        Wait(60000)
+        Wait(600000)
         for bpk,bpv in pairs(Config.burglaryPlaces) do
             if bpv.cooldown ~= 0 then
                 bpv.cooldown = bpv.cooldown - 1
