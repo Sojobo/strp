@@ -167,7 +167,7 @@ Citizen.CreateThread(function()
       TriggerClientEvent("jnj:courtCaseStatusAll", -1, false)
       TriggerClientEvent("chatMessage", -1, "^1The court case has been cancelled due to juror availability.")
     else
-      TriggerClientEvent("jnj:courtCaseStatus", targetPedId, false) -- Allow us to leave court
+      TriggerClientEvent("jnj:courtCaseStatus", targetPedId, true) -- Allow us to leave court
       local jurorNumber = 3
       if playerCount >= 5 then
         jurorNumber = 6
@@ -184,15 +184,15 @@ Citizen.CreateThread(function()
       end
       for i, juror in ipairs(confirmedJurors) do
         TriggerClientEvent("chatMessage", juror, "^2" .. targetPedName .. " ^1has been arrested for the following charge(s): ^2" .. jailCharges ..
-        "^1, amounting to a total time of ^2" .. jailTime .. " ^1minutes. The arestee has requested a trial. You and the other jurors must reach a verdict to find the arestee ^2guilty ^1or ^2not guity^1.")
-        TriggerClientEvent("chatMessage", juror, "^1The arestee will have 1 minute to explain their charges. You will not be able to comminucate with the jury or the arestee during this time." ..
-        "Once the arestee has explained their charges, you will deliberate with the rest of the jurors for 1 minute.")
+        "^1, amounting to a total time of ^2" .. jailTime .. " ^1minutes. The suspect has requested a trial. You and the other jurors must reach a verdict to find the suspect ^2guilty ^1or ^2not guity^1.")
+        TriggerClientEvent("chatMessage", juror, "^1The suspect will have 1 minute to explain their charges. You will not be able to comminucate with the jury or the suspect during this time." ..
+        "Once the suspect has explained their charges, you will deliberate with the rest of the jurors for 1 minute.")
         TriggerClientEvent("jnj:teleportToCourt", juror, true, JailConfig.jurorLocations[i])
       end
       TriggerClientEvent("jnj:teleportToCourt", targetPedId, true, JailConfig.defendantLocation)
       Citizen.Wait(5000)
       for i, juror in ipairs(confirmedJurors) do
-        TriggerClientEvent("chatMessage", juror, "^1The arestee will now explain the charges.")
+        TriggerClientEvent("chatMessage", juror, "^1The suspect will now explain the charges.")
       end
       TriggerClientEvent("jnj:teleportToCourt", targetPedId, false, JailConfig.defendantLocation)
       TriggerClientEvent("chatMessage", targetPedId, "^1The jury is ready to hear your explanation.")
