@@ -221,8 +221,12 @@ Citizen.CreateThread(function()
       Citizen.Wait(1000 * 30)
       timeToVerdict = false
       for i, juror in ipairs(confirmedJurors) do
+        local xPlayer = ESX.GetPlayerFromId(juror)
+	    if xPlayer ~= nil then
+            TriggerClientEvent("chatMessage", juror, "^1Thank you for participating in our great justice system, you have been paid $300 for participating.")
+            xPlayer.addMoney(300)
+        end
         TriggerClientEvent("jnj:teleportAwayCourt", juror, JailConfig.courtEntraceLocation)
-        TriggerClientEvent("chatMessage", juror, "^1Thank you for participating in our great justice system.")
       end
       if votes >= votesNeeded then
         TriggerEvent("jnj:releaseFromJail", targetPedId)
