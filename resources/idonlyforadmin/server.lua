@@ -13,7 +13,7 @@ local admins = {
 	'license:31e40ddd4737fe9ffed5bde84d24f2ec3d8e7ab0', --kevin
 	'license:66dedb5678c489162a3a264f0a64c5f4411c3366', -- santa
 	'steam:11000010400b1fc', --jamie
-	'steam:110000101a7a8e' --bean
+	'steam:110000101a7a8ea' --bean
 }
 
 function isAdmin(player)

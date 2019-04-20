@@ -72,7 +72,7 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        Wait(60000)
+        Wait(600000)
         for bpk,bpv in pairs(Config.burglaryPlaces) do
             if bpv.cooldown ~= 0 then
                 bpv.cooldown = bpv.cooldown - 1
@@ -338,7 +338,7 @@ function SellItems()
     ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'stocks_menu',
     {
       title    = "Inventory",
-      align    = 'top-left',
+      align    = 'bottom-right',
       elements = elements
     }, function (data, menu)
       local itemName = data.current.value
