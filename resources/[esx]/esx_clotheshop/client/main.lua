@@ -132,7 +132,15 @@ function OpenShopMenu()
 		'helmet_1',
 		'helmet_2',
 		'glasses_1',
-		'glasses_2'
+		'glasses_2',
+		'bags_1',
+		'bags_2',
+		'watches_1',
+		'watches_2',
+		'bracelets_1',
+		'bracelets_2',
+		'ears_1',
+		'ears_2'
 	})
 
 end
