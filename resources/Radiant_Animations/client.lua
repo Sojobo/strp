@@ -903,12 +903,48 @@ RegisterCommand("testanimation",function(source, args)
 		end       
 	end
 end, false)
+--limp animation (prevents crouch)
+local hurt = false
+Citizen.CreateThread(function()
+    while true do
+        Wait(0)
+        if GetEntityHealth(GetPlayerPed(-1)) <= 150 then
+            setHurt()
+        elseif hurt and GetEntityHealth(GetPlayerPed(-1)) > 151 then
+            setNotHurt()
+        end
+    end
+end)
 
+function setHurt()
+    hurt = true
+    RequestAnimSet("move_m@injured")
+    SetPedMovementClipset(GetPlayerPed(-1), "move_m@injured", true)
+end
+
+function setNotHurt()
+    hurt = false
+    ResetPedMovementClipset(GetPlayerPed(-1))
+    ResetPedWeaponMovementClipset(GetPlayerPed(-1))
+    ResetPedStrafeClipset(GetPlayerPed(-1))
+end
 	
 ----------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------ functions -----------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
+function setHurt()
+	hurt = true
+	RequestAnimSet("move_m@injured")
+	SetPedMovementClipset(GetPlayerPed(-1), "move_m@injured", true)
+end
 
+function setNotHurt()
+	hurt = false
+	ResetPedMovementClipset(GetPlayerPed(-1))
+	ResetPedWeaponMovementClipset(GetPlayerPed(-1))
+	ResetPedStrafeClipset(GetPlayerPed(-1))
+end
+------------------------------------------------------
 Citizen.CreateThread(function(prop_name, secondaryprop_name)
 	while true do
 		Citizen.Wait(500)
@@ -943,5 +979,7 @@ Citizen.CreateThread(function()
 		end
   
 	end
-  end)
+	end)
+	
+	
 
