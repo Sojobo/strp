@@ -10,15 +10,19 @@ Config.ChangeNamePrice = 500 -- In $ - how much you can change the shops name fo
 
 -- CONFIG ITEMS, DON'T FORGET TO ADD CORRECT NUMBER IN THE BRACKETS
 Config.Items = {
-    [1] = {label = "Repair Kit",       item = "fixkit",        price = 20},
-    [2] = {label = "Lockpicking Kit",      item = "lockpick",       price = 300},
-    [3] = {label = "Bandages",      item = "bandage",       price = 40},
+  [1] = {label = "Repair Kit",       item = "fixkit",        price = 20},
+  [2] = {label = "Lockpicking Kit",      item = "lockpick",       price = 300},
+  [3] = {label = "Bandages",      item = "bandage",       price = 40},
+  [4] = {label = "Bread",      item = "bread",       price = 10},
+  [5] = {label = "Water",      item = "water",       price = 10},
 }
 
 Config.Images = {
-  [1] = {item = "fixkit",   src = "img/box.png"},
-  [2] = {item = "lockpick",   src = "img/box.png"},
-  [3] = {item = "bandage",   src = "img/box.png"},
+[1] = {item = "fixkit",   src = "img/box.png"},
+[2] = {item = "lockpick",   src = "img/box.png"},
+[3] = {item = "bandage",   src = "img/box.png"},
+[4] = {item = "water",   src = "img/bottle.png"},
+[5] = {item = "bread",   src = "img/box.png"},
 }
 
 Config.Zones = {
