@@ -39,6 +39,6 @@ Config.CircleZones = {
 }
 
 Config.CokeProcess = {
-	CokeProcessing = {coords = vector3(1269.17, -1710.15, 54.77), name = "Coke Processing", color = 24, sprite = 496, radius = 0.0},
+	CokeProcessing = {coords = vector3(1208.22, -3116.25, 5.54), name = "Coke Processing", color = 24, sprite = 496, radius = 0.0},
 
 }
