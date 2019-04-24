@@ -22,6 +22,16 @@ Locales ['en'] = {
   ['wine_processed'] = 'you\'ve processed <b>3x</b> <b>Grapes</b> to <b>1x</b> <b>Wine</b>',
   ['wine_processingtoofar'] = 'the processing has been <b>canceled</b> due to you abandoning the area.',
   
+  --coke
+  ['coke_pickupprompt'] = 'press ~INPUT_CONTEXT~ to harvest the <b>Coca</b> plant.',
+  ['coke_inventoryfull'] = 'you do not have any more inventory space for <b>Coca</b>.',
+  ['coke_processprompt'] = 'press ~INPUT_CONTEXT~ to start <b>Process Coca</b>.',
+  ['coke_processingstarted'] = 'processing <b>Coca</b> into <b>Cocaine</b>...',
+  ['coke_processingfull'] = 'processing <b>canceled</b> due to full inventory!',
+  ['coke_processingenough'] = 'you must have <b>3x</b> <b>Coca</b> in order to process.',
+  ['coke_processed'] = 'you\'ve processed <b>3x</b> <b>Coca</b> to <b>1x</b> <b>Cocaine</b>',
+  ['coke_processingtoofar'] = 'the processing has been <b>canceled</b> due to you abandoning the area.',
+
   -- wine dealer
   ['wine_dealer_prompt'] = 'press ~INPUT_CONTEXT~ to talk with the <b>Wine Distributor</b>.',
 

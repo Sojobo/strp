@@ -66,6 +66,21 @@ AddEventHandler('esx_drugs:pickedUpCannabis', function()
 	end
 end)
 
+RegisterServerEvent('esx_drugs:pickedUpCocaPlant')
+AddEventHandler('esx_drugs:pickedUpCocaPlant', function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local _source = source
+	local xItem = xPlayer.getInventoryItem('cocaplant')
+	local xInventoryWeight = xPlayer.getInventoryWeight()
+	local xInventorylimit = xPlayer.getInventoryWeightMax()
+
+	if xInventorylimit ~= -1 and (1 + xInventoryWeight) > xInventorylimit then
+		TriggerClientEvent('esx:showNotification', _source, _U('coke_processingfull'))
+	else
+		xPlayer.addInventoryItem(xItem.name, 1)
+	end
+end)
+
 RegisterServerEvent('esx_drugs:pickedUpGrapes')
 AddEventHandler('esx_drugs:pickedUpGrapes', function()
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -127,6 +142,42 @@ AddEventHandler('esx_drugs:processCannabis', function()
 		print(('esx_drugs: %s attempted to exploit weed processing!'):format(GetPlayerIdentifiers(source)[1]))
 	end
 end)
+
+RegisterServerEvent('esx_drugs:processCocaPlant')
+AddEventHandler('esx_drugs:processCocaPlant', function()
+	if not playersProcessingCannabis[source] then
+		local _source = source
+        local conversionRate = 3
+
+		playersProcessingCannabis[_source] = ESX.SetTimeout(Config.Delays.WeedProcessing, function()
+			local xPlayer = ESX.GetPlayerFromId(_source)
+			local xCannabis, xMarijuana = xPlayer.getInventoryItem('cocaplant'), xPlayer.getInventoryItem('cocaine')
+			local xInventoryWeight = xPlayer.getInventoryWeight()
+			local xInventorylimit = xPlayer.getInventoryWeightMax()
+
+            if xPlayer.job.name == exports.strp_gangturfs:getTurfOwner(2) then
+                conversionRate = 2
+            end
+
+			if xInventorylimit ~= -1 and (1 + xInventoryWeight) > xInventorylimit then
+				TriggerClientEvent('esx:showNotification', _source, _U('coke_processingfull'))
+			elseif xCannabis.count < conversionRate then
+				TriggerClientEvent('esx:showNotification', _source, _U('coke_processingenough'))
+			else
+				xPlayer.removeInventoryItem('cocaplant', conversionRate)
+				xPlayer.addInventoryItem('cocaine', 1)
+
+				TriggerClientEvent('esx:showNotification', _source, _U('coke_processed'))
+			end
+
+			playersProcessingCannabis[_source] = nil
+		end)
+	else
+		print(('esx_drugs: %s attempted to exploit coke processing!'):format(GetPlayerIdentifiers(source)[1]))
+	end
+end)
+
+
 
 RegisterServerEvent('esx_drugs:processGrapes')
 AddEventHandler('esx_drugs:processGrapes', function()

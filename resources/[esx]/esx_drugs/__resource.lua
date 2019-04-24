@@ -22,7 +22,8 @@ client_scripts {
 	'config.lua',
 	'client/main.lua',
 	'client/weed.lua',
-	'client/wine.lua'
+	'client/wine.lua',
+	'client/coke.lua'
 }
 
 dependencies {
