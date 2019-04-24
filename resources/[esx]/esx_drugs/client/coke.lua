@@ -23,7 +23,7 @@ Citizen.CreateThread(function()
 		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 
-		if GetDistanceBetweenCoords(coords, Config.CircleZones.CokeProcessing.coords, true) < 1 then
+		if GetDistanceBetweenCoords(coords, Config.CokeProcess.CokeProcessing.coords, true) < 1 then
 			if not isProcessing then
 				ESX.ShowHelpNotification(_U('coke_processprompt'))
 			end
@@ -61,7 +61,7 @@ function ProcessCoke()
 		Citizen.Wait(1000)
 		timeLeft = timeLeft - 1
 
-		if GetDistanceBetweenCoords(GetEntityCoords(playerPed), Config.CircleZones.CokeProcessing.coords, false) > 4 then
+		if GetDistanceBetweenCoords(GetEntityCoords(playerPed), Config.CokeProcess.CokeProcessing.coords, false) > 4 then
 			ESX.ShowNotification(_U('coke_processingtoofar'))
 			TriggerServerEvent('esx_drugs:cancelProcessing')
 			break
