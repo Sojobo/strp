@@ -44,7 +44,7 @@ AddEventHandler('gangturf:contestTurf', function(contendingTurf)
                 TriggerEvent('esx_service:notifyAllInService', notification, gangTurfs[contendingTurf].controller)
                 gangTurfs[contendingTurf].controller = xPlayer.job.name
                 gangTurfs[contendingTurf].controlStrength = 1
-            elseif (gangTurfs[contendingTurf].controlStrength % 9) then
+            elseif (gangTurfs[contendingTurf].controlStrength % 9 == 0) then
                 local notification = {
                     subject    = "Gang Alert",
                     msg      = "Your turf (" .. gangTurfs[contendingTurf].name .. ") is under attack!",
