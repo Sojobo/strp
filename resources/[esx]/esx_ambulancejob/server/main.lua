@@ -23,7 +23,7 @@ AddEventHandler("Hospital:SelfRevive", function()
         xPlayer.removeAccountMoney('bank', Config.ReviveCost)
 		TriggerClientEvent('esx_ambulancejob:revive', source)
 	else
-		ESX.ShowAdvancedNotification("Hospital", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
+		TriggerClientEvent('esx:showAdvancedNotification', source, "Hospital", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
 	end
 end)
 
