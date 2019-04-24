@@ -14,6 +14,8 @@ local entrance = {
 	['court_courtroom'] = { x = 225.338, y = -419.716, z = -118.150, emergencyOnly = false },
 	['court_defencehall'] = { x = 246.438, y = -337.090, z = -118.794, emergencyOnly = false },
 	['court_judgeoffice'] = { x = 241.035, y = -304.235, z = -118.794, emergencyOnly = false },
+	['coke_room'] = { x = 908.17, y = -2220.84, z = 30.49, emergencyOnly = false },
+
 }
 
 local exit = {
@@ -32,6 +34,7 @@ local exit = {
 	['court_courtroom'] = { x = 238.794, y = -334.078, z = -118.760, emergencyOnly = false },
 	['court_defencehall'] = { x = 248.171, y = -337.797, z = -118.794, emergencyOnly = false },
 	['court_judgeoffice'] = { x = -1003.101, y = -477.870, z = 50.030, emergencyOnly = false },
+	['coke_room'] = { x = 1088.45, y = -3187.92, z = -38.99, emergencyOnly = false },
 }
 
 Citizen.CreateThread(function()
