@@ -45,7 +45,7 @@ Citizen.CreateThread(function()
                 bin    = GetEntityCoords(entity)
                 sleep  = 5
                 DrawText3D(bin.x, bin.y, bin.z + 1.5, 'Press [~g~E~s~] to search ~b~bin~s~')  
-                if IsControlJustReleased(0, 38) then
+                if IsControlJustReleased(0, 38) and not IsPedInAnyVehicle(playerPed) then
                     if not cachedBins[entity] then
                         OpenBin(entity)
                     else
