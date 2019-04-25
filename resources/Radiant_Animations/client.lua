@@ -69,7 +69,7 @@ RegisterCommand("e",function(source, args)
 
 			if argh == 'surrender' then
 				local surrendered = false
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( "random@arrests" )
 					loadAnimDict( "random@arrests@busted" )
 					if ( IsEntityPlayingAnim( player, "random@arrests@busted", "idle_a", 3 ) ) then 
@@ -107,7 +107,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "anim@mp_player_intuppersalute"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "idle_a", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -121,7 +121,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "anim@mp_player_intselfiethe_bird"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "idle_a", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -135,7 +135,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "anim@mp_player_intupperfinger"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "idle_a", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -149,7 +149,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "anim@mp_player_intupperface_palm"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "idle_a", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -165,7 +165,7 @@ RegisterCommand("e",function(source, args)
 				local prop_name = prop_name or 'prop_notepad_01'
 				local secondaryprop_name = secondaryprop_name or 'prop_pencil_01'
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "base", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -188,7 +188,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "missfbi_s4mop"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "guard_idle_a", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -201,7 +201,7 @@ RegisterCommand("e",function(source, args)
 				
 				local prop_name = prop_name or 'p_amb_brolly_01'
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "base", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -218,19 +218,19 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'brief' then
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					GiveWeaponToPed(player, 0x88C78EB7, 1, false, true);
 				end
 			elseif argh == 'brief2' then
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					GiveWeaponToPed(player, 0x01B79F17, 1, false, true);
 				end
 			elseif argh == 'foldarms' then
 				local ad = "oddjobs@assassinate@construction@"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "unarmed_fold_arms", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -243,7 +243,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "gestures@m@standing@casual"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "gesture_damn", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -255,7 +255,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "random@car_thief@agitated@idle_a"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "agitated_idle_a", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -267,7 +267,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "mp_player_int_uppergang_sign_a"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "mp_player_int_gang_sign_a", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -279,7 +279,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "mp_player_int_uppergang_sign_b"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "mp_player_int_gang_sign_b", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -291,7 +291,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "mp_player_int_upper_nod"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "mp_player_int_nod_no", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -303,7 +303,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "mp_player_int_upperarse_pick"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "mp_player_int_arse_pick", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -315,7 +315,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "mp_player_int_uppergrab_crotch"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "mp_player_int_grab_crotch", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -327,7 +327,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "mp_player_int_upperpeace_sign"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "mp_player_int_peace_sign", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -465,7 +465,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "misslamar1dead_body"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "dead_idle", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 33, 0, 0, 0, 0 )
@@ -477,7 +477,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "move_m@intimidation@cop@unarmed"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "idle", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -489,7 +489,7 @@ RegisterCommand("e",function(source, args)
 				local ad = "rcmepsilonism8"
 				
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "base_carrier", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -503,7 +503,7 @@ RegisterCommand("e",function(source, args)
 				
 				local prop_name = prop_name or 'hei_prop_heist_box'
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "idle", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -521,8 +521,8 @@ RegisterCommand("e",function(source, args)
 			elseif argh == 'slowclap' then
 				local ad = "anim@mp_player_intcelebrationmale@slow_clap"
 			
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
-					if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
+					if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 						loadAnimDict( ad )
 						if ( IsEntityPlayingAnim( player, ad, "slow_clap", 3 ) ) then 
 							TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -538,8 +538,8 @@ RegisterCommand("e",function(source, args)
 			elseif argh == 'cheer' then
 				local ad = "amb@world_human_cheering@male_a"
 			
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
-					if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
+					if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 						loadAnimDict( ad )
 						if ( IsEntityPlayingAnim( player, ad, "base", 3 ) ) then 
 							TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 49, 0, 0, 0, 0 )
@@ -555,7 +555,7 @@ RegisterCommand("e",function(source, args)
 			elseif argh == 'bum' then
 				local ad = "amb@lo_res_idles@"
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "world_human_bum_slumped_left_lo_res_base", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 33, 0, 0, 0, 0 )
@@ -568,7 +568,7 @@ RegisterCommand("e",function(source, args)
 			elseif argh == 'leanwall' then
 				local ad = "amb@lo_res_idles@"
 				
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then 
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, "world_human_lean_male_foot_up_lo_res_base", 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 8.0, 1.0, -1, 33, 0, 0, 0, 0 )
@@ -583,7 +583,7 @@ RegisterCommand("e",function(source, args)
 				local anim = "idle_a" --- insert the animation name here
 				
 			
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
@@ -598,7 +598,7 @@ RegisterCommand("e",function(source, args)
 				local player = PlayerPedId()
 				
 			
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					loadAnimDict( ad )
 					if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
 						TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
@@ -610,7 +610,7 @@ RegisterCommand("e",function(source, args)
 				
 			elseif argh == 'copidle' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -619,7 +619,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'sit' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -628,7 +628,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'hoe' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -637,7 +637,7 @@ RegisterCommand("e",function(source, args)
 				end 
 			elseif argh == 'hoe2' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -646,7 +646,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'investigate' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -655,7 +655,7 @@ RegisterCommand("e",function(source, args)
 				end 
 			elseif argh == 'camera' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -664,7 +664,7 @@ RegisterCommand("e",function(source, args)
 				end 
 			elseif argh == 'pushups' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -673,7 +673,7 @@ RegisterCommand("e",function(source, args)
 				end 
 			elseif argh == 'situps' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -682,7 +682,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'impatient' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -691,7 +691,7 @@ RegisterCommand("e",function(source, args)
 				end 
 			elseif argh == 'diggit' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -700,7 +700,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'flex' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -709,7 +709,7 @@ RegisterCommand("e",function(source, args)
 				end 
 				elseif argh == 'jog' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -718,7 +718,7 @@ RegisterCommand("e",function(source, args)
 				end  
 			elseif argh == 'sunbath' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -727,7 +727,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'sunbath2' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -736,7 +736,7 @@ RegisterCommand("e",function(source, args)
 				end 
 			elseif argh == 'yoga' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -745,7 +745,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'kneel' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -754,7 +754,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'fidget' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -763,7 +763,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'wash' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -772,7 +772,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'clean' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -781,7 +781,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'map' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -790,7 +790,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'selfie' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -799,7 +799,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'bongos' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -808,7 +808,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'workout' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -817,7 +817,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'leafblower' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -826,7 +826,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'rest' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -835,7 +835,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'broom' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -844,7 +844,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'hangout' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -853,7 +853,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'binoculars' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -862,7 +862,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'weld' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -871,7 +871,7 @@ RegisterCommand("e",function(source, args)
 				end
 			elseif argh == 'statue' then
 
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 					if IsPedActiveInScenario(player) then
 						ClearPedTasks(player)
 					else
@@ -892,7 +892,7 @@ RegisterCommand("testanimation",function(source, args)
 	local player = PlayerPedId()
 	
 
-	if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+	if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
 		loadAnimDict( ad )
 		TriggerEvent('chatMessage', '^2 Testing Animation')
 		if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
