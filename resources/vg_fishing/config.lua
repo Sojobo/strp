@@ -19,7 +19,7 @@ Config.FishTime = {a = 20000, b = 44000}
 --First amount minimum price second maximum amount (the amount player will get is random between those two numbers)
 Config.FishPrice = {a = 40, b = 80} --THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
 Config.TurtlePrice = {a = 100, b = 150} 
-Config.SharkPrice = {a = 160, b = 250} 
+Config.SharkPrice = {a = 180, b = 250} 
 
 --Buy:
 Config.FishingrodPrice = 150
@@ -33,4 +33,4 @@ Config.TurtlebaitPrice = 24
 Config.FishingShop = {x = 1694.823, y = 3755.388, z = 33.705} --Place where players can sell their fish
 Config.SellFish = {x = -1038.686, y = -1396.931, z = 4.553} --Place where players can sell their fish
 Config.SellTurtle = {x = 3613.875, y = 5025.807, z = 10.347} --Place where players can sell their turtles 
-Config.SellShark = {x = 3824.538, y = 4444.896, z = 1.809} --Place where players can sell their sharks
+Config.SellShark = {x = -1605.14, y = 5197.04, z = 4.31} --Place where players can sell their sharks
