@@ -100,6 +100,7 @@ Citizen.CreateThread(function()
 
 						Citizen.Wait(2000)
 						ClearPedTasks(playerPed)
+						ClearPedTasksImmediately(playerPed)
 						Citizen.Wait(1500)
 		
 						ESX.Game.DeleteObject(nearbyObject)
@@ -135,7 +136,7 @@ end)
 
 function SpawnCokePlants()
 	while spawnedCokes < 25 do
-		Citizen.Wait(0)
+		Citizen.Wait(88)
 		local cokeCoords = GenerateCokeCoords()
 
 		ESX.Game.SpawnLocalObject('prop_bush_med_03_cr2', cokeCoords, function(obj)
