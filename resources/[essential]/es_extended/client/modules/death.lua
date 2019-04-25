@@ -29,10 +29,9 @@ Citizen.CreateThread(function()
 end)
 
 RegisterCommand("stuck", function()
-    local ped = GetPlayerPed(PlayerId())
-    if IsDead then
-        SetPedRagdollForceFall(ped)
-        -- ClearPedTasksImmediately(ped)
+	if not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+       safeTeleport()
+        ClearPedTasksImmediately(GetPlayerPed(-1))
     end
 end)
 
@@ -70,4 +69,16 @@ function PlayerKilled()
 
 	TriggerEvent('esx:onPlayerDeath', data)
 	TriggerServerEvent('esx:onPlayerDeath', data)
+end
+
+function safeTeleport()
+	Citizen.CreateThread(function()
+	   checkdistance = false
+	   local counter = 1500
+		while counter > 0 do
+			Citizen.Wait(1)
+			counter = counter - 1
+		end
+		checkdistance = true
+	end)
 end
