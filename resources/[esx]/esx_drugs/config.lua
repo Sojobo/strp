@@ -9,8 +9,8 @@ Config.Delays = {
 
 Config.DrugDealerItems = {
     GiveBlack = true, -- give black money? if disabled it'll give regular cash.
-	marijuana = 62,
-	cocaine = 91
+	marijuana = 62
+	-- cocaine = 91
 }
 Config.WineDealerItems = {
     GiveBlack = false, -- give black money? if disabled it'll give regular cash.
