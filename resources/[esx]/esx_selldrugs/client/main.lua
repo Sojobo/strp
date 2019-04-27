@@ -46,40 +46,6 @@ currentped = 0
 playerloc = GetEntityCoords(player, 0)
 pedAvailable = false
 
--- Citizen.CreateThread(function()
--- 	while true do
--- 		Wait(100)
--- 		local player = GetPlayerPed(-1)
--- 		local handle, ped = FindFirstPed()
--- 		local success
---         if playerHasDrugs then
---             repeat
---                 success, ped = FindNextPed(handle)
---                 local pos = GetEntityCoords(ped)
---                 local distance = GetDistanceBetweenCoords(pos.x, pos.y, pos.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
---                 if IsPedInAnyVehicle(GetPlayerPed(-1)) == false then
---                     if DoesEntityExist(ped)then
---                         if IsPedDeadOrDying(ped) == false then
---                             if IsPedInAnyVehicle(ped) == false then
---                                 local pedType = GetPedType(ped)
---                                 if pedType ~= 28 and IsPedAPlayer(ped) == false then
---                                     if distance <= 3 and ped ~= GetPlayerPed(-1) and ped ~= oldped then
---                                         currentped = ped
---                                         pedAvailable = true
---                                     end
---                                 end
---                             end
---                         end
---                     end
---                 end
---             until not success
---         end
-
--- 		EndFindPed(handle)
--- 	end	
--- end)
-
-
 -- Thread for selling drugs to any NPC
 Citizen.CreateThread(function()
     local drugWaitTime = 1000
