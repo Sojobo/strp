@@ -52,8 +52,9 @@ local nextMission, currentMission
 
 local MISSION = {}
 MISSION.start = false
-MISSION.tailer = false
+MISSION.trailer = false
 MISSION.truck = false
+MISSION.depo = {}
 
 MISSION.hashTruck = 0
 MISSION.hashTrailer = 0
@@ -113,6 +114,7 @@ function clear()
     Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(MISSION.trailer))
     --Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(MISSION.truck))
 
+    MISSION.depo = {}
     MISSION.trailer = 0
     MISSION.truck = 0
     MISSION.hashTruck = 0
@@ -170,7 +172,7 @@ function tick()
             --key controlling
             if IsControlPressed(1, 38) then
                 GUI.mission(nextMission)
-                GUI.menu = getNearTruckingCompany(true) -- set to 0 to allow trailer choices
+                GUI.menu = getNearTruckingCompany(true)
             end
         else
             GUI.showStartText = false
@@ -203,7 +205,7 @@ end
 
 function GUI.mission(missionN)
     --select random trailer
-    MISSION.hashTrailer = GetHashKey(nextMission[6])
+    MISSION.hashTrailer = GetHashKey(nextMission[5])
     RequestModel(MISSION.hashTrailer)
 
     while not HasModelLoaded(MISSION.hashTrailer) do
@@ -211,7 +213,7 @@ function GUI.mission(missionN)
     end
 
     --select random truck
-    MISSION.hashTruck = GetHashKey(nextMission[5])
+    MISSION.hashTruck = GetHashKey(nextMission[4])
     RequestModel(MISSION.hashTruck)
 
     while not HasModelLoaded(MISSION.hashTruck) do
@@ -225,6 +227,7 @@ function GUI.mission(missionN)
 
     --mission start
     MISSION.start = true
+    MISSION.depo = getNearTruckingCompany(false)
     MISSION.spawnTrailer()
 
     local myTruck = GetVehiclePedIsIn(playerPed, false) -- true means last vehicle, false means current only
@@ -250,13 +253,13 @@ function MISSION.spawnTruck()
     SetPedIntoVehicle(playerPed, MISSION.truck, -1)
     SetVehicleEngineOn(MISSION.truck, true, false, false)
 
-    TriggerServerEvent('vehicleManager:removeTrunk', GetVehicleNumberPlateText(MISSION.truck))
+    -- TriggerServerEvent('vehicleManager:removeTrunk', GetVehicleNumberPlateText(MISSION.truck))
 end
 
 function MISSION.spawnTrailer()
     MISSION.trailer = CreateVehicle(MISSION.hashTrailer, TruckingTrailer[getNearTruckingCompany(true)].x, TruckingTrailer[getNearTruckingCompany(true)].y, TruckingTrailer[getNearTruckingCompany(true)].z, 333.239807128906, true, false)
     SetVehicleOnGroundProperly(MISSION.trailer)
-    TriggerServerEvent('vehicleManager:removeTrunk', GetVehicleNumberPlateText(MISSION.trailer))
+    -- TriggerServerEvent('vehicleManager:removeTrunk', GetVehicleNumberPlateText(MISSION.trailer))
     
     --setMarker on trailer
     MISSION.trailerMarker()
@@ -295,7 +298,8 @@ end
 
 function MISSION.finishMission()
     local trailerDamage = GetEntityMaxHealth(MISSION.trailer) - GetEntityHealth(MISSION.trailer)
-    TriggerServerEvent("truckerJob:completeMission", trailerDamage, currentMission)
+    local distanceCovered = math.floor(GetDistanceBetweenCoords(MISSION.depo.x, MISSION.depo.y, MISSION.depo.z, currentMission[1], currentMission[2], currentMission[3]))
+    TriggerServerEvent("truckerJob:completeMission", trailerDamage, distanceCovered, currentMission)
 
     if (DoesEntityExist(MISSION.trailer)) then
         SetEntityAsMissionEntity(MISSION.trailer, true, true)
