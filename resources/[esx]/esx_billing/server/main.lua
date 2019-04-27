@@ -9,6 +9,10 @@ AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, la
 	local xTarget = ESX.GetPlayerFromId(playerId)
 	amount        = ESX.Math.Round(amount)
 
+    if (sharedAccountName == "society_police") then
+        xPlayer.identifier = 0
+    end
+
 	TriggerEvent('esx_addonaccount:getSharedAccount', sharedAccountName, function(account)
 		if amount < 0 then
 			print(('esx_billing: %s attempted to send a negative bill!'):format(xPlayer.identifier))
