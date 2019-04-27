@@ -13,7 +13,11 @@ local admins = {
 	'license:31e40ddd4737fe9ffed5bde84d24f2ec3d8e7ab0', --kevin
 	'license:66dedb5678c489162a3a264f0a64c5f4411c3366', -- santa
 	'steam:11000010400b1fc', --jamie
-	'steam:110000101a7a8ea' --bean
+    'steam:110000101a7a8ea', --bean
+    'license:622f0a9d6bcf42158bdced35d2e8a1ac7349eaa4', --holder
+    'license:af6b7476fd02f0eb0af09f9d0df2269999669ce5', -- jerry
+    'license:127fe8e5ff21680085b65454bd5d6c07046e23d1',  -- hoover
+    'license:d556be5e5e8c496f128561b704d895540b2a7ae6' -- terry
 }
 
 function isAdmin(player)
