@@ -66,7 +66,6 @@ Citizen.CreateThread(function()
 												--PED CALLING COPS
 												if Config.CallCops then
 													local randomReport = math.random(1, Config.CallCopsPercent)
-													print(Config.CallCopsPercent)
 													if randomReport == Config.CallCopsPercent then
 														TriggerServerEvent('drugsNotify')
 													end
@@ -169,31 +168,10 @@ AddEventHandler('playerhasdrugs', function()
 	playerHasDrugs = true
 end)
 
--- --DISPATCH BEGIN (better do not touch)
---Only if Config.CallCops = true
-GetPlayerName()
-RegisterNetEvent('outlawNotify')
-AddEventHandler('outlawNotify', function(alert)
-    if PlayerData.job ~= nil and PlayerData.job.name == 'police' then
-        Notify(alert)
-    end
-end)
-
-function Notify(text)
-    SetNotificationTextEntry('STRING')
-    AddTextComponentString(text)
-    DrawNotification(false, false)
-end
-
-
 --Config
 local timer = 1 --in minutes - Set the time during the player is outlaw
-local showOutlaw = true --Set if show outlaw act on map
 local blipTime = 25 --in second
-local showcopsmisbehave = true --show notification when cops steal too
 --End config
-
-local timing = timer * 60000 --Don't touche it
 
 Citizen.CreateThread(function()
     while true do
@@ -208,19 +186,12 @@ end)
 
 Citizen.CreateThread( function()
     while true do
-        Wait(100)
+        Wait(500)
         if pedIsTryingToSellDrugs then
             DecorSetInt(GetPlayerPed(-1), "IsOutlaw", 2)
-			if PlayerData.job ~= nil and PlayerData.job.name == 'police' and showcopsmisbehave == false then
-			elseif PlayerData.job ~= nil and PlayerData.job.name == 'police' and showcopsmisbehave then
-                alertPolice("Reports of a suspected drug deal in progress")
-				Wait(3000)
-				pedIsTryingToSellDrugs = false
-			else
-                alertPolice("Reports of a suspected drug deal in progress")
-				Wait(3000)
-				pedIsTryingToSellDrugs = false
-			end
+            alertPolice("Reports of a suspected drug deal in progress")
+            Wait(3000)
+            pedIsTryingToSellDrugs = false
         end
     end
 end)

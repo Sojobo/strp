@@ -18,10 +18,8 @@ AddEventHandler('sellDrugs', function()
 			drugType = 'cannabis'
 			if weedqtySingle == 1 then
 				x = 1
-			elseif weedqtySingle == 2 then
+			elseif weedqtySingle > 1 and weedqtySingle < 5 then
 				x = math.random(1,2)
-			elseif weedqtySingle == 3 then
-				x = math.random(1,3)
 			elseif weedqtySingle >= 5 then
 				x = math.random(1,4)
 			end
@@ -32,7 +30,7 @@ AddEventHandler('sellDrugs', function()
 			drugType = 'cocaine'
 			if cokeqtySingle == 1 then
 				x = 1
-			elseif cokeqtySingle == 2 then
+			elseif cokeqtySingle > 1 and cokeqtySingle < 5 then
 				x = math.random(1,2)
 			elseif cokeqtySingle >= 5 then
 				x = math.random(1,3)
@@ -56,7 +54,7 @@ AddEventHandler('sellDrugs', function()
 	
 	xPlayer.addAccountMoney('black_money', blackMoney)
 	TriggerClientEvent('sold', _source)
-	TriggerClientEvent('esx:showNotification', _source, _U('you_have_sold') .. '~b~'..x..'~w~ ' .. (drugType) .. blackMoney .. '$')
+	TriggerClientEvent('esx:showNotification', _source, _U('you_have_sold') .. ' ' ..x.. ' ' .. (drugType) .. ' for $' .. blackMoney)
 end)
 
 
@@ -72,7 +70,7 @@ AddEventHandler('check', function()
 	for i=1, #xPlayers, 1 do
  		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
  		if xPlayer.job.name == 'police' then
-				cops = cops + 1
+            cops = cops + 1
 		end
 	end
 	
