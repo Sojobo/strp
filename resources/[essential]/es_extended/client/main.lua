@@ -303,6 +303,23 @@ AddEventHandler('esx:spawnVehicle', function(model)
 	end)
 end)
 
+RegisterNetEvent('esx:spawnModVehicle')
+AddEventHandler('esx:spawnModVehicle', function()
+    local carid = GetHashKey('premier')
+    local playerPed = GetPlayerPed(-1)
+    if playerPed and playerPed ~= -1 then
+        RequestModel(carid)
+        while not HasModelLoaded(carid) do
+            Citizen.Wait(0)
+        end
+        local playerCoords = GetEntityCoords(playerPed)
+
+        veh = CreateVehicle(carid, playerCoords, 0.0, true, false)
+        TaskWarpPedIntoVehicle(playerPed, veh, -1)
+        --SetEntityInvincible(veh, true)
+    end
+end)
+
 RegisterNetEvent('esx:spawnObject')
 AddEventHandler('esx:spawnObject', function(model)
 	local playerPed = PlayerPedId()
