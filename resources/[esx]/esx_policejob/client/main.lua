@@ -1449,7 +1449,7 @@ end)
 
 RegisterNetEvent('esx_policejob:handcuffanimation')
 AddEventHandler('esx_policejob:handcuffanimation', function(target)
-	IsHandcuffed    = not IsHandcuffed
+	-- IsHandcuffed    = not IsHandcuffed
 	local playerPed = PlayerPedId()
     local targetPed = GetPlayerPed(GetPlayerFromServerId(target))
 		local targetCoords = GetEntityCoords(targetPed, true)
@@ -1461,7 +1461,7 @@ AddEventHandler('esx_policejob:handcuffanimation', function(target)
 				local animationLib = "mp_arrest_paired"
 				RequestAnimDict(animationLib)
 				while not HasAnimDictLoaded(animationLib) do
-						Citizen.Wait(100)
+                    Citizen.Wait(100)
 				end
 				TaskPlayAnim(PlayerPedId(), animationLib, "cop_p2_back_left", 8.0, -8, 3000, 16, 0, 0, 0, 0)
 			end)
