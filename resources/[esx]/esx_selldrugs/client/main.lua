@@ -174,9 +174,9 @@ end)
 GetPlayerName()
 RegisterNetEvent('outlawNotify')
 AddEventHandler('outlawNotify', function(alert)
-		if PlayerData.job ~= nil and PlayerData.job.name == 'police' then
-            Notify(alert)
-        end
+    if PlayerData.job ~= nil and PlayerData.job.name == 'police' then
+        Notify(alert)
+    end
 end)
 
 function Notify(text)
@@ -209,45 +209,15 @@ end)
 Citizen.CreateThread( function()
     while true do
         Wait(100)
-        local plyPos = GetEntityCoords(GetPlayerPed(-1),  true)
-        local s1, s2 = Citizen.InvokeNative( 0x2EB41072B4C1E4C0, plyPos.x, plyPos.y, plyPos.z, Citizen.PointerValueInt(), Citizen.PointerValueInt() )
-        local street1 = GetStreetNameFromHashKey(s1)
-        local street2 = GetStreetNameFromHashKey(s2)
         if pedIsTryingToSellDrugs then
             DecorSetInt(GetPlayerPed(-1), "IsOutlaw", 2)
 			if PlayerData.job ~= nil and PlayerData.job.name == 'police' and showcopsmisbehave == false then
 			elseif PlayerData.job ~= nil and PlayerData.job.name == 'police' and showcopsmisbehave then
-				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
-					local sex = nil
-					if skin.sex == 0 then
-						sex = "male" --male/change it to your language
-					else
-						sex = "female" --female/change it to your language
-					end
-					TriggerServerEvent('drugsInProgressPos', plyPos.x, plyPos.y, plyPos.z)
-					if s2 == 0 then
-						TriggerServerEvent('drugsInProgressS1', street1, sex)
-					elseif s2 ~= 0 then
-						TriggerServerEvent('drugsInProgress', street1, street2, sex)
-					end
-				end)
+                alertPolice("Reports of a suspected drug deal in progress")
 				Wait(3000)
 				pedIsTryingToSellDrugs = false
 			else
-				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
-					local sex = nil
-					if skin.sex == 0 then
-						sex = "male"
-					else
-						sex = "female"
-					end
-					TriggerServerEvent('drugsInProgressPos', plyPos.x, plyPos.y, plyPos.z)
-					if s2 == 0 then
-						TriggerServerEvent('drugsInProgressS1', street1, sex)
-					elseif s2 ~= 0 then
-						TriggerServerEvent('drugsInProgress', street1, street2, sex)
-					end
-				end)
+                alertPolice("Reports of a suspected drug deal in progress")
 				Wait(3000)
 				pedIsTryingToSellDrugs = false
 			end
@@ -255,30 +225,24 @@ Citizen.CreateThread( function()
     end
 end)
 
-RegisterNetEvent('drugsPlace')
-AddEventHandler('drugsPlace', function(tx, ty, tz)
-	if PlayerData.job.name == 'police' then
-		local transT = 250
-		local Blip = AddBlipForCoord(tx, ty, tz)
-		SetBlipSprite(Blip,  10)
-		SetBlipColour(Blip,  1)
-		SetBlipAlpha(Blip,  transT)
-		SetBlipAsShortRange(Blip,  false)
-		while transT ~= 0 do
-			Wait(blipTime * 4)
-			transT = transT - 1
-			SetBlipAlpha(Blip,  transT)
-			if transT == 0 then
-				SetBlipSprite(Blip,  2)
-				return
-			end
-		end
-	end
-end)
-
-
 RegisterNetEvent('drugsEnable')
 AddEventHandler('drugsEnable', function()
 	pedIsTryingToSellDrugs = true
 end)
+
+function alertPolice(message)
+    local playerPed = PlayerPedId()
+    local coords = GetEntityCoords(playerPed)
+    local notification = {
+        subject  = 'Suspected Drug Deal',
+        msg      = message,
+        icon = 'fas fa-headset',
+        iconStyle = 'red',
+        locationX = coords.x,
+        locationY = coords.y,
+        caller = 0,
+    }
+
+    TriggerServerEvent('esx_service:callAllInService', notification, "police")
+end
 -- --DISPATCH END

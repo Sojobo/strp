@@ -100,21 +100,3 @@ RegisterServerEvent('drugsNotify')
 AddEventHandler('drugsNotify', function()
 	TriggerClientEvent("drugsEnable", source)
 end)
-
---cads
-RegisterServerEvent('drugsInProgress')
-AddEventHandler('drugsInProgress', function(street1, street2, sex)
-      --TriggerClientEvent("outlawNotify", -1, "~r~Selling drugs by ~w~"..sex.."~r~near~w~"..street1.."~r~ and ~w~"..street2)
-	TriggerClientEvent("esx:showNotification", -1, "~r~Someone is selling drugs. A ~w~"..sex..", ~r~between ~w~"..street1.."~r~ and ~w~"..street2)
-end)
---if you need you can translate it to your language too
-RegisterServerEvent('drugsInProgressS1')
-AddEventHandler('drugsInProgressS1', function(street1, sex)
-      --TriggerClientEvent("outlawNotify", -1, "~r~Selling drugs by ~w~"..sex.."~r~near~w~"..street1)
-	TriggerClientEvent("esx:showNotification", -1, "~r~Someone is selling drugs. A ~w~"..sex..", ~r~on ~w~"..street1)
-end)
-
-RegisterServerEvent('drugsInProgressPos')
-AddEventHandler('drugsInProgressPos', function(gx, gy, gz)
-	TriggerClientEvent('drugsPlace', -1, gx, gy, gz)
-end)
