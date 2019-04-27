@@ -21,11 +21,11 @@ AddEventHandler('baseevents:onPlayerKilled', function(killedBy, data)
     if (killedBy > -1) then
         local killerPlayer = ESX.GetPlayerFromId(killedBy)
         TriggerClientEvent('chatMessage', victim, 'SYSTEM', { 0, 0, 0 }, 'You were killed by ' .. killerPlayer.name)
-    end
 
-    local victimPlayer = ESX.GetPlayerFromId(victim)
-    TriggerClientEvent('chatMessage', killedBy, 'SYSTEM', { 0, 0, 0 }, 'You just killed ' .. victimPlayer.name)
-    -- PerformHttpRequest(GetConvar('discord_endpoint', ''), function(err, text, headers) end, 'POST', json.encode({username = "Kill Watchdog", content = killString }), { ['Content-Type'] = 'application/json' })
+        local victimPlayer = ESX.GetPlayerFromId(victim)
+        TriggerClientEvent('chatMessage', killedBy, 'SYSTEM', { 0, 0, 0 }, 'You just killed ' .. victimPlayer.name)
+        -- PerformHttpRequest(GetConvar('discord_endpoint', ''), function(err, text, headers) end, 'POST', json.encode({username = "Kill Watchdog", content = killString }), { ['Content-Type'] = 'application/json' })
+    end
 
 	RconLog({msgType = 'playerKilled', victim = victim, attacker = killedBy, data = data})
 end)
