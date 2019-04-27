@@ -33,79 +33,105 @@ Citizen.CreateThread(function()
 	end
 end)
 
-currentped = nil
 Citizen.CreateThread(function()
 	while true do
-		Wait(10)
-		local player = GetPlayerPed(-1)
-		local pid = PlayerPedId()
-  		local playerloc = GetEntityCoords(player, 0)
-		local handle, ped = FindFirstPed()
-		local success
-		repeat
-		    success, ped = FindNextPed(handle)
-		   	local pos = GetEntityCoords(ped)
-	 		local distance = GetDistanceBetweenCoords(pos.x, pos.y, pos.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
-			local distanceFromCity = GetDistanceBetweenCoords(Config.CityPoint.x, Config.CityPoint.y, Config.CityPoint.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
-			if IsPedInAnyVehicle(GetPlayerPed(-1)) == false then
-				if DoesEntityExist(ped)then
-					if IsPedDeadOrDying(ped) == false then
-						if IsPedInAnyVehicle(ped) == false then
-							local pedType = GetPedType(ped)
-							if pedType ~= 28 and IsPedAPlayer(ped) == false then
-								currentped = pos
-								if distance <= 3 and ped  ~= GetPlayerPed(-1) and ped ~= oldped and IsControlJustPressed(1, 38) then
-									TriggerServerEvent('check')
-									if distanceFromCity < Config.DistanceFromCity then
-										if playerHasDrugs and sold == false and selling == false then 
-											--PED REJECT OFFER
-											local random = math.random(1, Config.PedRejectPercent)
-											if random == Config.PedRejectPercent then
-												ESX.ShowNotification(_U('reject'))
-												oldped = ped
-												--PED CALLING COPS
-												if Config.CallCops then
-													local randomReport = math.random(1, Config.CallCopsPercent)
-													if randomReport == Config.CallCopsPercent then
-														TriggerServerEvent('drugsNotify')
-													end
-												end
-												TriggerEvent("sold")
-											--PED ACCEPT OFFER
-											else
-												SetEntityAsMissionEntity(ped)
-												ClearPedTasks(ped)
-												FreezeEntityPosition(ped,true)
-												oldped = ped										
-												TaskStandStill(ped, 9)
-												pos1 = GetEntityCoords(ped)
-												TriggerEvent("sellingdrugs")
-												ESX.ShowNotification('This person accepted your offer!')
-											end
-										end
-									else
-										ESX.ShowNotification(_U('too_far_away_from_city'))
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		until not success
+		Wait(2000)
+        if (playerHasDrugs == false) then
+            TriggerServerEvent('check')
+        end
+    end
+end)
 
-		EndFindPed(handle)
-	end	
+currentped = 0
+playerloc = GetEntityCoords(player, 0)
+pedAvailable = false
+
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		Wait(100)
+-- 		local player = GetPlayerPed(-1)
+-- 		local handle, ped = FindFirstPed()
+-- 		local success
+--         if playerHasDrugs then
+--             repeat
+--                 success, ped = FindNextPed(handle)
+--                 local pos = GetEntityCoords(ped)
+--                 local distance = GetDistanceBetweenCoords(pos.x, pos.y, pos.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
+--                 if IsPedInAnyVehicle(GetPlayerPed(-1)) == false then
+--                     if DoesEntityExist(ped)then
+--                         if IsPedDeadOrDying(ped) == false then
+--                             if IsPedInAnyVehicle(ped) == false then
+--                                 local pedType = GetPedType(ped)
+--                                 if pedType ~= 28 and IsPedAPlayer(ped) == false then
+--                                     if distance <= 3 and ped ~= GetPlayerPed(-1) and ped ~= oldped then
+--                                         currentped = ped
+--                                         pedAvailable = true
+--                                     end
+--                                 end
+--                             end
+--                         end
+--                     end
+--                 end
+--             until not success
+--         end
+
+-- 		EndFindPed(handle)
+-- 	end	
+-- end)
+
+
+-- Thread for selling drugs to any NPC
+Citizen.CreateThread(function()
+    local drugWaitTime = 1000
+    while true do
+        Citizen.Wait(drugWaitTime)
+        drugWaitTime = 500
+        pedAvailable = false
+
+        if not selling and playerHasDrugs then
+            local ped = GetPlayerPed(-1)
+            local coordFrom = GetEntityCoords(ped, 1)
+            local coordTo = GetOffsetFromEntityInWorldCoords(ped, 0.0, 4.0, 0.0)
+            local rayHandle = CastRayPointToPoint(coordFrom.x, coordFrom.y, coordFrom.z, coordTo.x, coordTo.y, coordTo.z, 4, ped, 0)
+            local _, _, _, _, npc = GetRaycastResult(rayHandle)
+
+            if IsPedInAnyVehicle(GetPlayerPed(-1)) == false then
+                if DoesEntityExist(npc)then
+                    if IsPedDeadOrDying(npc) == false then
+                        if IsPedInAnyVehicle(npc) == false then
+                            local pedType = GetPedType(npc)
+                            if pedType ~= 28 and IsPedAPlayer(npc) == false then
+                                if npc ~= GetPlayerPed(-1) and npc ~= oldped then
+                                    drugWaitTime = 10
+                                    pedAvailable = true
+                                    currentped = npc
+                                    ESX.ShowHelpNotification(_U('input'))
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
 end)
 
 Citizen.CreateThread(function()
+    waitTime = 100
 	while true do
-		Wait(100)
+        if (pedAvailable) then
+            waitTime = 0
+        else
+            waitTime = 100
+        end
+
+		Wait(waitTime)
 		if selling then
 			local player = GetPlayerPed(-1)
-  			local playerloc = GetEntityCoords(player, 0)
+  			playerloc = GetEntityCoords(player, 0)
 			local distance = GetDistanceBetweenCoords(pos1.x, pos1.y, pos1.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
 			local pid = PlayerPedId()
+
 			--TOO FAR
 			if distance > 5 then
 				ESX.ShowNotification(_U('too_far_away'))
@@ -114,6 +140,7 @@ Citizen.CreateThread(function()
 				SetPedAsNoLongerNeeded(oldped)
 				FreezeEntityPosition(oldped,false)
 			end
+
 			--SUCCESS
 			if secondsRemaining <= 1 then
 				selling = false
@@ -135,6 +162,40 @@ Citizen.CreateThread(function()
 				TaskPlayAnim(pid,"amb@prop_human_bum_bin@idle_b","idle_d",100.0, 200.0, 0.3, 120, 0.2, 0, 0, 0)
 			end
 		end	
+
+        if selling == false and pedAvailable and IsControlJustPressed(1, 38) then
+            local distanceFromCity = GetDistanceBetweenCoords(Config.CityPoint.x, Config.CityPoint.y, Config.CityPoint.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
+            if distanceFromCity < Config.DistanceFromCity then
+                if playerHasDrugs and sold == false and selling == false then 
+                    --PED REJECT OFFER
+                    local random = math.random(1, Config.PedRejectPercent)
+                    if random == Config.PedRejectPercent then
+                        ESX.ShowNotification(_U('reject'))
+                        oldped = currentped
+                        --PED CALLING COPS
+                        if Config.CallCops then
+                            local randomReport = math.random(1, Config.CallCopsPercent)
+                            if randomReport == Config.CallCopsPercent then
+                                TriggerServerEvent('drugsNotify')
+                            end
+                        end
+                        TriggerEvent("sold")
+                    --PED ACCEPT OFFER
+                    else
+                        SetEntityAsMissionEntity(currentped)
+                        ClearPedTasks(currentped)
+                        FreezeEntityPosition(currentped,true)
+                        oldped = currentped
+                        TaskStandStill(currentped, 9)
+                        pos1 = GetEntityCoords(currentped)
+                        TriggerEvent("sellingdrugs")
+                        ESX.ShowNotification('This person accepted your offer!')
+                    end
+                end
+            else
+                ESX.ShowNotification(_U('too_far_away_from_city'))
+            end
+        end
 	end
 end)	
 		
@@ -164,7 +225,6 @@ end)
 --Show help notification ("PRESS E...")
 RegisterNetEvent('playerhasdrugs')
 AddEventHandler('playerhasdrugs', function()
-	ESX.ShowHelpNotification(_U('input'))
 	playerHasDrugs = true
 end)
 

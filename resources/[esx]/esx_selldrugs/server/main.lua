@@ -87,7 +87,7 @@ AddEventHandler('check', function()
 				return
 			end
 		end
-		TriggerClientEvent('nomoredrugs', _source)
+		-- TriggerClientEvent('nomoredrugs', _source)
 	else
 		TriggerClientEvent('esx:showNotification', _source, _U('must_be') .. Config.CopsRequiredToSell .. _U('to_sell_drugs'))
 	end
