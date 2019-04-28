@@ -4,7 +4,7 @@ Config.useQalleCameraSystem    = false       --( https://github.com/qalle-fivem/
 Config.chancePoliceNoti        = 50          -- the percent police get notified (only numbers like 30, 10, 40. You get it.)
 Config.useBlip                 = true      -- if u want blip
 Config.useInteractSound        = false       -- if you wanna use InteractSound (when u lockpick the door)
-Config.cooldownTime            = 10        -- cooldown Time in minutes
+Config.cooldownTime            = 5        -- cooldown Time in minutes
 
 Config.CheckTime               = true
 --Config.StartHour               = 0 -- 0 to 24 h
