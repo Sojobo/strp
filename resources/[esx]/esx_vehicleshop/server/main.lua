@@ -226,7 +226,12 @@ ESX.RegisterServerCallback('esx_vehicleshop:buyVehicle', function (source, cb, v
         cb(false, false) -- (hasEnoughMoney, stockAvailable)
     elseif xPlayer.getBank() >= vehicleData.price then
         if (vehicleData.limited > 0) then
-            Vehicles[thisVehKey].limited = Vehicles[thisVehKey].limited - 1 -- adjust limited quantitiy
+            Vehicles[thisVehKey].limited = vehicleData.limited - 1 -- adjust limited quantitiy
+            MySQL.Async.execute('UPDATE vehicles SET limited = @limited WHERE model = @model',
+			{
+				['@limited'] = vehicleData.limited - 1,
+				['@model']        = vehicleData.model
+			})
         end
 
 		xPlayer.removeBank(vehicleData.price)
