@@ -49,6 +49,17 @@ Config.Recipes = {
 		{item = "spring", quantity = 5 }, 
 	},
 
+	["smgclip"] = { 
+		{item = "metal", quantity = 8 },
+		{item = "spring", quantity = 5 }, 
+	},
+
+	["pistolclip"] = { 
+		{item = "metal", quantity = 4 },
+		{item = "spring", quantity = 3 }, 
+	},
+
+
 	-- melee
 	['WEAPON_BAT'] = { 
 		{item = "metal", quantity = 2 }, 
@@ -84,6 +95,7 @@ Config.Recipes = {
 		{item = "metalpipe", quantity = 1},
 		{item = "trigger", quantity = 1},
 		{item = "pistolbody", quantity = 1},
+		{item = "pistolclip", quantity = 1},
 	},
 
 	['WEAPON_MACHINEPISTOL'] = { 
@@ -92,6 +104,8 @@ Config.Recipes = {
 		{item = "metalpipe", quantity = 1},
 		{item = "semiautotrigger", quantity = 1},
 		{item = "semiautobody", quantity = 1},
+		{item = "pistolclip", quantity = 1},
+
 	},
 
 	['WEAPON_SMG'] = { 
@@ -100,6 +114,7 @@ Config.Recipes = {
 		{item = "metalpipe", quantity = 2},
 		{item = "autotrigger", quantity = 1},
 		{item = "smgbody", quantity = 1},
+		{item = "smgclip", quantity = 1},
 	},
 
 	

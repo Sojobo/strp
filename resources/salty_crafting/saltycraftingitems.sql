@@ -11,5 +11,9 @@ INSERT INTO `items` (name, label) VALUES
 	('semiautotrigger', 'Semi Auto Trigger'),
 	('semiautobody', 'Semi Auto Body'),
 	('smgbody', 'SMG Body'),
-	('autotrigger', 'Auto Trigger')
+	('autotrigger', 'Auto Trigger'),
+	('pistolclip', 'Pistol Clip'),
+	('smgclip', 'SMG Clip')
+
+
 ;
