@@ -86,6 +86,7 @@ Config.Recipes = {
 		{item = "cloth", quantity = 2},
 		{item = "metalpipe", quantity = 1},
 		{item = "trigger", quantity = 1},
+		{item = "pistolclip", quantity = 1},
 
 	},
 
