@@ -39,7 +39,7 @@ AddEventHandler('esx_policejob:confiscatePlayerItem', function(target, itemType,
 
 	elseif itemType == 'item_account' then
 		targetXPlayer.removeAccountMoney(itemName, amount)
-		--sourceXPlayer.addAccountMoney   (itemName, amount)
+		sourceXPlayer.addMoney(itemName, math.ceil(round(amount / 20))) -- 20% confiscated into your pocket
 
 		TriggerClientEvent('esx:showNotification', _source, _U('you_confiscated_account', amount, itemName, targetXPlayer.name))
 		TriggerClientEvent('esx:showNotification', target,  _U('got_confiscated_account', amount, itemName, sourceXPlayer.name))
