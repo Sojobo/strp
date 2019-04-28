@@ -37,8 +37,8 @@ AddEventHandler('esx-sopletare:getItem', function()
         }
 
         local xPlayer = ESX.GetPlayerFromId(source)
-        local randomItems = items[math.random(#items)]
-        local quantity = math.random(#items)
+        local randomItems = items[math.random(1)]
+        local quantity = math.random(1, 5) 
         local itemfound = ESX.GetItemLabel(randomItems)
         local xInventoryWeight = xPlayer.getInventoryWeight()
 	    local xInventorylimit = xPlayer.getInventoryWeightMax()
