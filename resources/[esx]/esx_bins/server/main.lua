@@ -12,11 +12,28 @@ AddEventHandler('esx-sopletare:getItem', function()
     if luck == 1 then
 
         local items = { -- add whatever items you want here
-            'lockpick',
             'bandage',
-            'water',
-            'bread',
-            'lotteryticket'
+            'lotteryticket',
+            'ring',
+            'diamond',
+            'junk',
+            'oldcoin',
+            'passport',
+            'cannabis',
+            'cocaine',
+            'wallet',
+            'dildo',
+            'rubberband',
+            'bobbypin',
+            'metal',
+            'wood',
+            'spring',
+            'cloth',
+            'pistolclip',
+            'pistolbody',
+            'trigger',
+            'metalpipe',
+
         }
 
         local xPlayer = ESX.GetPlayerFromId(source)
