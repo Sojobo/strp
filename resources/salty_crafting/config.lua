@@ -76,7 +76,7 @@ Config.Recipes = {
 	},
 
 	['WEAPON_BOTTLE'] = { 
-		{item = "brokenbottle", quantity = 1 },
+		{item = "bottle", quantity = 1 },
 		{item = "cloth", quantity = 1 }, 
 	},
 
