@@ -9,14 +9,7 @@ server_scripts {
 	'@mysql-async/lib/MySQL.lua',
 
 	'locale.lua',
-	'locales/de.lua',
-	'locales/br.lua',
-	'locales/fr.lua',
 	'locales/en.lua',
-	'locales/fi.lua',
-	'locales/sv.lua',
-	'locales/pl.lua',
-	'locales/cs.lua',
 
 	'config.lua',
 	'config.weapons.lua',
@@ -34,14 +27,7 @@ server_scripts {
 
 client_scripts {
 	'locale.lua',
-	'locales/de.lua',
-	'locales/br.lua',
-	'locales/fr.lua',
 	'locales/en.lua',
-	'locales/fi.lua',
-	'locales/sv.lua',
-	'locales/pl.lua',
-	'locales/cs.lua',
 
 	'config.lua',
 	'config.weapons.lua',

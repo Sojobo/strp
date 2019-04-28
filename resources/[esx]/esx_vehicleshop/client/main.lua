@@ -252,9 +252,9 @@ function OpenShopMenu()
 
 							if data3.current.value == 'personnal' then
 
-								ESX.TriggerServerCallback('esx_vehicleshop:buyVehicle', function(hasEnoughMoney)
+								ESX.TriggerServerCallback('esx_vehicleshop:buyVehicle', function(hasEnoughMoney, stockAvailable)
 
-									if hasEnoughMoney then
+							        if hasEnoughMoney and stockAvailable then
 										IsInShopMenu = false
 
 										menu3.close()
@@ -280,9 +280,11 @@ function OpenShopMenu()
 
 										FreezeEntityPosition(playerPed, false)
 										SetEntityVisible(playerPed, true)
-									else
-										ESX.ShowAdvancedNotification("Vehicle Dealership", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
-									end
+                                    elseif not stockAvailable then
+                                        ESX.ShowAdvancedNotification("Vehicle Dealership", "That vehicle has sold out - sorry!", "fas fa-exclamation-triangle", "red")
+                                    else
+                                        ESX.ShowAdvancedNotification("Vehicle Dealership", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
+                                    end
 
 								end, vehicleData.model)
 
@@ -325,9 +327,9 @@ function OpenShopMenu()
 							menu3.close()
 						end)
 					else
-						ESX.TriggerServerCallback('esx_vehicleshop:buyVehicle', function (hasEnoughMoney)
+						ESX.TriggerServerCallback('esx_vehicleshop:buyVehicle', function(hasEnoughMoney, stockAvailable)
 
-							if hasEnoughMoney then
+							if hasEnoughMoney and stockAvailable then
 								IsInShopMenu = false
 
 								menu2.close()
@@ -352,7 +354,9 @@ function OpenShopMenu()
 
 								FreezeEntityPosition(playerPed, false)
 								SetEntityVisible(playerPed, true)
-							else
+							elseif not stockAvailable then
+								ESX.ShowAdvancedNotification("Vehicle Dealership", "That vehicle has sold out - sorry!", "fas fa-exclamation-triangle", "red")
+                            else
 								ESX.ShowAdvancedNotification("Vehicle Dealership", _U('not_enough_money'), "fas fa-exclamation-triangle", "red")
 							end
 

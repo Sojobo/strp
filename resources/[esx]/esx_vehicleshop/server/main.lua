@@ -35,7 +35,9 @@ MySQL.ready(function()
 			end
 		end
 
-		table.insert(Vehicles, vehicle)
+        if (vehicle.limited ~= 0) then
+		    table.insert(Vehicles, vehicle)
+        end
 	end
 
 	-- send information after db has loaded, making sure everyone gets vehicle information
@@ -210,19 +212,27 @@ end)
 ESX.RegisterServerCallback('esx_vehicleshop:buyVehicle', function (source, cb, vehicleModel)
 	local xPlayer     = ESX.GetPlayerFromId(source)
 	local vehicleData = nil
+    local thisVehKey = 0
 
 	for i=1, #Vehicles, 1 do
 		if Vehicles[i].model == vehicleModel then
 			vehicleData = Vehicles[i]
+            thisVehKey = i
 			break
 		end
 	end
 
-	if xPlayer.getBank() >= vehicleData.price then
+	if vehicleData.limited == 0 then
+        cb(false, false) -- (hasEnoughMoney, stockAvailable)
+    elseif xPlayer.getBank() >= vehicleData.price then
+        if (vehicleData.limited > 0) then
+            Vehicles[thisVehKey].limited = Vehicles[thisVehKey].limited - 1 -- adjust limited quantitiy
+        end
+
 		xPlayer.removeBank(vehicleData.price)
-		cb(true)
+		cb(true, true) -- (hasEnoughMoney, stockAvailable)
 	else
-		cb(false)
+		cb(false, true) -- (hasEnoughMoney, stockAvailable)
 	end
 end)
 
