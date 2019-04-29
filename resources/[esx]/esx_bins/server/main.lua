@@ -7,7 +7,7 @@ end)
 RegisterServerEvent('esx-sopletare:getItem')
 AddEventHandler('esx-sopletare:getItem', function()
 
-    local luck = math.random(1, 3)
+    local luck = math.random(1, 5)
 
     if luck == 1 then
 
@@ -32,6 +32,8 @@ AddEventHandler('esx-sopletare:getItem', function()
             'pistolbody',
             'trigger',
             'metalpipe',
+            'junk',
+            'book',
 
         }
 
