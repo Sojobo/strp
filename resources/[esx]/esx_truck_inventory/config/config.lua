@@ -618,4 +618,9 @@ Config.VehicleLimit = {
     [1046206681] = { trunksize = 15 }, -- Michelli
     [-1134706562] = { trunksize = 10 }, -- Taipan
     [-376434238] = { trunksize = 10 }, -- Tyrant
+
+--LEs
+[1813965170] = { trunksize = 35 }, -- Rs7
+[1663453404] = { trunksize = 60 }, -- evoque
+[-279141045] = { trunksize = 30 }, -- mustang
 }
