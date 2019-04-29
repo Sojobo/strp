@@ -12,7 +12,6 @@ AddEventHandler('esx-sopletare:getItem', function()
     if luck == 1 then
 
         local items = { -- add whatever items you want here
-            'bandage',
             'lotteryticket',
             'ring',
             'diamond',
