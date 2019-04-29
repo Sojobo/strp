@@ -234,7 +234,7 @@ AddEventHandler('esx_ambulancejob:useItem', function(itemName)
 			Citizen.Wait(500)
 			while IsEntityPlayingAnim(playerPed, lib, anim, 3) do
 				Citizen.Wait(0)
-				DisableAllControlActions(0)
+				DisablePlayerFiring(playerPed, true)
 			end
 
 			TriggerEvent('esx_ambulancejob:heal', 'small', true)
