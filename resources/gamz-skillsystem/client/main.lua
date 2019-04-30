@@ -50,7 +50,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(500)
+		Citizen.Wait(300)
 		local ped = PlayerPedId()
 		if IsPedShooting(ped) then
 			UpdateSkill("Shooting", 0.5)
