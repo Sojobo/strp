@@ -238,7 +238,7 @@ Config.VehicleLimit = {
     [833469436] = { trunksize = 55 }, -- Slamvan3
     [1119641113] = { trunksize = 25 }, -- Stalion
     [1923400478] = { trunksize = 25 }, -- Stalion2
-    [-401643538] = { trunksize = 25 }, -- Tampa
+    [972671128] = { trunksize = 25 }, -- Tampa
     [-1210451983] = { trunksize = 35 }, -- Tampa3
     [-825837129] = { trunksize = 25 }, -- Vigero
     [-498054846] = { trunksize = 35 }, -- Virgo
