@@ -541,7 +541,7 @@ function OpenGymShipMenu()
         {
             title    = 'Gym - Membership',
             elements = {
-				{label = 'Membership ($800)', value = 'membership'},
+				{label = 'Membership ($300)', value = 'membership'},
             }
         },
         function(data, menu)
