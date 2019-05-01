@@ -202,7 +202,7 @@ function OpenCoffreInventoryMenu(plate, max, myVeh)
   ESX.TriggerServerCallback(
     "esx_trunk:getInventoryV",
     function(inventory)
-      text = _U('trunk_info', plate, (inventory.weight / 1000), (max / 1000))
+      text = _U('trunk_info', plate, (inventory.weight / 1), (max / 1))
       data = {plate = plate, max = max, myVeh = myVeh, text = text}
       TriggerEvent("esx_inventoryhud:openTrunkInventory", data, inventory.blackMoney, inventory.items, inventory.weapons)
     end,
