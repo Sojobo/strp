@@ -245,8 +245,8 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "world_human_muscle_free_weights", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							TriggerServerEvent('skill:GymUpdate')
-							ESX.ShowNotification("You have trained your Stamina")
+							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.0)
+							exports["gamz-skillsystem"]:UpdateSkill("Strength", 1.0)
 							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 							
 							--TriggerServerEvent('esx_gym:trainArms') ## COMING SOON...
@@ -292,8 +292,8 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "prop_human_muscle_chin_ups", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							TriggerServerEvent('skill:GymUpdate')
-							ESX.ShowNotification("You have trained your Stamina")
+							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.0)
+							exports["gamz-skillsystem"]:UpdateSkill("Strength", 1.0)
 							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 							
 							--TriggerServerEvent('esx_gym:trainChins') ## COMING SOON...
@@ -339,8 +339,8 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "world_human_push_ups", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							TriggerServerEvent('skill:GymUpdate')
-							ESX.ShowNotification("You have trained your Stamina")
+							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.0)
+							exports["gamz-skillsystem"]:UpdateSkill("Strength", 1.0)
 							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 						
 							--TriggerServerEvent('esx_gym:trainPushups') ## COMING SOON...
@@ -386,8 +386,7 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "world_human_yoga", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							TriggerServerEvent('skill:GymUpdate')
-							ESX.ShowNotification("You have trained your Stamina")
+							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.5)
 							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 						
 							--TriggerServerEvent('esx_gym:trainYoga') ## COMING SOON...
@@ -433,8 +432,8 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "world_human_sit_ups", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							TriggerServerEvent('skill:GymUpdate')
-							ESX.ShowNotification("You have trained your Stamina")
+							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.0)
+							exports["gamz-skillsystem"]:UpdateSkill("Strength", 1.0)
 							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 						
 							--TriggerServerEvent('esx_gym:trainSitups') ## COMING SOON...

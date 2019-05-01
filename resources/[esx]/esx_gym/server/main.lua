@@ -102,8 +102,8 @@ AddEventHandler('esx_gym:buyMembership', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	
-	if(xPlayer.getMoney() >= 800) then
-		xPlayer.removeMoney(800)
+	if(xPlayer.getMoney() >= 300) then
+		xPlayer.removeMoney(300)
 		
 		xPlayer.addInventoryItem('gym_membership', 1)		
 		notification("You purchased a ~g~membership")
