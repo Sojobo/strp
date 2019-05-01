@@ -101,27 +101,27 @@ Config.localWeight = {
 }
 
 Config.VehicleLimit = {
-    [0] = 30, --Compact
-    [1] = 40, --Sedan
-    [2] = 70, --SUV
-    [3] = 25, --Coupes
-    [4] = 30, --Muscle
-    [5] = 10, --Sports Classics
-    [6] = 5, --Sports
-    [7] = 5, --Super
-    [8] = 5, --Motorcycles
-    [9] = 18, --Off-road
-    [10] = 30, --Industrial
-    [11] = 70, --Utility
-    [12] = 60, --Vans
+    [0] = 35, --Compact
+    [1] = 45, --Sedan
+    [2] = 65, --SUV
+    [3] = 50, --Coupes
+    [4] = 40, --Muscle
+    [5] = 30, --Sports Classics
+    [6] = 30, --Sports
+    [7] = 10, --Super
+    [8] = 10, --Motorcycles
+    [9] = 60, --Off-road
+    [10] = 100, --Industrial
+    [11] = 100, --Utility
+    [12] = 85, --Vans
     [13] = 0, --Cycles
-    [14] = 5, --Boats
-    [15] = 20, --Helicopters
+    [14] = 50, --Boats
+    [15] = 50, --Helicopters
     [16] = 0, --Planes
     [17] = 40, --Service
     [18] = 40, --Emergency
     [19] = 0, --Military
-    [20] = 30, --Commercial
+    [20] = 45, --Commercial
     [21] = 0 --Trains
 }
 
