@@ -17,6 +17,13 @@ Citizen.CreateThread(function()
 	end
 
 	PlayerData = ESX.GetPlayerData()
+
+	while true do
+		Wait(2000)
+        if (playerHasDrugs == false) then
+            TriggerServerEvent('check')
+        end
+    end
 end)
 
 --TIME TO SELL
@@ -31,15 +38,6 @@ Citizen.CreateThread(function()
 		end
 		Citizen.Wait(100)
 	end
-end)
-
-Citizen.CreateThread(function()
-	while true do
-		Wait(2000)
-        if (playerHasDrugs == false) then
-            TriggerServerEvent('check')
-        end
-    end
 end)
 
 currentped = 0

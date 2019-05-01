@@ -1,5 +1,4 @@
 ESX = nil
-
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 RegisterServerEvent('sellDrugs')
@@ -87,9 +86,6 @@ AddEventHandler('check', function()
 				return
 			end
 		end
-		-- TriggerClientEvent('nomoredrugs', _source)
-	else
-		TriggerClientEvent('esx:showNotification', _source, _U('must_be') .. Config.CopsRequiredToSell .. _U('to_sell_drugs'))
 	end
 end)
 
