@@ -8,7 +8,13 @@ closestBin = {
     'prop_dumpster_4b',
     "prop_bin_01a",
     "prop_bin_03a",
-    "prop_bin_05a"
+    "prop_bin_05a",
+    "prop_bin_07b",
+    "prop_bin_07c",
+    "prop_bin_07d",
+    "prop_bin_08a",
+    "prop_bin_08open",
+    "prop_bin_10a"
 }
 
 Citizen.CreateThread(function()
