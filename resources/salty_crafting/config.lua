@@ -83,7 +83,6 @@ Config.Recipes = {
 --guns
 	['WEAPON_PISTOL'] = { 
 		{item = "metal", quantity = 2 }, 
-		{item = "cloth", quantity = 2},
 		{item = "metalpipe", quantity = 1},
 		{item = "trigger", quantity = 1},
 		{item = "pistolclip", quantity = 1},
@@ -92,7 +91,6 @@ Config.Recipes = {
 
 	['WEAPON_VINTAGEPISTOL'] = { 
 		{item = "metal", quantity = 3}, 
-		{item = "cloth", quantity = 3},
 		{item = "metalpipe", quantity = 1},
 		{item = "trigger", quantity = 1},
 		{item = "pistolbody", quantity = 1},
@@ -101,7 +99,6 @@ Config.Recipes = {
 
 	['WEAPON_MACHINEPISTOL'] = { 
 		{item = "metal", quantity = 5}, 
-		{item = "cloth", quantity = 5},
 		{item = "metalpipe", quantity = 1},
 		{item = "semiautotrigger", quantity = 1},
 		{item = "semiautobody", quantity = 1},
@@ -111,7 +108,6 @@ Config.Recipes = {
 
 	['WEAPON_SMG'] = { 
 		{item = "metal", quantity = 5}, 
-		{item = "cloth", quantity = 5},
 		{item = "metalpipe", quantity = 2},
 		{item = "autotrigger", quantity = 1},
 		{item = "smgbody", quantity = 1},
