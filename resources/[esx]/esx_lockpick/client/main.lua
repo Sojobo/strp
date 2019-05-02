@@ -84,7 +84,7 @@ AddEventHandler('esx_lockpick:onUse', function()
 				Citizen.Wait(Config.LockTime * 1000)
                 successOdds = math.random(Config.SuccessChance[1], Config.SuccessChance[2])
 
-                if successOdds ~= 1 then
+                if successOdds == 1 then
                     CurrentAction = nil
                     ClearPedTasksImmediately(playerPed)
                     ESX.ShowNotification(_U('lockpick_break'))
