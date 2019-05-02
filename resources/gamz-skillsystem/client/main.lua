@@ -27,7 +27,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(25000)
+		Citizen.Wait(1000)
 		local ped = PlayerPedId()
 		local vehicle = GetVehiclePedIsUsing(ped)
 			if DoesEntityExist(vehicle) then
@@ -37,12 +37,12 @@ Citizen.CreateThread(function()
 				local rotation = GetEntityRotation(vehicle)
 				if IsControlPressed(0, 210) then
 					if rotation.x >= 25.0 then
-						UpdateSkill("Wheelie", 0.2)
+						UpdateSkill("Wheelie", 1.0) -- this increases the driving bar only
 					end 
 				end
 			end
-			if speed >= 40 then
-				UpdateSkill("Driving", 0.2)
+			if speed >= 999 then
+				UpdateSkill("Driving", 0.3)  -- doesnt do anything, (and doesnt increase the driving bar)
 			end
 		end
 	end
@@ -70,10 +70,10 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(25000)
+		Citizen.Wait(20000)
 		local ped = PlayerPedId()
 		if IsPedRunning(ped) then
-			UpdateSkill("Stamina", 0.2)
+			UpdateSkill("Stamina", 0.3)
 		elseif IsPedInMeleeCombat(ped) then
 			UpdateSkill("Strength", 0.2)
 		end

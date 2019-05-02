@@ -107,6 +107,7 @@ files {
     'html/img/items/rareornament.png',
     'html/img/items/ring.png',
     'html/img/items/diamondring.png',
+    'html/img/items/diamond.png',
     'html/img/items/rolex.png',
     'html/img/items/omega.png',
     'html/img/items/dildo.png',

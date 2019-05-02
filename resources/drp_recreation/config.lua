@@ -26,19 +26,18 @@ Config.Zones = {
             MenuMessage = _U('press_bikerental_menu'), -- Menu Help Text
         },
         Items = { -- Item, label, and price used for the menu
-            {item = 'BMX', label = 'BMX Cycle', price = 300},
-            {item = 'CRUISER', label = 'Cruiser Cycle', price = 300},
-            {item = 'FIXTER', label = 'Racercycle', price = 300},
-            {item = 'SCORCHER', label = 'Mountainbike', price = 300},
-            {item = 'TRIBIKE', label = 'Triathlon Cycle 1', price = 300},
-            {item = 'TRIBIKE2', label = 'Triathlon Cycle 2', price = 300},
-            {item = 'TRIBIKE3', label = 'Triathlon Cycle 3', price = 300},
+            {item = 'BMX', label = 'BMX Cycle', price = 20},
+            {item = 'CRUISER', label = 'Cruiser Cycle', price = 30},
+            {item = 'FIXTER', label = 'Racercycle', price = 50},
+            {item = 'SCORCHER', label = 'Mountainbike', price = 50},
+            {item = 'TRIBIKE', label = 'Triathlon Cycle 1', price = 50},
+            {item = 'TRIBIKE2', label = 'Triathlon Cycle 2', price = 50},
+            {item = 'TRIBIKE3', label = 'Triathlon Cycle 3', price = 50},
         },
         Pos = { -- Zone positions
             {x = -246.980, y = -339.820, z = 29.000},
             {x = -1085.78, y = -263.01, z = 36.80},
-            {x = -1262.36, y = -1438.98, z = 3.45},
-            {x = -248.95, y = -1528.82, z = 30.62},
+            {x = -213.22, y = -1006.74, z = 28.30},
             {x = 1808.5, y = 3676.96, z = 33.31},
             {x = -839.99, y = 5402.05, z = 33.64}
         }

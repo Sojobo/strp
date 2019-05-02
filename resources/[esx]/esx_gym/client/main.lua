@@ -109,7 +109,7 @@ local chins = {
 }
 
 local rentbike = {
-    {x = -1199.1164,y = -1584.5972,z = 4.3249}
+    -- {x = -1199.1164,y = -1584.5972,z = 4.3249}
 }
 
 -- LOCATION (END)
@@ -541,7 +541,7 @@ function OpenGymShipMenu()
         {
             title    = 'Gym - Membership',
             elements = {
-				{label = 'Membership ($800)', value = 'membership'},
+				{label = 'Membership ($300)', value = 'membership'},
             }
         },
         function(data, menu)
