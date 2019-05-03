@@ -237,7 +237,7 @@ Citizen.CreateThread(function()
 					if training == false then
 					
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Preparing the ~g~exercise~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then
@@ -247,7 +247,7 @@ Citizen.CreateThread(function()
 							ClearPedTasksImmediately(playerPed)
 							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.0)
 							exports["gamz-skillsystem"]:UpdateSkill("Strength", 1.0)
-							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
+							-- ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 							
 							--TriggerServerEvent('esx_gym:trainArms') ## COMING SOON...
 							
@@ -256,7 +256,7 @@ Citizen.CreateThread(function()
 							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
 						end
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("You need to rest for atleast 45 seconds...")
 						
 						resting = true
 						
@@ -284,7 +284,7 @@ Citizen.CreateThread(function()
 					if training == false then
 					
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Preparing the ~g~exercise~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then
@@ -294,7 +294,7 @@ Citizen.CreateThread(function()
 							ClearPedTasksImmediately(playerPed)
 							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.0)
 							exports["gamz-skillsystem"]:UpdateSkill("Strength", 1.0)
-							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
+							-- ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 							
 							--TriggerServerEvent('esx_gym:trainChins') ## COMING SOON...
 							
@@ -303,7 +303,7 @@ Citizen.CreateThread(function()
 							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
 						end
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("You need to rest for atleast 45 seconds...")
 						
 						resting = true
 						
@@ -331,7 +331,7 @@ Citizen.CreateThread(function()
 					if training == false then
 					
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Preparing the ~g~exercise~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then				
@@ -341,7 +341,7 @@ Citizen.CreateThread(function()
 							ClearPedTasksImmediately(playerPed)
 							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.0)
 							exports["gamz-skillsystem"]:UpdateSkill("Strength", 1.0)
-							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
+							-- ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 						
 							--TriggerServerEvent('esx_gym:trainPushups') ## COMING SOON...
 							
@@ -350,7 +350,7 @@ Citizen.CreateThread(function()
 							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
 						end							
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("You need to rest for atleast 45 seconds...")
 						
 						resting = true
 						
@@ -378,7 +378,7 @@ Citizen.CreateThread(function()
 					if training == false then
 					
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Preparing the ~g~exercise~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then	
@@ -387,7 +387,7 @@ Citizen.CreateThread(function()
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
 							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.5)
-							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
+							-- ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 						
 							--TriggerServerEvent('esx_gym:trainYoga') ## COMING SOON...
 							
@@ -396,7 +396,7 @@ Citizen.CreateThread(function()
 							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
 						end
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("You need to rest for atleast 45 seconds...")
 						
 						resting = true
 						
@@ -424,7 +424,7 @@ Citizen.CreateThread(function()
 					if training == false then
 
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Preparing the ~g~exercise~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then	
@@ -434,7 +434,7 @@ Citizen.CreateThread(function()
 							ClearPedTasksImmediately(playerPed)
 							exports["gamz-skillsystem"]:UpdateSkill("Stamina", 1.0)
 							exports["gamz-skillsystem"]:UpdateSkill("Strength", 1.0)
-							ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
+							-- ESX.ShowNotification("You need to rest ~r~45 seconds ~w~before doing another exercise.")
 						
 							--TriggerServerEvent('esx_gym:trainSitups') ## COMING SOON...
 							
@@ -443,7 +443,7 @@ Citizen.CreateThread(function()
 							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
 						end
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("You need to rest for atleast 45 seconds...")
 						
 						resting = true
 						
