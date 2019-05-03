@@ -41,6 +41,20 @@ local prices = {
 	["speaker"] = 20,
 	["dildo"] = 5,
 	["junk"] = 5,
+	--crafting
+	["trigger"] = 10,
+	["semiautotrigger"] = 20,
+	["autotrigger"] = 30,
+	["pistolbody"] = 50,
+	["semiautobody"] = 60,
+	["pistolclip"] = 80,
+	["smgclip"] = 250,
+	["metal"] = 20,
+	["spring"] = 5,
+	["cloth"] = 10,
+	["wood"] = 10,
+	["metalpipe"] = 25,
+
 }
 
 
