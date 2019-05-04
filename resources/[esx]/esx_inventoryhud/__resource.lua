@@ -83,6 +83,7 @@ files {
     'html/img/items/cocaplant.png',
     'html/img/items/console.png',
     'html/img/items/cloth.png',
+    'html/img/items/contrat.png',
     'html/img/items/metal.png',
     'html/img/items/bottle.png',
     'html/img/items/pickledanimal.png',
