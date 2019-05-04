@@ -19,7 +19,8 @@ blacklistedVehicles = {
 	[6] = 'TRIBIKE2',
 	[7] = 'TRIBIKE3',
 	[8] = 'RAIDEN',
-	[9] = 'NEON'
+	[9] = 'NEON',
+	[10] = 'DINGHY'
 }
 
 local Vehicles 				  = {}
