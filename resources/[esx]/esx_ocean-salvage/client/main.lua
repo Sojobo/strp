@@ -466,7 +466,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10)
 
-		if IsControlJustReleased(1, Keys["F4"]) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name ~= nil then
+		if IsControlJustReleased(1, Keys["F3"]) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name ~= nil then
 
 			if Onjob then
 				StopNPCJob(true)
