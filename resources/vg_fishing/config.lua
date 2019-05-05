@@ -17,9 +17,9 @@ Config.FishTime = {a = 20000, b = 44000}
 --=====Prices of the items players can sell==========--
 --------------------------------------------------------
 --First amount minimum price second maximum amount (the amount player will get is random between those two numbers)
-Config.FishPrice = {a = 40, b = 80} --THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
+Config.FishPrice = {a = 90, b = 130} --THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
 Config.TurtlePrice = {a = 100, b = 150} 
-Config.SharkPrice = {a = 180, b = 250} 
+Config.SharkPrice = {a = 200, b = 300} 
 
 --Buy:
 Config.FishingrodPrice = 150
