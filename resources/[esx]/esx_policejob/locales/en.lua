@@ -151,4 +151,6 @@ Locales['en'] = {
   -- Notifications
   ['alert_police'] = 'police alert',
   ['phone_police'] = 'police',
+  ['revive_inprogress'] = 'Revive in Progress',
+  ['revive'] = 'Revive',
 }
