@@ -194,7 +194,7 @@ function VehicleMenu()
 		menu.close()
 		local playerPed = PlayerPedId()
 		local plateNum = math.random(1000, 9999)
-		local platePrefix = Config.PlatePrefix
+		-- local platePrefix = Config.PlatePrefix
 
 		ESX.Game.SpawnVehicle(data.current.value.Hash, Config.Zones.VehicleSpawnPoint.Pos, Config.Zones.VehicleSpawnPoint.Heading, function(vehicle)
 			TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
@@ -202,8 +202,8 @@ function VehicleMenu()
 
 			local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
 
-			name = 'Véhicule de '..platePrefix
-			TriggerServerEvent('esx_vehiclelock:registerkeyjob', name, plate, 'no')
+			-- name = 'Véhicule de '..platePrefix
+			-- TriggerServerEvent('esx_vehiclelock:registerkeyjob', name, plate, 'no')
 		end)
 
 	end, function(data, menu)
