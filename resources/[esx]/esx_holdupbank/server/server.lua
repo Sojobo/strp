@@ -79,7 +79,7 @@ AddEventHandler('esx_holdupbank:rob', function(robb)
 					if(robbers[savedSource])then
 
 						rob = false
-						TriggerClientEvent('esx_holdupbank:robberycomplete', job)
+						TriggerClientEvent('esx_holdupbank:robberycomplete', savedSource, job)
 						if(xPlayer)then
 
 							xPlayer.addAccountMoney('black_money', bank.reward)
