@@ -13,7 +13,7 @@ TriggerEvent(
 AddEventHandler(
   "onMySQLReady",
   function()
-    MySQL.Async.execute("DELETE FROM `trunk_inventory` WHERE `owned` = 0", {})
+    -- MySQL.Async.execute("DELETE FROM `trunk_inventory` WHERE `owned` = 0", {})
   end
 )
 
