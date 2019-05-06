@@ -557,7 +557,6 @@ function OpenPoliceActionsMenu()
 				{label = _U('revive'),			value = 'revive'},
 				{label = _U('id_card'),			value = 'identity_card'},
 				{label = _U('search'),			value = 'body_search'},
-				{label = _U('softhandcuff'),	value = 'soft handcuff'},
 				{label = _U('handcuff'),		value = 'handcuff'},
 				{label = _U('drag'),			value = 'drag'},
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
@@ -627,9 +626,7 @@ function OpenPoliceActionsMenu()
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'handcuff' then
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
-					elseif action == 'softhandcuff' then
-						TriggerServerEvent('esx_policejob:softhandcuff', GetPlayerServerId(closestPlayer))
-						elseif action == 'drag' then
+					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
 						TriggerServerEvent('esx_policejob:putInVehicle', GetPlayerServerId(closestPlayer))
@@ -1508,6 +1505,7 @@ AddEventHandler('esx_policejob:handcuffanimation', function(target)
 			end)
 		end
 end)
+
 ---normal cuff
 RegisterNetEvent('esx_policejob:handcuff')
 AddEventHandler('esx_policejob:handcuff', function()
@@ -1557,56 +1555,6 @@ AddEventHandler('esx_policejob:handcuff', function()
 	end)
 end)
 
----soft cuff
-RegisterNetEvent('esx_policejob:softhandcuff')
-AddEventHandler('esx_policejob:softhandcuff', function()
-	IsHandcuffed    = not IsHandcuffed
-	local playerPed = PlayerPedId()
-
-	Citizen.CreateThread(function()
-		if IsHandcuffed then
-
-			RequestAnimDict('mp_arresting')
-			while not HasAnimDictLoaded('mp_arresting') do
-				Citizen.Wait(100)
-			end
-
-            TaskPlayAnim(PlayerPedId(), "mp_arresting", "crook_p2_back_left", 8.0, -8, 3000, 16, 0, 0, 0, 0)
-            Citizen.Wait(3000)
-
-			TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 16, 0, 0, 0, 0)
-			SetEnableHandcuffs(playerPed, true)
-			DisablePlayerFiring(playerPed, true)
-			SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
-			SetPedCanPlayGestureAnims(playerPed, false)
-			FreezeEntityPosition(playerPed, false)
-			-- DisplayRadar(false)
-
-			if Config.EnableHandcuffTimer then
-
-				if HandcuffTimer.Active then
-					ESX.ClearTimeout(HandcuffTimer.Task)
-				end
-
-				StartHandcuffTimer()
-			end
-
-		else
-			if Config.EnableHandcuffTimer and HandcuffTimer.Active then
-				ESX.ClearTimeout(HandcuffTimer.Task)
-			end
-
-			ClearPedSecondaryTask(playerPed)
-			SetEnableHandcuffs(playerPed, false)
-			DisablePlayerFiring(playerPed, false)
-			SetPedCanPlayGestureAnims(playerPed, true)
-			FreezeEntityPosition(playerPed, false)
-			-- DisplayRadar(true)
-		end
-	end)
-end)
-
----soft cuff end
 
 RegisterNetEvent('esx_policejob:unrestrain')
 AddEventHandler('esx_policejob:unrestrain', function()
