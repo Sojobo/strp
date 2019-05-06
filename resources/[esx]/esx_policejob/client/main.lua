@@ -1551,7 +1551,7 @@ AddEventHandler('esx_policejob:handcuff', function()
 			SetEnableHandcuffs(playerPed, false)
 			DisablePlayerFiring(playerPed, false)
 			SetPedCanPlayGestureAnims(playerPed, true)
-			FreezeEntityPosition(playerPed, true)
+			FreezeEntityPosition(playerPed, false)
 			-- DisplayRadar(true)
 		end
 	end)
@@ -1579,7 +1579,7 @@ AddEventHandler('esx_policejob:softhandcuff', function()
 			DisablePlayerFiring(playerPed, true)
 			SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
 			SetPedCanPlayGestureAnims(playerPed, false)
-			FreezeEntityPosition(playerPed, true)
+			FreezeEntityPosition(playerPed, false)
 			-- DisplayRadar(false)
 
 			if Config.EnableHandcuffTimer then

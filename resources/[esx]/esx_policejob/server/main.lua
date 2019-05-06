@@ -65,6 +65,18 @@ AddEventHandler('esx_policejob:handcuff', function(target)
 	end
 end)
 
+RegisterServerEvent('esx_policejob:softhandcuff')
+AddEventHandler('esx_policejob:softhandcuff', function(target)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	if xPlayer.job.name == 'police' then
+		TriggerClientEvent('esx_policejob:handcuffanimation', source, target)
+		TriggerClientEvent('esx_policejob:softhandcuff', target)
+	else
+		print(('esx_policejob: %s attempted to handcuff a player (not cop)!'):format(xPlayer.identifier))
+	end
+end)
+
 RegisterServerEvent('esx_policejob:drag')
 AddEventHandler('esx_policejob:drag', function(target)
 	local xPlayer = ESX.GetPlayerFromId(source)
