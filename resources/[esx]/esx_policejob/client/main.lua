@@ -554,6 +554,7 @@ function OpenPoliceActionsMenu()
 
 		if data.current.value == 'citizen_interaction' then
 			local elements = {
+				{label = _U('revive'),			value = 'revive'},
 				{label = _U('id_card'),			value = 'identity_card'},
 				{label = _U('search'),			value = 'body_search'},
 				{label = _U('handcuff'),		value = 'handcuff'},
@@ -580,13 +581,51 @@ function OpenPoliceActionsMenu()
 				if closestPlayer ~= -1 and closestDistance <= 3.0 and not IsPedInAnyVehicle(PlayerPedId(), false) then
 					local action = data2.current.value
 
-					if action == 'identity_card' then
+					--Revive Start             
+					if action == 'revive' then
+						IsBusy = true
+						ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+							if quantity >= 0 then
+								local closestPlayerPed = GetPlayerPed(closestPlayer)
+								if IsPedDeadOrDying(closestPlayerPed, 1) then
+									local playerPed = PlayerPedId()
+									ESX.ShowNotification(_U('revive_inprogress'))
+									local lib, anim = 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest'
+									for i=1, 15, 1 do
+										Citizen.Wait(900)
+								
+										ESX.Streaming.RequestAnimDict(lib, function()
+											TaskPlayAnim(PlayerPedId(), lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
+										end)
+									end
+
+									-- TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+									TriggerServerEvent('esx_ambulancejob:revive', GetPlayerServerId(closestPlayer))
+
+									-- Show revive award?
+									if Config.ReviveReward > 0 then
+										ESX.ShowNotification(_U('revive_complete_award', GetPlayerName(closestPlayer), Config.ReviveReward))
+									else
+										ESX.ShowNotification(_U('revive_complete', GetPlayerName(closestPlayer)))
+									end
+								else
+									ESX.ShowNotification(_U('player_not_unconscious'))
+								end
+							else
+								ESX.ShowNotification(_U('not_enough_medikit'))
+							end
+
+							IsBusy = false
+
+						end, 'medikit')
+
+					elseif action == 'identity_card' then
 						OpenIdentityCardMenu(closestPlayer)
 					elseif action == 'body_search' then
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'handcuff' then
-                        TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
@@ -1467,6 +1506,7 @@ AddEventHandler('esx_policejob:handcuffanimation', function(target)
 		end
 end)
 
+---normal cuff
 RegisterNetEvent('esx_policejob:handcuff')
 AddEventHandler('esx_policejob:handcuff', function()
 	IsHandcuffed    = not IsHandcuffed
@@ -1514,6 +1554,7 @@ AddEventHandler('esx_policejob:handcuff', function()
 		end
 	end)
 end)
+
 
 RegisterNetEvent('esx_policejob:unrestrain')
 AddEventHandler('esx_policejob:unrestrain', function()

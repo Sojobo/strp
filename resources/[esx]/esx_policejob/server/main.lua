@@ -577,3 +577,25 @@ RegisterServerEvent('esx_policejob:message')
 AddEventHandler('esx_policejob:message', function(target, msg)
 	TriggerClientEvent('esx:showNotification', target, msg)
 end)
+
+RegisterServerEvent('esx_ambulancejob:revive')
+AddEventHandler('esx_ambulancejob:revive', function(target)
+  TriggerClientEvent('esx_ambulancejob:revive', target)
+end)
+
+ESX.RegisterServerCallback('esx_ambulancejob:getItemAmount', function(source, cb, item)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local quantity = xPlayer.getInventoryItem(item).count
+
+	cb(quantity)
+end)
+
+RegisterServerEvent('esx_ambulancejob:removeItem')
+AddEventHandler('esx_ambulancejob:removeItem', function(item)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+
+	if item == 'medikit' then
+		TriggerClientEvent('esx:showNotification', _source, _U('used_medikit'))
+	end
+end)

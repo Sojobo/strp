@@ -9,12 +9,12 @@ Config.Delays = {
 
 Config.DrugDealerItems = {
     GiveBlack = true, -- give black money? if disabled it'll give regular cash.
-	marijuana = 62
+	marijuana = 70
 	-- cocaine = 91
 }
 Config.WineDealerItems = {
     GiveBlack = false, -- give black money? if disabled it'll give regular cash.
-	wine = 36
+	wine = 60
 }
 
 Config.LicenseEnable = false -- enable processing licenses? The player will be required to buy a license in order to process drugs. Requires esx_license

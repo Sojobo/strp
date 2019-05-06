@@ -60,7 +60,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(5000)
+		Citizen.Wait(10000)
 		local ped = PlayerPedId()
 		if IsPedSwimmingUnderWater(ped) then
 			UpdateSkill("Lung Capacity", 0.5)

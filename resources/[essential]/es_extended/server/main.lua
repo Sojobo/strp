@@ -380,9 +380,10 @@ AddEventHandler('esx:removeInventoryItem', function(type, itemName, itemCount)
 				TriggerClientEvent('esx:showNotification', _source, _U('imp_invalid_quantity'))
 			else
 				xPlayer.removeInventoryItem(itemName, itemCount)
+				
 
 				local pickupLabel = ('~b~%s~s~ [~b~%s~s~]'):format(xItem.label, itemCount)
-				ESX.CreatePickup('item_standard', itemName, itemCount, pickupLabel, _source)
+				-- ESX.CreatePickup('item_standard', itemName, itemCount, pickupLabel, _source)
 				TriggerClientEvent('esx:showNotification', _source, _U('threw_standard', itemCount, xItem.label))
 			end
 

@@ -69,7 +69,7 @@ cfg = {
 				0.80,		--	11: Utility
 				0.80,		--	12: Vans
 				0.30,		--	13: Cycles
-				0.30,		--	14: Boats
+				0.10,		--	14: Boats
 				0.80,		--	15: Helicopters
 				0.80,		--	16: Planes
 				0.80,		--	17: Service

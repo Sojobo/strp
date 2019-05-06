@@ -1061,6 +1061,92 @@ Citizen.CreateThread(function()
   
 	end
 	end)
-	
+
+
+	-------------------------
+-- NoGrip 
+-------------------------
+
+local ragdoll_chance = 0.20 -- edit this decimal value for chance of falling (e.g. 80% = 0.8    75% = 0.75    32% = 0.32)
+
+-- code, not recommended to edit below this point
+print('chance of falling set to: ' .. ragdoll_chance)
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(100) -- check every 100 ticks, performance matters
+		local ped = PlayerPedId()
+		if IsPedOnFoot(ped) and not IsPedSwimming(ped) and (IsPedRunning(ped) or IsPedSprinting(ped)) and not IsPedClimbing(ped) and IsPedJumping(ped) and not IsPedRagdoll(ped) then
+			local chance_result = math.random()
+			print('lose grip result: ' .. chance_result)
+			if chance_result < ragdoll_chance then 
+				Citizen.Wait(600) -- roughly when the ped loses grip
+                ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.02) -- change this float to increase/decrease camera shake
+				SetPedToRagdoll(ped, 5000, 1, 2)
+				print('falling!')
+			else
+				Citizen.Wait(2000) -- cooldown before continuing
+			end
+		end
+	end
+end)
+
+----Frankies gangster weapon animation
+
+local holstered = true
+
+local weapons = {
+    "WEAPON_PISTOL",
+    "WEAPON_SNSPISTOL",
+    "WEAPON_SNSPISTOL_MK2",
+    "WEAPON_PISTOL50",
+    "WEAPON_REVOLVER",
+    "WEAPON_PISTOL_MK2",
+    "WEAPON_COMBATPISTOL",
+	"WEAPON_HEAVYPISTOL",
+	"WEAPON_MACHINEPISTOL",
+}
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+        local ped = PlayerPedId()
+        if DoesEntityExist( ped ) and not IsEntityDead( ped ) and not IsPedInAnyVehicle(PlayerPedId(), true) then
+            loadAnimDict( "reaction@intimidation@1h" )
+            if CheckWeapon(ped) then
+                if holstered then
+                    TaskPlayAnim(ped, "reaction@intimidation@1h", "intro", 5.0, 1.0, -1, 30, 0, 0, 0, 0 )
+                    Citizen.Wait(1400)
+                    ClearPedTasks(ped)
+                    holstered = false
+                end
+                SetPedComponentVariation(ped, 0, 0, 0, 0)
+            elseif not CheckWeapon(ped) then
+                if not holstered then
+                    TaskPlayAnim(ped, "reaction@intimidation@1h", "outro", 8.0, 1.0, -1, 30, 0, 0, 0, 0 )
+                    Citizen.Wait(1300)
+                    ClearPedTasks(ped)
+                    holstered = true
+                end
+                SetPedComponentVariation(ped, 0, 0, 0, 0)
+            end
+        end
+    end
+end)
+
+function CheckWeapon(ped)
+    for i = 1, #weapons do
+        if GetHashKey(weapons[i]) == GetSelectedPedWeapon(ped) then
+            return true
+        end
+    end
+    return false
+end
+
+function loadAnimDict( dict )
+    while ( not HasAnimDictLoaded( dict ) ) do
+        RequestAnimDict( dict )
+        Citizen.Wait( 1500 )
+    end
+end
 	
 

@@ -1,13 +1,13 @@
 Config = {}
 
-Config.UpdateFrequency = 500 -- seconds interval between removing values 
+Config.UpdateFrequency = 800 -- seconds interval between removing values 
 
 Config.Notifications = true -- notification when skill is added
 
 Config.Skills = {
     ["Stamina"] = {
         ["Current"] = 0, -- Default value 
-        ["RemoveAmount"] = -0.2, -- % to remove when updating,
+        ["RemoveAmount"] = -0.3, -- % to remove when updating,
         ["Stat"] = "MP0_STAMINA" -- GTA stat hashname
     },
 
@@ -38,7 +38,7 @@ Config.Skills = {
 
     ["Wheelie"] = {
         ["Current"] = 0,
-        ["RemoveAmount"] = -0.2,        
+        ["RemoveAmount"] = -0.1,        
         ["Stat"] = "MP0_WHEELIE_ABILITY" 
                                                 
                                                         

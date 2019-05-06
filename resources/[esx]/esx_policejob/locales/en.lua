@@ -69,6 +69,7 @@ Locales['en'] = {
   ['id_card'] = 'ID Card',
   ['search'] = 'search',
   ['handcuff'] = 'cuff / Uncuff',
+  ['softhandcuff'] = 'Soft Cuff / Uncuff',
   ['drag'] = 'escort',
   ['put_in_vehicle'] = 'put in Vehicle',
   ['out_the_vehicle'] = 'drag out from vehicle',
@@ -151,4 +152,6 @@ Locales['en'] = {
   -- Notifications
   ['alert_police'] = 'police alert',
   ['phone_police'] = 'police',
+  ['revive_inprogress'] = 'Revive in Progress',
+  ['revive'] = 'Revive',
 }

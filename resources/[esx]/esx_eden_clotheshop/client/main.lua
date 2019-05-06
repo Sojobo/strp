@@ -189,6 +189,7 @@ function OpenShopMenu()
 		'decals_1',
 		'decals_2',
 		'arms',
+		'arms_2',
 		'pants_1',
 		'pants_2',
 		'shoes_1',

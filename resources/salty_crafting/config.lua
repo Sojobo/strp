@@ -1,7 +1,7 @@
 Config = {}
 
 -- Ammo given by default to crafted weapons
-Config.WeaponAmmo = 140
+Config.WeaponAmmo = 230
 
 Config.Recipes = {
 	-- Can be a normal ESX item
