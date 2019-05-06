@@ -28,10 +28,8 @@ AddEventHandler('esx_truck_inventory:getOwnedVehicule', function()
 end)
 
 AddEventHandler('onMySQLReady', function ()
-	MySQL.Async.execute( 'DELETE FROM truck_inventory WHERE truck_inventory.count = 0 OR (SELECT COUNT(*) FROM owned_vehicles ov WHERE ov.plate = truck_inventory.plate) = 0', {})
+	-- MySQL.Async.execute( 'DELETE FROM truck_inventory WHERE truck_inventory.count = 0 OR (SELECT COUNT(*) FROM owned_vehicles ov WHERE ov.plate = truck_inventory.plate) = 0', {})
 end)
-
-
 
 function getInventoryWeight(inventory)
     local weight = 0
@@ -50,8 +48,6 @@ function getInventoryWeight(inventory)
     end
     return weight
 end
-
-
 
 RegisterServerEvent('esx_truck_inventory:getInventory')
 AddEventHandler('esx_truck_inventory:getInventory', function(plate)
