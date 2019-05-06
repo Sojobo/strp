@@ -50,7 +50,8 @@ AddEventHandler('esx_vangelico_robbery:setblip', function(position)
     SetBlipSprite(blipRobbery , 161)
     SetBlipScale(blipRobbery , 2.0)
     SetBlipColour(blipRobbery, 3)
-    PulseBlip(blipRobbery)
+	PulseBlip(blipRobbery)
+	alertPolice("Jewllery Robbery in Progress")
 end)
 
 RegisterNetEvent('esx_vangelico_robbery:toofarlocal')
@@ -345,8 +346,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli1)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
 								hasrobbed = true
 							end
 							end
@@ -372,8 +371,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli2)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
 								hasrobbed2 = true
 							end
 							end
@@ -399,8 +396,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli3)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
 								hasrobbed3 = true
 							end
 							end
@@ -426,8 +421,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli4)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
 								hasrobbed4 = true
 							end
 							end
@@ -453,8 +446,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli5)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed5 = true
 							end
 							end
@@ -480,8 +471,7 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli6)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+
                                 hasrobbed6 = true
 							end
 							end
@@ -507,8 +497,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli7)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed7 = true
 							end
 							end
@@ -534,8 +522,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli8)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed8 = true
 							end
 							end
@@ -561,8 +547,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli9)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed9 = true
 							end
 							end
@@ -588,8 +572,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli10)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed10 = true
 							end
 							end
@@ -615,8 +597,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli11)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed11 = true
 							end
 							end
@@ -642,8 +622,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli12)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed12 = true
 							end
 							end
@@ -669,8 +647,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli13)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed13 = true
 							end
 							end
@@ -696,8 +672,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli14)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed14 = true
 							end
 							end
@@ -723,8 +697,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli15)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed15 = true
 							end
 							end
@@ -750,8 +722,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli16)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed16 = true
 							end
 							end
@@ -777,8 +747,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli17)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed17 = true
 							end
 							end
@@ -804,8 +772,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli18)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed18 = true
 							end
 							end
@@ -831,8 +797,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli19)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed19 = true
 							end
 							end
@@ -858,8 +822,6 @@ Citizen.CreateThread(function()
 								Citizen.Wait(5000)
 								ClearPedTasksImmediately(GetPlayerPed(-1))
 								RemoveBlip(gioielli20)
-								TriggerServerEvent('esx_vangelico_robbery:gioielli1')
-								PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 hasrobbed20 = true
 							end
 							end
@@ -887,7 +849,10 @@ Citizen.CreateThread(function()
                             hasrobbed17 = false
                             hasrobbed18 = false
                             hasrobbed19 = false
-                            hasrobbed20 = false
+							hasrobbed20 = false
+							
+							PlaySound(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+							TriggerServerEvent('esx_vangelico_robbery:gioielli1')
 							TriggerServerEvent('esx_vangelico_robbery:endrob', store)
 							ESX.ShowNotification(_U('lester'))
 							TriggerEvent('skinchanger:getSkin', function(skin)
@@ -1037,3 +1002,18 @@ Citizen.CreateThread(function()
     end
 end)
 
+function alertPolice(message)
+    local playerPed = PlayerPedId()
+    local coords = GetEntityCoords(playerPed)
+    local notification = {
+        subject  = 'Suspected Jewellery Store Robbery',
+        msg      = message,
+        icon = 'fas fa-headset',
+        iconStyle = 'red',
+        locationX = coords.x,
+        locationY = coords.y,
+        caller = 0,
+    }
+
+    TriggerServerEvent('esx_service:callAllInService', notification, "police")
+end

@@ -84,7 +84,7 @@ AddEventHandler('esx_vangelico_robbery:rob', function(robb)
 				for i=1, #xPlayers, 1 do
 					local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 					if xPlayer.job.name == 'police' then
-							TriggerClientEvent('esx:showNotification', xPlayers[i], _U('rob_in_prog') .. store.nameofstore)
+							-- TriggerClientEvent('esx:showNotification', xPlayers[i], _U('rob_in_prog') .. store.nameofstore)
 							TriggerClientEvent('esx_vangelico_robbery:setblip', xPlayers[i], Stores[robb].position)
 					end
 				end
@@ -110,16 +110,24 @@ RegisterServerEvent('esx_vangelico_robbery:gioielli1')
 AddEventHandler('esx_vangelico_robbery:gioielli1', function()
 
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local quantity = math.random(3)
-	local xInventoryWeight = xPlayer.getInventoryWeight()
-	local xInventorylimit = xPlayer.getInventoryWeightMax()
-	
-	if xInventoryWeight + quantity > xInventorylimit then
-		TriggerClientEvent('esx:showNotification', source, "You're carrying too much")
-    else
-		xPlayer.addInventoryItem('jewels', quantity)
-	end
+
+	xPlayer.addInventoryItem('jewels', math.random(150, 250))
 end)
+
+-- RegisterServerEvent('esx_vangelico_robbery:gioielli1')
+-- AddEventHandler('esx_vangelico_robbery:gioielli1', function()
+
+-- 	local xPlayer = ESX.GetPlayerFromId(source)
+-- 	local quantity = math.random(150)
+-- 	-- local xInventoryWeight = xPlayer.getInventoryWeight()
+-- 	-- local xInventorylimit = xPlayer.getInventoryWeightMax()
+	
+-- 	-- if xInventoryWeight + quantity > xInventorylimit then
+-- 	-- 	TriggerClientEvent('esx:showNotification', source, "You're carrying too much")
+--   --   else
+-- 		xPlayer.addInventoryItem('jewels', quantity)
+-- 	end)
+-- -- end)
 	
 
 
@@ -154,7 +162,7 @@ local function Craft(source)
 				TriggerClientEvent('esx:showNotification', source, _U('notenoughgold'))
 			else   
                 xPlayer.removeInventoryItem('jewels', JewelsQuantity)
-				xPlayer.addAccountMoney('black_money', JewelsQuantity * math.random(400,800))
+				xPlayer.addAccountMoney('black_money', JewelsQuantity * math.random(400,500))
 				
 				Craft(source)
 			end
