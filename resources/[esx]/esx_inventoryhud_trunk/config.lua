@@ -121,7 +121,7 @@ Config.VehicleLimit = {
     [17] = 40, --Service
     [18] = 40, --Emergency
     [19] = 0, --Military
-    [20] = 45, --Commercial
+    [20] = 95, --Commercial
     [21] = 0 --Trains
 }
 
