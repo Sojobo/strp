@@ -5,7 +5,7 @@ RegisterServerEvent('sellDrugs')
 AddEventHandler('sellDrugs', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
-	local weedqtySingle = xPlayer.getInventoryItem('cannabis').count
+	local weedqtySingle = xPlayer.getInventoryItem('marijuana').count
 	local cokeqtySingle = xPlayer.getInventoryItem('cocaine').count
 	local x = 0
 	local blackMoney = 0
@@ -14,7 +14,7 @@ AddEventHandler('sellDrugs', function()
 	if Config.SellWeed and weedqtySingle > 0 then
 
 		if weedqtySingle > 0 and Config.SellSingle then
-			drugType = 'cannabis'
+			drugType = 'marijuana'
 			if weedqtySingle == 1 then
 				x = 1
 			elseif weedqtySingle > 1 and weedqtySingle < 5 then
@@ -41,7 +41,7 @@ AddEventHandler('sellDrugs', function()
 	end
 	
 	
-	if drugType=='cannabis' then	--single
+	if drugType=='marijuana' then	--single
 		blackMoney = Config.WeedPrice * x
 	elseif drugType=='cocaine' then
 		blackMoney = Config.CokePrice * x
@@ -62,7 +62,7 @@ AddEventHandler('check', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local xPlayers = ESX.GetPlayers()
-	local weedqtySingle = xPlayer.getInventoryItem('cannabis').count
+	local weedqtySingle = xPlayer.getInventoryItem('marijuana').count
 	local cokeqtySingle = xPlayer.getInventoryItem('cocaine').count
 	--check cops count on server
 	local cops = 0
