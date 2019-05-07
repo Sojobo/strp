@@ -12,28 +12,15 @@ RegisterCommand("trunk", function(source, args, raw)
     local ped = GetPlayerPed(-1)
     local veh = GetVehiclePedIsUsing(ped)
     local vehLast = GetPlayersLastVehicle()
-    local distanceToVeh = GetDistanceBetweenCoords(GetEntityCoords(ped), GetEntityCoords(vehLast), 1)
     local door = 5
 
-    if IsPedInAnyVehicle(ped, false) then
+    if IsPedInAnyVehicle(ped, true) then
         if GetVehicleDoorAngleRatio(veh, door) > 0 then
             SetVehicleDoorShut(veh, door, false)
             ShowInfo("[Vehicle] ~g~Trunk Closed.")
         else	
             SetVehicleDoorOpen(veh, door, false, false)
             ShowInfo("[Vehicle] ~g~Trunk Opened.")
-        end
-    else
-        if distanceToVeh < 6 then
-            if GetVehicleDoorAngleRatio(vehLast, door) > 0 then
-                SetVehicleDoorShut(vehLast, door, false)
-                ShowInfo("[Vehicle] ~g~Trunk Closed.")
-            else
-                SetVehicleDoorOpen(vehLast, door, false, false)
-                ShowInfo("[Vehicle] ~g~Trunk Opened.")
-            end
-        else
-            ShowInfo("[Vehicle] ~y~Too far away from vehicle.")
         end
     end
 end)
@@ -42,28 +29,15 @@ RegisterCommand("hood", function(source, args, raw)
     local ped = GetPlayerPed(-1)
     local veh = GetVehiclePedIsUsing(ped)
     local vehLast = GetPlayersLastVehicle()
-    local distanceToVeh = GetDistanceBetweenCoords(GetEntityCoords(ped), GetEntityCoords(vehLast), 1)
     local door = 4
 
-    if IsPedInAnyVehicle(ped, false) then
+    if IsPedInAnyVehicle(ped, true) then
         if GetVehicleDoorAngleRatio(veh, door) > 0 then
             SetVehicleDoorShut(veh, door, false)
             ShowInfo("[Vehicle] ~g~Hood Closed.")
         else	
             SetVehicleDoorOpen(veh, door, false, false)
             ShowInfo("[Vehicle] ~g~Hood Opened.")
-        end
-    else
-        if distanceToVeh < 4 then
-            if GetVehicleDoorAngleRatio(vehLast, door) > 0 then
-                SetVehicleDoorShut(vehLast, door, false)
-                ShowInfo("[Vehicle] ~g~Hood Closed.")
-            else	
-                SetVehicleDoorOpen(vehLast, door, false, false)
-                ShowInfo("[Vehicle] ~g~Hood Opened.")
-            end
-        else
-            ShowInfo("[Vehicle] ~y~Too far away from vehicle.")
         end
     end
 end)
@@ -91,25 +65,13 @@ RegisterCommand("door", function(source, args, raw)
     end
 
     if door ~= nil then
-        if IsPedInAnyVehicle(ped, false) then
+        if IsPedInAnyVehicle(ped, true) then
             if GetVehicleDoorAngleRatio(veh, door) > 0 then
                 SetVehicleDoorShut(veh, door, false)
                 TriggerEvent("^*[Vehicle] ~g~Door Closed.")
             else	
                 SetVehicleDoorOpen(veh, door, false, false)
                 TriggerEvent("^*[Vehicle] ~g~Door Opened.")
-            end
-        else
-            if distanceToVeh < 4 then
-                if GetVehicleDoorAngleRatio(vehLast, door) > 0 then
-                    SetVehicleDoorShut(vehLast, door, false)
-                    TriggerEvent("[Vehicle] ~g~Door Closed.")
-                else	
-                    SetVehicleDoorOpen(vehLast, door, false, false)
-                    TriggerEvent("[Vehicle] ~g~Door Opened.")
-                end
-            else
-                TriggerEvent("[Vehicle] ~y~Too far away from vehicle.")
             end
         end
     end
