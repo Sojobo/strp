@@ -14,7 +14,7 @@ RegisterCommand("trunk", function(source, args, raw)
     local vehLast = GetPlayersLastVehicle()
     local door = 5
 
-    if IsPedInAnyVehicle(ped, true) then
+    if IsPedInAnyVehicle(ped, true) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
         if GetVehicleDoorAngleRatio(veh, door) > 0 then
             SetVehicleDoorShut(veh, door, false)
             ShowInfo("[Vehicle] ~g~Trunk Closed.")
@@ -31,7 +31,7 @@ RegisterCommand("hood", function(source, args, raw)
     local vehLast = GetPlayersLastVehicle()
     local door = 4
 
-    if IsPedInAnyVehicle(ped, true) then
+    if IsPedInAnyVehicle(ped, true) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
         if GetVehicleDoorAngleRatio(veh, door) > 0 then
             SetVehicleDoorShut(veh, door, false)
             ShowInfo("[Vehicle] ~g~Hood Closed.")
@@ -65,7 +65,7 @@ RegisterCommand("door", function(source, args, raw)
     end
 
     if door ~= nil then
-        if IsPedInAnyVehicle(ped, true) then
+        if IsPedInAnyVehicle(ped, true) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
             if GetVehicleDoorAngleRatio(veh, door) > 0 then
                 SetVehicleDoorShut(veh, door, false)
                 TriggerEvent("^*[Vehicle] ~g~Door Closed.")
