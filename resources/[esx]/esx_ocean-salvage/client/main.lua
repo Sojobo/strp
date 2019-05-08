@@ -130,7 +130,7 @@ function CloakRoomMenu()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'cloakroom', {
 		title    = _U('locker_title'),
-		align    = 'top-left',
+		align    = 'top-right',
 		elements = elements
 	}, function(data, menu)
 
@@ -188,7 +188,7 @@ function VehicleMenu()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'spawn_vehicle', {
 		title    = _U('Vehicle_Menu_Title'),
-		align    = 'top-left',
+		align    = 'top-right',
 		elements = elements
 	}, function(data, menu)
 
