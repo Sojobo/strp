@@ -18,11 +18,23 @@ Config.Items = {
 }
 
 Config.Images = {
-[1] = {item = "fixkit",   src = "img/box.png"},
-[2] = {item = "lockpick",   src = "img/box.png"},
-[3] = {item = "bandage",   src = "img/box.png"},
-[4] = {item = "water",   src = "img/bottle.png"},
-[5] = {item = "bread",   src = "img/box.png"},
+[1] = {item = "fixkit",   src = "img/fixkit.png"},
+[2] = {item = "lockpick",   src = "img/lockpick.png"},
+[3] = {item = "bandage",   src = "img/bandage.png"},
+[4] = {item = "water",   src = "img/water.png"},
+[5] = {item = "bread",   src = "img/bread.png"},
+[6] = {item = "cannabis",   src = "img/cannabis.png"},
+[7] = {item = "wine",   src = "img/wine.png"},
+[8] = {item = "metal",   src = "img/metal.png"},
+[9] = {item = "trigger",   src = "img/trigger.png"},
+[10] = {item = "semiautotrigger",   src = "img/semiautotrigger.png"},
+[11] = {item = "autotrigger",   src = "img/autotrigger.png"},
+[12] = {item = "pistolbody",   src = "img/pistolbody.png"},
+[13] = {item = "semiautobody",   src = "img/semiautobody.png"},
+[14] = {item = "autobody",   src = "img/autobody.png"},
+[15] = {item = "smgclip",   src = "img/smgclip.png"},
+[16] = {item = "grapes",   src = "img/grapes.png"},
+[17] = {item = "lotteryticket",   src = "img/lotteryticket.png"},
 }
 
 Config.Zones = {
