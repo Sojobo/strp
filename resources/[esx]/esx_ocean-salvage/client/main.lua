@@ -202,7 +202,6 @@ function VehicleMenu()
 			SetVehicleEngineHealth(vehicle, 1000)
 			SetVehicleEngineOn( vehicle, true, true )
 			SetVehicleFixed(vehicle)
-			exports["LegacyFuel"]:SetFuel(vehicle, 100)
 			SetVehicleNumberPlateText(vehicle, platePrefix .. plateNum)
 
 			local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
