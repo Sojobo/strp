@@ -139,6 +139,7 @@ function CloakRoomMenu()
 			onDuty = false
 			CreateBlip()
 			menu.close()
+			FinishJob()
 			ESX.ShowNotification(_U('end_service_notif'))
 
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
@@ -198,6 +199,10 @@ function VehicleMenu()
 
 		ESX.Game.SpawnVehicle(data.current.value.Hash, Config.Zones.VehicleSpawnPoint.Pos, Config.Zones.VehicleSpawnPoint.Heading, function(vehicle)
 			TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
+			SetVehicleEngineHealth(vehicle, 1000)
+			SetVehicleEngineOn( vehicle, true, true )
+			SetVehicleFixed(vehicle)
+			exports["LegacyFuel"]:SetFuel(vehicle, 100)
 			SetVehicleNumberPlateText(vehicle, platePrefix .. plateNum)
 
 			local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
@@ -466,7 +471,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10)
 
-		if IsControlJustReleased(1, Keys["F3"]) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name ~= nil then
+		if IsControlJustReleased(1, Keys["F3"]) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name ~= nil and not Onjob then
 
 			if Onjob then
 				StopNPCJob(true)
@@ -504,4 +509,16 @@ function setUniform(job)
 		end
 
 	end)
+end
+
+
+--frankie function
+
+function FinishJob()
+	if Blips['NPCTargetPool'] ~= nil then
+		RemoveBlip(Blips['NPCTargetPool'])
+		Blips['NPCTargetPool'] = nil
+	end
+
+	OnJob = false
 end
