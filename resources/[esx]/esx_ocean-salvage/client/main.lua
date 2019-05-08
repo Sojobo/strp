@@ -194,20 +194,22 @@ function VehicleMenu()
 
 		menu.close()
 		local playerPed = PlayerPedId()
-		local plateNum = math.random(1000, 9999)
-		local platePrefix = Config.PlatePrefix
+		-- local plateNum = math.random(1000, 9999)
+		-- local platePrefix = Config.PlatePrefix
 
 		ESX.Game.SpawnVehicle(data.current.value.Hash, Config.Zones.VehicleSpawnPoint.Pos, Config.Zones.VehicleSpawnPoint.Heading, function(vehicle)
 			TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
 			SetVehicleEngineHealth(vehicle, 1000)
 			SetVehicleEngineOn( vehicle, true, true )
 			SetVehicleFixed(vehicle)
-			SetVehicleNumberPlateText(vehicle, platePrefix .. plateNum)
+			-- SetVehicleNumberPlateText(vehicle, platePrefix .. plateNum)
+			
 
-			local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
 
-			name = 'Véhicule de '..platePrefix
-			TriggerServerEvent('esx_vehiclelock:registerkeyjob', name, plate, 'no')
+			-- local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
+
+			-- name = 'Véhicule de '..platePrefix
+			-- TriggerServerEvent('esx_vehiclelock:registerkeyjob', name, plate, 'no')
 		end)
 
 	end, function(data, menu)
@@ -438,33 +440,15 @@ Citizen.CreateThread(function()
 						local playerPed = PlayerPedId()
 						local vehicle = GetVehiclePedIsIn(playerPed, false)
 						local hash = GetEntityModel(vehicle)
-						local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
-
-						local platePrefix = Config.PlatePrefix
-
-						if string.find(plate, platePrefix) then
-							local truck = Config.Vehicles.Truck
-
-							if hash == GetHashKey(truck.Hash) then
-								if GetVehicleEngineHealth(vehicle) <= 500 or GetVehicleBodyHealth(vehicle) <= 500 then
-									ESX.ShowNotification(_U('vehicle_broken'))
-								else
-									TriggerServerEvent('esx_vehiclelock:vehjobSup', plate, 'no')
+							if hash == GetHashKey("dinghy") then
 									DeleteVehicle(vehicle)
-								end
 							end
-						else
-							ESX.ShowNotification(_U('bad_vehicle'))
 						end
-
 					end
-
-					CurrentAction = nil
 				end
 			end
 		end
-	end
-end)
+	end)
 
 Citizen.CreateThread(function()
 	while true do
