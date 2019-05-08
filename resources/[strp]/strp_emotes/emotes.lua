@@ -48,7 +48,7 @@
 --				/e copidle		: idle like a cop
 
 RegisterCommand('emotes', function()
-	msg("salute, finger(1/2), surrender, palm, notes, foldarms, foldarms2, umbrella, brief, brief2, damn, fail, gang(1/2), no, pickbutt, peace, guard, cigar, cigar2, cig, joint, holdcig(tog), holdcigar(tog), holdjoint, dead, holster, guard, box, slowclap, cheer, bum, leanwall, copcrowd, copcrowd2, copidle, sit, hoe, hoe2, investigate, pushups, situps, camera, impatient, diggit, flex, jog, sunbath, sunbath2, yoga, kneel, fidget, wash, clean, map, selfie, bongos, workout, leafblower, rest, broom, binoculars, weld, hangout, statue, dance1(1-10)")
+	msg("salute, finger(1/2), surrender, palm, notes, foldarms, foldarms2, umbrella, brief, brief2, damn, fail, gang(1/2), no, pickbutt, peace, guard, cigar, cigar2, cig, joint, holdcig(tog), holdcigar(tog), holdjoint, dead, holster, guard, box, slowclap, cheer, bum, leanwall, copcrowd, copcrowd2, copidle, sit, hoe, hoe2, investigate, pushups, situps, camera, impatient, flex, jog, sunbath, sunbath2, yoga, kneel, fidget, wash, clean, map, selfie, bongos, leafblower, rest, broom, binoculars, hangout, statue, dance1(1-10)")
 	msg("Example: /e sit")
 	msg("Press X to cancel")
 end, false)
@@ -839,15 +839,6 @@ RegisterCommand("e",function(source, args)
 						TaskStartScenarioInPlace(player, 'WORLD_HUMAN_STAND_IMPATIENT', 0, 1)
 					end
 				end 
-			elseif argh == 'diggit' then
-
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
-					if IsPedActiveInScenario(player) then
-						ClearPedTasks(player)
-					else
-						TaskStartScenarioInPlace(player, 'WORLD_HUMAN_STRIP_WATCH_STAND', 0, 1)
-					end
-				end
 			elseif argh == 'flex' then
 
 				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
@@ -956,15 +947,6 @@ RegisterCommand("e",function(source, args)
 						TaskStartScenarioInPlace(player, 'WORLD_HUMAN_MUSICIAN', 0, 1)
 					end
 				end
-			elseif argh == 'workout' then
-
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
-					if IsPedActiveInScenario(player) then
-						ClearPedTasks(player)
-					else
-						TaskStartScenarioInPlace(player, 'WORLD_HUMAN_MUSCLE_FREE_WEIGHTS', 0, 1)
-					end
-				end
 			elseif argh == 'leafblower' then
 
 				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
@@ -1008,15 +990,6 @@ RegisterCommand("e",function(source, args)
 						ClearPedTasks(player)
 					else
 						TaskStartScenarioInPlace(player, 'WORLD_HUMAN_BINOCULARS', 0, 1)
-					end
-				end
-			elseif argh == 'weld' then
-
-				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
-					if IsPedActiveInScenario(player) then
-						ClearPedTasks(player)
-					else
-						TaskStartScenarioInPlace(player, 'WORLD_HUMAN_WELDING', 0, 1)
 					end
 				end
 			elseif argh == 'statue' then
