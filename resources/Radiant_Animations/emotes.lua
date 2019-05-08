@@ -48,7 +48,7 @@
 --				/e copidle		: idle like a cop
 
 RegisterCommand('emotes', function()
-	msg("salute, finger(1/2), surrender, palm, notes, foldarms, foldarms2, umbrella, brief, brief2, damn, fail, gang(1/2), no, pickbutt, peace, guard, cigar, cigar2, cig, joint, holdcig(tog), holdcigar(tog), holdjoint, dead, holster, guard, box, slowclap, cheer, bum, leanwall, copcrowd, copcrowd2, copidle, sit, hoe, hoe2, investigate, pushups, situps, camera, impatient, diggit, flex, jog, sunbath, sunbath2, yoga, kneel, fidget, wash, clean, map, selfie, bongos, workout, leafblower, rest, broom, binoculars, weld, hangout, statue")
+	msg("salute, finger(1/2), surrender, palm, notes, foldarms, foldarms2, umbrella, brief, brief2, damn, fail, gang(1/2), no, pickbutt, peace, guard, cigar, cigar2, cig, joint, holdcig(tog), holdcigar(tog), holdjoint, dead, holster, guard, box, slowclap, cheer, bum, leanwall, copcrowd, copcrowd2, copidle, sit, hoe, hoe2, investigate, pushups, situps, camera, impatient, diggit, flex, jog, sunbath, sunbath2, yoga, kneel, fidget, wash, clean, map, selfie, bongos, workout, leafblower, rest, broom, binoculars, weld, hangout, statue, dance1(1-10)")
 	msg("Example: /e sit")
 	msg("Press X to cancel")
 end, false)
@@ -607,6 +607,156 @@ RegisterCommand("e",function(source, args)
 						TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
 					end       
 				end
+			elseif argh == 'dance1' then
+				local ad = "anim@amb@nightclub@dancers@crowddance_facedj@hi_intensity" --- insert the animation dic here
+				local anim = "hi_dance_facedj_09_v2_male^6" --- insert the animation name here
+				local player = PlayerPedId()
+				
+			
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+					loadAnimDict( ad )
+					if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+						TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+						ClearPedSecondaryTask(player)
+					else
+						TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+					end       
+				end
+			elseif argh == 'dance2' then
+				local ad = "anim@amb@nightclub@dancers@crowddance_facedj@low_intesnsity" --- insert the animation dic here
+				local anim = "li_dance_facedj_09_v1_male^6" --- insert the animation name here
+				local player = PlayerPedId()
+				
+			
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+					loadAnimDict( ad )
+					if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+						TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+						ClearPedSecondaryTask(player)
+					else
+						TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+					end       
+				end
+			elseif argh == 'dance3' then
+				local ad = "anim@amb@nightclub@dancers@crowddance_facedj_transitions@from_hi_intensity" --- insert the animation dic here
+				local anim = "trans_dance_facedj_hi_to_li_09_v1_male^6" --- insert the animation name here
+				local player = PlayerPedId()
+				
+			
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+					loadAnimDict( ad )
+					if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+						TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+						ClearPedSecondaryTask(player)
+					else
+						TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+					end       
+				end
+			elseif argh == 'dance4' then
+				local ad = "anim@amb@nightclub@dancers@crowddance_facedj_transitions@from_low_intensity" --- insert the animation dic here
+				local anim = "trans_dance_facedj_li_to_hi_07_v1_male^6" --- insert the animation name here
+				local player = PlayerPedId()
+				
+			
+				if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+					loadAnimDict( ad )
+					if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+						TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+						ClearPedSecondaryTask(player)
+					else
+						TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+					end       
+				end
+			elseif argh == 'dance5' then
+					local ad = "anim@amb@nightclub@dancers@crowddance_groups@hi_intensity" --- insert the animation dic here
+					local anim = "hi_dance_crowd_13_v2_male^6" --- insert the animation name here
+					local player = PlayerPedId()
+					
+				
+					if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+						loadAnimDict( ad )
+						if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+							TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+							ClearPedSecondaryTask(player)
+						else
+							TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+						end       
+					end
+				elseif argh == 'dance6' then
+					local ad = "anim@amb@nightclub@dancers@podium_dancers@" --- insert the animation dic here
+					local anim = "hi_dance_facedj_17_v2_male^5" --- insert the animation name here
+					local player = PlayerPedId()
+					
+				
+					if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+						loadAnimDict( ad )
+						if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+							TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+							ClearPedSecondaryTask(player)
+						else
+							TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+						end       
+					end
+				elseif argh == 'dance7' then
+					local ad = "anim@amb@nightclub@dancers@black_madonna_entourage@" --- insert the animation dic here
+					local anim = "hi_dance_facedj_09_v2_male^5" --- insert the animation name here
+					local player = PlayerPedId()
+					
+				
+					if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+						loadAnimDict( ad )
+						if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+							TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+							ClearPedSecondaryTask(player)
+						else
+							TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+						end       
+					end
+				elseif argh == 'dance8' then
+						local ad = "misschinese2_crystalmazemcs1_cs" --- insert the animation dic here
+						local anim = "dance_loop_tao" --- insert the animation name here
+						local player = PlayerPedId()
+						
+					
+						if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+							loadAnimDict( ad )
+							if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+								TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+								ClearPedSecondaryTask(player)
+							else
+								TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+							end       
+						end
+					elseif argh == 'dance9' then
+						local ad = "anim@mp_player_intcelebrationfemale@uncle_disco" --- insert the animation dic here
+						local anim = "uncle_disco" --- insert the animation name here
+						local player = PlayerPedId()
+						
+					
+						if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+							loadAnimDict( ad )
+							if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+								TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+								ClearPedSecondaryTask(player)
+							else
+								TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+							end       
+						end
+					elseif argh == 'dance10' then
+						local ad = "anim@amb@nightclub@dancers@crowddance_groups@hi_intensity" --- insert the animation dic here
+						local anim = "hi_dance_crowd_09_v1_female^6" --- insert the animation name here
+						local player = PlayerPedId()
+						
+					
+						if ( DoesEntityExist( player ) and not IsEntityDead( player )) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) then
+							loadAnimDict( ad )
+							if ( IsEntityPlayingAnim( player, ad, anim, 3 ) ) then 
+								TaskPlayAnim( player, ad, "exit", 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+								ClearPedSecondaryTask(player)
+							else
+								TaskPlayAnim( player, ad, anim, 3.0, 1.0, -1, 01, 0, 0, 0, 0 )
+							end       
+						end
 				
 			elseif argh == 'copidle' then
 
