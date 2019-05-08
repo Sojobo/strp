@@ -72,7 +72,7 @@ Config.Zones = {
 		ItemRequires = "contrat",
 		ItemRequires_name = "Facture",
 		ItemDrop = 100,
-		ItemPrice  = 190
+		ItemPrice  = 230
 	}
 
 }
