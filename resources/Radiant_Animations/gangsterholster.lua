@@ -11,7 +11,9 @@ local weapons = {
     "WEAPON_PISTOL_MK2",
     "WEAPON_COMBATPISTOL",
 	"WEAPON_HEAVYPISTOL",
-	"WEAPON_MACHINEPISTOL",
+    "WEAPON_MACHINEPISTOL",
+    "WEAPON_MICROSMG",
+    "WEAPON_STUNGUN",
 }
 
 Citizen.CreateThread(function()
