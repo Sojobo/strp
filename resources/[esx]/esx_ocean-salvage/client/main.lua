@@ -150,8 +150,8 @@ function CloakRoomMenu()
 			onDuty = true
 			CreateBlip()
 			menu.close()
+			StartNPCJob()
 			ESX.ShowNotification(_U('take_service_notif'))
-			ESX.ShowNotification(_U('start_job'))
 			local playerPed = GetPlayerPed(-1)
 			setUniform(data.current.value, playerPed)
 
@@ -450,29 +450,29 @@ Citizen.CreateThread(function()
 		end
 	end)
 
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(10)
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		Citizen.Wait(10)
 
-		if IsControlJustReleased(1, Keys["F3"]) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name ~= nil and not Onjob then
+-- 		if IsControlJustReleased(1, Keys["F3"]) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name ~= nil and not Onjob then
 
-			if Onjob then
-				StopNPCJob(true)
-				RemoveBlip(Blips['NPCTargetPool'])
-				Onjob = false
-			else
-				local playerPed = PlayerPedId()
+-- 			if Onjob then
+-- 				StopNPCJob(true)
+-- 				RemoveBlip(Blips['NPCTargetPool'])
+-- 				Onjob = false
+-- 			else
+-- 				local playerPed = PlayerPedId()
 
-				if IsPedInAnyVehicle(playerPed, false) and IsVehicleModel(GetVehiclePedIsIn(playerPed, false), GetHashKey("dinghy")) then
-					StartNPCJob()
-					Onjob = true
-				else
-					ESX.ShowNotification(_U('not_good_veh'))
-				end
-			end
-		end
-	end
-end)
+-- 				if IsPedInAnyVehicle(playerPed, false) and IsVehicleModel(GetVehiclePedIsIn(playerPed, false), GetHashKey("dinghy")) then
+-- 					StartNPCJob()
+-- 					Onjob = true
+-- 				else
+-- 					ESX.ShowNotification(_U('not_good_veh'))
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end)
 
 function setUniform(job)
 	TriggerEvent('skinchanger:getSkin', function(skin)
@@ -502,6 +502,6 @@ function FinishJob()
 		RemoveBlip(Blips['NPCTargetPool'])
 		Blips['NPCTargetPool'] = nil
 	end
-
+	OnDuty = false
 	OnJob = false
 end
