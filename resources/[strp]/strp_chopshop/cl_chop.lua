@@ -62,7 +62,7 @@ end)
 
 Citizen.CreateThread(function()
     for _, item in pairs(chopShops) do
-    	item.blip = AddBlipForRadius(item.x, item.y, item.z, 100.0)
+    	item.blip = AddBlipForRadius(item.x, item.y, item.z, 0)
         SetBlipHighDetail(item.blip, true)
         SetBlipColour(item.blip, 1)
         SetBlipAlpha (item.blip, 128)
